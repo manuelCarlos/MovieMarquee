@@ -27,6 +27,7 @@
 		11947C672CB012C50024132D /* MovieMarquee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieMarquee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C782CB012C60024132D /* MovieMarqueeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11947CA52CB014400024132D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +80,7 @@
 				11947C7B2CB012C60024132D /* MovieMarqueeTests */,
 				11947C852CB012C60024132D /* MovieMarqueeUITests */,
 				11947C682CB012C50024132D /* Products */,
+				11947CA52CB014400024132D /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
