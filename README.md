@@ -5,4 +5,6 @@ The BE is kindly provided by TMDB (www.themoviedb.org)
 
 # Features
 
-- SwiftUI
+- SwiftUI Views
+- Local Swift Packages
+- String Catalogs for localization
