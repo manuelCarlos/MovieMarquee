@@ -16,9 +16,9 @@ enum Texts {
                                                            value: "Cannot Fetch Popular Movies",
                                                            comment: "Error description when it's not possible to fetch Popular Movies")
     
-    static let networkErrorRecoveryDescription = NSLocalizedString("network_error_recovery_description_key",
-                                                                   bundle: .module,
-                                                                   value: "Due to a network or server issue, we couldn't fetch the data. Please try again later.",
-                                                                   comment: "Error description when it's not possible to fetch Popular Movies and recovery suggestion")
+    static let networkErrorRecoverySuggestion = NSLocalizedString("network_error_recovery_suggestion_key",
+                                                                  bundle: .module,
+                                                                  value: "Due to a network or server issue, we couldn't fetch the data. Please try again later.",
+                                                                  comment: "Error description when it's not possible to fetch Popular Movies and recovery suggestion")
     
 }

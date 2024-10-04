@@ -19,7 +19,7 @@
         }
       }
     },
-    "network_error_recovery_description_key" : {
+    "network_error_recovery_suggestion_key" : {
       "comment" : "Error description when it's not possible to fetch Popular Movies and recovery suggestion",
       "extractionState" : "manual",
       "localizations" : {
