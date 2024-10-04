@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "NetworkService",
-            targets: ["NetworkService"]),
+            targets: ["NetworkService"])
     ],
     targets: [
         .target(
@@ -16,6 +16,6 @@ let package = Package(
         .testTarget(
             name: "NetworkServiceTests",
             dependencies: ["NetworkService"]
-        ),
+        )
     ]
 )
