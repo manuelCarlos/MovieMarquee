@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		11947CA92CB019140024132D /* NetworkService in Frameworks */ = {isa = PBXBuildFile; productRef = 11947CA82CB019140024132D /* NetworkService */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		11947C792CB012C60024132D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -28,6 +32,7 @@
 		11947C782CB012C60024132D /* MovieMarqueeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947CA52CB014400024132D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		11947CA62CB0168B0024132D /* NetworkService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkService; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11947CA92CB019140024132D /* NetworkService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,11 +82,13 @@
 		11947C5E2CB012C50024132D = {
 			isa = PBXGroup;
 			children = (
+				11947CA62CB0168B0024132D /* NetworkService */,
 				11947C692CB012C50024132D /* MovieMarquee */,
 				11947C7B2CB012C60024132D /* MovieMarqueeTests */,
 				11947C852CB012C60024132D /* MovieMarqueeUITests */,
 				11947C682CB012C50024132D /* Products */,
 				11947CA52CB014400024132D /* README.md */,
+				11947CA72CB019140024132D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +100,13 @@
 				11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		11947CA72CB019140024132D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +129,7 @@
 			);
 			name = MovieMarquee;
 			packageProductDependencies = (
+				11947CA82CB019140024132D /* NetworkService */,
 			);
 			productName = MovieMarquee;
 			productReference = 11947C672CB012C50024132D /* MovieMarquee.app */;
@@ -593,6 +609,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		11947CA82CB019140024132D /* NetworkService */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkService;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 11947C5F2CB012C50024132D /* Project object */;
 }
