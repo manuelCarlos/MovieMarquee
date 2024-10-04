@@ -18,6 +18,24 @@
           }
         }
       }
+    },
+    "network_error_recovery_description_key" : {
+      "comment" : "Error description when it's not possible to fetch Popular Movies and recovery suggestion",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due to a network or server issue, we couldn't fetch the data. Please try again later."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Devido a um erro nāo foi possível descarregar of filmes populares. Tente novamente mais tarde."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

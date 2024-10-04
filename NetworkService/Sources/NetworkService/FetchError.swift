@@ -13,14 +13,14 @@ public enum FetchError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .networkError:
-            return "Cannot Fetch Popular Movies"
+            return Texts.networkErrorDescription
         }
     }
     
     public var recoverySuggestion: String? {
         switch self {
         case .networkError:
-            return "Due to a network or server issue, we couldn't fetch the data. Please try again later."
+            return Texts.networkErrorRecoverySuggestion
         }
     }
 }

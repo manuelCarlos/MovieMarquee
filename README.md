@@ -7,4 +7,4 @@ The BE is kindly provided by TMDB (www.themoviedb.org)
 
 - SwiftUI Views
 - Local Swift Packages
-- String Catalogs for localization
+- Localization Using String Catalogs
