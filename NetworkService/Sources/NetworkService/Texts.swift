@@ -20,5 +20,4 @@ enum Texts {
                                                                   bundle: .module,
                                                                   value: "Due to a network or server issue, we couldn't fetch the data. Please try again later.",
                                                                   comment: "Error description when it's not possible to fetch Popular Movies and recovery suggestion")
-    
 }

@@ -15,7 +15,13 @@ let package = Package(
             name: "NetworkService"),
         .testTarget(
             name: "NetworkServiceTests",
-            dependencies: ["NetworkService"]
+            dependencies: ["NetworkService"],
+            resources: [
+                   // Copy Tests/ExampleTests/Resources directories as-is.
+                   // Use to retain directory structure.
+                   // Will be at top level in bundle.
+                   .copy("Resources/mockedApiKey.json")
+                 ]
         )
     ]
 )
