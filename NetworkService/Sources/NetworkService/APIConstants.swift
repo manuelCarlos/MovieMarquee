@@ -35,7 +35,7 @@ enum APIConstants {
                 }
             }
         } catch {
-            print("Error loading API key: \(error)")
+            assertionFailure("Error loading API key: \(error)")
         }
 
         return nil
