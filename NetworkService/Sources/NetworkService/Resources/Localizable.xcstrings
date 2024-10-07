@@ -36,6 +36,42 @@
           }
         }
       }
+    },
+    "network_invalid_server_response_title_key" : {
+      "comment" : "Error title when the server returned an invalid response",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server returned an invalid response."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O serviço returnou in error"
+          }
+        }
+      }
+    },
+    "network_invalid_url_title_key" : {
+      "comment" : "Error title when the url is invalid",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL string is malformed."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O URL está mal formado"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

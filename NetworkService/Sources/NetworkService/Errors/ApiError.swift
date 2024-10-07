@@ -21,9 +21,9 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidServerResponse:
-            return "The server returned an invalid response."
+            return Texts.invalidServerResponseTitle
         case .invalidURL:
-            return "URL string is malformed."
+            return Texts.invalidURLTitle
         }
     }
 }
