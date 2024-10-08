@@ -5,8 +5,6 @@
 //  Created by Manuel Lopes on 07.10.24.
 //
 
-import Foundation
-
 @testable import NetworkService
 
 struct MockNetworkRequest: NetworkRequest {
