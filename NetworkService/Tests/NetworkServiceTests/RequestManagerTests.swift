@@ -5,9 +5,8 @@
 //  Created by Manuel Lopes on 07.10.24.
 //
 
-import Foundation
-
 import XCTest
+
 @testable import NetworkService
 
 @available(iOS 15.0, *)

@@ -5,9 +5,8 @@
 //  Created by Manuel Lopes on 08.10.24.
 //
 
-import Foundation
-
 import XCTest
+
 @testable import NetworkService
 
 final class AuthRequestTests: XCTestCase {

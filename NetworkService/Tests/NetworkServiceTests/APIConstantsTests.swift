@@ -6,8 +6,8 @@
 //
 
 import Foundation
-
 import XCTest
+
 @testable import NetworkService
 
 final class APIConstantsTests: XCTestCase {

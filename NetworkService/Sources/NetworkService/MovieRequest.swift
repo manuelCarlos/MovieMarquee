@@ -6,6 +6,7 @@
 //
 
 enum MovieRequest: MediaTypeProtocol {
+
     case getPopularMovies(page: Int)
     case getUpcomingMovies(page: Int)
     case getNowPlayingMovies(page: Int)
@@ -14,7 +15,9 @@ enum MovieRequest: MediaTypeProtocol {
     case getSimilarMoviesTo(id: Int, page: Int)
     case getCredits(id: Int)
 
-    var mediaType: MediaType { .movie }
+    var mediaType: MediaType {
+        .movie
+    }
 
     var path: String {
         switch self {

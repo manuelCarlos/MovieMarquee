@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import NetworkService
 
 final class FetchErrorTests: XCTestCase {
