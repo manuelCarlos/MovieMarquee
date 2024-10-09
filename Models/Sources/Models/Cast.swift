@@ -91,10 +91,9 @@ struct Cast: Codable, Identifiable, Hashable, Sendable {
         video = try container.decodeIfPresent(Bool.self, forKey: .video)
         voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage)
         voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
-
-        let release = try container.decodeIfPresent(String.self, forKey: .releaseDate)
+        let release = try container.decodeIfPresent(String.self, forKey: .releaseDate) ?? ""
         let formatter = DateFormatter.yyyyMMdd
-        releaseDate = formatter.date(from: release ?? "")
+        releaseDate = formatter.date(from: release)
     }
 
     let adult: Bool

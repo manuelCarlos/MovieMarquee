@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  NetworkService
+//  RequestManagerTests.swift
+//  NetworkServiceTests
 //
 //  Created by Manuel Lopes on 07.10.24.
 //

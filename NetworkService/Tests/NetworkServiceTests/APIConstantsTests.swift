@@ -1,6 +1,6 @@
 //
 //  APIConstantsTests.swift
-//  NetworkService
+//  NetworkServiceTests
 //
 //  Created by Manuel Lopes on 05.10.24.
 //

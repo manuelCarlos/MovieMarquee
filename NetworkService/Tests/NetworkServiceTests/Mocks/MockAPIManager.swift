@@ -1,6 +1,6 @@
 //
 //  MockAPIManager.swift
-//  NetworkService
+//  NetworkServiceTests
 //
 //  Created by Manuel Lopes on 07.10.24.
 //

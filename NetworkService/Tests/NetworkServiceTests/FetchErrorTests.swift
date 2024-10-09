@@ -1,6 +1,6 @@
 //
 //  FetchErrorTests.swift
-//  NetworkService
+//  NetworkServiceTests
 //
 //  Created by Manuel Lopes on 04.10.24.
 //

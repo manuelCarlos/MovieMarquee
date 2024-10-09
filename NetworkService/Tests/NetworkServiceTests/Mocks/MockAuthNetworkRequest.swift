@@ -1,6 +1,6 @@
 //
 //  MockAuthNetworkRequest.swift
-//  NetworkService
+//  NetworkServiceTests
 //
 //  Created by Manuel Lopes on 08.10.24.
 //
