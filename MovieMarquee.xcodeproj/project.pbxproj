@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11947CA92CB019140024132D /* NetworkService in Frameworks */ = {isa = PBXBuildFile; productRef = 11947CA82CB019140024132D /* NetworkService */; };
+		11947CAE2CB6D9B80024132D /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 11947CAD2CB6D9B80024132D /* Models */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11947CAE2CB6D9B80024132D /* Models in Frameworks */,
 				11947CA92CB019140024132D /* NetworkService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +137,7 @@
 			name = MovieMarquee;
 			packageProductDependencies = (
 				11947CA82CB019140024132D /* NetworkService */,
+				11947CAD2CB6D9B80024132D /* Models */,
 			);
 			productName = MovieMarquee;
 			productReference = 11947C672CB012C50024132D /* MovieMarquee.app */;
@@ -643,6 +646,10 @@
 		11947CA82CB019140024132D /* NetworkService */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkService;
+		};
+		11947CAD2CB6D9B80024132D /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
