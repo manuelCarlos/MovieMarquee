@@ -6,6 +6,6 @@
 //
 
 struct Production: Codable, Hashable, Sendable {
-    var iso3166_1: String // swiftlint:disable:this identifier_name
-    var name: String
+    let iso3166_1: String // swiftlint:disable:this identifier_name
+    let name: String
 }

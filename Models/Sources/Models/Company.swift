@@ -6,8 +6,8 @@
 //
 
 struct Company: Codable, Identifiable, Hashable, Sendable {
-    var id: Int
-    var name: String
-    var logoPath: String
-    var originCountry: String
+    let id: Int
+    let name: String
+    let logoPath: String
+    let originCountry: String
 }

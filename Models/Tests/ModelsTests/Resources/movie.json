@@ -1,0 +1,16 @@
+{
+    "id": 1,
+    "title": "Test Movie",
+    "adult": false,
+    "poster_path": "/path/to/poster",
+    "backdrop_path": "/path/to/backdrop",
+    "overview": "This is a test overview",
+    "release_date": "1970-01-01",
+    "genre_ids": [1, 2, 3],
+    "original_title": "Test Original Title",
+    "original_language": "en",
+    "popularity": 8.7,
+    "vote_count": 100,
+    "video": false,
+    "vote_average": 7.5
+}

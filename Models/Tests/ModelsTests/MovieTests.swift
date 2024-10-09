@@ -1,0 +1,106 @@
+//
+//  MovieTests.swift
+//  Models
+//
+//  Created by Manuel Lopes on 09.10.24.
+//
+
+
+import XCTest
+
+@testable import Models
+
+@available(iOS 15, *)
+final class MovieTests: XCTestCase {
+
+    func test_movie_decoding_succefully() throws {
+        guard let path = Bundle.module.url(forResource: "movie", withExtension: "json") else {
+            XCTFail("Missing file: movie.json")
+            return
+        }
+
+        let jsonData = try Data(contentsOf: path)
+        let movie = try JSONDecoder().decode(Movie.self, from: jsonData)
+
+        XCTAssertEqual(movie.id, 1)
+        XCTAssertEqual(movie.title, "Test Movie")
+        XCTAssertEqual(movie.adult, false)
+        XCTAssertEqual(movie.posterPath, "/path/to/poster")
+        XCTAssertEqual(movie.backdropPath, "/path/to/backdrop")
+        XCTAssertEqual(movie.overview, "This is a test overview")
+        XCTAssertEqual(movie.releaseDate, DateFormatter.yyyyMMdd.date(from: "1970-01-01"))
+        XCTAssertEqual(movie.genreIDS, [1, 2, 3])
+        XCTAssertEqual(movie.originalTitle, "Test Original Title")
+        XCTAssertEqual(movie.originalLanguage, .en)
+        XCTAssertEqual(movie.popularity, 8.7)
+        XCTAssertEqual(movie.voteCount, 100)
+        XCTAssertEqual(movie.video, false)
+        XCTAssertEqual(movie.voteAverage, 7.5)
+    }
+
+    func test_movie_decoding_failure_due_to_malformed_json() throws {
+        guard let path = Bundle.module.url(forResource: "malformed_movie", withExtension: "json") else {
+            XCTFail("Missing file: malformed_movie.json")
+            return
+        }
+
+        let jsonData = try Data(contentsOf: path)
+
+        XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonData)) { error in
+            XCTAssertTrue(error is DecodingError)
+        }
+    }
+
+    func test_movie_encoding_succefully() throws {
+        var dateComponents = DateComponents()
+        dateComponents.year = 2000
+        dateComponents.month = 1
+        dateComponents.day = 1
+        let date = Calendar.current.date(from: dateComponents) ?? .now
+
+        let movie = Movie(
+            id: 1,
+            title: "Test Movie",
+            adult: false,
+            posterPath: "/path/to/poster",
+            backdropPath: "/path/to/backdrop",
+            overview: "This is a test overview",
+            releaseDate: date,
+            genreIDS: [1, 2, 3],
+            originalTitle: "Test Original Title",
+            originalLanguage: .en,
+            popularity: 8.7,
+            voteCount: 100,
+            video: false,
+            voteAverage: 7.5
+        )
+
+        // Set the date encoding strategy to use yyyy-MM-dd and force it to use UTC
+        let dateFormatter = DateFormatter.yyyyMMdd
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .formatted(dateFormatter)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+        let jsonData = try encoder.encode(movie)
+        let decodedMovie = try decoder.decode(Movie.self, from: jsonData)
+
+        XCTAssertEqual(decodedMovie.id, 1)
+        XCTAssertEqual(decodedMovie.title, "Test Movie")
+        XCTAssertEqual(decodedMovie.adult, false)
+        XCTAssertEqual(decodedMovie.posterPath, "/path/to/poster")
+        XCTAssertEqual(decodedMovie.backdropPath, "/path/to/backdrop")
+        XCTAssertEqual(decodedMovie.overview, "This is a test overview")
+        XCTAssertEqual(dateFormatter.string(from: decodedMovie.releaseDate ?? .distantFuture),
+                       dateFormatter.string(from: movie.releaseDate ?? .distantPast))
+        XCTAssertEqual(decodedMovie.genreIDS, [1, 2, 3])
+        XCTAssertEqual(decodedMovie.originalTitle, "Test Original Title")
+        XCTAssertEqual(decodedMovie.originalLanguage, .en)
+        XCTAssertEqual(decodedMovie.popularity, 8.7)
+        XCTAssertEqual(decodedMovie.voteCount, 100)
+        XCTAssertEqual(decodedMovie.video, false)
+        XCTAssertEqual(decodedMovie.voteAverage, 7.5)
+    }
+}

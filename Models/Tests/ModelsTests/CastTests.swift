@@ -55,11 +55,42 @@ final class CastTests: XCTestCase {
         }
 
         let jsonData = try Data(contentsOf: path)
-        let decoder = JSONDecoder()
 
-        XCTAssertThrowsError(try decoder.decode(Cast.self, from: jsonData)) { error in
+        XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonData)) { error in
             XCTAssertTrue(error is DecodingError)
         }
+    }
+
+    func test_cast_encoding_succefully() throws {
+        let cast = Cast.makeCast()
+
+        // Set the date encoding strategy to use yyyy-MM-dd and force it to use UTC
+        let dateFormatter = DateFormatter.yyyyMMdd
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .formatted(dateFormatter)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+        let jsonData = try encoder.encode(cast)
+        let decodedMovie = try decoder.decode(Cast.self, from: jsonData)
+
+        XCTAssertEqual(decodedMovie.id, 1)
+        XCTAssertEqual(decodedMovie.title, "Title")
+        XCTAssertEqual(decodedMovie.adult, true)
+        XCTAssertEqual(decodedMovie.posterPath, "PostPath")
+        XCTAssertEqual(decodedMovie.backdropPath, "BackdropPath")
+        XCTAssertEqual(decodedMovie.overview, "Overview")
+        XCTAssertEqual(dateFormatter.string(from: decodedMovie.releaseDate ?? .distantFuture),
+                       dateFormatter.string(from: cast.releaseDate ?? .distantPast))
+        XCTAssertEqual(decodedMovie.genreIDS, [1, 2, 3])
+        XCTAssertEqual(decodedMovie.originalTitle, "Original Title")
+        XCTAssertEqual(decodedMovie.originalLanguage, .en)
+        XCTAssertEqual(decodedMovie.popularity, 10.0)
+        XCTAssertEqual(decodedMovie.voteCount, 1000)
+        XCTAssertEqual(decodedMovie.video, false)
+        XCTAssertEqual(decodedMovie.voteAverage, 7.2)
     }
 
     func test_get_title() {
@@ -104,7 +135,7 @@ final class CastTests: XCTestCase {
         let cast1 = Cast.makeCast(knownForDepartment: .actor, job: "Godot")
 
         XCTAssertEqual(cast1.getKnownForDepartment, "Actors")
-
+        
         let cast2 = Cast.makeCast(character: nil, job: "Director")
 
         XCTAssertEqual(cast2.getKnownForDepartment, "Acting")

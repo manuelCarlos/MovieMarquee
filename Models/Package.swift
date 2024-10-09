@@ -18,7 +18,9 @@ let package = Package(
             dependencies: ["Models"],
             resources: [
                    .copy("Resources/cast.json"),
-                   .copy("Resources/malformed_cast.json")
+                   .copy("Resources/malformed_cast.json"),
+                   .copy("Resources/movie.json"),
+                   .copy("Resources/malformed_movie.json")
                  ]
         )
     ]
