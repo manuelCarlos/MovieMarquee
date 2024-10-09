@@ -34,6 +34,7 @@
 		11947CA52CB014400024132D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		11947CA62CB0168B0024132D /* NetworkService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkService; sourceTree = "<group>"; };
 		11947CAB2CB03B680024132D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		11947CAC2CB6737A0024132D /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -83,6 +84,7 @@
 		11947C5E2CB012C50024132D = {
 			isa = PBXGroup;
 			children = (
+				11947CAC2CB6737A0024132D /* Models */,
 				11947CAB2CB03B680024132D /* .swiftlint.yml */,
 				11947CA62CB0168B0024132D /* NetworkService */,
 				11947C692CB012C50024132D /* MovieMarquee */,
