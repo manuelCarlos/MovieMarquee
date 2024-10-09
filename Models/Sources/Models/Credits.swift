@@ -9,7 +9,3 @@ struct Credits: Codable, Identifiable, Hashable, Sendable {
     let cast, crew: [Cast]
     let id: Int?
 }
-
-extension Credits {
-    static let mock = Credits(cast: [], crew: [], id: 1)
-}

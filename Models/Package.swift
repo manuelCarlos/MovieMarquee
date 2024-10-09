@@ -15,7 +15,11 @@ let package = Package(
             name: "Models"),
         .testTarget(
             name: "ModelsTests",
-            dependencies: ["Models"]
+            dependencies: ["Models"],
+            resources: [
+                   .copy("Resources/cast.json"),
+                   .copy("Resources/malformed_cast.json")
+                 ]
         )
     ]
 )

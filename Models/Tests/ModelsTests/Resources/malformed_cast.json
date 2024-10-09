@@ -1,0 +1,27 @@
+{
+    "adult": true,
+    "gender": 1,
+    "id": 100,
+    "known_for_department": "Acting",
+    "name": "John Doe",
+    "original_name": "Original John",
+    "popularity": 8.5,
+    "profile_path": "/path/to/profile",
+    "cast_id": 10,
+    "character": "Main Character",
+    "credit_id": "credit_123",
+    "order": 1,
+    "department": "Acting",
+    "job": "Actor",
+    "backdrop_path": "/path/to/backdrop",
+    "genre_ids": [1, 2, 3],
+    "original_language": "en",
+    "original_title": "Original Title",
+    "overview": "This is an overview",
+    "poster_path": "/path/to/poster",
+    "release_date": 2023-01-01, // Malformed date value (not a string)
+    "title": "Movie Title",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 100
+}

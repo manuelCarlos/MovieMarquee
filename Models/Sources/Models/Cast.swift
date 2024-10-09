@@ -162,36 +162,6 @@ struct Cast: Codable, Identifiable, Hashable, Sendable {
     }
 }
 
-extension Cast {
-    static let mock = Cast(
-        adult: true,
-        gender: 1,
-        id: 1,
-        knownForDepartment: .acting,
-        name: "Name",
-        originalName: "Original Name",
-        popularity: 10,
-        profilePath: "ProfilePath",
-        castID: 12,
-        character: "Character",
-        creditID: "CreditID",
-        order: 1,
-        department: .acting,
-        job: "Job",
-        backdropPath: "BackdropPath",
-        genreIDS: [],
-        originalLanguage: .en,
-        originalTitle: "Original Title",
-        overview: "Overview",
-        posterPath: "PostPath",
-        releaseDate: .distantPast,
-        title: "Title",
-        video: false,
-        voteAverage: 7.2,
-        voteCount: 1000
-    )
-}
-
 private extension DateFormatter {
     static let yyyyMMdd: DateFormatter = {
         let formatter = DateFormatter()
