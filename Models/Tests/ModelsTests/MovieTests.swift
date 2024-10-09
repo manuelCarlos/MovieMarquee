@@ -5,7 +5,6 @@
 //  Created by Manuel Lopes on 09.10.24.
 //
 
-
 import XCTest
 
 @testable import Models
@@ -52,12 +51,7 @@ final class MovieTests: XCTestCase {
     }
 
     func test_movie_encoding_succefully() throws {
-        var dateComponents = DateComponents()
-        dateComponents.year = 2000
-        dateComponents.month = 1
-        dateComponents.day = 1
-        let date = Calendar.current.date(from: dateComponents) ?? .now
-
+        let date = Calendar.current.date(from: DateComponents(year: 2000, month: 1, day: 1)) ?? .now
         let movie = Movie(
             id: 1,
             title: "Test Movie",

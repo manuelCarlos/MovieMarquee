@@ -32,7 +32,7 @@ extension Cast {
         originalTitle: String? = "Original Title",
         overview: String? = "Overview",
         posterPath: String? = "PostPath",
-        releaseDate: Date? = .distantPast,
+        releaseDate: Date? = Calendar.current.date(from: DateComponents(year: 1974, month: 10, day: 6)),
         title: String? = "Title",
         video: Bool? = false,
         voteAverage: Double? = 7.2,

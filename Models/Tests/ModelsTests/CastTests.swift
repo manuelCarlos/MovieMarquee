@@ -41,7 +41,7 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(cast.originalTitle, "Original Title")
         XCTAssertEqual(cast.overview, "This is an overview")
         XCTAssertEqual(cast.posterPath, "/path/to/poster")
-        XCTAssertNotNil(cast.releaseDate)
+        XCTAssertEqual(cast.releaseDate, DateFormatter.yyyyMMdd.date(from: "1974-10-06"))
         XCTAssertEqual(cast.title, "Movie Title")
         XCTAssertEqual(cast.video, false)
         XCTAssertEqual(cast.voteAverage, 7.5)
@@ -135,7 +135,7 @@ final class CastTests: XCTestCase {
         let cast1 = Cast.makeCast(knownForDepartment: .actor, job: "Godot")
 
         XCTAssertEqual(cast1.getKnownForDepartment, "Actors")
-        
+
         let cast2 = Cast.makeCast(character: nil, job: "Director")
 
         XCTAssertEqual(cast2.getKnownForDepartment, "Acting")
