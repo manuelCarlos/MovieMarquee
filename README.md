@@ -5,6 +5,7 @@ The BE is kindly provided by TMDB (www.themoviedb.org)
 
 # Features
 
-- SwiftUI Views
-- Local Swift Packages
-- Localization Using String Catalogs
+- Swiftlint code formating
+- SwiftUI app, including views and navigation
+- Local Swift packages (SPM)
+- String Catalogs for localization
