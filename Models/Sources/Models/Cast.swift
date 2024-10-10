@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias Crew = Cast
+public typealias Crew = Cast
 
-struct Cast: Codable, Identifiable, Hashable, Sendable {
+public struct Cast: Codable, Identifiable, Hashable, Sendable {
 
     init(
         adult: Bool,
@@ -65,7 +65,7 @@ struct Cast: Codable, Identifiable, Hashable, Sendable {
         self.voteCount = voteCount
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         adult = try container.decode(Bool.self, forKey: .adult)
         gender = try container.decodeIfPresent(Int.self, forKey: .gender)
@@ -98,7 +98,7 @@ struct Cast: Codable, Identifiable, Hashable, Sendable {
 
     let adult: Bool
     let gender: Int?
-    let id: Int
+    public let id: Int
     let knownForDepartment: Department?
     let name: String?
     let originalName: String?
