@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum APIConstants {
+public enum APIConstants {
     static let baseURL = "api.themoviedb.org"
     static let baseURLPath = "/3"
 
@@ -15,10 +15,10 @@ enum APIConstants {
     static let authURLPath = ""
 
     static let httpsScheme = "https"
-    static let defaultScheme = "https://"
+    public static let defaultScheme = "https://"
 
-    static let baseImgUrl = "image.tmdb.org"
-    static let baseImgUrlPath = "/t/p/w500"
+    public static let baseImgUrl = "image.tmdb.org"
+    public static let baseImgUrlPath = "/t/p/w500"
 
     static let apiKey = loadAPIKey()
     static let language = "en-US"
