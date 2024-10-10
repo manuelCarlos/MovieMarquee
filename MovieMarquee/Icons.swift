@@ -5,7 +5,6 @@
 //  Created by Manuel Lopes on 10.10.24.
 //
 
-
 enum Icons: String, RawRepresentable {
     case favoriteOn = "heart.fill"
     case favoriteOff = "heart"
