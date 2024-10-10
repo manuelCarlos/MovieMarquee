@@ -68,15 +68,10 @@ final class DiscoverSceneViewModelTests: XCTestCase {
     }
 
     func test_fetch_media_should_return_an_empty_list() async throws {
-        let expectation = XCTestExpectation(description: "Fetch media async task completed")
-
         mockInteractor.fetchNextPopularPageAsFullListStub = []
         let viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
 
-        viewModel.fetchMedia()
-        expectation.fulfill()
-
-        await fulfillment(of: [expectation], timeout: timeout)
+        await viewModel.fetMediaAsync()
 
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 0)

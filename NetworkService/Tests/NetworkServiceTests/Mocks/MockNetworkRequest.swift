@@ -7,7 +7,7 @@
 
 @testable import NetworkService
 
-struct MockNetworkRequest: NetworkRequest {
+struct MockNetworkRequest: @unchecked Sendable, NetworkRequest {
     let scheme: String
     let host: String
     let path: String

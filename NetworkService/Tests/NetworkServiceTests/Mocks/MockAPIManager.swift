@@ -9,7 +9,7 @@ import Foundation
 
 @testable import NetworkService
 
-final class MockAPIManager: APIManagerProtocol {
+final class MockAPIManager: @unchecked Sendable, APIManagerProtocol {
     var dataToReturn: Data?
     var errorToThrow: Error?
 
