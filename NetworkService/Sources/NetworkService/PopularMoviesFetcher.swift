@@ -7,8 +7,11 @@
 
 import Foundation
 
-final class PopularMoviesFetcher: MediaListFetcher {
-    func fetch(page: Int) -> NetworkRequest {
+public final class PopularMoviesFetcher: Sendable, MediaListFetcher {
+
+    public init() {}
+
+    public func fetch(page: Int) -> NetworkRequest {
         MovieRequest.getPopularMovies(page: page)
     }
 }
