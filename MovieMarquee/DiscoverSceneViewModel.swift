@@ -16,7 +16,7 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
     enum State {
         case idle
         case loading
-        case failed(Error)
+        case failed(String)
         case loaded([Watchable])
     }
 
@@ -31,7 +31,6 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
     func fetchMedia() {
         Task {
             state = .loading
-            try await Task.sleep(for: .seconds(2)) // TODO: - remove later
             await loadPopularMovies()
         }
     }
@@ -44,11 +43,20 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
             let popularMovies = mapToMovies(watchables: movies)
             state = .loaded(popularMovies)
         } catch {
-            state = .failed(FetchError.networkError)
+            state = .failed(FetchError.networkError.localizedDescription)
         }
     }
 
     private func mapToMovies(watchables: [Watchable]) -> [Watchable] {
         return watchables.compactMap { $0 as? Movie }.filter { $0.releaseDate != nil }
     }
+
+    // MARK: - For testing purposes only
+
+    #if DEBUG
+    func fetMediaAsync() async {
+        state = .loading
+        await loadPopularMovies()
+    }
+    #endif
 }

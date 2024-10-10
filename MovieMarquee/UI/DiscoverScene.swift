@@ -84,14 +84,14 @@ private struct LoadingStateView: View {
 }
 
 private struct FailedStateView: View {
-    let error: Error
+    let error: String
     let onRetry: () async -> Void
 
     var body: some View {
         ContentUnavailableView {
             Text("Oops, something went wrong")
         } description: {
-            Text("Error: \(error.localizedDescription)")
+            Text("Error: \(error)")
         } actions: {
             Button {
                 Task {
