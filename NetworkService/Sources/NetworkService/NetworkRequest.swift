@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkRequest {
+public protocol NetworkRequest: Sendable {
     var scheme: String { get }
     var host: String { get }
     var path: String { get }
@@ -21,7 +21,7 @@ protocol NetworkRequest {
 
 // MARK: - Default Request Implementation
 
-extension NetworkRequest {
+public extension NetworkRequest {
 
     var scheme: String {
         APIConstants.httpsScheme
