@@ -7,28 +7,33 @@
 
 import Foundation
 
-protocol APIManagerProtocol {
+public protocol APIManagerProtocol: Sendable {
     func initRequest(with data: NetworkRequest) async throws -> Data
 }
 
 @available(iOS 15.0, *)
-final class APIManager: APIManagerProtocol {
+public final class APIManager: APIManagerProtocol {
     private let urlSession: URLSession
 
-    init(urlSession: URLSession = URLSession.shared) {
+    public init(urlSession: URLSession = URLSession.shared) {
         self.urlSession = urlSession
     }
 
-    func initRequest(with data: NetworkRequest) async throws -> Data {
-        let (data, response) = try await urlSession.data(for: data.makeRequest())
-        guard let httpResponse = response as? HTTPURLResponse else {
-            assertionFailure("Invalid HTTPURL response")
+    public func initRequest(with data: NetworkRequest) async throws -> Data {
+        do {
+            let (data, response) = try await urlSession.data(for: data.makeRequest())
+            guard let httpResponse = response as? HTTPURLResponse else {
+                assertionFailure("Invalid HTTPURL response")
+                throw NetworkError.invalidServerResponse
+            }
+            guard httpResponse.statusCode == 200 else {
+                assertionFailure("Invalid status code: \(httpResponse.statusCode)")
+                throw NetworkError.invalidServerResponse
+            }
+            return data
+        } catch {
+            assertionFailure("Unkown error: \(error)")
             throw NetworkError.invalidServerResponse
         }
-        guard httpResponse.statusCode == 200 else {
-            assertionFailure("Invalid status code: \(httpResponse.statusCode)")
-            throw NetworkError.invalidServerResponse
-        }
-        return data
     }
 }
