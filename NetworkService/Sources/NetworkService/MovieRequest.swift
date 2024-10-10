@@ -5,7 +5,7 @@
 //  Created by Manuel Lopes on 08.10.24.
 //
 
-enum MovieRequest: MediaTypeProtocol {
+public enum MovieRequest: MediaTypeProtocol {
 
     case getPopularMovies(page: Int)
     case getUpcomingMovies(page: Int)
@@ -15,11 +15,11 @@ enum MovieRequest: MediaTypeProtocol {
     case getSimilarMoviesTo(id: Int, page: Int)
     case getCredits(id: Int)
 
-    var mediaType: MediaType {
+    public var mediaType: MediaType {
         .movie
     }
 
-    var path: String {
+    public var path: String {
         switch self {
         case .getPopularMovies:
             return "/movie/popular"
@@ -38,7 +38,7 @@ enum MovieRequest: MediaTypeProtocol {
         }
     }
 
-    var urlParams: [String: String?] {
+    public var urlParams: [String: String?] {
         switch self {
         case .getPopularMovies(let page):
             return ["page": String(page),
@@ -80,7 +80,7 @@ enum MovieRequest: MediaTypeProtocol {
         }
     }
 
-    var requestType: RequestType {
+    public var requestType: RequestType {
         .GET
     }
 }
