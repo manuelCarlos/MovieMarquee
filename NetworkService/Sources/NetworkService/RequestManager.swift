@@ -8,16 +8,16 @@
 import Foundation
 
 @available(iOS 15.0, *)
-final class RequestManager: RequestManagerProtocol {
+public final class RequestManager: Sendable, RequestManagerProtocol {
 
-    let parser: DataParser = DataParser()
-    let apiManager: APIManagerProtocol
+    public let parser: DataParser = DataParser()
+    public let apiManager: APIManagerProtocol
 
-    init(apiManager: APIManagerProtocol = APIManager()) {
+    public init(apiManager: APIManagerProtocol = APIManager()) {
         self.apiManager = apiManager
     }
 
-    func decode<T: Decodable>(networkRequest data: NetworkRequest) async throws -> T {
+    public func decode<T: Decodable>(networkRequest data: NetworkRequest) async throws -> T {
         let data = try await apiManager.initRequest(with: data)
         let decoded: T = try parser.parse(data: data)
         return decoded
