@@ -12,13 +12,17 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "NetworkService"),
+            name: "NetworkService",
+            resources: [
+                .process("Resources/apiKey.json")
+            ]
+        ),
         .testTarget(
             name: "NetworkServiceTests",
             dependencies: ["NetworkService"],
             resources: [
-                   .copy("Resources/mockedApiKey.json")
-                 ]
+                .process("Resources/mockedApiKey.json")
+            ]
         )
     ]
 )
