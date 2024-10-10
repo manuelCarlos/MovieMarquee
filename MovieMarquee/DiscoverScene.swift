@@ -1,15 +1,25 @@
-struct DiscoverView: View {
-    @State var presenter: DiscoverDefaultPresenter
+//
+//  DiscoverScene.swift
+//  MovieMarquee
+//
+//  Created by Manuel Lopes on 10.10.24.
+//
 
-    init(presenter: DiscoverDefaultPresenter) {
-        self.presenter = presenter
+import SwiftUI
+
+struct DiscoverScene: View {
+
+    @State private var viewModel: DiscoverSceneViewModel
+
+    init(viewModel: DiscoverSceneViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
         NavigationView {
             contentView
         }
-        .navigationBarTitle(ConstantTexts.NavigationBarTitle.discoverScreen)
+        .navigationBarTitle(Texts.NavigationBarTitle.discoverScreen)
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
@@ -25,24 +35,36 @@ struct DiscoverView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        switch presenter.state {
+        switch viewModel.state {
         case .idle:
             IdleStateView {
-                presenter.fetchMedia()
+                viewModel.fetchMedia()
             }
         case .loading:
             LoadingStateView()
         case .failed(let error):
             FailedStateView(error: error) {
-                presenter.fetchMedia()
+                viewModel.fetchMedia()
             }
         case .loaded(let popularMovies):
             LoadedStateView(popularMovies: popularMovies)
         }
     }
+
+    private struct LoadedStateView: View {
+        let popularMovies: [Watchable]
+
+        var body: some View {
+            DiscoverSlice(
+                sliceTitle: Texts.SectionHeader.mostPopular,
+                sliceItems: popularMovies,
+                section: MediaSection.popularMovies
+            )
+        }
+    }
 }
 
-struct IdleStateView: View {
+private struct IdleStateView: View {
     let onAppear: () -> Void
 
     var body: some View {
@@ -55,15 +77,15 @@ struct IdleStateView: View {
     }
 }
 
-struct LoadingStateView: View {
+private struct LoadingStateView: View {
     var body: some View {
         ProgressView()
     }
 }
 
-struct FailedStateView: View {
+private struct FailedStateView: View {
     let error: Error
-    let onRetry: () -> Void
+    let onRetry: () async -> Void
 
     var body: some View {
         ContentUnavailableView {
@@ -73,24 +95,12 @@ struct FailedStateView: View {
         } actions: {
             Button {
                 Task {
-                    onRetry()
+                    await onRetry()
                 }
             } label: {
                 Text("Retry")
                     .font(.title)
             }
         }
-    }
-}
-
-struct LoadedStateView: View {
-    let popularMovies: [Watchable]
-
-    var body: some View {
-        DiscoverSlice(
-            sliceTitle: ConstantTexts.SectionHeader.mostPopular,
-            sliceItems: popularMovies,
-            section: MediaSection.popularMovies
-        )
     }
 }
