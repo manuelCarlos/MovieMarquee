@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RequestType: String {
+public enum RequestType: String {
     case GET
     case POST
 }
