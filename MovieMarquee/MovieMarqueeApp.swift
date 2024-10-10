@@ -11,7 +11,7 @@ import SwiftUI
 struct MovieMarqueeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainAppScene()
         }
     }
 }
