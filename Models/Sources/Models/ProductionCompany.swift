@@ -5,10 +5,10 @@
 //  Created by Manuel Lopes on 09.10.24.
 //
 
-struct ProductionCompany: Codable, Identifiable, Hashable, Sendable {
-    let id: Int
-    let logoPath: String?
-    let name, originCountry: String
+public struct ProductionCompany: Codable, Identifiable, Hashable, Sendable {
+    public let id: Int
+    public let logoPath: String?
+    public let name, originCountry: String
 
     enum CodingKeys: String, CodingKey, Hashable, Sendable {
         case id
