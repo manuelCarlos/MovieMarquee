@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct Movie: Codable, Identifiable, Hashable, Sendable {
-    let id: Int
-    let title: String
-    let adult: Bool?
-    let posterPath: String?
-    let backdropPath: String?
-    let overview: String?
-    let releaseDate: Date?
-    let genreIDS: [Int]
-    let originalTitle: String?
-    let originalLanguage: OriginalLanguage?
-    let popularity: Double
-    let voteCount: Int?
-    let video: Bool
-    let voteAverage: Double?
+public struct Movie: Codable, Identifiable, Hashable, Sendable {
+    public let id: Int
+    public let title: String
+    public let adult: Bool?
+    public let posterPath: String?
+    public let backdropPath: String?
+    public let overview: String?
+    public let releaseDate: Date?
+    public let genreIDS: [Int]
+    public let originalTitle: String?
+    public let originalLanguage: OriginalLanguage?
+    public let popularity: Double
+    public let voteCount: Int?
+    public let video: Bool
+    public let voteAverage: Double?
 
     enum CodingKeys: String, CodingKey, Hashable, Sendable {
         case posterPath = "poster_path"
@@ -39,7 +39,7 @@ struct Movie: Codable, Identifiable, Hashable, Sendable {
         case voteAverage = "vote_average"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
         self.adult = try container.decodeIfPresent(Bool.self, forKey: .adult)

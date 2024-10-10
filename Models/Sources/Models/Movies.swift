@@ -5,10 +5,10 @@
 //  Created by Manuel Lopes on 09.10.24.
 //
 
-struct Movies: Codable, Hashable, Sendable {
+public struct Movies: Codable, Hashable, Sendable {
     let dates: Dates?
     let page: Int
-    var results: [Movie]
+    public let results: [Movie]
     let totalPages, totalResults: Int?
 
     enum CodingKeys: String, CodingKey, Hashable, Sendable {
