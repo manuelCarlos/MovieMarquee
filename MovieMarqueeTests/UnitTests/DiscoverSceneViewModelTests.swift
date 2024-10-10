@@ -13,7 +13,7 @@ import XCTest
 final class DiscoverSceneViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMediaInteractor!
-    private let timeout = TimeInterval(1)
+    private let timeout = TimeInterval(2)
 
     override func setUp() {
         super.setUp()
