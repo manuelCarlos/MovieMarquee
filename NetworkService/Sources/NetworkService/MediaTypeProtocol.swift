@@ -5,6 +5,6 @@
 //  Created by Manuel Lopes on 08.10.24.
 //
 
-protocol MediaTypeProtocol: NetworkRequest {
+public protocol MediaTypeProtocol: NetworkRequest {
     var mediaType: MediaType { get }
 }

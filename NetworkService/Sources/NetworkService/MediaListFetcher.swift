@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol MediaListFetcher {
+public protocol MediaListFetcher {
     func fetch(page: Int) -> NetworkRequest
 }
