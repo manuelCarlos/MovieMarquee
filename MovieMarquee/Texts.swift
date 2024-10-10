@@ -5,7 +5,6 @@
 //  Created by Manuel Lopes on 09.10.24.
 //
 
-
 enum Texts {
 
     enum SectionHeader {
@@ -16,7 +15,6 @@ enum Texts {
         static let onTheAir: String = "On The Air"
         static let topRated: String = "Top Rated"
     }
-
 
     enum NavigationBarTitle {
         static let discoverScreen: String = "Discover"
@@ -41,6 +39,5 @@ enum Texts {
     enum FavoritesSections {
         static let movies: String = "Movies"
         static let artists = "Artists"
-        static let tvSeries = "TV Series"
     }
 }
