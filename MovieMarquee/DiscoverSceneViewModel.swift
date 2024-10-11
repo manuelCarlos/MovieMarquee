@@ -19,7 +19,7 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
         case loaded([Watchable])
     }
 
-    let interactor: MediaInteractor
+    private let interactor: MediaInteractor
 
     private(set) var state = State.idle
 
