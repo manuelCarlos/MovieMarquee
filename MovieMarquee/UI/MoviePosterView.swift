@@ -25,13 +25,13 @@ struct MoviePosterView: View {
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
-                    .opacity(0.1)
+                    .opacity(0.2)
             case .failure:
                 Image(systemName: "photo.badge.exclamationmark")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
-                    .opacity(0.1)
+                    .opacity(0.5)
             @unknown default:
                 ProgressView()
             }
