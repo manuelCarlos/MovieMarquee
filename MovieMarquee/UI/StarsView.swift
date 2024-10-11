@@ -1,4 +1,14 @@
+//
+//  StarsView.swift
+//  MovieMarquee
+//
+//  Created by Manuel Lopes on 11.10.24.
+//
+
+import SwiftUI
+
 struct StarsView: View {
+
     private let rating: CGFloat
     private let maxRating: Int
 
@@ -9,7 +19,7 @@ struct StarsView: View {
 
     var body: some View {
         let stars = HStack(spacing: 0) {
-            ForEach(0..<maxRating) { _ in
+            ForEach(0 ..< maxRating, id: \.self) { _ in
                 Image(systemName: "star.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -18,7 +28,7 @@ struct StarsView: View {
 
         stars.overlay(
             GeometryReader { geometry in
-                if geometry.size.width != 0,
+                if geometry.size.width > 0,
                    geometry.size.width.isNaN == false,
                     geometry.size.width.isFinite {
                     let width = rating / CGFloat(maxRating) * geometry.size.width
