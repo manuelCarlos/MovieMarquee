@@ -91,7 +91,7 @@ private struct FailedStateView: View {
         ContentUnavailableView {
             Text("Oops, something went wrong")
         } description: {
-            Text("Error: \(error)")
+            Text(error)
         } actions: {
             Button {
                 Task {
