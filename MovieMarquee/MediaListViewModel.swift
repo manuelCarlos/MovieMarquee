@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-final class MediaListViewModel: @unchecked Sendable, MediaListPresenter {
+final class MediaListViewModel: @unchecked Sendable {
 
     enum State {
         case idle
@@ -17,8 +17,8 @@ final class MediaListViewModel: @unchecked Sendable, MediaListPresenter {
         case loaded([Watchable])
     }
 
-    let interactor: MediaInteractor
-    let section: MediaSection
+    private let interactor: MediaInteractor
+    private let section: MediaSection
 
     private(set) var state = State.idle
 
@@ -27,11 +27,15 @@ final class MediaListViewModel: @unchecked Sendable, MediaListPresenter {
         self.section = section
     }
 
-   func fetchfirstPage() async throws {
+    func fetchfirstPage() async {
         switch self.section {
         case .popularMovies:
-            state = .loading
-            try await fetchMedia()
+            do {
+                state = .loading
+                try await fetchMedia()
+            } catch {
+                state = .failed(error.localizedDescription)
+            }
         }
     }
 
