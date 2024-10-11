@@ -48,7 +48,7 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
     }
 
     private func filterWatchable(_ movies: [Watchable]) -> [Watchable] {
-        return movies.compactMap { $0 as? Movie }.filter { $0.releaseDate != nil }
+        return movies.filter { ($0 as? Movie)?.releaseDate != nil }
     }
 
     // MARK: - For testing purposes only
