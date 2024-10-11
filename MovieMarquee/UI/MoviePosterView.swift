@@ -19,8 +19,14 @@ struct MoviePosterView: View {
                     .resizable()
                     .scaledToFit()
                     .border(.secondary, width: 1)
-            case .failure, .empty:
+            case .empty:
                 Image(systemName: "photo.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.gray)
+                    .opacity(0.1)
+            case .failure:
+                Image(systemName: "photo.badge.exclamationmark")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
