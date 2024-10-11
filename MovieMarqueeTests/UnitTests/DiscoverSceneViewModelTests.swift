@@ -53,7 +53,7 @@ final class DiscoverSceneViewModelTests: XCTestCase {
         }
     }
 
-    func test_fetch_media_should_failure() async throws {
+    func test_fetch_media_should_fail() async throws {
         let mockError = NSError(domain: "test", code: 0, userInfo: nil)
         mockInteractor.error = mockError
         let viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
@@ -61,20 +61,20 @@ final class DiscoverSceneViewModelTests: XCTestCase {
         await viewModel.fetMediaAsync()
 
         if case let .failed(error) = viewModel.state {
-            XCTAssertEqual(error, "Cannot Fetch Popular Movies")
+            XCTAssertEqual(error, "The operation couldn’t be completed. (test error 0.)")
         } else {
             XCTFail("State should be failed but is \(viewModel.state)")
         }
     }
 
-    func test_fetch_media_should_return_an_empty_list() async throws {
+    func test_fetch_media_should_return_an_empty_list_error() async throws {
         mockInteractor.fetchNextPopularPageAsFullListStub = []
         let viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
 
         await viewModel.fetMediaAsync()
 
-        if case let .loaded(movies) = viewModel.state {
-            XCTAssertEqual(movies.count, 0)
+        if case let .failed(error) = viewModel.state {
+            XCTAssertEqual(error, "There are no popular movies available.")
         } else {
             XCTFail("State should be loaded with an empty list, but is \(viewModel.state)")
         }

@@ -12,11 +12,11 @@ import Models
 @Observable
 final class DiscoverSceneViewModel: @unchecked Sendable {
 
-    enum State: Hashable {
+    enum State {
         case idle
         case loading
         case failed(String)
-        case loaded([Movie])
+        case loaded([Watchable])
     }
 
     let interactor: MediaInteractor
@@ -39,19 +39,16 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
 
     private func loadPopularMovies() async {
         do {
-            if let movies = try await interactor.fetchNextPopularPageAsFullList() as? [Movie] {
-                let popularMovies = filterWatchable(movies: movies)
-                state = .loaded(popularMovies)
-            } else {
-                state = .failed("There are no popular movies available.")
-            }
+            let movies = try await interactor.fetchNextPopularPageAsFullList()
+            let popularMovies = filterWatchable(movies)
+            state = popularMovies.isEmpty ? .failed("There are no popular movies available.") : .loaded(popularMovies)
         } catch {
             state = .failed(error.localizedDescription)
         }
     }
 
-    private func filterWatchable(movies: [Movie]) -> [Movie] {
-        return movies.filter { $0.releaseDate != nil }
+    private func filterWatchable(_ movies: [Watchable]) -> [Watchable] {
+        return movies.compactMap { $0 as? Movie }.filter { $0.releaseDate != nil }
     }
 
     // MARK: - For testing purposes only
