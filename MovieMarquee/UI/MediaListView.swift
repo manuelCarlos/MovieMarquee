@@ -1,29 +1,49 @@
+//
+//  MediaListView.swift
+//  MovieMarquee
+//
+//  Created by Manuel Lopes on 11.10.24.
+//
+
 import SwiftUI
 
-@MainActor
 struct MediaListView: View {
 
-    @ObservedObject var presenter: MediaListDefaultPresenter
+    @State private var viewModel: MediaListViewModel
 
-    init(mediaListPresenter: MediaListDefaultPresenter) {
-        self.presenter = mediaListPresenter
-        self.presenter.fetchMedia()
+    init(viewModel: MediaListViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
-
-        ScrollView {
-            LazyVStack(alignment: .center, spacing: 10) {
-                ForEach(self.presenter.mediaList, id: \.id) { media in
-                    MediaListItemView(mediaListItem: media)
-                        .padding(.horizontal, 20)
-                }
-                Spacer()
-                    .onAppear(perform: {
-                        presenter.fetchMedia()
-                    })
+        switch viewModel.state {
+        case .idle:
+            IdleStateView {
+                Task { await viewModel.fetchfirstPage() }
             }
-
+        case .loading:
+            LoadingStateView(subtitle: "Loading...")
+        case .failed(let error):
+            FailedStateView(error: error) {
+                Task { await viewModel.fetchfirstPage() }
+            }
+        case .loaded(let mediaList):
+            ScrollView {
+                LazyVStack(alignment: .center, spacing: 10) {
+                    ForEach(mediaList, id: \.id) { mediaItem in
+                        MediaListItemView(mediaItem: mediaItem)
+                            .padding(.horizontal, 20)
+                    }
+                    Spacer()
+                        .onAppear {
+                            Task {
+                                // In case of error, this fails silentely because there's already data on screen.
+                                // Possible improvement: present a easily dismissable error message.
+                                try await viewModel.fetchMedia()
+                            }
+                        }
+                }
+            }
         }
     }
 }
