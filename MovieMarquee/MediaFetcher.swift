@@ -29,7 +29,7 @@ final actor MediaFetcher: Fetchable {
 
     func fetchWithNextPage() async throws -> [Watchable] {
         let page = try await fetchSinglePage()
-        self.mediaList.append(contentsOf: page)
-        return self.mediaList
+        mediaList.append(contentsOf: page)
+        return mediaList
     }
 }
