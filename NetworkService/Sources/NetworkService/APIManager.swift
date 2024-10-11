@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 13.0.0, *)
 public protocol APIManagerProtocol: Sendable {
     func initRequest(with data: NetworkRequest) async throws -> Data
 }
