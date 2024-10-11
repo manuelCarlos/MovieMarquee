@@ -41,7 +41,7 @@ struct DiscoverScene: View {
                 viewModel.fetchMedia()
             }
         case .loading:
-            LoadingStateView()
+            LoadingStateView(subtitle: "Loading...")
         case .failed(let error):
             FailedStateView(error: error) {
                 viewModel.fetchMedia()
@@ -60,47 +60,6 @@ struct DiscoverScene: View {
                 sliceItems: popularMovies,
                 section: MediaSection.popularMovies
             )
-        }
-    }
-}
-
-private struct IdleStateView: View {
-    let onAppear: () -> Void
-
-    var body: some View {
-        ContentUnavailableView {
-            Text("Loading...")
-        }
-        .task {
-            onAppear()
-        }
-    }
-}
-
-private struct LoadingStateView: View {
-    var body: some View {
-        ProgressView()
-    }
-}
-
-private struct FailedStateView: View {
-    let error: String
-    let onRetry: () async -> Void
-
-    var body: some View {
-        ContentUnavailableView {
-            Text("Oops, something went wrong")
-        } description: {
-            Text(error)
-        } actions: {
-            Button {
-                Task {
-                    await onRetry()
-                }
-            } label: {
-                Text("Retry")
-                    .font(.title)
-            }
         }
     }
 }
