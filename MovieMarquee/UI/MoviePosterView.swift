@@ -12,7 +12,8 @@ struct MoviePosterView: View {
     let item: Watchable
 
     var body: some View {
-        AsyncImage(url: URL(string: item.posterUrl)) { phase in
+        AsyncImage(url: URL(string: item.posterUrl),
+                   transaction: Transaction(animation: .default)) { phase in
             switch phase {
             case .success(let image):
                 image
