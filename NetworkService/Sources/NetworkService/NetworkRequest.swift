@@ -61,7 +61,7 @@ public extension NetworkRequest {
             throw NetworkError.invalidURL
         }
 
-        var urlRequest = URLRequest(url: url)
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         urlRequest.httpMethod = requestType.rawValue
         
         if !headers.isEmpty {
