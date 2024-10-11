@@ -10,3 +10,4 @@ The BE is kindly provided by TMDB (www.themoviedb.org)
 - Local Swift packages (SPM)
 - String catalogs for localization
 - Swift 6 ready and strict concurrency checking with zero warnings :P
+- Test plans setup to convenientely execute all app and package tests in one go 
