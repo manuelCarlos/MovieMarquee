@@ -8,7 +8,6 @@
 import Foundation
 
 import Models
-import NetworkService // TODO: - remove
 
 @Observable
 final class DiscoverSceneViewModel: @unchecked Sendable {
@@ -43,7 +42,7 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
             let popularMovies = mapToMovies(watchables: movies)
             state = .loaded(popularMovies)
         } catch {
-            state = .failed(FetchError.networkError.localizedDescription)
+            state = .failed(error.localizedDescription)
         }
     }
 
