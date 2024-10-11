@@ -1,6 +1,6 @@
 //
 //  DiscoverSceneViewModelTests.swift
-//  MovieMarquee
+//  MovieMarqueeTests
 //
 //  Created by Manuel Lopes on 10.10.24.
 //

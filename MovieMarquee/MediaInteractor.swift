@@ -15,8 +15,12 @@ protocol MediaInteractor: Sendable {
 
 final class DefaultMediaInteractor: Sendable, MediaInteractor {
 
-    private let popularMoviesFetcher: Fetchable = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
-                                                       service: MovieService.shared)
+    private let popularMoviesFetcher: Fetchable
+    
+    init(popularMoviesFetcher: Fetchable = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
+                                                        service: MovieService.shared)) {
+        self.popularMoviesFetcher = popularMoviesFetcher
+    }
 
     func fetchNextPopularPageAsFullList() async throws -> [Watchable] {
         return try await popularMoviesFetcher.fetchWithNextPage()
