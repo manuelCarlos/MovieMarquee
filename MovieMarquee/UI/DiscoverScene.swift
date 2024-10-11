@@ -10,6 +10,7 @@ import SwiftUI
 struct DiscoverScene: View {
 
     @State private var viewModel: DiscoverSceneViewModel
+    @State private var isDataLoaded = false
 
     init(viewModel: DiscoverSceneViewModel) {
         self.viewModel = viewModel
@@ -23,14 +24,6 @@ struct DiscoverScene: View {
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
-        .padding(
-            EdgeInsets(
-                top: 5,
-                leading: 0,
-                bottom: 0,
-                trailing: 0
-            )
-        )
     }
 
     @ViewBuilder
@@ -48,6 +41,11 @@ struct DiscoverScene: View {
             }
         case .loaded(let popularMovies):
             LoadedStateView(popularMovies: popularMovies)
+                .opacity(isDataLoaded ? 1 : 0)
+                .animation(.easeInOut(duration: 1), value: isDataLoaded)
+                .task {
+                    isDataLoaded = true
+                }
         }
     }
 
