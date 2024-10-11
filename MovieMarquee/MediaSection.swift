@@ -7,7 +7,7 @@
 
 import NetworkService
 
-enum MediaSection: CaseIterable {
+enum MediaSection: Sendable, CaseIterable {
     case popularMovies
 
     var type: MediaType {
