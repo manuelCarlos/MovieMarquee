@@ -32,7 +32,7 @@ final class MediaListViewModel: @unchecked Sendable {
         case .popularMovies:
             do {
                 state = .loading
-                try await fetchMedia()
+                try await fetchMedia(ofFirstPage: true)
             } catch {
                 state = .failed(error.localizedDescription)
             }
@@ -40,10 +40,23 @@ final class MediaListViewModel: @unchecked Sendable {
     }
 
     func fetchMedia() async throws {
+        try await fetchMedia(ofFirstPage: false)
+    }
+
+    // MARK: - Private
+
+    private func fetchMedia(ofFirstPage: Bool) async throws {
         switch self.section {
         case .popularMovies:
             let mediaList = try await interactor.fetchNextPopularPageAsFullList()
-            state = .loaded(mediaList)
+            if mediaList.isEmpty && ofFirstPage {
+                throw NSError(domain: "com.moviemarquee.error",
+                              code: 0,
+                              userInfo: [NSLocalizedDescriptionKey: "There are no popular movies available."])
+
+            } else {
+                state = .loaded(mediaList)
+            }
         }
     }
 }

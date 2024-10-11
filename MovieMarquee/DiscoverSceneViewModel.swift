@@ -54,7 +54,7 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
     // MARK: - For testing purposes only
 
     #if DEBUG
-    func fetMediaAsync() async {
+    func fetchMediaAsync() async {
         state = .loading
         await loadPopularMovies()
     }
