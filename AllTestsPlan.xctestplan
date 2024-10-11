@@ -1,0 +1,45 @@
+{
+  "configurations" : [
+    {
+      "id" : "9C5A74E2-005D-4935-A7A5-CD97AFA64E89",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C772CB012C60024132D",
+        "name" : "MovieMarqueeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NetworkService",
+        "identifier" : "NetworkServiceTests",
+        "name" : "NetworkServiceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Models",
+        "identifier" : "ModelsTests",
+        "name" : "ModelsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C812CB012C60024132D",
+        "name" : "MovieMarqueeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
