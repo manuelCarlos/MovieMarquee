@@ -37,8 +37,7 @@ struct MovieDetailView: View {
                 .padding()
             }
         }
-        .navigationBarBackButtonHidden(false)
-        .navigationTitle(viewModel.media?.title ?? "") // TODO: - fix
+        .navigationTitle(viewModel.movieTitle)
         .onAppear {
             Task {
                 await viewModel.getMediaDetail()

@@ -42,6 +42,7 @@ struct DiscoverSlice: View {
                 NavigationLink(
                     destination: MediaListView(viewModel: MediaListViewModel(interactor: DefaultMediaInteractor(),
                                                                              section: section))
+                    .navigationTitle("All popular movies")
                 ) {
                     seeAllView
                 }

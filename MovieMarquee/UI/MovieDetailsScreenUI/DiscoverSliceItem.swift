@@ -40,6 +40,7 @@ struct DiscoverSliceItem: View {
         VStack {
             if mediaType == Movie.self {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMovieDetailInteractor(),
+                                                                movieTitle: item.title,
                                                                 id: item.id))
             }
         }

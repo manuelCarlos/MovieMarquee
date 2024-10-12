@@ -9,9 +9,10 @@ import NetworkService
 import Models
 
 final class MovieService: Sendable, MediaService {
-    private let requestManager: RequestManagerProtocol
 
     public static let shared = MovieService()
+
+    private let requestManager: RequestManagerProtocol
 
     init(requestManager: RequestManagerProtocol = RequestManager()) {
         self.requestManager = requestManager

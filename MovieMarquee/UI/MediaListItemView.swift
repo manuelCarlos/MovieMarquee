@@ -65,6 +65,7 @@ struct MediaListItemView: View {
         VStack {
             if (mediaType as? Movie.Type) != nil {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMovieDetailInteractor(),
+                                                                movieTitle: mediaItem.title,
                                                                 id: mediaItem.id))
             }
         }

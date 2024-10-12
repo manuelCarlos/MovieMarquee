@@ -11,12 +11,15 @@ import Models
 
 @Observable
 final class MovieDetailViewModel: @unchecked Sendable {
-    let interactor: MovieDetailInteractor
-    var media: MovieDetail?
-    let id: Int
 
-    init(interactor: MovieDetailInteractor, id: Int) {
+    private let interactor: MovieDetailInteractor
+    let movieTitle: String
+    let id: Int
+    private(set) var media: MovieDetail?
+
+    init(interactor: MovieDetailInteractor, movieTitle: String, id: Int) {
         self.interactor = interactor
+        self.movieTitle = movieTitle
         self.id = id
     }
 
