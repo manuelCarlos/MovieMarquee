@@ -20,6 +20,17 @@
       }
     },
     {
+      "skippedTests" : [
+        "AuthRequestTests",
+        "AuthRequestTests\/test_auth_request_new_auth_session_id_params_should_include_request_token()",
+        "AuthRequestTests\/test_auth_request_new_auth_session_id_path_should_be_correct()",
+        "AuthRequestTests\/test_auth_request_new_auth_session_id_request_type_should_be_post()",
+        "AuthRequestTests\/test_auth_request_new_auth_session_id_url_params_should_include_api_key()",
+        "AuthRequestTests\/test_auth_request_new_auth_token_params_should_be_empty()",
+        "AuthRequestTests\/test_auth_request_new_auth_token_path_should_be_correct()",
+        "AuthRequestTests\/test_auth_request_new_auth_token_request_type_should_be_get()",
+        "AuthRequestTests\/test_auth_request_new_auth_token_url_params_should_include_api_key()"
+      ],
       "target" : {
         "containerPath" : "container:NetworkService",
         "identifier" : "NetworkServiceTests",

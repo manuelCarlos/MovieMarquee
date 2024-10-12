@@ -17,14 +17,14 @@ let package = Package(
             name: "ModelsTests",
             dependencies: ["Models"],
             resources: [
-                   .copy("Resources/cast.json"),
-                   .copy("Resources/malformed_cast.json"),
-                   .copy("Resources/movie.json"),
-                   .copy("Resources/malformed_movie.json"),
-                   .copy("Resources/movieDetail.json"),
-                   .copy("Resources/movieDetail_without_optional_attributes.json"),
-                   .copy("Resources/movieDetail_missing_required_attribute.json"),
-                   .copy("Resources/movieDetail_with_invalid_release_date_attribute.json")
+                   .process("Resources/cast.json"),
+                   .process("Resources/malformed_cast.json"),
+                   .process("Resources/movie.json"),
+                   .process("Resources/malformed_movie.json"),
+                   .process("Resources/movieDetail.json"),
+                   .process("Resources/movieDetail_without_optional_attributes.json"),
+                   .process("Resources/movieDetail_missing_required_attribute.json"),
+                   .process("Resources/movieDetail_with_invalid_release_date_attribute.json")
                  ]
         )
     ]
