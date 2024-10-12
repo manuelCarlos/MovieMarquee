@@ -10,13 +10,13 @@ import SwiftUI
 import Models
 
 struct DiscoverSliceItem: View {
-
+    
     private var item: Watchable
-
+    
     init(item: Watchable) {
         self.item = item
     }
-
+    
     var body: some View {
         NavigationLink(
             destination: makeMovieDetailView(mediaType: type(of: item))
@@ -33,18 +33,14 @@ struct DiscoverSliceItem: View {
             )
         }
     }
-
+    
     // MARK: - Private
-
+    
     private func makeMovieDetailView(mediaType: Watchable.Type) -> some View {
         VStack {
             if mediaType == Movie.self {
-                MovieDetailView(
-                    presenter: MovieDetailDefaultPresenter(
-                        interactor: DefaultMovieDetailInteractor(),
-                        id: item.id
-                    )
-                )
+                MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMovieDetailInteractor(),
+                                                                id: item.id))
             }
         }
     }

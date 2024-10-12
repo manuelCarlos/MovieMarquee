@@ -64,12 +64,8 @@ struct MediaListItemView: View {
     private func makeMediaDetailView(mediaType: Watchable.Type) -> some View {
         VStack {
             if (mediaType as? Movie.Type) != nil {
-                MovieDetailView(
-                    presenter: MovieDetailDefaultPresenter(
-                        interactor: DefaultMovieDetailInteractor(),
-                        id: mediaItem.id
-                    )
-                )
+                MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMovieDetailInteractor(),
+                                                                id: mediaItem.id))
             }
         }
     }
