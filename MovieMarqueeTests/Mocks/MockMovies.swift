@@ -19,4 +19,3 @@ extension Movies {
         return Movies(dates: dates, page: page, results: results, totalPages: totalPages, totalResults: totalResults)
     }
 }
-
