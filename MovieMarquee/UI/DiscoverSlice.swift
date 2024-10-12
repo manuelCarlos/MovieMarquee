@@ -52,7 +52,7 @@ struct DiscoverSlice: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 10) {
                     ForEach(sliceItems, id: \.id) { item in
-                        MoviePosterView(item: item)
+                        DiscoverSliceItem(item: item)
                             .frame(width: 140, height: 240, alignment: .center)
                     }
                 }
