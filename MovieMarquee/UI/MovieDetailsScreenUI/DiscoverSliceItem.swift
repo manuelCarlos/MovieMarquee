@@ -39,8 +39,8 @@ struct DiscoverSliceItem: View {
     private func makeMovieDetailView(mediaType: Watchable.Type) -> some View {
         VStack {
             if mediaType == Movie.self {
-                MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMovieDetailInteractor(),
-                                                                movieTitle: item.title,
+                MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),
+                                                                navigationTitle: item.title,
                                                                 id: item.id))
             }
         }

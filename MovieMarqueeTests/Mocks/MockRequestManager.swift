@@ -4,24 +4,19 @@
 //
 //  Created by Manuel Lopes on 10.10.24.
 //
+// swiftlint:disable force_cast
 
 @testable import NetworkService
 @testable import Models
 
 final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
-    var mockMovies: Movies
+    var mockMovies: Movies?
+    var mockMovieDetail: MovieDetail?
     var shouldFail: Bool
     var decodeCallCount = 0
 
     init(shouldFail: Bool = false) {
         self.shouldFail = shouldFail
-        self.mockMovies = Movies(
-            dates: nil,
-            page: 1,
-            results: [Movie.make(id: 1)],
-            totalPages: 1,
-            totalResults: 1
-        )
     }
 
     func decode<T: Decodable>(networkRequest data: NetworkRequest) async throws -> T {
@@ -29,7 +24,11 @@ final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
         if shouldFail {
             throw MockError.failure
         }
-        return mockMovies as! T // swiftlint:disable:this force_cast
+
+        if let mockMovieDetail {
+            return mockMovieDetail as! T
+        }
+        return mockMovies as! T
     }
 
     var apiManager: APIManagerProtocol {
@@ -40,3 +39,4 @@ final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
         fatalError("Not needed for this mock")
     }
 }
+// swiftlint:enable force_cast

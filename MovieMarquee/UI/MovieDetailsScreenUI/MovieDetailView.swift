@@ -37,7 +37,7 @@ struct MovieDetailView: View {
                 .padding()
             }
         }
-        .navigationTitle(viewModel.movieTitle)
+        .navigationTitle(viewModel.navigationTitle)
         .onAppear {
             Task {
                 await viewModel.getMediaDetail()
