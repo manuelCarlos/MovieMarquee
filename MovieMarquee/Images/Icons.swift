@@ -13,9 +13,8 @@ enum Icons: String, RawRepresentable {
 
     case artistImageBackdrop = "person.fill"
 
-    public enum TabBar: String {
+    enum TabBar: String {
         case discover = "square.grid.2x2.fill"
-        case artist = "person.crop.circle"
         case favorites = "star.circle.fill"
     }
 
