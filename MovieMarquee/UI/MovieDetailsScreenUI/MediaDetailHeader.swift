@@ -1,5 +1,5 @@
 //
-//  MediaDetailsView.swift
+//  MediaDetailHeader.swift
 //  MovieMarquee
 //
 //  Created by Manuel Lopes on 12.10.24.
@@ -9,7 +9,7 @@ import SwiftUI
 
 import Models
 
-struct MediaDetailsView: View {
+struct MediaDetailHeader: View {
     var title: String?
     var genres: String?
     var rating: Double?
@@ -35,7 +35,7 @@ struct MediaDetailsView: View {
             }
 
             if let rating {
-                StarsView(rating: CGFloat(rating/2.0), maxRating: 5)
+                StarsView(rating: CGFloat(rating / 2), maxRating: 5)
                     .frame(width: 120, alignment: .center)
             }
 

@@ -53,7 +53,7 @@ struct MovieDetailView: View {
             MoviePosterView(imageUrl: viewModel.media?.posterUrl ?? "")
                 .frame(width: 150, height: 200)
 
-            MediaDetailsView(
+            MediaDetailHeader(
                 title: viewModel.media?.title,
                 genres: viewModel.media?.genres.first?.name,
                 rating: viewModel.media?.voteAverage,
