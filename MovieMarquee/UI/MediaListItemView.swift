@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import Models
+
 struct MediaListItemView: View {
 
     private let mediaItem: Watchable
@@ -18,10 +20,10 @@ struct MediaListItemView: View {
     var body: some View {
         NavigationLink(
             destination:
-                getMediaDetailView()
+                makeMediaDetailView(mediaType: type(of: mediaItem))
         ) {
             HStack(alignment: .center, spacing: 20) {
-                MoviePosterView(item: mediaItem)
+                MoviePosterView(imageUrl: mediaItem.posterUrl)
                     .frame(maxWidth: 150)
                 movieInfoStackView
                 Spacer()
@@ -57,9 +59,18 @@ struct MediaListItemView: View {
         }
     }
 
-    private func getMediaDetailView() -> some View {
+    // MARK: - Private
+
+    private func makeMediaDetailView(mediaType: Watchable.Type) -> some View {
         VStack {
-            Text("Not implemented yet") // TODO: - just do it
+            if (mediaType as? Movie.Type) != nil {
+                MovieDetailView(
+                    presenter: MovieDetailDefaultPresenter(
+                        interactor: DefaultMovieDetailInteractor(),
+                        id: mediaItem.id
+                    )
+                )
+            }
         }
     }
 }
