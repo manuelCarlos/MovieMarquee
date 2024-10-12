@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+// TODO: - Add state loading handling
 struct MovieDetailView: View {
 
-    @ObservedObject var presenter: MovieDetailDefaultPresenter
-    @State var isFavorite = false
+    @State private var viewModel: MovieDetailViewModel
+    @State private var isFavorite = false
 
-    init(presenter: MovieDetailDefaultPresenter) {
-        self.presenter = presenter
+    init(viewModel: MovieDetailViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
@@ -21,10 +22,9 @@ struct MovieDetailView: View {
             GeometryReader { geometry in
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
-                        mediaView()
+                        makeMediaDetailsView()
                             .frame(width: geometry.size.width, alignment: .top)
-                        if let overview = presenter.media?.overview {
-
+                        if let overview = viewModel.media?.overview {
                             Text("Overview")
                                 .font(.title)
                                 .fontWeight(.bold)
@@ -38,32 +38,35 @@ struct MovieDetailView: View {
             }
         }
         .navigationBarBackButtonHidden(false)
-        .navigationTitle(presenter.media?.title ?? "") // TODO: - fix
+        .navigationTitle(viewModel.media?.title ?? "") // TODO: - fix
         .onAppear {
             Task {
-                await presenter.getMediaDetail()
+                await viewModel.getMediaDetail()
             }
         }
     }
 
+    // MARK: - Private
 
-    private func mediaView() -> some View {
+    private func makeMediaDetailsView() -> some View {
         HStack(alignment: .top) {
-            MoviePosterView(imageUrl: presenter.media?.posterUrl ?? "")
+            MoviePosterView(imageUrl: viewModel.media?.posterUrl ?? "")
                 .frame(width: 150, height: 200)
+
             MediaDetailsView(
-                title: presenter.media?.title,
-                genres: presenter.media?.genres.first?.name,
-                rating: presenter.media?.voteAverage,
-                language: presenter.media?.originalLanguage,
-                date: presenter.media?.releaseDate,
+                title: viewModel.media?.title,
+                genres: viewModel.media?.genres.first?.name,
+                rating: viewModel.media?.voteAverage,
+                language: viewModel.media?.originalLanguage,
+                date: viewModel.media?.releaseDate,
                 time: nil
             )
 
             FavoriteButton(isFavorite: $isFavorite,
-                           id: presenter.id,
-                           title: presenter.media?.title)
+                           id: viewModel.id,
+                           title: viewModel.media?.title)
             .padding()
+
             Spacer()
         }
     }

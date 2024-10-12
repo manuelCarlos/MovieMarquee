@@ -1,6 +1,18 @@
-final class MovieDetailDefaultPresenter: @unchecked Sendable, MovieDetailPresenter {
+//
+//  MovieDetailViewModel.swift
+//  MovieMarquee
+//
+//  Created by Manuel Lopes on 12.10.24.
+//
+
+import Foundation
+
+import Models
+
+@Observable
+final class MovieDetailViewModel: @unchecked Sendable {
     let interactor: MovieDetailInteractor
-    @Published var media: MovieDetail?
+    var media: MovieDetail?
     let id: Int
 
     init(interactor: MovieDetailInteractor, id: Int) {
@@ -18,7 +30,7 @@ final class MovieDetailDefaultPresenter: @unchecked Sendable, MovieDetailPresent
             }
             self.media = detail
         } catch {
-
+            // TODO: - handle error
         }
     }
 }
