@@ -1,3 +1,10 @@
+//
+//  DefaultMovieDetailInteractor.swift
+//  MovieMarquee
+//
+//  Created by Manuel Lopes on 12.10.24.
+//
+
 final class DefaultMovieDetailInteractor: Sendable, MovieDetailInteractor {
 
     private let movieService: MediaService = MovieService.shared
