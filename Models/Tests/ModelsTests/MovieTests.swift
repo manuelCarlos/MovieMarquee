@@ -13,13 +13,7 @@ import XCTest
 final class MovieTests: XCTestCase {
 
     func test_movie_decoding_succefully() throws {
-        guard let path = Bundle.module.url(forResource: "movie", withExtension: "json") else {
-            XCTFail("Missing file: movie.json")
-            return
-        }
-
-        let jsonData = try Data(contentsOf: path)
-        let movie = try JSONDecoder().decode(Movie.self, from: jsonData)
+        let movie = try loadJson(from: "movie", as: Movie.self)
 
         XCTAssertEqual(movie.id, 1)
         XCTAssertEqual(movie.title, "Test Movie")
@@ -38,14 +32,7 @@ final class MovieTests: XCTestCase {
     }
 
     func test_movie_decoding_failure_due_to_malformed_json() throws {
-        guard let path = Bundle.module.url(forResource: "malformed_movie", withExtension: "json") else {
-            XCTFail("Missing file: malformed_movie.json")
-            return
-        }
-
-        let jsonData = try Data(contentsOf: path)
-
-        XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonData)) { error in
+        XCTAssertThrowsError(try loadJson(from: "malformed_movie", as: Movie.self)) { error in
             XCTAssertTrue(error is DecodingError)
         }
     }

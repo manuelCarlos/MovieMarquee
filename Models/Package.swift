@@ -20,7 +20,11 @@ let package = Package(
                    .copy("Resources/cast.json"),
                    .copy("Resources/malformed_cast.json"),
                    .copy("Resources/movie.json"),
-                   .copy("Resources/malformed_movie.json")
+                   .copy("Resources/malformed_movie.json"),
+                   .copy("Resources/movieDetail.json"),
+                   .copy("Resources/movieDetail_without_optional_attributes.json"),
+                   .copy("Resources/movieDetail_missing_required_attribute.json"),
+                   .copy("Resources/movieDetail_with_invalid_release_date_attribute.json")
                  ]
         )
     ]

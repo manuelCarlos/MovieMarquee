@@ -12,14 +12,7 @@ import XCTest
 final class CastTests: XCTestCase {
 
     func test_decoding_succefully() throws {
-        guard let path = Bundle.module.url(forResource: "cast", withExtension: "json") else {
-            XCTFail("Missing file: cast.json")
-            return
-        }
-
-        let jsonData = try Data(contentsOf: path)
-        let decoder = JSONDecoder()
-        let cast = try decoder.decode(Cast.self, from: jsonData)
+        let cast = try loadJson(from: "cast", as: Cast.self)
 
         XCTAssertEqual(cast.adult, true)
         XCTAssertEqual(cast.gender, 1)
@@ -49,14 +42,7 @@ final class CastTests: XCTestCase {
     }
 
     func test_decoding_malformed_json_should_fail() throws {
-        guard let path = Bundle.module.url(forResource: "malformed_cast", withExtension: "json") else {
-            XCTFail("Missing file: malformed_cast.json")
-            return
-        }
-
-        let jsonData = try Data(contentsOf: path)
-
-        XCTAssertThrowsError(try JSONDecoder().decode(Cast.self, from: jsonData)) { error in
+        XCTAssertThrowsError(try loadJson(from: "malformed_cast", as: Cast.self)) { error in
             XCTAssertTrue(error is DecodingError)
         }
     }

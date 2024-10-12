@@ -1,0 +1,18 @@
+{
+    "adult": true,
+    "budget": 2000000,
+    "genres": [],
+    "id": 456,
+    "imdb_id": null,
+    "original_language": "en",
+    "popularity": 5.0,
+    "poster_path": null,
+    "production_companies": [],
+    "production_countries": [],
+    "release_date": "2024-10-09",
+    "revenue": 8000000,
+    "spoken_languages": [],
+    "status": "Planned",
+    "title": "Another Movie",
+    "video": true
+}
