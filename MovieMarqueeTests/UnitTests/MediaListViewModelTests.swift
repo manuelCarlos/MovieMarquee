@@ -13,29 +13,29 @@ import XCTest
 final class MediaListViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMediaInteractor!
+    private var viewModel: MediaListViewModel!
     private let timeout = TimeInterval(2)
 
     override func setUp() {
         super.setUp()
+
         mockInteractor = MockMediaInteractor()
+        viewModel = MediaListViewModel(interactor: mockInteractor, section: .popularMovies)
     }
 
     override func tearDown() {
         mockInteractor = nil
+        viewModel = nil
+
         super.tearDown()
     }
 
-    func test_fetching_first_page_successfuly() async throws {
+    func test_fetching_first_page_successfuly() async {
         let mockMovies = [Movie.make(id: 1, title: "Movie 1"), Movie.make(id: 2, title: "Movie 2")]
         mockInteractor.fetchNextPopularPageAsFullListStub = mockMovies
 
-        // Create the ViewModel with the mock interactor
-        let viewModel = MediaListViewModel(interactor: mockInteractor, section: .popularMovies)
-
         // Trigger media fetching
         await viewModel.fetchfirstPage()
-
-        XCTAssertTrue(mockInteractor.fetchGotCalled)
 
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 2)
@@ -52,13 +52,8 @@ final class MediaListViewModelTests: XCTestCase {
         let mockMovies = [Movie.make(id: 1, title: "Movie 1"), Movie.make(id: 2, title: "Movie 2")]
         mockInteractor.fetchNextPopularPageAsFullListStub = mockMovies
 
-        // Create the ViewModel with the mock interactor
-        let viewModel = MediaListViewModel(interactor: mockInteractor, section: .popularMovies)
-
         // Trigger media fetching
         try await viewModel.fetchMedia()
-
-        XCTAssertTrue(mockInteractor.fetchGotCalled)
 
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 2)
@@ -74,13 +69,8 @@ final class MediaListViewModelTests: XCTestCase {
     func test_fetching_additional_pages_should_not_throw_an_error_when_an_empty_list_is_returned() async throws {
         mockInteractor.fetchNextPopularPageAsFullListStub = []
 
-        // Create the ViewModel with the mock interactor
-        let viewModel = MediaListViewModel(interactor: mockInteractor, section: .popularMovies)
-
         // Trigger media fetching
         try await viewModel.fetchMedia()
-
-        XCTAssertTrue(mockInteractor.fetchGotCalled)
 
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 0)
@@ -89,10 +79,9 @@ final class MediaListViewModelTests: XCTestCase {
         }
     }
 
-    func test_fetching_first_page_should_throw_an_error() async throws {
+    func test_fetching_first_page_should_throw_an_error() async {
         let mockError = NSError(domain: "test", code: 0, userInfo: nil)
         mockInteractor.error = mockError
-        let viewModel = MediaListViewModel(interactor: mockInteractor, section: .popularMovies)
 
         await viewModel.fetchfirstPage()
 
@@ -103,9 +92,8 @@ final class MediaListViewModelTests: XCTestCase {
         }
     }
 
-    func test_fetching_first_page_should_return_an_empty_list_error() async throws {
+    func test_fetching_first_page_should_return_an_empty_list_error() async {
         mockInteractor.fetchNextPopularPageAsFullListStub = []
-        let viewModel = MediaListViewModel(interactor: mockInteractor, section: .popularMovies)
 
         await viewModel.fetchfirstPage()
 

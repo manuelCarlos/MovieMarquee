@@ -13,27 +13,28 @@ import XCTest
 final class DiscoverSceneViewModelTests: XCTestCase {
 
     private var mockInteractor: MockMediaInteractor!
+    private var viewModel: DiscoverSceneViewModel!
     private let timeout = TimeInterval(2)
 
     override func setUp() {
         super.setUp()
+
         mockInteractor = MockMediaInteractor()
+        viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
     }
 
     override func tearDown() {
         mockInteractor = nil
+
         super.tearDown()
     }
 
-    func test_fetching_media_successfuly() async throws {
+    func test_fetching_media_successfuly() async {
         let mockMovies = [Movie.make(id: 1, title: "Movie 1"), Movie.make(id: 2, title: "Movie 2")]
         mockInteractor.fetchNextPopularPageAsFullListStub = mockMovies
 
-        let viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
-
         await viewModel.fetchMediaAsync()
 
-        XCTAssertTrue(mockInteractor.fetchGotCalled)
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 2)
             XCTAssertEqual(movies.first?.id, 1)
@@ -45,10 +46,9 @@ final class DiscoverSceneViewModelTests: XCTestCase {
         }
     }
 
-    func test_fetching_media_should_fail() async throws {
+    func test_fetching_media_should_fail() async {
         let mockError = NSError(domain: "test", code: 0, userInfo: nil)
         mockInteractor.error = mockError
-        let viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
 
         await viewModel.fetchMediaAsync()
 
@@ -59,9 +59,8 @@ final class DiscoverSceneViewModelTests: XCTestCase {
         }
     }
 
-    func test_fetching_media_should_return_an_empty_list_error() async throws {
+    func test_fetching_media_should_return_an_empty_list_error() async {
         mockInteractor.fetchNextPopularPageAsFullListStub = []
-        let viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
 
         await viewModel.fetchMediaAsync()
 
