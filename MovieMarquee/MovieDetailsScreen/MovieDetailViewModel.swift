@@ -12,28 +12,31 @@ import Models
 @Observable
 final class MovieDetailViewModel: @unchecked Sendable {
 
-    private let interactor: MediaDetailInteractor
+    enum State {
+        case idle
+        case loading
+        case failed(String)
+        case loaded(WatchableDetail)
+    }
+    
     let navigationTitle: String
-    let movieId: Int
-    private(set) var media: MovieDetail?
-
+    private let movieId: Int
+    private let interactor: MediaDetailInteractor
+    private(set) var state = State.idle
+    
     init(interactor: MediaDetailInteractor, navigationTitle: String, movieId: Int) {
         self.interactor = interactor
         self.navigationTitle = navigationTitle
         self.movieId = movieId
     }
 
-    func getMediaDetail() async {
+    func fetchMediaDetail() async {
         do {
-            guard let movieDetail = try await interactor.fetchMovieDetail(movieId: movieId) else {
-                return
-            }
-            guard let detail = movieDetail as? MovieDetail else {
-                return
-            }
-            self.media = detail
+            state = .loading
+            let movieDetail = try await interactor.fetchMovieDetail(movieId: movieId)
+            state = .loaded(movieDetail)
         } catch {
-            // TODO: - handle error
+           state = .failed(error.localizedDescription)
         }
     }
 }

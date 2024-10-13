@@ -11,7 +11,7 @@
 final class MockMediaService: @unchecked Sendable, MediaService {
 
     var mockWatchables: [Watchable]
-    var mockWatchableDetail: WatchableDetail?
+    var mockWatchableDetail: WatchableDetail = MockWatchableDetail()
     var shouldFail: Bool
     var fetchCount = 0
 
@@ -28,7 +28,7 @@ final class MockMediaService: @unchecked Sendable, MediaService {
         return mockWatchables
     }
 
-    func fetchMediaDetails(mediaId id: Int) async throws -> WatchableDetail? {
+    func fetchMediaDetails(mediaId: Int) async throws -> any MovieMarquee.WatchableDetail {
         return mockWatchableDetail
     }
 }

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-// TODO: - Add state loading handling
+import Models
+
 struct MovieDetailView: View {
 
     @State private var viewModel: MovieDetailViewModel
@@ -18,53 +19,66 @@ struct MovieDetailView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            GeometryReader { geometry in
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 10) {
-                        makeMediaDetailsView()
-                            .frame(width: geometry.size.width, alignment: .top)
-                        if let overview = viewModel.media?.overview {
-                            Text("Overview")
-                                .font(.title)
-                                .fontWeight(.bold)
-                            Text(overview)
-                                .font(.system(size: 16))
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+        contentView
+            .navigationTitle(viewModel.navigationTitle)
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        switch viewModel.state {
+        case .idle:
+            IdleStateView {
+                Task { await viewModel.fetchMediaDetail() }
+            }
+        case .loading:
+            LoadingStateView(subtitle: "Loading...")
+        case .failed(let error):
+            FailedStateView(error: error) {
+                Task { await viewModel.fetchMediaDetail() }
+            }
+        case .loaded(let mediaDetail):
+            VStack(alignment: .leading) {
+                GeometryReader { geometry in
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 10) {
+                            makeMediaDetailsView(mediaDetails: mediaDetail)
+                                .frame(width: geometry.size.width, alignment: .top)
+                            if let overview = mediaDetail.overview {
+                                Text("Overview")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                Text(overview)
+                                    .font(.system(size: 16))
+                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                            }
                         }
                     }
+                    .padding()
                 }
-                .padding()
-            }
-        }
-        .navigationTitle(viewModel.navigationTitle)
-        .onAppear {
-            Task {
-                await viewModel.getMediaDetail()
             }
         }
     }
 
     // MARK: - Private
 
-    private func makeMediaDetailsView() -> some View {
+    private func makeMediaDetailsView(mediaDetails: WatchableDetail) -> some View {
         HStack(alignment: .top) {
-            MoviePosterView(imageUrl: viewModel.media?.posterUrl ?? "")
+            MoviePosterView(imageUrl: mediaDetails.posterUrl)
                 .frame(width: 150, height: 200)
 
             MediaDetailHeader(
-                title: viewModel.media?.title,
-                genres: viewModel.media?.genres.first?.name,
-                rating: viewModel.media?.voteAverage,
-                language: viewModel.media?.originalLanguage,
-                date: viewModel.media?.releaseDate,
-                time: nil
+                title: mediaDetails.title,
+                genres: mediaDetails.genres.first?.name,
+                rating: mediaDetails.voteAverage,
+                language: mediaDetails.originalLanguage,
+                date: (mediaDetails as? MovieDetail)?.releaseDate,
+                time: (mediaDetails as? MovieDetail)?.localizedRuntime
             )
 
             FavoriteButton(isFavorite: $isFavorite,
-                           id: viewModel.movieId,
-                           title: viewModel.media?.title)
-            .padding()
+                           id: mediaDetails.id,
+                           title: mediaDetails.title)
+                .padding()
 
             Spacer()
         }
