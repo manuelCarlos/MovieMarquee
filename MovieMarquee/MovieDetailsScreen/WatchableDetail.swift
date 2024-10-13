@@ -15,4 +15,5 @@ protocol WatchableDetail: Watchable {
     var credits: Credits? { get }
     var spokenLanguages: [SpokenLanguage]? { get }
     var homepage: String? { get }
+    var localizedRuntime: String? { get }
 }

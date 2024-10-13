@@ -9,6 +9,7 @@ import XCTest
 
 @testable import Models
 
+@available(iOS 16.0, *)
 final class MovieDetailTests: XCTestCase {
     
     func test_movie_detail_decoding_valid_data() throws {
@@ -20,6 +21,7 @@ final class MovieDetailTests: XCTestCase {
         XCTAssertEqual(movieDetail.voteAverage, 8.0)
         XCTAssertEqual(movieDetail.releaseDate, DateFormatter.yyyyMMdd.date(from: "2023-10-09"))
         XCTAssertEqual(movieDetail.originalLanguage?.rawValue, "en")
+        XCTAssertEqual(movieDetail.localizedRuntime, "2 hr, 36 min")
     }
 
     func test_movie_detail_decoding_missing_optional_fields() throws {
@@ -30,6 +32,7 @@ final class MovieDetailTests: XCTestCase {
         XCTAssertNil(movieDetail.posterPath)
         XCTAssertEqual(movieDetail.title, "Another Movie")
         XCTAssertEqual(movieDetail.releaseDate, DateFormatter.yyyyMMdd.date(from: "2024-10-09"))
+        XCTAssertNil(movieDetail.localizedRuntime)
     }
     
     func test_movie_detail_decoding_invalid_release_date_format() throws {

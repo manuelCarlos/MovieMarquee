@@ -23,7 +23,7 @@ final class MovieService: Sendable, MediaService {
         return movies.results
     }
 
-    func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetail? {
+    func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetail {
         let requestData = MovieRequest.getMovieDetail(id: mediaId)
         let movie: MovieDetail = try await requestManager.decode(networkRequest: requestData)
         return movie

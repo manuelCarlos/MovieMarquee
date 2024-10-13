@@ -9,6 +9,7 @@
 @testable import MovieMarquee
 
 struct MockWatchableDetail: WatchableDetail {
+    var localizedRuntime: String?
     var genres: [Models.Genre] = [Models.Genre(id: 1, name: "Drama")]
     var productionCompanies: [Models.ProductionCompany]? = []
     var productionCountries: [Models.ProductionCountry]?

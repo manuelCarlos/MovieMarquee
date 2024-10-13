@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 16.0, *)
 public struct MovieDetail: Codable, Identifiable, Hashable, Sendable {
     public let id: Int
     public let adult: Bool
@@ -33,6 +34,13 @@ public struct MovieDetail: Codable, Identifiable, Hashable, Sendable {
     public let voteAverage: Double?
     public var voteCount: Int?
     public var credits: Credits?
+    public var localizedRuntime: String? {
+        guard let runtime else {
+            return nil
+        }
+        let minutes = Duration.seconds(runtime * 60)
+        return minutes.formatted(.units(width: .abbreviated))
+    }
 
     enum CodingKeys: String, CodingKey {
         case adult

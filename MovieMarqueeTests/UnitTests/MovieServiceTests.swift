@@ -50,8 +50,8 @@ final class MovieServiceTests: XCTestCase {
 
         let movieDetail = try await service.fetchMediaDetails(mediaId: movieID)
 
-        XCTAssertEqual(movieDetail?.id, 12)
-        XCTAssertEqual(movieDetail?.title, "The cookie monster")
+        XCTAssertEqual(movieDetail.id, 12)
+        XCTAssertEqual(movieDetail.title, "The cookie monster")
         XCTAssertEqual(mockRequestManager.decodeCallCount, 1)
     }
 
