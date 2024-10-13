@@ -66,7 +66,7 @@ struct MediaListItemView: View {
             if (mediaType as? Movie.Type) != nil {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),
                                                                 navigationTitle: mediaItem.title,
-                                                                id: mediaItem.id))
+                                                                movieId: mediaItem.id))
             }
         }
     }

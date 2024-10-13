@@ -48,7 +48,7 @@ final class MovieServiceTests: XCTestCase {
         let service = MovieService(requestManager: mockRequestManager)
         let movieID = 123 // Mock movie ID
 
-        let movieDetail = try await service.fetchMediaDetails(id: movieID)
+        let movieDetail = try await service.fetchMediaDetails(mediaId: movieID)
 
         XCTAssertEqual(movieDetail?.id, 12)
         XCTAssertEqual(movieDetail?.title, "The cookie monster")
@@ -62,7 +62,7 @@ final class MovieServiceTests: XCTestCase {
         let movieID = 123 // Mock movie ID
 
         do {
-            _ = try await service.fetchMediaDetails(id: movieID)
+            _ = try await service.fetchMediaDetails(mediaId: movieID)
             XCTFail("Expected failure, but got success")
         } catch {
             XCTAssertTrue(error is MockError)

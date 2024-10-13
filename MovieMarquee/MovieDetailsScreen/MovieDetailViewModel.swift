@@ -14,18 +14,18 @@ final class MovieDetailViewModel: @unchecked Sendable {
 
     private let interactor: MediaDetailInteractor
     let navigationTitle: String
-    let id: Int
+    let movieId: Int
     private(set) var media: MovieDetail?
 
-    init(interactor: MediaDetailInteractor, navigationTitle: String, id: Int) {
+    init(interactor: MediaDetailInteractor, navigationTitle: String, movieId: Int) {
         self.interactor = interactor
         self.navigationTitle = navigationTitle
-        self.id = id
+        self.movieId = movieId
     }
 
     func getMediaDetail() async {
         do {
-            guard let movieDetail = try await interactor.getMovieDetail(id) else {
+            guard let movieDetail = try await interactor.fetchMovieDetail(movieId: movieId) else {
                 return
             }
             guard let detail = movieDetail as? MovieDetail else {

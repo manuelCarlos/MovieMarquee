@@ -62,7 +62,7 @@ struct MovieDetailView: View {
             )
 
             FavoriteButton(isFavorite: $isFavorite,
-                           id: viewModel.id,
+                           id: viewModel.movieId,
                            title: viewModel.media?.title)
             .padding()
 

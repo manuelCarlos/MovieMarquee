@@ -26,22 +26,14 @@ final class DiscoverSceneViewModelTests: XCTestCase {
     }
 
     func test_fetching_media_successfuly() async throws {
-        let expectation = XCTestExpectation(description: "Fetch media async task completed")
-
         let mockMovies = [Movie.make(id: 1, title: "Movie 1"), Movie.make(id: 2, title: "Movie 2")]
         mockInteractor.fetchNextPopularPageAsFullListStub = mockMovies
 
-        // Create the ViewModel with the mock interactor
         let viewModel = DiscoverSceneViewModel(interactor: mockInteractor)
 
-        // Trigger media fetching
-        viewModel.fetchMedia()
-        expectation.fulfill()
-
-        await fulfillment(of: [expectation], timeout: timeout)
+        await viewModel.fetchMediaAsync()
 
         XCTAssertTrue(mockInteractor.fetchGotCalled)
-
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 2)
             XCTAssertEqual(movies.first?.id, 1)

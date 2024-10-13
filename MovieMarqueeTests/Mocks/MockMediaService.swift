@@ -28,7 +28,7 @@ final class MockMediaService: @unchecked Sendable, MediaService {
         return mockWatchables
     }
 
-    func fetchMediaDetails(id: Int) async throws -> WatchableDetail? {
+    func fetchMediaDetails(mediaId id: Int) async throws -> WatchableDetail? {
         return mockWatchableDetail
     }
 }

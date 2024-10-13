@@ -41,7 +41,7 @@ struct DiscoverSliceItem: View {
             if mediaType == Movie.self {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),
                                                                 navigationTitle: item.title,
-                                                                id: item.id))
+                                                                movieId: item.id))
             }
         }
     }
