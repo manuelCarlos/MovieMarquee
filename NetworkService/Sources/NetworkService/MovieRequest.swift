@@ -8,8 +8,6 @@
 public enum MovieRequest: MediaTypeProtocol {
 
     case getPopularMovies(page: Int)
-    case getUpcomingMovies(page: Int)
-    case getNowPlayingMovies(page: Int)
     case getMovieDetail(id: Int)
     case getMovieReviews(id: Int, page: Int)
     case getSimilarMoviesTo(id: Int, page: Int)
@@ -23,10 +21,6 @@ public enum MovieRequest: MediaTypeProtocol {
         switch self {
         case .getPopularMovies:
             return "/movie/popular"
-        case .getUpcomingMovies:
-            return "/movie/upcoming"
-        case .getNowPlayingMovies:
-            return "/movie/now_playing"
         case .getMovieDetail(id: let id):
             return "/movie/\(id)"
         case .getMovieReviews(let id, _):
@@ -41,16 +35,6 @@ public enum MovieRequest: MediaTypeProtocol {
     public var urlParams: [String: String?] {
         switch self {
         case .getPopularMovies(let page):
-            return ["page": String(page),
-                    "api_key": APIConstants.apiKey,
-                    "language": APIConstants.language
-            ]
-        case .getUpcomingMovies(let page):
-            return ["page": String(page),
-                    "api_key": APIConstants.apiKey,
-                    "language": APIConstants.language
-            ]
-        case .getNowPlayingMovies(let page):
             return ["page": String(page),
                     "api_key": APIConstants.apiKey,
                     "language": APIConstants.language

@@ -14,57 +14,35 @@ final class MovieRequestTests: XCTestCase {
     func test_movie_request_get_popular_movies_path_should_be_correct() {
         let request = MovieRequest.getPopularMovies(page: 1)
 
-        let path = request.path
-
-        XCTAssertEqual(path, "/movie/popular")
-    }
-
-    func test_movie_request_get_upcoming_movies_path_should_be_correct() {
-        let request = MovieRequest.getUpcomingMovies(page: 1)
-
-        let path = request.path
-
-        XCTAssertEqual(path, "/movie/upcoming")
-    }
-
-    func test_movie_request_get_now_playing_movies_path_should_be_correct() {
-        let request = MovieRequest.getNowPlayingMovies(page: 1)
-
-        let path = request.path
-
-        XCTAssertEqual(path, "/movie/now_playing")
+        XCTAssertEqual(request.path, "/movie/popular")
+        XCTAssertEqual(request.mediaType, .movie)
     }
 
     func test_movie_request_get_movie_detail_path_should_be_correct() {
         let request = MovieRequest.getMovieDetail(id: 123)
 
-        let path = request.path
-
-        XCTAssertEqual(path, "/movie/123")
+        XCTAssertEqual(request.path, "/movie/123")
+        XCTAssertEqual(request.mediaType, .movie)
     }
 
     func test_movie_request_get_movie_reviews_path_should_be_correct() {
         let request = MovieRequest.getMovieReviews(id: 123, page: 1)
 
-        let path = request.path
-
-        XCTAssertEqual(path, "/movie/123/reviews")
+        XCTAssertEqual(request.path, "/movie/123/reviews")
+        XCTAssertEqual(request.mediaType, .movie)
     }
 
     func test_movie_request_get_similar_movies_to_path_should_be_correct() {
         let request = MovieRequest.getSimilarMoviesTo(id: 123, page: 1)
 
-        let path = request.path
-
-        XCTAssertEqual(path, "/movie/123/similar")
+        XCTAssertEqual(request.path, "/movie/123/similar")
     }
 
     func test_movie_request_get_credits_path_should_be_correct() {
         let request = MovieRequest.getCredits(id: 123)
 
-        let path = request.path
-
-        XCTAssertEqual(path, "/movie/123/credits")
+        XCTAssertEqual(request.path, "/movie/123/credits")
+        XCTAssertEqual(request.mediaType, .movie)
     }
 
     func test_movie_request_get_popular_movies_url_params_should_include_page_and_api_key() {
@@ -73,9 +51,10 @@ final class MovieRequestTests: XCTestCase {
 
         let urlParams = request.urlParams
 
-        XCTAssertEqual(urlParams["page"], String(page))
+        XCTAssertEqual(urlParams["page"], "1")
         XCTAssertEqual(urlParams["api_key"], APIConstants.apiKey)
-        XCTAssertEqual(urlParams["language"], APIConstants.language)
+        XCTAssertEqual(urlParams["language"], "en-US")
+        XCTAssertEqual(request.mediaType, .movie)
     }
 
     func test_movie_request_get_movie_detail_url_params_should_include_movie_id_and_api_key() {
@@ -84,7 +63,7 @@ final class MovieRequestTests: XCTestCase {
 
         let urlParams = request.urlParams
 
-        XCTAssertEqual(urlParams["movie_id"], String(movieId))
+        XCTAssertEqual(urlParams["movie_id"], "123")
         XCTAssertEqual(urlParams["api_key"], APIConstants.apiKey)
         XCTAssertEqual(urlParams["append_to_response"], "credits")
     }
@@ -96,17 +75,41 @@ final class MovieRequestTests: XCTestCase {
 
         let urlParams = request.urlParams
 
-        XCTAssertEqual(urlParams["movie_id"], String(movieId))
-        XCTAssertEqual(urlParams["page"], String(page))
+        XCTAssertEqual(urlParams["movie_id"], "123")
+        XCTAssertEqual(urlParams["page"], "1")
         XCTAssertEqual(urlParams["api_key"], APIConstants.apiKey)
-        XCTAssertEqual(urlParams["language"], APIConstants.language)
+        XCTAssertEqual(urlParams["language"], "en-US")
+    }
+
+    func test_movie_request_get_similar_movies_to_url_params_should_include_movie_id_page_and_api_key() {
+        let movieId = 123
+        let page = 1
+        let request = MovieRequest.getSimilarMoviesTo(id: movieId, page: page)
+
+        let urlParams = request.urlParams
+
+        XCTAssertEqual(urlParams["movie_id"], "123")
+        XCTAssertEqual(urlParams["page"], "1")
+        XCTAssertEqual(urlParams["api_key"], APIConstants.apiKey)
+        XCTAssertEqual(urlParams["language"], "en-US")
+    }
+
+    func test_movie_request_get_credits_url_params_should_include_movie_id_page_and_api_key() {
+        let movieId = 123
+        let page = 1
+        let request = MovieRequest.getSimilarMoviesTo(id: movieId, page: page)
+
+        let urlParams = request.urlParams
+
+        XCTAssertEqual(urlParams["movie_id"], "123")
+        XCTAssertEqual(urlParams["page"], "1")
+        XCTAssertEqual(urlParams["api_key"], APIConstants.apiKey)
+        XCTAssertEqual(urlParams["language"], "en-US")
     }
 
     func test_movie_request_request_type_should_be_get() {
         let requests: [MovieRequest] = [
             .getPopularMovies(page: 1),
-            .getUpcomingMovies(page: 1),
-            .getNowPlayingMovies(page: 1),
             .getMovieDetail(id: 123),
             .getMovieReviews(id: 123, page: 1),
             .getSimilarMoviesTo(id: 123, page: 1),
