@@ -12,6 +12,37 @@ import XCTest
 @available(iOS 15, *)
 final class MovieTests: XCTestCase {
 
+    func test_default_initializer_returns_valid_instance() {
+        let date = Calendar.current.date(from: DateComponents(year: 2000, month: 1, day: 1)) ?? .now
+        let movie = Movie(
+            id: 1,
+            title: "Test Movie",
+            adult: false,
+            posterPath: "/path/to/poster",
+            backdropPath: "/path/to/backdrop",
+            overview: "This is a test overview",
+            releaseDate: date,
+            genreIDS: [1, 2, 3],
+            originalTitle: "Test Original Title",
+            originalLanguage: .en,
+            popularity: 8.7,
+            voteCount: 100,
+            video: false,
+            voteAverage: 7.5
+        )
+
+        XCTAssertEqual(movie.id, 1)
+        XCTAssertEqual(movie.title, "Test Movie")
+        XCTAssertEqual(movie.adult, false)
+        XCTAssertEqual(movie.posterPath, "/path/to/poster")
+        XCTAssertEqual(movie.backdropPath, "/path/to/backdrop")
+        XCTAssertEqual(movie.overview, "This is a test overview")
+        XCTAssertEqual(movie.releaseDate, date)
+        XCTAssertEqual(movie.genreIDS, [1, 2, 3])
+        XCTAssertEqual(movie.originalTitle, "Test Original Title")
+        XCTAssertEqual(movie.originalLanguage, .en)
+    }
+
     func test_movie_decoding_succefully() throws {
         let movie = try loadJson(from: "movie", as: Movie.self)
 
