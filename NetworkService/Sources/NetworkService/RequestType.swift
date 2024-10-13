@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RequestType: String {
+public enum RequestType: String, Sendable {
     case GET
     case POST
 }
