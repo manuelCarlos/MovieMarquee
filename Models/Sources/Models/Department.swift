@@ -6,7 +6,7 @@
 //
 
 // TODO: - Remove string associated values and add a localizedstring
-enum Department: String, Codable, Hashable, Sendable {
+public enum Department: String, Codable, Hashable, Sendable {
     case acting = "Acting"
     case art = "Art"
     case camera = "Camera"
