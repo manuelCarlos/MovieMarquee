@@ -21,7 +21,8 @@ let package = Package(
             name: "NetworkServiceTests",
             dependencies: ["NetworkService"],
             resources: [
-                .process("Resources/mockedApiKey.json")
+                .process("Resources/mockedApiKey.json"),
+                .process("Resources/invalidJSONFile.json")
             ]
         )
     ]
