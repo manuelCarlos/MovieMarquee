@@ -30,6 +30,9 @@ final class MockMediaService: @unchecked Sendable, MediaService {
     }
 
     func fetchMediaDetails(mediaId: Int) async throws -> any MovieMarquee.WatchableDetail {
+        if shouldFail {
+            throw MockError.failure
+        }
         return mockWatchableDetail
     }
 
