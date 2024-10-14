@@ -96,30 +96,30 @@ public struct Cast: Codable, Identifiable, Hashable, Sendable {
         releaseDate = formatter.date(from: release)
     }
 
-    let adult: Bool
-    let gender: Int?
+    public let adult: Bool
+    public let gender: Int?
     public let id: Int
-    let knownForDepartment: Department?
-    let name: String?
-    let originalName: String?
-    let popularity: Double
-    let profilePath: String?
-    let castID: Int?
-    let character: String?
-    let creditID: String
-    let order: Int?
-    let department: Department?
-    let job: String?
-    let backdropPath: String?
-    let genreIDS: [Int]?
-    let originalLanguage: OriginalLanguage?
-    let originalTitle, overview: String?
-    let posterPath: String?
-    let releaseDate: Date?
-    let title: String?
-    let video: Bool?
-    let voteAverage: Double?
-    let voteCount: Int?
+    public let knownForDepartment: Department?
+    public let name: String?
+    public let originalName: String?
+    public let popularity: Double
+    public let profilePath: String?
+    public let castID: Int?
+    public let character: String?
+    public let creditID: String
+    public let order: Int?
+    public let department: Department?
+    public let job: String?
+    public let backdropPath: String?
+    public let genreIDS: [Int]?
+    public let originalLanguage: OriginalLanguage?
+    public let originalTitle, overview: String?
+    public let posterPath: String?
+    public let releaseDate: Date?
+    public let title: String?
+    public let video: Bool?
+    public let voteAverage: Double?
+    public let voteCount: Int?
 
     enum CodingKeys: String, CodingKey {
         case adult, gender, id
