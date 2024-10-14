@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct FailedStateView: View {
-    let error: String
-    let onRetry: () -> Void
 
-    var body: some View {
-        ContentUnavailableView {
-            Text("Oops, something went wrong")
-        } description: {
-            Text(error)
-        } actions: {
-            Button {
+    private let error: String
+    private let onRetry: (() -> Void)?
+
+    init(error: String, onRetry: (() -> Void)? = nil) {
+        self.error = error
+        self.onRetry = onRetry
+    }
+
+    private var retryAction: some View {
+        if onRetry == nil {
+            return EmptyView()
+        } else {
+            return Button {
                 Task {
-                    onRetry()
+                    onRetry?()
                 }
             } label: {
                 Text("Retry")
                     .font(.title)
             }
         }
+    }
+    
+    var body: some View {
+        ContentUnavailableView {
+            Text("Oops, something went wrong")
+        } description: {
+            Text(error)
+        } actions: { retryAction }
     }
 }

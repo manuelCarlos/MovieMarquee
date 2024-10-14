@@ -26,7 +26,6 @@ struct MoviePosterView: View {
                     image
                         .resizable()
                         .scaledToFit()
-                        .border(.secondary, width: 1)
                 case .empty:
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.blue.opacity(0.5)))

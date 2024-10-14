@@ -27,10 +27,7 @@ struct DiscoverSliceItem: View {
                 .scaledToFit()
                 .frame(width: 140, height: 210)
             }
-            .border(
-                Color.primary,
-                width: 1
-            )
+            .cornerRadius(10)
         }
     }
     
