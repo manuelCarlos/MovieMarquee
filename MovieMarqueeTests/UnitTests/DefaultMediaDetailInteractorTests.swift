@@ -1,5 +1,5 @@
 //
-//  DefaultMediaDetailInteractor.swift
+//  DefaultMediaDetailInteractorTests.swift
 //  MovieMarqueeTests
 //
 //  Created by Manuel Lopes on 14.10.24.
