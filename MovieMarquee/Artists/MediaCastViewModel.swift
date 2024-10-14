@@ -29,7 +29,7 @@ final class MediaCastViewModel: @unchecked Sendable {
 
     func loadArtists() async {
         do {
-            let artists = try await interactor.fetchCast(mediaId)
+            let artists = try await interactor.fetchCast(mediaId: mediaId)
             state = artists.isEmpty ? .failed : .loaded(artists)
         } catch {
             state = .failed

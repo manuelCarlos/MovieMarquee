@@ -29,7 +29,7 @@ final class MovieService: Sendable, MediaService {
         return movie
     }
 
-    func fetchMediaCredits(id: Int) async throws -> Credits? {
+    func fetchMediaCredits(id: Int) async throws -> Credits {
         let requestData = MovieRequest.getCredits(id: id)
         let credits: Credits = try await requestManager.decode(networkRequest: requestData)
         return credits
