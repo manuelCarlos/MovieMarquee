@@ -6,6 +6,7 @@
 //
 
 @testable import NetworkService
+@testable import Models
 @testable import MovieMarquee
 
 final class MockMediaService: @unchecked Sendable, MediaService {
@@ -30,5 +31,9 @@ final class MockMediaService: @unchecked Sendable, MediaService {
 
     func fetchMediaDetails(mediaId: Int) async throws -> any MovieMarquee.WatchableDetail {
         return mockWatchableDetail
+    }
+
+    func fetchMediaCredits(id: Int) async throws -> Models.Credits? {
+        return nil
     }
 }
