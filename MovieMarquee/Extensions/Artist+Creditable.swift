@@ -8,6 +8,7 @@
 import Models
 
 extension Artist: Creditable {
+
     func getTitle() -> String {
         return name
     }
@@ -16,5 +17,3 @@ extension Artist: Creditable {
         return profilePath ?? ""
     }
 }
-
-
