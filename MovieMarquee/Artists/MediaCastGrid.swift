@@ -9,16 +9,16 @@ import SwiftUI
 
 struct MediaCastGrid: View {
 
-    @State private var presenter: MediaCastDefaultPresenter
+    @State private var viewModel: MediaCastViewModel
 
-    init(presenter: MediaCastDefaultPresenter) {
-        self.presenter = presenter
+    init(viewModel: MediaCastViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
         contentView
             .task {
-                await presenter.loadArtists()
+                await viewModel.loadArtists()
             }
     }
 
@@ -26,10 +26,10 @@ struct MediaCastGrid: View {
 
     @ViewBuilder
     private var contentView: some View {
-        switch presenter.state {
+        switch viewModel.state {
         case .idle:
             IdleStateView {
-                Task { await presenter.loadArtists() }
+                Task { await viewModel.loadArtists() }
             }
         case .failed:
             // In case of error no Cast section data is displayed 😉.

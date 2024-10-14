@@ -28,4 +28,10 @@ final class MovieService: Sendable, MediaService {
         let movie: MovieDetail = try await requestManager.decode(networkRequest: requestData)
         return movie
     }
+
+    func fetchMediaCredits(id: Int) async throws -> Credits? {
+        let requestData = MovieRequest.getCredits(id: id)
+        let credits: Credits = try await requestManager.decode(networkRequest: requestData)
+        return credits
+    }
 }
