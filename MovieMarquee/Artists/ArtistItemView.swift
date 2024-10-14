@@ -1,45 +1,69 @@
+//
+//  ArtistItemView.swift
+//  MovieMarquee
+//
+//  Created by Manuel Lopes on 14.10.24.
+//
+
 import SwiftUI
-import Kingfisher
 
 struct ArtistItemView: View {
 
     private var artist: Creditable
+    private let width: CGFloat = 110
 
-    internal init(artist: Creditable) {
+    init(artist: Creditable) {
         self.artist = artist
-    }
-
-    fileprivate func artistImage() -> some View {
-        KFImage(URL(string: artist.getPosterUrl()))
-            .resizable()
-            .scaledToFill()
-            .frame(width: 105, height: 160)
-            .clipped()
-    }
-
-    fileprivate func artistLabel() -> some View {
-        return Text(artist.getTitle())
-            .font(.system(size: 15))
-            .foregroundColor(.primary)
-            .fontWeight(.regular)
-            .multilineTextAlignment(.center)
-            .lineLimit(2)
-            .minimumScaleFactor(0.7)
-            .padding(
-                EdgeInsets(
-                    top: 4,
-                    leading: 2,
-                    bottom: 4,
-                    trailing: 2)
-            )
     }
 
     var body: some View {
         VStack(alignment: .center) {
             artistImage()
-            artistLabel()
+            artistTitle()
         }
-        .frame(width: 105, height: 190)
-        .border(Color.primary, width: 1)
+        .cornerRadius(10)
+    }
+
+    // MARK: - Private
+
+    private func artistImage() -> some View {
+        AsyncImage(url: URL(string: artist.getPosterUrl()),
+                   transaction: Transaction(animation: .default)) { phase in
+            switch phase {
+            case .success(let image):
+                image
+                    .resizable()
+                    .scaledToFill()
+            case .empty:
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.blue.opacity(0.6)))
+            case .failure:
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.gray)
+                    .opacity(0.3)
+                    .padding()
+                Text("Unavailble")
+                    .foregroundColor(.gray)
+                    .font(.caption)
+                    .lineLimit(1)
+            @unknown default:
+                ProgressView()
+            }
+        }
+        .frame(width: width, height: 150)
+        .clipped()
+    }
+
+    private func artistTitle() -> some View {
+        Text(artist.getTitle())
+            .font(.headline)
+            .foregroundColor(.primary)
+            .fontWeight(.regular)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .minimumScaleFactor(0.7)
+            .frame(width: width, height: 50)
     }
 }
