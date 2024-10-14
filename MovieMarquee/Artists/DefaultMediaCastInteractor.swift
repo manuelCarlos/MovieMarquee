@@ -7,20 +7,21 @@
 
 import Models
 
+// TODO: - Rename file and MediaInteractor
 protocol MediaCastInteractor {
-    func fetchCast(_ id: Int) async throws -> [Cast]
+    func fetchCast(mediaId: Int) async throws -> [Cast]
 }
 
 final class DefaultMediaCastInteractor: MediaCastInteractor {
+
     private let mediaService: MediaService
 
     init(mediaService: MediaService) {
         self.mediaService = mediaService
     }
 
-    func fetchCast(_ id: Int) async throws -> [Cast] {
-        var credits: Credits?
-        credits = try await mediaService.fetchMediaCredits(id: id)
-        return credits?.cast ?? []
+    func fetchCast(mediaId: Int) async throws -> [Cast] {
+        let credits = try await mediaService.fetchMediaCredits(id: mediaId)
+        return credits.cast
     }
 }
