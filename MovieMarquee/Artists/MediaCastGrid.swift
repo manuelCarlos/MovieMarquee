@@ -16,17 +16,34 @@ struct MediaCastGrid: View {
     }
 
     var body: some View {
-        Text("Cast")
-            .font(.title)
-            .fontWeight(.bold)
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], alignment: .center, spacing: 20) {
-            ForEach(presenter.artists, id: \.id) { artist in
-                ArtistItemView(artist: artist)
+        contentView
+            .task {
+                await presenter.loadArtists()
             }
-        }
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
-        .task {
-            await presenter.loadArtists()
+    }
+
+    // MARK: - Private
+
+    @ViewBuilder
+    private var contentView: some View {
+        switch presenter.state {
+        case .idle:
+            IdleStateView {
+                Task { await presenter.loadArtists() }
+            }
+        case .failed:
+            // In case of error no Cast section data is displayed 😉.
+            EmptyView()
+        case .loaded(let artists):
+            Text("Cast")
+                .font(.title)
+                .fontWeight(.bold)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], alignment: .center, spacing: 20) {
+                ForEach(artists, id: \.id) { artist in
+                    ArtistItemView(artist: artist)
+                }
+            }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
         }
     }
 }
