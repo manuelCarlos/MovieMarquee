@@ -12,7 +12,11 @@ protocol MediaDetailInteractor: Sendable {
 // TODO: - Rename file and DefaultMovieDetailInteractor
 final class DefaultMediaDetailInteractor: Sendable, MediaDetailInteractor {
 
-    private let movieService: MediaService = MovieService.shared
+    private let movieService: MediaService
+
+    init(movieService: MediaService = MovieService.shared) {
+        self.movieService = movieService
+    }
 
     func fetchMovieDetail(movieId: Int) async throws -> WatchableDetail {
         return try await movieService.fetchMediaDetails(mediaId: movieId)
