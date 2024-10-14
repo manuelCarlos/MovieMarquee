@@ -20,6 +20,7 @@ final class NetworkRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest.url?.host, "api.themoviedb.org")
         XCTAssertEqual(urlRequest.url?.path, "/3/test")
         XCTAssertEqual(urlRequest.httpMethod, "GET")
+        XCTAssertEqual(networkRequest.urlParams, [:])
     }
 
     func test_request_type_post() throws {
@@ -27,7 +28,11 @@ final class NetworkRequestTests: XCTestCase {
 
         let urlRequest = try networkRequest.makeRequest()
 
+        XCTAssertEqual(urlRequest.url?.scheme, "https")
+        XCTAssertEqual(urlRequest.url?.host, "api.themoviedb.org")
+        XCTAssertEqual(urlRequest.url?.path, "/3/test")
         XCTAssertEqual(urlRequest.httpMethod, "POST")
+        XCTAssertEqual(networkRequest.urlParams, [:])
     }
 
     func test_headers_setup() throws {
@@ -38,6 +43,7 @@ final class NetworkRequestTests: XCTestCase {
 
         XCTAssertEqual(urlRequest.allHTTPHeaderFields?["Authorization"], "Bearer token")
         XCTAssertEqual(urlRequest.allHTTPHeaderFields?["Content-Type"], "application/json")
+        XCTAssertEqual(networkRequest.urlParams, [:])
     }
 
     func test_url_params_setup() throws {
@@ -51,6 +57,8 @@ final class NetworkRequestTests: XCTestCase {
         XCTAssertEqual(queryItems?.count, 2)
         XCTAssertEqual(queryItems?.first(where: { $0.name == "query" })?.value, "value")
         XCTAssertEqual(queryItems?.first(where: { $0.name == "filter" })?.value, "active")
+        XCTAssertEqual(networkRequest.urlParams["query"], "value")
+        XCTAssertEqual(networkRequest.urlParams["filter"], "active")
     }
 
     func test_json_body_encoding() throws {
@@ -63,5 +71,6 @@ final class NetworkRequestTests: XCTestCase {
 
         XCTAssertEqual(json?["key1"] as? String, "value1")
         XCTAssertEqual(json?["key2"] as? Int, 42)
+        XCTAssertEqual(networkRequest.urlParams, [:])
     }
 }
