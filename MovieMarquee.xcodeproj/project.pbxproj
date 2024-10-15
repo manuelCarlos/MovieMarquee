@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11947CA92CB019140024132D /* NetworkService in Frameworks */ = {isa = PBXBuildFile; productRef = 11947CA82CB019140024132D /* NetworkService */; };
-		11947CAE2CB6D9B80024132D /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 11947CAD2CB6D9B80024132D /* Models */; };
+		11A312D52CBE7E350074856C /* PopularMoviesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 11A312D42CBE7E350074856C /* PopularMoviesFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		117A7C2A2CB95D8B000C6E4F /* AllTestsPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTestsPlan.xctestplan; sourceTree = "<group>"; };
 		11947C672CB012C50024132D /* MovieMarquee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieMarquee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C782CB012C60024132D /* MovieMarqueeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +35,8 @@
 		11947CA62CB0168B0024132D /* NetworkService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkService; sourceTree = "<group>"; };
 		11947CAB2CB03B680024132D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		11947CAC2CB6737A0024132D /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
+		11A312CF2CBE74EE0074856C /* PopularMoviesFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PopularMoviesFeature; sourceTree = "<group>"; };
+		11A312EA2CBE85280074856C /* MovieMarquee.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MovieMarquee.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -62,8 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11947CAE2CB6D9B80024132D /* Models in Frameworks */,
-				11947CA92CB019140024132D /* NetworkService in Frameworks */,
+				11A312D52CBE7E350074856C /* PopularMoviesFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,16 +86,17 @@
 		11947C5E2CB012C50024132D = {
 			isa = PBXGroup;
 			children = (
-				117A7C2A2CB95D8B000C6E4F /* AllTestsPlan.xctestplan */,
+				11A312EA2CBE85280074856C /* MovieMarquee.xctestplan */,
+				11A312CF2CBE74EE0074856C /* PopularMoviesFeature */,
 				11947CAC2CB6737A0024132D /* Models */,
-				11947CAB2CB03B680024132D /* .swiftlint.yml */,
 				11947CA62CB0168B0024132D /* NetworkService */,
+				11947CA52CB014400024132D /* README.md */,
+				11947CAB2CB03B680024132D /* .swiftlint.yml */,
+				11947CA72CB019140024132D /* Frameworks */,
 				11947C692CB012C50024132D /* MovieMarquee */,
 				11947C7B2CB012C60024132D /* MovieMarqueeTests */,
 				11947C852CB012C60024132D /* MovieMarqueeUITests */,
 				11947C682CB012C50024132D /* Products */,
-				11947CA52CB014400024132D /* README.md */,
-				11947CA72CB019140024132D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,8 +138,7 @@
 			);
 			name = MovieMarquee;
 			packageProductDependencies = (
-				11947CA82CB019140024132D /* NetworkService */,
-				11947CAD2CB6D9B80024132D /* Models */,
+				11A312D42CBE7E350074856C /* PopularMoviesFeature */,
 			);
 			productName = MovieMarquee;
 			productReference = 11947C672CB012C50024132D /* MovieMarquee.app */;
@@ -203,9 +202,11 @@
 				TargetAttributes = {
 					11947C662CB012C50024132D = {
 						CreatedOnToolsVersion = 16.0;
+						LastSwiftMigration = 1600;
 					};
 					11947C772CB012C60024132D = {
 						CreatedOnToolsVersion = 16.0;
+						LastSwiftMigration = 1600;
 						TestTargetID = 11947C662CB012C50024132D;
 					};
 					11947C812CB012C60024132D = {
@@ -438,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MovieMarquee/MovieMarquee.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -467,6 +469,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 2.0;
@@ -478,6 +481,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MovieMarquee/MovieMarquee.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -517,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X4WRR7YD46;
@@ -529,6 +534,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieMarquee.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieMarquee";
@@ -540,6 +546,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X4WRR7YD46;
@@ -645,13 +652,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		11947CA82CB019140024132D /* NetworkService */ = {
+		11A312D42CBE7E350074856C /* PopularMoviesFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = NetworkService;
-		};
-		11947CAD2CB6D9B80024132D /* Models */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Models;
+			productName = PopularMoviesFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,0 +1,52 @@
+{
+  "configurations" : [
+    {
+      "id" : "4F5F53FD-EFED-4BBB-A4A1-F0F0E2F2FEBE",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:PopularMoviesFeature",
+        "identifier" : "PopularMoviesFeatureTests",
+        "name" : "PopularMoviesFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C772CB012C60024132D",
+        "name" : "MovieMarqueeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Models",
+        "identifier" : "ModelsTests",
+        "name" : "ModelsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C812CB012C60024132D",
+        "name" : "MovieMarqueeUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NetworkService",
+        "identifier" : "NetworkServiceTests",
+        "name" : "NetworkServiceTests"
+      }
+    }
+  ],
+  "version" : 1
+}

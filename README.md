@@ -5,9 +5,9 @@ The BE is kindly provided by TMDB (www.themoviedb.org)
 
 # Features
 
-- Swiftlint code formating
-- SwiftUI app, including views and navigation
-- Local Swift packages (SPM)
-- String catalogs for localization
-- Swift 6 ready and strict concurrency checking with zero warnings :P
-- Test plans setup to convenientely execute all app and package tests in one go 
+- Swiftlint code formating.
+- SwiftUI app, including views and navigation.
+- Local Swift packages (SPM).
+- String catalogs for localization.
+- Swift 6 ready and strict concurrency checking with zero warnings :P.
+- Test plans setup to convenientely execute all app+package tests in one go.
