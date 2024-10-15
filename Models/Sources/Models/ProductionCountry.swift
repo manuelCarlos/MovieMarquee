@@ -6,6 +6,5 @@
 //
 
 public struct ProductionCountry: Codable, Hashable, Sendable {
-    public let iso31661, name: String // swiftlint:disable:this identifier_name
-
+    public let iso31661, name: String
 }

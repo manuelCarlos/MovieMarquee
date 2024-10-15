@@ -6,8 +6,8 @@
 //
 
 public struct Movies: Codable, Hashable, Sendable {
-    let dates: Dates?
-    let page: Int
+    public let dates: Dates?
+    public let page: Int
     public let results: [Movie]
-    let totalPages, totalResults: Int?
+    public let totalPages, totalResults: Int?
 }
