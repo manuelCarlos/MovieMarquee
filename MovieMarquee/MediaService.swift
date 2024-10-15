@@ -12,5 +12,5 @@ import Models
 protocol MediaService: Sendable {
     func fetchMedia(request: NetworkRequest) async throws -> [Watchable]
     func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetail
-    func fetchMediaCredits(id: Int) async throws -> Credits
+    func fetchMediaCredits(mediaId: Int) async throws -> Credits
 }

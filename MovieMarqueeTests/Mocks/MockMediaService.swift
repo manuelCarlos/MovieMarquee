@@ -39,7 +39,7 @@ final class MockMediaService: @unchecked Sendable, MediaService {
         return mockWatchableDetail
     }
 
-    func fetchMediaCredits(id: Int) async throws -> Models.Credits {
+    func fetchMediaCredits(mediaId: Int) async throws -> Models.Credits {
         if shouldFail {
             throw MockError.failure
         }

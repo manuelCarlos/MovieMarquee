@@ -8,10 +8,12 @@
 
 @testable import NetworkService
 @testable import Models
+@testable import MovieMarquee
 
 final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
-    var mockMovies: Movies?
-    var mockMovieDetail: MovieDetail?
+    var mockMedia: Movies?
+    var mockMediaDetail: WatchableDetail?
+    var mockMediaCast: Credits?
     var shouldFail: Bool
     var decodeCallCount = 0
 
@@ -25,10 +27,13 @@ final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
             throw MockError.failure
         }
 
-        if let mockMovieDetail {
-            return mockMovieDetail as! T
+        if let mockMediaDetail {
+            return mockMediaDetail as! T
         }
-        return mockMovies as! T
+        if let mockMediaCast {
+            return mockMediaCast as! T
+        }
+        return mockMedia as! T
     }
 
     var apiManager: APIManagerProtocol {
