@@ -27,21 +27,21 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
         self.interactor = interactor
     }
 
-    func fetchMedia() {
+    func fetchMostPopularMovies() {
         Task {
             state = .loading
-            try await Task.sleep(for: .seconds(2)) // TODO: - remove later
-            await loadPopularMovies()
+//            try await Task.sleep(for: .seconds(2)) // TODO: - remove later
+            await fetchPopularMovies()
         }
     }
 
     // MARK: - Private
 
-    private func loadPopularMovies() async {
+    private func fetchPopularMovies() async {
         do {
-            let movies = try await interactor.fetchNextPopularPageAsFullList()
-            let popularMovies = filterWatchable(movies)
-            state = popularMovies.isEmpty ? .failed("There are no popular movies available.") : .loaded(popularMovies)
+            let popularMovies = try await interactor.fetchNextPopularPageAsFullList()
+            let watchable = filterWatchable(popularMovies)
+            state = watchable.isEmpty ? .failed("There are no popular movies available.") : .loaded(watchable)
         } catch {
             state = .failed(error.localizedDescription)
         }
@@ -54,9 +54,9 @@ final class DiscoverSceneViewModel: @unchecked Sendable {
     // MARK: - For testing purposes only
 
     #if DEBUG
-    func fetchMediaAsync() async {
+    func fetchPopularMoviesAsync() async {
         state = .loading
-        await loadPopularMovies()
+        await fetchPopularMovies()
     }
     #endif
 }

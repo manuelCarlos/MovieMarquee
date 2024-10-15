@@ -31,13 +31,13 @@ struct DiscoverScene: View {
         switch viewModel.state {
         case .idle:
             IdleStateView {
-                viewModel.fetchMedia()
+                viewModel.fetchMostPopularMovies()
             }
         case .loading:
             LoadingStateView(subtitle: "Loading...")
         case .failed(let error):
             FailedStateView(error: error) {
-                viewModel.fetchMedia()
+                viewModel.fetchMostPopularMovies()
             }
         case .loaded(let popularMovies):
             LoadedStateView(popularMovies: popularMovies)
