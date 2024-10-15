@@ -18,7 +18,7 @@ struct MediaCastGrid: View {
     var body: some View {
         contentView
             .task {
-                await viewModel.loadArtists()
+                await viewModel.fetchMediaCast()
             }
     }
 
@@ -29,7 +29,7 @@ struct MediaCastGrid: View {
         switch viewModel.state {
         case .idle:
             IdleStateView {
-                Task { await viewModel.loadArtists() }
+                Task { await viewModel.fetchMediaCast() }
             }
         case .failed:
             // In case of error no Cast section data is displayed 😉.
