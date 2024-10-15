@@ -10,11 +10,4 @@ public struct Movies: Codable, Hashable, Sendable {
     let page: Int
     public let results: [Movie]
     let totalPages, totalResults: Int?
-
-    enum CodingKeys: String, CodingKey, Hashable, Sendable {
-        case dates
-        case page, results
-        case totalPages = "total_pages"
-        case totalResults = "total_results"
-    }
 }

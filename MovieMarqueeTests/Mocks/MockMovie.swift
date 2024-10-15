@@ -30,7 +30,7 @@ extension Movie {
                      backdropPath: backdropPath,
                      overview: "Good movie",
                      releaseDate: releaseDate,
-                     genreIDS: genreIds,
+                     genreIds: genreIds,
                      originalTitle: originalTitle,
                      originalLanguage: originalLanguage,
                      popularity: popularity,

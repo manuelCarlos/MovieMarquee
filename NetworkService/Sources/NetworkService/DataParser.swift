@@ -11,6 +11,7 @@ public final class DataParser: Sendable {
     private let jsonDecoder: JSONDecoder
 
     public init(jsonDecoder: JSONDecoder = JSONDecoder()) {
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         self.jsonDecoder = jsonDecoder
     }
 

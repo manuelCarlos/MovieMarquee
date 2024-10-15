@@ -22,7 +22,7 @@ final class MovieTests: XCTestCase {
             backdropPath: "/path/to/backdrop",
             overview: "This is a test overview",
             releaseDate: date,
-            genreIDS: [1, 2, 3],
+            genreIds: [1, 2, 3],
             originalTitle: "Test Original Title",
             originalLanguage: .en,
             popularity: 8.7,
@@ -38,7 +38,7 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(movie.backdropPath, "/path/to/backdrop")
         XCTAssertEqual(movie.overview, "This is a test overview")
         XCTAssertEqual(movie.releaseDate, date)
-        XCTAssertEqual(movie.genreIDS, [1, 2, 3])
+        XCTAssertEqual(movie.genreIds, [1, 2, 3])
         XCTAssertEqual(movie.originalTitle, "Test Original Title")
         XCTAssertEqual(movie.originalLanguage, .en)
     }
@@ -53,7 +53,7 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(movie.backdropPath, "/path/to/backdrop")
         XCTAssertEqual(movie.overview, "This is a test overview")
         XCTAssertEqual(movie.releaseDate, DateFormatter.yyyyMMdd.date(from: "1970-01-01"))
-        XCTAssertEqual(movie.genreIDS, [1, 2, 3])
+        XCTAssertEqual(movie.genreIds, [1, 2, 3])
         XCTAssertEqual(movie.originalTitle, "Test Original Title")
         XCTAssertEqual(movie.originalLanguage, .en)
         XCTAssertEqual(movie.popularity, 8.7)
@@ -78,7 +78,7 @@ final class MovieTests: XCTestCase {
             backdropPath: "/path/to/backdrop",
             overview: "This is a test overview",
             releaseDate: date,
-            genreIDS: [1, 2, 3],
+            genreIds: [1, 2, 3],
             originalTitle: "Test Original Title",
             originalLanguage: .en,
             popularity: 8.7,
@@ -107,7 +107,7 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(decodedMovie.overview, "This is a test overview")
         XCTAssertEqual(dateFormatter.string(from: decodedMovie.releaseDate ?? .distantFuture),
                        dateFormatter.string(from: movie.releaseDate ?? .distantPast))
-        XCTAssertEqual(decodedMovie.genreIDS, [1, 2, 3])
+        XCTAssertEqual(decodedMovie.genreIds, [1, 2, 3])
         XCTAssertEqual(decodedMovie.originalTitle, "Test Original Title")
         XCTAssertEqual(decodedMovie.originalLanguage, .en)
         XCTAssertEqual(decodedMovie.popularity, 8.7)

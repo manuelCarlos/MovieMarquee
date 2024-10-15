@@ -11,12 +11,4 @@ public struct MovieGroup: Codable, Hashable, Sendable {
     public let name: String
     public let posterPath: String?
     public let overview: String?
-
-    enum CodingKeys: String, CodingKey, Hashable, Sendable {
-        case backdropPath = "backdrop_path"
-        case id
-        case overview
-        case posterPath = "poster_path"
-        case name
-    }
 }

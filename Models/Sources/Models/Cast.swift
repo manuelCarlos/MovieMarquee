@@ -20,14 +20,14 @@ public struct Cast: Codable, Identifiable, Hashable, Sendable {
         originalName: String? = nil,
         popularity: Double,
         profilePath: String? = nil,
-        castID: Int? = nil,
+        castId: Int? = nil,
         character: String? = nil,
-        creditID: String,
+        creditId: String,
         order: Int? = nil,
         department: Department? = nil,
         job: String? = nil,
         backdropPath: String? = nil,
-        genreIDS: [Int]? = nil,
+        genreIds: [Int]? = nil,
         originalLanguage: OriginalLanguage? = nil,
         originalTitle: String? = nil,
         overview: String? = nil,
@@ -46,14 +46,14 @@ public struct Cast: Codable, Identifiable, Hashable, Sendable {
         self.originalName = originalName
         self.popularity = popularity
         self.profilePath = profilePath
-        self.castID = castID
+        self.castId = castId
         self.character = character
-        self.creditID = creditID
+        self.creditId = creditId
         self.order = order
         self.department = department
         self.job = job
         self.backdropPath = backdropPath
-        self.genreIDS = genreIDS
+        self.genreIds = genreIds
         self.originalLanguage = originalLanguage
         self.originalTitle = originalTitle
         self.overview = overview
@@ -75,14 +75,14 @@ public struct Cast: Codable, Identifiable, Hashable, Sendable {
         originalName = try container.decodeIfPresent(String.self, forKey: .originalName)
         popularity = try container.decode(Double.self, forKey: .popularity)
         profilePath = try container.decodeIfPresent(String.self, forKey: .profilePath)
-        castID = try container.decodeIfPresent(Int.self, forKey: .castID)
+        castId = try container.decodeIfPresent(Int.self, forKey: .castId)
         character = try container.decodeIfPresent(String.self, forKey: .character)
-        creditID = try container.decode(String.self, forKey: .creditID)
+        creditId = try container.decode(String.self, forKey: .creditId)
         order = try container.decodeIfPresent(Int.self, forKey: .order)
         department = try container.decodeIfPresent(Department.self, forKey: .department)
         job = try container.decodeIfPresent(String.self, forKey: .job)
         backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath)
-        genreIDS = try container.decodeIfPresent([Int].self, forKey: .genreIDS)
+        genreIds = try container.decodeIfPresent([Int].self, forKey: .genreIds)
         originalLanguage = try container.decodeIfPresent(OriginalLanguage.self, forKey: .originalLanguage)
         originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle)
         overview = try container.decodeIfPresent(String.self, forKey: .overview)
@@ -104,14 +104,14 @@ public struct Cast: Codable, Identifiable, Hashable, Sendable {
     public let originalName: String?
     public let popularity: Double
     public let profilePath: String?
-    public let castID: Int?
+    public let castId: Int?
     public let character: String?
-    public let creditID: String
+    public let creditId: String
     public let order: Int?
     public let department: Department?
     public let job: String?
     public let backdropPath: String?
-    public let genreIDS: [Int]?
+    public let genreIds: [Int]?
     public let originalLanguage: OriginalLanguage?
     public let originalTitle, overview: String?
     public let posterPath: String?
@@ -120,29 +120,6 @@ public struct Cast: Codable, Identifiable, Hashable, Sendable {
     public let video: Bool?
     public let voteAverage: Double?
     public let voteCount: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case adult, gender, id
-        case knownForDepartment = "known_for_department"
-        case name
-        case originalName = "original_name"
-        case popularity
-        case profilePath = "profile_path"
-        case castID = "cast_id"
-        case character
-        case creditID = "credit_id"
-        case order, department, job
-        case backdropPath = "backdrop_path"
-        case genreIDS = "genre_ids"
-        case originalLanguage = "original_language"
-        case originalTitle = "original_title"
-        case overview
-        case posterPath = "poster_path"
-        case releaseDate = "release_date"
-        case title, video
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
-    }
 
     var getKnownForDepartment: String? {
         knownForDepartment?.rawValue

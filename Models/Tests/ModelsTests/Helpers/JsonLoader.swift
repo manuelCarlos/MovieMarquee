@@ -14,6 +14,8 @@ func loadJson<T: Decodable>(from fileName: String, withExtension fileExtension: 
     }
 
     let jsonData = try Data(contentsOf: path)
-    let decodedObject = try JSONDecoder().decode(T.self, from: jsonData)
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    let decodedObject = try decoder.decode(T.self, from: jsonData)
     return decodedObject
 }

@@ -106,6 +106,7 @@ final class DataParserTests: XCTestCase {
         let moviesResponse: MockMovies = try dataParser.parse(data: jsonData)
 
         XCTAssertEqual(moviesResponse.results?.count, 0)
+        XCTAssertEqual(moviesResponse.totalPages, 46481)
         XCTAssertEqual(moviesResponse.totalResults, 929608)
     }
 
