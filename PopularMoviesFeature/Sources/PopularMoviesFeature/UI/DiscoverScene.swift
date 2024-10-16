@@ -48,22 +48,17 @@ public struct DiscoverScene: View {
                 viewModel.fetchMostPopularMovies()
             }
         case .loaded(let popularMovies):
-            loadedStateView(popularMovies: popularMovies)
-                .opacity(isDataLoaded ? 1 : 0)
-                .animation(.easeInOut(duration: 1), value: isDataLoaded)
-                .task {
-                    isDataLoaded = true
-                }
+            DiscoverSlice(
+                sliceTitle: Texts.SectionHeader.mostPopular,
+                sliceItems: popularMovies,
+                section: MediaSection.popularMovies,
+                favoriteMoviesDBStore: favoriteMoviesDBStore
+            )
+            .opacity(isDataLoaded ? 1 : 0)
+            .animation(.easeInOut(duration: 1), value: isDataLoaded)
+            .task {
+                isDataLoaded = true
+            }
         }
     }
-
-    private func loadedStateView(popularMovies: [Watchable]) -> some View {
-        DiscoverSlice(
-            sliceTitle: Texts.SectionHeader.mostPopular,
-            sliceItems: popularMovies,
-            section: MediaSection.popularMovies,
-            favoriteMoviesDBStore: favoriteMoviesDBStore
-        )
-    }
-
 }
