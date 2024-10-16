@@ -19,9 +19,6 @@ struct MediaCastGrid: View {
     var body: some View {
         contentView
             .transition(.opacity.animation(.easeInOut(duration: 0.3)))
-            .task {
-                await viewModel.fetchMediaCast()
-            }
     }
 
     // MARK: - Private
