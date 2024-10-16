@@ -15,7 +15,7 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
     public var movies: [Favorite] = []
     
     private let movieDBModelActor: MovieDBModelActor = {
-        let schema = Schema([FavoriteMovie.self])
+        let schema = Schema([FavoriteMovieModel.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
         do {
