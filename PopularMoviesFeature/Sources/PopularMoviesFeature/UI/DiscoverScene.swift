@@ -13,7 +13,7 @@ import MoviesDB
 @available(iOS 17.0, *)
 public struct DiscoverScene: View {
 
-    @State private var viewModel: DiscoverSceneViewModel = DiscoverSceneViewModel(interactor: DefaultMediaInteractor())
+    @State private var viewModel = DiscoverSceneViewModel(interactor: DefaultMediaInteractor())
     @State private var isDataLoaded = false
 
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore

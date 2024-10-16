@@ -1,6 +1,6 @@
 //
 //  ImageExtensionTests.swift
-//  PopularMoviesFeature
+//  PopularMoviesFeatureTests
 //
 //  Created by Manuel Lopes on 15.10.24.
 //

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import Models
+
 @available(iOS 17.0, *)
 @Observable
 final class MediaListViewModel: @unchecked Sendable {
@@ -15,7 +17,7 @@ final class MediaListViewModel: @unchecked Sendable {
         case idle
         case loading
         case failed(String)
-        case loaded([Watchable])
+        case loaded([Movie])
     }
 
     private let interactor: MediaInteractor
@@ -33,7 +35,7 @@ final class MediaListViewModel: @unchecked Sendable {
         case .popularMovies:
             do {
                 state = .loading
-                try await fetchMedia(ofFirstPage: true)
+                try await fetchMedia(isFirstPage: true)
             } catch {
                 state = .failed(error.localizedDescription)
             }
@@ -41,23 +43,23 @@ final class MediaListViewModel: @unchecked Sendable {
     }
 
     func fetchMedia() async throws {
-        try await fetchMedia(ofFirstPage: false)
+        try await fetchMedia(isFirstPage: false)
     }
 
     // MARK: - Private
 
-    private func fetchMedia(ofFirstPage: Bool) async throws {
+    private func fetchMedia(isFirstPage: Bool) async throws {
         switch self.section {
         case .popularMovies:
-            let mediaList = try await interactor.fetchNextPopularPageAsFullList()
-            if mediaList.isEmpty && ofFirstPage {
-                throw NSError(domain: "com.moviemarquee.error",
-                              code: 0,
-                              userInfo: [NSLocalizedDescriptionKey: "There are no popular movies available."])
-
-            } else {
-                state = .loaded(mediaList)
+            guard let mediaList = try await interactor.fetchNextPopularPageAsFullList() as? [Movie] else {
+                throw MediaFetchError.invalidData
             }
+
+            if mediaList.isEmpty && isFirstPage {
+                throw MediaFetchError.noPopularMoviesAvailable
+            }
+
+            state = .loaded(mediaList)
         }
     }
 }

@@ -1,6 +1,6 @@
 //
 //  MovieDetailViewModelTests.swift
-//  PopularMoviesFeature
+//  PopularMoviesFeatureTests
 //
 //  Created by Manuel Lopes on 13.10.24.
 //

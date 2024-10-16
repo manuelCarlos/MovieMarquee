@@ -42,7 +42,7 @@ public final class DiscoverSceneViewModel: @unchecked Sendable {
         do {
             let popularMovies = try await interactor.fetchNextPopularPageAsFullList()
             let watchable = filterWatchable(popularMovies)
-            state = watchable.isEmpty ? .failed("There are no popular movies available.") : .loaded(watchable)
+            state = watchable.isEmpty ? .failed(MediaFetchError.noPopularMoviesAvailable.localizedDescription) : .loaded(watchable)
         } catch {
             state = .failed(error.localizedDescription)
         }
