@@ -4,18 +4,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "FavoriteMoviesDB",
+    name: "MoviesDB",
     products: [
         .library(
-            name: "FavoriteMoviesDB",
-            targets: ["FavoriteMoviesDB"])
+            name: "MoviesDB",
+            targets: ["MoviesDB"])
     ],
     targets: [
         .target(
-            name: "FavoriteMoviesDB"),
+            name: "MoviesDB"),
         .testTarget(
-            name: "FavoriteMoviesDBTests",
-            dependencies: ["FavoriteMoviesDB"]
+            name: "MoviesDBTests",
+            dependencies: ["MoviesDB"]
         )
     ]
 )

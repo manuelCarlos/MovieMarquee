@@ -1,5 +1,5 @@
 import XCTest
-@testable import FavoriteMoviesDB
+@testable import MoviesDB
 
 final class FavoriteMoviesDBTests: XCTestCase {
     func testExample() throws {

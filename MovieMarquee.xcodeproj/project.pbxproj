@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		11A312D52CBE7E350074856C /* PopularMoviesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 11A312D42CBE7E350074856C /* PopularMoviesFeature */; };
+		11A312F02CBFA6280074856C /* FavoriteMoviesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 11A312EF2CBFA6280074856C /* FavoriteMoviesFeature */; };
+		11A312F32CBFAA260074856C /* MoviesDB in Frameworks */ = {isa = PBXBuildFile; productRef = 11A312F22CBFAA260074856C /* MoviesDB */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		11947CAC2CB6737A0024132D /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 		11A312CF2CBE74EE0074856C /* PopularMoviesFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PopularMoviesFeature; sourceTree = "<group>"; };
 		11A312EA2CBE85280074856C /* MovieMarquee.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MovieMarquee.xctestplan; sourceTree = "<group>"; };
+		11A312EE2CBFA4190074856C /* FavoriteMoviesFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FavoriteMoviesFeature; sourceTree = "<group>"; };
+		11A312F12CBFA9170074856C /* MoviesDB */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MoviesDB; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -63,6 +67,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A312D52CBE7E350074856C /* PopularMoviesFeature in Frameworks */,
+				11A312F02CBFA6280074856C /* FavoriteMoviesFeature in Frameworks */,
+				11A312F32CBFAA260074856C /* MoviesDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +92,8 @@
 		11947C5E2CB012C50024132D = {
 			isa = PBXGroup;
 			children = (
+				11A312F12CBFA9170074856C /* MoviesDB */,
+				11A312EE2CBFA4190074856C /* FavoriteMoviesFeature */,
 				11A312EA2CBE85280074856C /* MovieMarquee.xctestplan */,
 				11A312CF2CBE74EE0074856C /* PopularMoviesFeature */,
 				11947CAC2CB6737A0024132D /* Models */,
@@ -139,6 +147,8 @@
 			name = MovieMarquee;
 			packageProductDependencies = (
 				11A312D42CBE7E350074856C /* PopularMoviesFeature */,
+				11A312EF2CBFA6280074856C /* FavoriteMoviesFeature */,
+				11A312F22CBFAA260074856C /* MoviesDB */,
 			);
 			productName = MovieMarquee;
 			productReference = 11947C672CB012C50024132D /* MovieMarquee.app */;
@@ -655,6 +665,14 @@
 		11A312D42CBE7E350074856C /* PopularMoviesFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PopularMoviesFeature;
+		};
+		11A312EF2CBFA6280074856C /* FavoriteMoviesFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FavoriteMoviesFeature;
+		};
+		11A312F22CBFAA260074856C /* MoviesDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MoviesDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

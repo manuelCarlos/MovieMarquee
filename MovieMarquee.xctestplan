@@ -21,9 +21,16 @@
     },
     {
       "target" : {
-        "containerPath" : "container:MovieMarquee.xcodeproj",
-        "identifier" : "11947C772CB012C60024132D",
-        "name" : "MovieMarqueeTests"
+        "containerPath" : "container:FavoriteMoviesFeature",
+        "identifier" : "FavoriteMoviesFeatureTests",
+        "name" : "FavoriteMoviesFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NetworkService",
+        "identifier" : "NetworkServiceTests",
+        "name" : "NetworkServiceTests"
       }
     },
     {
@@ -42,9 +49,16 @@
     },
     {
       "target" : {
-        "containerPath" : "container:NetworkService",
-        "identifier" : "NetworkServiceTests",
-        "name" : "NetworkServiceTests"
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C772CB012C60024132D",
+        "name" : "MovieMarqueeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MoviesDB",
+        "identifier" : "MoviesDBTests",
+        "name" : "MoviesDBTests"
       }
     }
   ],
