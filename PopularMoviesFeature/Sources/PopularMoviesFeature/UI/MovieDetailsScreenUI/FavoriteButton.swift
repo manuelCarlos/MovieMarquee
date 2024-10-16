@@ -28,9 +28,9 @@ struct FavoriteButton: View {
     var body: some View {
         Button {
             if isFavorite == true {
-                try? favoriteMoviesDBStore.deleteFavorite(id: mediaId)
+                Task { try? await favoriteMoviesDBStore.deleteFavorite(id: mediaId) }
             } else {
-                try? favoriteMoviesDBStore.addFavorite(FavoriteMovie(id: mediaId, name: title!))
+                Task { try? await favoriteMoviesDBStore.addFavorite(Favorite(id: mediaId, name: title!)) }
             }
             isFavorite?.toggle()
 
@@ -42,8 +42,8 @@ struct FavoriteButton: View {
             .frame(width: 35, height: 35)
             .foregroundColor(.red)
         }
-        .onAppear {
-            isFavorite = favoriteMoviesDBStore.getMovie(id: mediaId) != nil
+        .task {
+            isFavorite = try? await favoriteMoviesDBStore.getMovie(id: mediaId) != nil
         }
     }
 }

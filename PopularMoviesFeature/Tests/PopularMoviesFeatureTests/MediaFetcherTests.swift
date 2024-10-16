@@ -45,8 +45,8 @@ final class MediaFetcherTests: XCTestCase {
         let result1 = try await fetcher.fetchWithNextPage()
         let result2 = try await fetcher.fetchWithNextPage()
 
-        XCTAssertEqual(result1.count, mockService.mockWatchables.count)
-        XCTAssertEqual(result2.count, mockService.mockWatchables.count * 2)
+        XCTAssertEqual(result1.count, 1)
+        XCTAssertEqual(result2.count, 2)
         XCTAssertEqual(mockService.fetchCount, 2)
     }
 

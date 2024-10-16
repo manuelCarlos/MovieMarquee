@@ -6,34 +6,43 @@
 //
 
 import Foundation
+import SwiftData
 
 @available(iOS 17.0, *)
 @Observable
 public final class FavoriteMoviesDBStore: @unchecked Sendable {
-
-    public var movies: [FavoriteMovie] = []
-
-    @MainActor
-    private let movieDBService: MovieDBService = .shared
-
-    @MainActor
+    
+    public var movies: [Favorite] = []
+    
+    private let movieDBModelActor: MovieDBModelActor = {
+        let schema = Schema([FavoriteMovie.self])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        
+        do {
+            let modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return MovieDBModelActor(modelContainer: modelContainer)
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
     public init() {}
-
+    
     public func loadFavoriteMovies() async throws {
-        movies = (try? movieDBService.fetchFavoriteMovies()) ?? []
+        movies = await (try? movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
-
-    public func addFavorite(_ movie: FavoriteMovie) throws {
-        try movieDBService.addFavorite(movie)
-        movies = (try? movieDBService.fetchFavoriteMovies()) ?? []
+    
+    public func addFavorite(_ movie: Favorite) async throws {
+        try await movieDBModelActor.addFavorite(movie)
+        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
-
-    public func deleteFavorite(id: Int) throws {
-        try movieDBService.deleteFavorite(with: id)
-        movies = (try? movieDBService.fetchFavoriteMovies()) ?? []
+    
+    public func deleteFavorite(id: Int) async throws {
+        try await movieDBModelActor.deleteFavorite(with: id)
+        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
-
-    public func getMovie(id: Int) -> FavoriteMovie? {
-        return movieDBService.getMovie(id: id)
+    
+    public func getMovie(id: Int) async throws -> Favorite? {
+        return await movieDBModelActor.getFavorite(id: id)
     }
 }

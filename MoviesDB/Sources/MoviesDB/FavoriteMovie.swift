@@ -10,13 +10,13 @@ import SwiftData
 
 @available(iOS 17, *)
 @Model
-public final class FavoriteMovie {
+final class FavoriteMovie {
     @Attribute(.unique)
-    public var id: Int
-    public var name: String
-    public var releaseDate: Date?
+    var id: Int
+    var name: String
+    var releaseDate: Date?
 
-    public init(id: Int, name: String, releaseDate: Date? = nil) {
+    init(id: Int, name: String, releaseDate: Date? = nil) {
         self.id = id
         self.name = name
     }

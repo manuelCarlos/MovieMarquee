@@ -44,7 +44,9 @@ struct FavoriteMoviesList: View {
     private func deleteFavorites(_ indexSet: IndexSet) {
         for index in indexSet {
             let destination = favoriteMoviesDBStore.movies[index]
-            try? favoriteMoviesDBStore.deleteFavorite(id: destination.id)
+            Task {
+                try? await favoriteMoviesDBStore.deleteFavorite(id: destination.id)
+            }
         }
     }
 }
