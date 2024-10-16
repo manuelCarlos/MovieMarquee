@@ -29,7 +29,7 @@ struct DiscoverSlice: View {
         HStack(alignment: .bottom, spacing: 3) {
             Text(Texts.ButtonTitle.sliceSeeAll)
                 .foregroundColor(.accentColor)
-                .font(.title2)
+                .font(.title3)
                 .bold()
             Image(systemName: Icons.seeAllButton.rawValue)
                 .foregroundColor(.accentColor)
@@ -61,7 +61,7 @@ struct DiscoverSlice: View {
                 HStack(alignment: .center, spacing: 10) {
                     ForEach(sliceItems, id: \.id) { item in
                         DiscoverSliceItem(item: item, favoriteMoviesDBStore: favoriteMoviesDBStore)
-                            .frame(width: 140, height: 240, alignment: .center)
+                            .frame(height: 290, alignment: .center)
                     }
                 }
                 .padding(.horizontal)
