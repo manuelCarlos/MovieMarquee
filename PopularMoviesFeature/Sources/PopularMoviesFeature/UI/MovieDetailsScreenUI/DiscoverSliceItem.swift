@@ -31,6 +31,11 @@ struct DiscoverSliceItem: View {
                                 animation: .easeInOut(duration: 0.3))
                 .scaledToFit()
                 .frame(width: 140, height: 210)
+
+                Text(item.title)
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+                    .frame(width: 140, height: 60)
             }
             .cornerRadius(10)
         }

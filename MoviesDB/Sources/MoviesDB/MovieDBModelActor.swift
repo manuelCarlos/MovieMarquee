@@ -28,8 +28,12 @@ final actor MovieDBModelActor {
     }
     
     func deleteFavorite(with id: Int) throws {
-        modelContext.delete(getFavoriteMovie(id: id)!) // FIXME: - force
-        try modelContext.save()
+        if let movie = getFavoriteMovie(id: id) {
+            modelContext.delete(movie)
+            try modelContext.save()
+        } else {
+            assertionFailure("Oops, no movie with id \(id) found.")
+        }
     }
     
     func fetchFavoriteMovies() throws -> [FavoriteMovie] {
