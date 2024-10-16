@@ -25,7 +25,7 @@ struct MainAppScene: View {
         TabView(selection: $selectedTabIndex) {
             DiscoverScene(modelContext: modelContext)
                 .tabItem {
-                    Label("Discover", systemImage: "penci")
+                    Label("Discover", systemImage: "movieclapper")
                 }
                 .tag(TabViewSection.discover.rawValue)
 

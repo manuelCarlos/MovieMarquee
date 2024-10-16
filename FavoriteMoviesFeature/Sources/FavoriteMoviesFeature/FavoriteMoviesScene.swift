@@ -25,7 +25,6 @@ public struct FavoriteMoviesScene: View {
             FavoriteMoviesList(sort: sortOrder, modelContext: modelContext)
             .navigationTitle("Favorite Movies")
             .toolbar {
-                Button("Add Samples", action: addSamples)
                 Menu("Sort", systemImage: "arrow.up.arrow.down") {
                     Picker("Sort", selection: $sortOrder) {
                         Text("Name")
@@ -39,17 +38,4 @@ public struct FavoriteMoviesScene: View {
             }
         }
     }
-
-    func addSamples() {
-        let rome = FavoriteMovie(id: 1, name: "Rome")
-        let florence = FavoriteMovie(id: 2, name: "Florence")
-        let naples = FavoriteMovie(id: 3, name: "Naples")
-
-        modelContext.insert(rome)
-        modelContext.insert(florence)
-        modelContext.insert(naples)
-
-        try? modelContext.save()
-    }
-
 }
