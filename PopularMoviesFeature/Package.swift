@@ -12,19 +12,26 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "NetworkService"),
-        .package(path: "Models")
+        .package(path: "Models"),
+        .package(path: "MoviesDB")
     ],
     targets: [
         .target(
             name: "PopularMoviesFeature",
             dependencies: [
             .product(name: "NetworkService", package: "NetworkService"),
-            .product(name: "Models", package: "Models")
+            .product(name: "Models", package: "Models"),
+            .product(name: "MoviesDB", package: "MoviesDB")
         ]),
 
         .testTarget(
             name: "PopularMoviesFeatureTests",
-            dependencies: ["PopularMoviesFeature", "NetworkService", "Models"]
+            dependencies: [
+                "PopularMoviesFeature",
+                "NetworkService",
+                "Models",
+                "MoviesDB"
+            ]
         )
     ]
 )

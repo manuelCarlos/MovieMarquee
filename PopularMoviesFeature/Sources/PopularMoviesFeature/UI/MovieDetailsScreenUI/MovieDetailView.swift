@@ -5,6 +5,7 @@
 //  Created by Manuel Lopes on 12.10.24.
 //
 
+import SwiftData
 import SwiftUI
 
 import Models
@@ -13,10 +14,11 @@ import Models
 struct MovieDetailView: View {
 
     @State private var viewModel: MovieDetailViewModel
-    @State private var isFavorite = false
+    private let modelContext: ModelContext
 
-    init(viewModel: MovieDetailViewModel) {
+    init(viewModel: MovieDetailViewModel, modelContext: ModelContext) {
         self.viewModel = viewModel
+        self.modelContext = modelContext
     }
 
     var body: some View {
@@ -79,9 +81,9 @@ struct MovieDetailView: View {
                 time: (mediaDetails as? MovieDetail)?.localizedRuntime
             )
 
-            FavoriteButton(isFavorite: $isFavorite,
-                           id: mediaDetails.id,
-                           title: mediaDetails.title)
+            FavoriteButton(id: mediaDetails.id,
+                           title: mediaDetails.title,
+                           modelContext: modelContext)
                 .padding()
 
             Spacer()

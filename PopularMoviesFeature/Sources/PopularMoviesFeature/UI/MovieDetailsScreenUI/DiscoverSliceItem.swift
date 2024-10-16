@@ -5,6 +5,7 @@
 //  Created by Manuel Lopes on 12.10.24.
 //
 
+import SwiftData
 import SwiftUI
 
 import Models
@@ -13,9 +14,11 @@ import Models
 struct DiscoverSliceItem: View {
     
     private var item: Watchable
-    
-    init(item: Watchable) {
+    private let modelContext: ModelContext
+
+    init(item: Watchable, modelContext: ModelContext) {
         self.item = item
+        self.modelContext = modelContext
     }
     
     var body: some View {
@@ -39,7 +42,8 @@ struct DiscoverSliceItem: View {
             if mediaType == Movie.self {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),
                                                                 navigationTitle: item.title,
-                                                                movieId: item.id))
+                                                                movieId: item.id),
+                                modelContext: modelContext)
             }
         }
     }

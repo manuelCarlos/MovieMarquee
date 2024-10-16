@@ -1,10 +1,26 @@
-struct FavoriteMoviesScene: View {
+//
+//  FavoriteMoviesScene.swift
+//  FavoriteMoviesFeature
+//
+//  Created by Manuel Lopes on 16.10.24.
+//
+
+import SwiftUI
+import SwiftData
+
+import MoviesDB
+
+@available(iOS 17, *)
+public struct FavoriteMoviesScene: View {
 
     @State private var sortOrder = SortDescriptor(\FavoriteMovie.name)
-    let modelContext: ModelContext
+    public let modelContext: ModelContext
 
+    public init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+    }
 
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             FavoriteMoviesList(sort: sortOrder, modelContext: modelContext)
             .navigationTitle("Favorite Movies")
@@ -36,48 +52,4 @@ struct FavoriteMoviesScene: View {
         try? modelContext.save()
     }
 
-}
-
-struct FavoriteMoviesList: View {
-
-    @Query(sort: [SortDescriptor(\FavoriteMovie.releaseDate, order: .reverse),
-                  SortDescriptor(\FavoriteMovie.name)])
-    private var favorites: [FavoriteMovie]
-
-    private let modelContext: ModelContext
-
-    init(sort: SortDescriptor<FavoriteMovie>, modelContext: ModelContext) {
-        _favorites = Query(sort: [sort])
-        self.modelContext = modelContext
-    }
-
-    var body: some View {
-        if favorites.isEmpty {
-            ContentUnavailableView {
-                Text("No Favorite movies for now")
-            } description: {
-                Text("Favorite some movies to see them here")
-            }
-        } else {
-            List {
-                ForEach(favorites) { movie in
-                    VStack(alignment: .leading) {
-                        Text(movie.name)
-                            .font(.headline)
-                    }
-                }
-                .onDelete(perform: deleteFavorites)
-            }
-        }
-    }
-
-    // MARK: - Private
-
-    private func deleteFavorites(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let destination = favorites[index]
-            modelContext.delete(destination)
-            try? modelContext.save()
-        }
-    }
 }

@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+import MoviesDB
+import SwiftData
+
 @main
 struct MovieMarqueeApp: App {
     var body: some Scene {
         WindowGroup {
             MainAppScene()
+
         }
+        .modelContainer(for: FavoriteMovie.self)
     }
 }

@@ -5,6 +5,7 @@
 //  Created by Manuel Lopes on 10.10.24.
 //
 
+import SwiftData
 import SwiftUI
 
 @available(iOS 17.0, *)
@@ -12,8 +13,11 @@ public struct DiscoverScene: View {
 
     @State private var viewModel: DiscoverSceneViewModel = DiscoverSceneViewModel(interactor: DefaultMediaInteractor())
     @State private var isDataLoaded = false
+    private let modelContext: ModelContext
 
-    public init() {}
+    public init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+    }
 
     public var body: some View {
         NavigationView {
@@ -41,7 +45,7 @@ public struct DiscoverScene: View {
                 viewModel.fetchMostPopularMovies()
             }
         case .loaded(let popularMovies):
-            LoadedStateView(popularMovies: popularMovies)
+            LoadedStateView(popularMovies: popularMovies, modelContext: modelContext)
                 .opacity(isDataLoaded ? 1 : 0)
                 .animation(.easeInOut(duration: 1), value: isDataLoaded)
                 .task {
@@ -52,12 +56,14 @@ public struct DiscoverScene: View {
 
     private struct LoadedStateView: View {
         let popularMovies: [Watchable]
+        let modelContext: ModelContext
 
         var body: some View {
             DiscoverSlice(
                 sliceTitle: Texts.SectionHeader.mostPopular,
                 sliceItems: popularMovies,
-                section: MediaSection.popularMovies
+                section: MediaSection.popularMovies,
+                modelContext: modelContext
             )
         }
     }

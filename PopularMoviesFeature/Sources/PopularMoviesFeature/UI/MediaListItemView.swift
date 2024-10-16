@@ -5,6 +5,7 @@
 //  Created by Manuel Lopes on 11.10.24.
 //
 
+import SwiftData
 import SwiftUI
 
 import Models
@@ -13,9 +14,11 @@ import Models
 struct MediaListItemView: View {
 
     private let mediaItem: Watchable
+    private let modelContext: ModelContext
 
-    init(mediaItem: Watchable) {
+    init(mediaItem: Watchable, modelContext: ModelContext) {
         self.mediaItem = mediaItem
+        self.modelContext = modelContext
     }
 
     var body: some View {
@@ -67,7 +70,8 @@ struct MediaListItemView: View {
             if (mediaType as? Movie.Type) != nil {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),
                                                                 navigationTitle: mediaItem.title,
-                                                                movieId: mediaItem.id))
+                                                                movieId: mediaItem.id),
+                                modelContext: modelContext)
             }
         }
     }

@@ -5,15 +5,18 @@
 //  Created by Manuel Lopes on 11.10.24.
 //
 
+import SwiftData
 import SwiftUI
 
 @available(iOS 17.0, *)
 struct MediaListView: View {
 
     @State private var viewModel: MediaListViewModel
+    private let modelContext: ModelContext
 
-    init(viewModel: MediaListViewModel) {
+    init(viewModel: MediaListViewModel, modelContext: ModelContext) {
         self.viewModel = viewModel
+        self.modelContext = modelContext
     }
 
     var body: some View {
@@ -32,7 +35,7 @@ struct MediaListView: View {
             ScrollView {
                 LazyVStack(alignment: .center, spacing: 10) {
                     ForEach(mediaList, id: \.id) { mediaItem in
-                        MediaListItemView(mediaItem: mediaItem)
+                        MediaListItemView(mediaItem: mediaItem, modelContext: modelContext)
                             .padding(.horizontal, 20)
                     }
                     Spacer()
