@@ -23,16 +23,16 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
     }
     
     public func addFavorite(_ movie: FavoriteMovie) async throws {
-        try await movieDBModelActor.addFavorite(movie)
+        try await movieDBModelActor.addFavoriteMovie(movie)
         movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
     
     public func deleteFavorite(id: Int) async throws {
-        try await movieDBModelActor.deleteFavorite(with: id)
+        try await movieDBModelActor.deleteFavoriteMovie(with: id)
         movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
     
     public func getMovie(id: Int) async throws -> FavoriteMovie? {
-        return await movieDBModelActor.getFavorite(id: id)
+        return await movieDBModelActor.fetchFavoriteMovie(id: id)
     }
 }

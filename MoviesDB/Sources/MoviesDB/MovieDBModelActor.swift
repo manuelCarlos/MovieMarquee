@@ -23,8 +23,8 @@ final actor MovieDBModelActor {
         }
     }()
 
-    func getFavorite(id: Int) -> FavoriteMovie? {
-        let movie = getFavoriteMovie(id: id)
+    func fetchFavoriteMovie(id: Int) -> FavoriteMovie? {
+        let movie = fetchFavoriteMovieModel(id: id)
         if let movie {
             return FavoriteMovie(id: movie.id, name: movie.name)
         } else {
@@ -32,14 +32,14 @@ final actor MovieDBModelActor {
         }
     }
     
-    func addFavorite(_ movie: FavoriteMovie) throws {
+    func addFavoriteMovie(_ movie: FavoriteMovie) throws {
         let favMovie = FavoriteMovieModel(id: movie.id, name: movie.name)
         modelContext.insert(favMovie)
         try modelContext.save()
     }
     
-    func deleteFavorite(with id: Int) throws {
-        if let movie = getFavoriteMovie(id: id) {
+    func deleteFavoriteMovie(with id: Int) throws {
+        if let movie = fetchFavoriteMovieModel(id: id) {
             modelContext.delete(movie)
             try modelContext.save()
         } else {
@@ -53,7 +53,7 @@ final actor MovieDBModelActor {
     
     // MARK: - Private
     
-    private func getFavoriteMovie(id: Int) -> FavoriteMovieModel? {
+    private func fetchFavoriteMovieModel(id: Int) -> FavoriteMovieModel? {
         let predicate: Predicate<FavoriteMovieModel>? = #Predicate { movie in movie.id == id }
         var fetchDescriptor = FetchDescriptor<FavoriteMovieModel>(predicate: predicate)
         fetchDescriptor.fetchLimit = 1
