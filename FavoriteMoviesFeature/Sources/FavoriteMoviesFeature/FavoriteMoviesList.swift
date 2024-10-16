@@ -1,3 +1,15 @@
+//
+//  FavoriteMoviesList.swift
+//  FavoriteMoviesFeature
+//
+//  Created by Manuel Lopes on 16.10.24.
+//
+
+import SwiftData
+import SwiftUI
+
+import MoviesDB
+
 @available(iOS 17, *)
 struct FavoriteMoviesList: View {
 
