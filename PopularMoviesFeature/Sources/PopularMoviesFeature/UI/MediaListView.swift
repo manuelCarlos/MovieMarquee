@@ -8,15 +8,17 @@
 import SwiftData
 import SwiftUI
 
+import MoviesDB
+
 @available(iOS 17.0, *)
 struct MediaListView: View {
 
     @State private var viewModel: MediaListViewModel
-    private let modelContext: ModelContext
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(viewModel: MediaListViewModel, modelContext: ModelContext) {
+    init(viewModel: MediaListViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.viewModel = viewModel
-        self.modelContext = modelContext
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
     var body: some View {
@@ -35,7 +37,8 @@ struct MediaListView: View {
             ScrollView {
                 LazyVStack(alignment: .center, spacing: 10) {
                     ForEach(mediaList, id: \.id) { mediaItem in
-                        MediaListItemView(mediaItem: mediaItem, modelContext: modelContext)
+                        MediaListItemView(mediaItem: mediaItem,
+                                          favoriteMoviesDBStore: favoriteMoviesDBStore)
                             .padding(.horizontal, 20)
                     }
                     Spacer()

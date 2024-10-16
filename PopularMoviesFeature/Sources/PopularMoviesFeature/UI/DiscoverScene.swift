@@ -8,15 +8,18 @@
 import SwiftData
 import SwiftUI
 
+import MoviesDB
+
 @available(iOS 17.0, *)
 public struct DiscoverScene: View {
 
     @State private var viewModel: DiscoverSceneViewModel = DiscoverSceneViewModel(interactor: DefaultMediaInteractor())
     @State private var isDataLoaded = false
-    private let modelContext: ModelContext
 
-    public init(modelContext: ModelContext) {
-        self.modelContext = modelContext
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+
+    public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
     public var body: some View {
@@ -45,7 +48,7 @@ public struct DiscoverScene: View {
                 viewModel.fetchMostPopularMovies()
             }
         case .loaded(let popularMovies):
-            LoadedStateView(popularMovies: popularMovies, modelContext: modelContext)
+            loadedStateView(popularMovies: popularMovies)
                 .opacity(isDataLoaded ? 1 : 0)
                 .animation(.easeInOut(duration: 1), value: isDataLoaded)
                 .task {
@@ -54,17 +57,13 @@ public struct DiscoverScene: View {
         }
     }
 
-    private struct LoadedStateView: View {
-        let popularMovies: [Watchable]
-        let modelContext: ModelContext
-
-        var body: some View {
-            DiscoverSlice(
-                sliceTitle: Texts.SectionHeader.mostPopular,
-                sliceItems: popularMovies,
-                section: MediaSection.popularMovies,
-                modelContext: modelContext
-            )
-        }
+    private func loadedStateView(popularMovies: [Watchable]) -> some View {
+        DiscoverSlice(
+            sliceTitle: Texts.SectionHeader.mostPopular,
+            sliceItems: popularMovies,
+            section: MediaSection.popularMovies,
+            favoriteMoviesDBStore: favoriteMoviesDBStore
+        )
     }
+
 }

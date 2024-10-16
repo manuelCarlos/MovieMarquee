@@ -9,16 +9,17 @@ import SwiftData
 import SwiftUI
 
 import Models
+import MoviesDB
 
 @available(iOS 17.0, *)
 struct DiscoverSliceItem: View {
     
-    private var item: Watchable
-    private let modelContext: ModelContext
+    private let item: Watchable
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(item: Watchable, modelContext: ModelContext) {
+    init(item: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.item = item
-        self.modelContext = modelContext
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
     
     var body: some View {
@@ -43,7 +44,7 @@ struct DiscoverSliceItem: View {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),
                                                                 navigationTitle: item.title,
                                                                 movieId: item.id),
-                                modelContext: modelContext)
+                                favoriteMoviesDBStore: favoriteMoviesDBStore)
             }
         }
     }

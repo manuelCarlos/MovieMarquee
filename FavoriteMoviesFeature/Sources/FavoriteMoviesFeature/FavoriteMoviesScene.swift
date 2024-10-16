@@ -13,29 +13,16 @@ import MoviesDB
 @available(iOS 17, *)
 public struct FavoriteMoviesScene: View {
 
-    @State private var sortOrder = SortDescriptor(\FavoriteMovie.name)
-    public let modelContext: ModelContext
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    public init(modelContext: ModelContext) {
-        self.modelContext = modelContext
+    public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
     public var body: some View {
         NavigationStack {
-            FavoriteMoviesList(sort: sortOrder, modelContext: modelContext)
+            FavoriteMoviesList(favoriteMoviesDBStore: favoriteMoviesDBStore)
             .navigationTitle("Favorite Movies")
-            .toolbar {
-                Menu("Sort", systemImage: "arrow.up.arrow.down") {
-                    Picker("Sort", selection: $sortOrder) {
-                        Text("Name")
-                            .tag(SortDescriptor(\FavoriteMovie.name))
-
-                        Text("Release date")
-                            .tag(SortDescriptor(\FavoriteMovie.releaseDate))
-                    }
-                    .pickerStyle(.inline)
-                }
-            }
         }
     }
 }

@@ -15,25 +15,25 @@ struct FavoriteButton: View {
 
     @State private var isFavorite: Bool?
 
-    private let id: Int
+    private let mediaId: Int
     private let title: String?
-    private let modelContext: ModelContext
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(id: Int, title: String?, modelContext: ModelContext) {
-        self.id = id
+    init(mediaId: Int, title: String?, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+        self.mediaId = mediaId
         self.title = title
-        self.modelContext = modelContext
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
     var body: some View {
         Button {
             if isFavorite == true {
-                modelContext.delete(getObject(id: id)!)
+                try? favoriteMoviesDBStore.deleteFavorite(id: mediaId)
             } else {
-                modelContext.insert(FavoriteMovie(id: id, name: title!))
+                try? favoriteMoviesDBStore.addFavorite(FavoriteMovie(id: mediaId, name: title!))
             }
             isFavorite?.toggle()
-            try? modelContext.save()
+
         } label: {
             Image(
                 systemName: isFavorite == true ? Icons.favoriteOn.rawValue : Icons.favoriteOff.rawValue
@@ -43,20 +43,7 @@ struct FavoriteButton: View {
             .foregroundColor(.red)
         }
         .onAppear {
-            isFavorite = getObject(id: id) != nil
+            isFavorite = favoriteMoviesDBStore.getMovie(id: mediaId) != nil
         }
     }
-
-    func getObject(id: Int) -> FavoriteMovie? {
-          do {
-              let predicate: Predicate<FavoriteMovie>?  = #Predicate { movie in movie.id == id }
-              var fetchDescriptor = FetchDescriptor<FavoriteMovie>(predicate: predicate)
-              fetchDescriptor.fetchLimit = 1
-              let object = try modelContext.fetch(fetchDescriptor)
-              return object.first
-          } catch {
-              return nil
-          }
-      }
-
 }

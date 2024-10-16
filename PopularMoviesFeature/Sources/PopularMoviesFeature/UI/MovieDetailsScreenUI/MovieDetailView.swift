@@ -9,16 +9,17 @@ import SwiftData
 import SwiftUI
 
 import Models
+import MoviesDB
 
 @available(iOS 17.0, *)
 struct MovieDetailView: View {
 
     @State private var viewModel: MovieDetailViewModel
-    private let modelContext: ModelContext
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(viewModel: MovieDetailViewModel, modelContext: ModelContext) {
+    init(viewModel: MovieDetailViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.viewModel = viewModel
-        self.modelContext = modelContext
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
     var body: some View {
@@ -54,7 +55,7 @@ struct MovieDetailView: View {
                                     .font(.system(size: 16))
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 20))
                             }
-                     
+
                             MediaCastGrid(viewModel: MediaCastViewModel(interactor: DefaultMediaCastInteractor(mediaService: MovieService.shared),
                                                                         mediaId: mediaDetail.id))
                         }
@@ -81,10 +82,10 @@ struct MovieDetailView: View {
                 time: (mediaDetails as? MovieDetail)?.localizedRuntime
             )
 
-            FavoriteButton(id: mediaDetails.id,
+            FavoriteButton(mediaId: mediaDetails.id,
                            title: mediaDetails.title,
-                           modelContext: modelContext)
-                .padding()
+                           favoriteMoviesDBStore: favoriteMoviesDBStore)
+            .padding()
 
             Spacer()
         }

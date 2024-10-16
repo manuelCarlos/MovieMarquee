@@ -8,19 +8,21 @@
 import SwiftData
 import SwiftUI
 
+import MoviesDB
+
 @available(iOS 17.0, *)
 struct DiscoverSlice: View {
 
     private var sliceTitle: String
     private var sliceItems: [Watchable]
     private var section: MediaSection
-    private let modelContext: ModelContext
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(sliceTitle: String, sliceItems: [Watchable], section: MediaSection, modelContext: ModelContext) {
+    init(sliceTitle: String, sliceItems: [Watchable], section: MediaSection, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.sliceTitle = sliceTitle
         self.sliceItems = sliceItems
         self.section = section
-        self.modelContext = modelContext
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
     var seeAllView: some View {
@@ -46,7 +48,7 @@ struct DiscoverSlice: View {
                 NavigationLink(
                     destination: MediaListView(viewModel: MediaListViewModel(interactor: DefaultMediaInteractor(),
                                                                              section: section),
-                                               modelContext: modelContext)
+                                               favoriteMoviesDBStore: favoriteMoviesDBStore)
                     .navigationTitle("All popular movies")
                 ) {
                     seeAllView
@@ -58,7 +60,7 @@ struct DiscoverSlice: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 10) {
                     ForEach(sliceItems, id: \.id) { item in
-                        DiscoverSliceItem(item: item, modelContext: modelContext)
+                        DiscoverSliceItem(item: item, favoriteMoviesDBStore: favoriteMoviesDBStore)
                             .frame(width: 140, height: 240, alignment: .center)
                     }
                 }

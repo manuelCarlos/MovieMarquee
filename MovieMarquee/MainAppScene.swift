@@ -10,6 +10,7 @@ import SwiftData
 
 import PopularMoviesFeature
 import FavoriteMoviesFeature
+import MoviesDB
 
 enum TabViewSection: Int {
     case discover
@@ -19,22 +20,27 @@ enum TabViewSection: Int {
 struct MainAppScene: View {
 
     @State var selectedTabIndex: Int = 0
-    @Environment(\.modelContext) var modelContext
+    private let favoriteMoviesDBStore = FavoriteMoviesDBStore()
 
     var body: some View {
         TabView(selection: $selectedTabIndex) {
-            DiscoverScene(modelContext: modelContext)
+            DiscoverScene(favoriteMoviesDBStore: favoriteMoviesDBStore)
                 .tabItem {
                     Label("Discover", systemImage: "movieclapper")
                 }
                 .tag(TabViewSection.discover.rawValue)
 
-            FavoriteMoviesScene(modelContext: modelContext)
+            FavoriteMoviesScene(favoriteMoviesDBStore: favoriteMoviesDBStore)
                 .tabItem {
                     Label("Favorites", systemImage: "heart")
                 }
                 .tag(TabViewSection.favorites.rawValue)
                 .navigationBarTitle("title")
+        }
+        .task {
+            Task { 
+                try? await favoriteMoviesDBStore.loadFavoriteMovies()
+            }
         }
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)

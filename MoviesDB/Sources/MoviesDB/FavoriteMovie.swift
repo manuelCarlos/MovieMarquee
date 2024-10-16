@@ -1,5 +1,9 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+//
+//  FavoriteMovie.swift
+//  MoviesDB
+//
+//  Created by Manuel Lopes on 16.10.24.
+//
 
 import Foundation
 import SwiftData
@@ -12,7 +16,7 @@ public final class FavoriteMovie {
     public var name: String
     public var releaseDate: Date?
 
-    public init(id: Int, name: String) {
+    public init(id: Int, name: String, releaseDate: Date? = nil) {
         self.id = id
         self.name = name
     }

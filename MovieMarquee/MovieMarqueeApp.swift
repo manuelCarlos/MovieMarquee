@@ -15,8 +15,6 @@ struct MovieMarqueeApp: App {
     var body: some Scene {
         WindowGroup {
             MainAppScene()
-
         }
-        .modelContainer(for: FavoriteMovie.self)
     }
 }
