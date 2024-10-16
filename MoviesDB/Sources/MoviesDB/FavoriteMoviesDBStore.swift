@@ -12,7 +12,7 @@ import SwiftData
 @Observable
 public final class FavoriteMoviesDBStore: @unchecked Sendable {
     
-    public var movies: [Favorite] = []
+    public var movies: [FavoriteMovie] = []
     
     private let movieDBModelActor: MovieDBModelActor = {
         let schema = Schema([FavoriteMovieModel.self])
@@ -32,7 +32,7 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
         movies = await (try? movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
     
-    public func addFavorite(_ movie: Favorite) async throws {
+    public func addFavorite(_ movie: FavoriteMovie) async throws {
         try await movieDBModelActor.addFavorite(movie)
         movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
@@ -42,7 +42,7 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
         movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
     
-    public func getMovie(id: Int) async throws -> Favorite? {
+    public func getMovie(id: Int) async throws -> FavoriteMovie? {
         return await movieDBModelActor.getFavorite(id: id)
     }
 }

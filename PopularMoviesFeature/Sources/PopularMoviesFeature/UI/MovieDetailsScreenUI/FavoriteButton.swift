@@ -30,7 +30,7 @@ struct FavoriteButton: View {
             if isFavorite == true {
                 Task { try? await favoriteMoviesDBStore.deleteFavorite(id: mediaId) }
             } else {
-                Task { try? await favoriteMoviesDBStore.addFavorite(Favorite(id: mediaId, name: title!)) }
+                Task { try? await favoriteMoviesDBStore.addFavorite(FavoriteMovie(id: mediaId, name: title!)) }
             }
             isFavorite?.toggle()
 

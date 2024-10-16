@@ -12,16 +12,16 @@ import SwiftData
 @ModelActor
 final actor MovieDBModelActor {
     
-    func getFavorite(id: Int) -> Favorite? {
+    func getFavorite(id: Int) -> FavoriteMovie? {
         let movie = getFavoriteMovie(id: id)
         if let movie {
-            return Favorite(id: movie.id, name: movie.name)
+            return FavoriteMovie(id: movie.id, name: movie.name)
         } else {
             return nil
         }
     }
     
-    func addFavorite(_ movie: Favorite) throws {
+    func addFavorite(_ movie: FavoriteMovie) throws {
         let favMovie = FavoriteMovieModel(id: movie.id, name: movie.name)
         modelContext.insert(favMovie)
         try modelContext.save()
@@ -32,8 +32,8 @@ final actor MovieDBModelActor {
         try modelContext.save()
     }
     
-    func fetchFavoriteMovies() throws -> [Favorite] {
-        return try modelContext.fetch(FetchDescriptor<FavoriteMovieModel>()).map { Favorite(id: $0.id, name: $0.name) }
+    func fetchFavoriteMovies() throws -> [FavoriteMovie] {
+        return try modelContext.fetch(FetchDescriptor<FavoriteMovieModel>()).map { FavoriteMovie(id: $0.id, name: $0.name) }
     }
     
     // MARK: - Private
