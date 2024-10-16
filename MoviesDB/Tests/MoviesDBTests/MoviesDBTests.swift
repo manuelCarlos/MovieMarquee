@@ -1,7 +1,8 @@
 import XCTest
 @testable import MoviesDB
 
-final class FavoriteMoviesDBTests: XCTestCase {
+final class MoviesDBTests: XCTestCase {
+
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

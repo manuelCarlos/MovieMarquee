@@ -14,18 +14,8 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
     
     public var movies: [FavoriteMovie] = []
     
-    private let movieDBModelActor: MovieDBModelActor = {
-        let schema = Schema([FavoriteMovieModel.self])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-        
-        do {
-            let modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
-            return MovieDBModelActor(modelContainer: modelContainer)
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-    
+    private let movieDBModelActor = MovieDBModelActor.shared
+
     public init() {}
     
     public func loadFavoriteMovies() async throws {

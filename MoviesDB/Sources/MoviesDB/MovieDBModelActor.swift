@@ -11,7 +11,18 @@ import SwiftData
 @available(iOS 17, *)
 @ModelActor
 final actor MovieDBModelActor {
-    
+
+    static let shared: MovieDBModelActor = {
+        let schema = Schema([FavoriteMovieModel.self])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        do {
+            let modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return MovieDBModelActor(modelContainer: modelContainer)
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+
     func getFavorite(id: Int) -> FavoriteMovie? {
         let movie = getFavoriteMovie(id: id)
         if let movie {
