@@ -40,7 +40,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
     func test_loadAllMovies_should_return_an_empty_array_when_no_movies_exist_in_the_DB() async throws {
         mockActor.favoriteMovies = []
 
-        let store = FavoriteMoviesDBStore(movieDBModelActor: mockActor)
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
         try await store.loadAllMovies()
 
         XCTAssertEqual(store.movies.count, 0)
@@ -48,7 +48,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
 
     func test_add_favorite_movie() async throws {
         let movie = FavoriteMovie(id: 1, name: "Inception")
-        let store = FavoriteMoviesDBStore(movieDBModelActor: mockActor)
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
         try await store.addMovie(movie)
 
@@ -63,7 +63,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
 
     func test_deleting_favorite_movie() async throws {
         let movie = FavoriteMovie(id: 10, name: "Inception")
-        let store = FavoriteMoviesDBStore(movieDBModelActor: mockActor)
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
         try await store.addMovie(movie)
         try await store.deleteMovie(with: 10)
@@ -74,7 +74,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
     func test_deleting_favorite_movie_when_it_does_not_exist() async throws {
         let movie = FavoriteMovie(id: 999, name: "Inception")
         mockActor.shouldThrowError = true
-        let store = FavoriteMoviesDBStore(movieDBModelActor: mockActor)
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
         await assertThrowsAsyncError(
             try await store.deleteMovie(with: movie.id)
@@ -85,7 +85,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
 
     func test_fetching_favorite_movie_when_it_exists() async throws {
         let movie = FavoriteMovie(id: 11, name: "Blue is the Warmest Color")
-        let store = FavoriteMoviesDBStore(movieDBModelActor: mockActor)
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
         try await store.addMovie(movie)
         let fetchedMovie = try await store.fetchMovie(with: movie.id)
@@ -96,7 +96,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
     }
 
     func test_fetching_favorite_movie_when_it_does_not_exist() async throws {
-        let store = FavoriteMoviesDBStore(movieDBModelActor: mockActor)
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
         await assertThrowsAsyncError(
             try await store.fetchMovie(with: 999)
