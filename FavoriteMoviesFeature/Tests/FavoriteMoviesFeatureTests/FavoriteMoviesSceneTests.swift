@@ -1,9 +1,10 @@
 //
-//  FavoriteMoviesListTests.swift
+//  FavoriteMoviesSceneTests.swift
 //  FavoriteMoviesFeatureTests
 //
 //  Created by Manuel Lopes on 17.10.24.
 //
+
 
 import XCTest
 import SnapshotTesting
@@ -13,10 +14,10 @@ import SnapshotTesting
 
 @available(iOS 17.0, *)
 @MainActor
-final class FavoriteMoviesListTests: XCTestCase {
+final class FavoriteMoviesSceneTests: XCTestCase {
 
     func test_view_when_there_are_no_favorite_movies() {
-        let sut = FavoriteMoviesList(favoriteMoviesDBStore: FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor()))
+        let sut = FavoriteMoviesScene(favoriteMoviesDBStore: FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor()))
 
         assertSnapshot(of: sut, as: .image(
             layout: .device(config: .iPhone13Mini)
@@ -29,8 +30,8 @@ final class FavoriteMoviesListTests: XCTestCase {
         let storage = FavoriteMoviesDBStore(movieDBModelStorage: movieDBModelActor)
         try await storage.loadAllMovies()
 
-        let sut = FavoriteMoviesList(favoriteMoviesDBStore: storage)
-
+        let sut = FavoriteMoviesScene(favoriteMoviesDBStore: storage, navigationTitle: "Favorite Movies List in General")
+        
         assertSnapshot(of: sut, as: .image(
             layout: .device(config: .iPhone13Mini)
         ))
