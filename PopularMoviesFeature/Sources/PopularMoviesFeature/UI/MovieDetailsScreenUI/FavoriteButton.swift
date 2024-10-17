@@ -43,7 +43,12 @@ struct FavoriteButton: View {
             .foregroundColor(.red)
         }
         .task {
-            isFavorite = try? await favoriteMoviesDBStore.fetchMovie(with: mediaId) != nil
+            do {
+                _ = try await favoriteMoviesDBStore.fetchMovie(with: mediaId)
+                isFavorite = true
+            } catch {
+                isFavorite = false
+            }
         }
     }
 }

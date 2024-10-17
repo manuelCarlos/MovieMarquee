@@ -38,8 +38,8 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
     }
 
 #if DEBUG
-    init(movieDBModelActor: MovieDBModelStorage) {
-        self.movieDBModelActor = movieDBModelActor
+    init(movieDBModelStorage: MovieDBModelStorage) {
+        movieDBModelActor = movieDBModelStorage
     }
 #endif
 }

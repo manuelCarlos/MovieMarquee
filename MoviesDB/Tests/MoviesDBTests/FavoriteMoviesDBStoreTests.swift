@@ -30,7 +30,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
     func test_loadAllMovies_successfully() async throws {
         mockActor.favoriteMovies = [FavoriteMovie(id: 1, name: "Test Movie")]
 
-        let store = FavoriteMoviesDBStore(movieDBModelActor: mockActor)
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
         try await store.loadAllMovies()
 
         XCTAssertEqual(store.movies.count, 1)
