@@ -17,7 +17,7 @@ final class MovieDBModelActorTests: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        
+
         // In-memory ModelContainer setup for testing
         let schema = Schema([FavoriteMovieModel.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
@@ -33,13 +33,13 @@ final class MovieDBModelActorTests: XCTestCase {
     }
 
     func test_add_favorite_movie() async throws {
-        let favoriteMovie = FavoriteMovie(id: 1, name: "Inception")
+        let favoriteMovie = FavoriteMovie(id: 111, name: "Inception")
 
         try await modelActor.addFavoriteMovie(favoriteMovie)
 
-        let fetchedMovie = await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
-        XCTAssertEqual(fetchedMovie?.id, favoriteMovie.id)
-        XCTAssertEqual(fetchedMovie?.name, favoriteMovie.name)
+        let fetchedMovie = try await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
+        XCTAssertEqual(fetchedMovie.id, 111)
+        XCTAssertEqual(fetchedMovie.name, "Inception")
     }
 
     func test_fetch_favorite_movies() async throws {
@@ -54,29 +54,34 @@ final class MovieDBModelActorTests: XCTestCase {
 
         let fetchedMovies = try await modelActor.fetchFavoriteMovies()
 
-        XCTAssertEqual(fetchedMovies.count, favoriteMovies.count)
-        XCTAssertTrue(fetchedMovies.contains { $0.id == favoriteMovies[0].id && $0.name == favoriteMovies[0].name })
-        XCTAssertTrue(fetchedMovies.contains { $0.id == favoriteMovies[1].id && $0.name == favoriteMovies[1].name })
+        XCTAssertEqual(fetchedMovies.count, 2)
+        XCTAssertTrue(fetchedMovies.contains { $0.id == 1 && $0.name == "Inception" })
+        XCTAssertTrue(fetchedMovies.contains { $0.id == 2 && $0.name == "Interstellar" })
     }
 
     func test_delete_favorite_movie() async throws {
-        let favoriteMovie = FavoriteMovie(id: 1, name: "Inception")
+        let favoriteMovie = FavoriteMovie(id: 222, name: "Inception")
         try await modelActor.addFavoriteMovie(favoriteMovie)
 
-        let fetchedMovie = await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
-        XCTAssertEqual(fetchedMovie?.id, favoriteMovie.id)
+        let fetchedMovie = try await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
+        XCTAssertEqual(fetchedMovie.id, favoriteMovie.id)
 
         try await modelActor.deleteFavoriteMovie(with: favoriteMovie.id)
 
-        let noMovie = await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
-        XCTAssertNil(noMovie)
+        await assertThrowsAsyncError(
+            try await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
+        ) { error in
+            XCTAssertEqual(error as? MoviesDBError, MoviesDBError.notFound)
+        }
     }
 
-    func test_get_favorite_movie_not_found() async throws {
+    func test_fetch_favorite_movie_not_found() async throws {
         let nonExistentId = 999
 
-        let movie = await modelActor.fetchFavoriteMovie(id: nonExistentId)
-
-        XCTAssertNil(movie)
+        await assertThrowsAsyncError(
+            try await modelActor.fetchFavoriteMovie(id: nonExistentId)
+        ) { error in
+            XCTAssertEqual(error as? MoviesDBError, MoviesDBError.notFound)
+        }
     }
 }

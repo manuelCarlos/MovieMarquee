@@ -13,7 +13,7 @@ protocol MovieDBModelStorage {
     func fetchFavoriteMovies() async throws -> [FavoriteMovie]
     func addFavoriteMovie(_ movie: FavoriteMovie) async throws
     func deleteFavoriteMovie(with id: Int) async throws
-    func fetchFavoriteMovie(id: Int) async -> FavoriteMovie?
+    func fetchFavoriteMovie(id: Int) async throws -> FavoriteMovie
 }
 
 @available(iOS 17, *)
@@ -31,12 +31,12 @@ final actor MovieDBModelActor: MovieDBModelStorage {
         }
     }()
 
-    func fetchFavoriteMovie(id: Int) -> FavoriteMovie? {
+    func fetchFavoriteMovie(id: Int) throws -> FavoriteMovie {
         let movie = fetchFavoriteMovieModel(id: id)
         if let movie {
             return FavoriteMovie(id: movie.id, name: movie.name)
         } else {
-            return nil
+            throw MoviesDBError.notFound
         }
     }
     

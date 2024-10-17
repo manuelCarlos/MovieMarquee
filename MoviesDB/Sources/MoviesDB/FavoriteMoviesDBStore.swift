@@ -33,8 +33,8 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
         movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
 
-    public func fetchMovie(with id: Int) async throws -> FavoriteMovie? {
-        return await movieDBModelActor.fetchFavoriteMovie(id: id)
+    public func fetchMovie(with id: Int) async throws -> FavoriteMovie {
+        return try await movieDBModelActor.fetchFavoriteMovie(id: id)
     }
 
 #if DEBUG

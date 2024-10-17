@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MoviesDBError: LocalizedError {
+enum MoviesDBError: LocalizedError, Hashable, Sendable {
     case notFound
 
     // MARK: - LocalizedError
