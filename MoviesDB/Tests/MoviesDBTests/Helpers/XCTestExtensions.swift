@@ -15,7 +15,7 @@ import XCTest
 ///   - expression: An asynchronous expression that can throw an error.
 ///   - message: An optional description of a failure.
 ///   - file: The file where the failure occurs.
-///     The default is the filepath of the test case where you call this function.
+///     The default is the file path of the test case where you call this function.
 ///   - line: The line number where the failure occurs.
 ///     The default is the line number where you call this function.
 ///   - errorHandler: An optional handler for errors that `expression` throws.
