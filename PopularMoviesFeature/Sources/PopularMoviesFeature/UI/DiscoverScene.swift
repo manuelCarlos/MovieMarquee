@@ -23,13 +23,10 @@ public struct DiscoverScene: View {
     }
 
     public var body: some View {
-        NavigationView {
+        NavigationStack {
             contentView
+            .navigationBarTitle(Texts.NavigationBarTitle.discoverScreen)
         }
-        .navigationBarTitle(Texts.NavigationBarTitle.discoverScreen)
-        .navigationBarHidden(false)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     // MARK: - Private
@@ -49,6 +46,7 @@ public struct DiscoverScene: View {
             }
         case .loaded(let popularMovies):
             DiscoverSlice(
+                navigationTitle: "All Popular Movies",
                 sliceTitle: Texts.SectionHeader.mostPopular,
                 sliceItems: popularMovies,
                 section: MediaSection.popularMovies,

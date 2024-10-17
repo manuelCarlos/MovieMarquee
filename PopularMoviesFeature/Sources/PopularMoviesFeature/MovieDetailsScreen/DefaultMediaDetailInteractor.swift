@@ -5,8 +5,9 @@
 //  Created by Manuel Lopes on 12.10.24.
 //
 
+@available(iOS 13.0, *)
 protocol MediaDetailInteractor: Sendable {
-    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetail
+    func fetchMovieDetail(movieId: Int) async throws -> any WatchableDetail
 }
 
 @available(iOS 16.0, *)
@@ -19,7 +20,7 @@ final class DefaultMediaDetailInteractor: Sendable, MediaDetailInteractor {
         self.movieService = movieService
     }
 
-    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetail {
+    func fetchMovieDetail(movieId: Int) async throws -> any WatchableDetail {
         return try await movieService.fetchMediaDetails(mediaId: movieId)
     }
 }

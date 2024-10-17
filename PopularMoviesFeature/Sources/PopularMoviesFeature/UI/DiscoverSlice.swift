@@ -13,12 +13,14 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct DiscoverSlice: View {
 
-    private var sliceTitle: String
-    private var sliceItems: [Watchable]
-    private var section: MediaSection
+    private let navigationTitle: String
+    private let sliceTitle: String
+    private let sliceItems: [any Watchable]
+    private let section: MediaSection
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(sliceTitle: String, sliceItems: [Watchable], section: MediaSection, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(navigationTitle: String, sliceTitle: String, sliceItems: [any Watchable], section: MediaSection, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+        self.navigationTitle = navigationTitle
         self.sliceTitle = sliceTitle
         self.sliceItems = sliceItems
         self.section = section
@@ -49,7 +51,7 @@ struct DiscoverSlice: View {
                     destination: MediaListView(viewModel: MediaListViewModel(interactor: DefaultMediaInteractor(),
                                                                              section: section),
                                                favoriteMoviesDBStore: favoriteMoviesDBStore)
-                    .navigationTitle("All popular movies")
+                    .navigationTitle(navigationTitle)
                 ) {
                     seeAllView
                 }

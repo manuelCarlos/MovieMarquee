@@ -17,7 +17,7 @@ public final class DiscoverSceneViewModel: @unchecked Sendable {
         case idle
         case loading
         case failed(String)
-        case loaded([Watchable])
+        case loaded([any Watchable])
     }
 
     private let interactor: MediaInteractor
@@ -48,7 +48,7 @@ public final class DiscoverSceneViewModel: @unchecked Sendable {
         }
     }
 
-    private func filterWatchable(_ movies: [Watchable]) -> [Watchable] {
+    private func filterWatchable(_ movies: [any Watchable]) -> [any Watchable] {
         return movies.filter { ($0 as? Movie)?.releaseDate != nil }
     }
 

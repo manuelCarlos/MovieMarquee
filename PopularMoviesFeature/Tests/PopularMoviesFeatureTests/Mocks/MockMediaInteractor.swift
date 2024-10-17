@@ -9,10 +9,10 @@
 
 final class MockMediaInteractor: @unchecked Sendable, MediaInteractor {
 
-    var fetchNextPopularPageAsFullListStub: [Watchable] = []
+    var fetchNextPopularPageAsFullListStub: [any Watchable] = []
     var error: Error?
 
-    func fetchNextPopularPageAsFullList() async throws -> [Watchable] {
+    func fetchNextPopularPageAsFullList() async throws -> [any Watchable] {
         if let error {
             throw error
         } else {

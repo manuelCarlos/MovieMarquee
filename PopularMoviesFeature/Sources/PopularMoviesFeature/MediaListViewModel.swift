@@ -17,7 +17,7 @@ final class MediaListViewModel: @unchecked Sendable {
         case idle
         case loading
         case failed(String)
-        case loaded([Movie])
+        case loaded([any Watchable])
     }
 
     private let interactor: MediaInteractor
@@ -30,8 +30,8 @@ final class MediaListViewModel: @unchecked Sendable {
         self.section = section
     }
 
-    func fetchfirstPage() async {
-        switch self.section {
+    func fetchFirstPage() async {
+        switch section {
         case .popularMovies:
             do {
                 state = .loading
@@ -49,12 +49,9 @@ final class MediaListViewModel: @unchecked Sendable {
     // MARK: - Private
 
     private func fetchMedia(isFirstPage: Bool) async throws {
-        switch self.section {
+        switch section {
         case .popularMovies:
-            guard let mediaList = try await interactor.fetchNextPopularPageAsFullList() as? [Movie] else {
-                throw MediaFetchError.invalidData
-            }
-
+            let mediaList = try await interactor.fetchNextPopularPageAsFullList()
             if mediaList.isEmpty && isFirstPage {
                 throw MediaFetchError.noPopularMoviesAvailable
             }

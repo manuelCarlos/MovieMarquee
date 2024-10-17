@@ -7,6 +7,7 @@
 
 import Models
 
+@available(iOS 13.0, *)
 protocol WatchableDetail: Watchable {
     var genres: [Genre] { get }
     var productionCompanies: [ProductionCompany]? { get }

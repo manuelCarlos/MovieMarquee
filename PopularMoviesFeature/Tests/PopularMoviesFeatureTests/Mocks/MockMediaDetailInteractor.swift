@@ -9,11 +9,11 @@
 
 final class MockMediaDetailInteractor: @unchecked Sendable, MediaDetailInteractor {
 
-    var mockDetail: WatchableDetail = MockWatchableDetail()
+    var mockDetail: any WatchableDetail = MockWatchableDetail()
     var error: Error?
     var fetchGotCalled: Bool = false
 
-    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetail {
+    func fetchMovieDetail(movieId: Int) async throws -> any WatchableDetail {
         fetchGotCalled = true
         if let error {
             throw error

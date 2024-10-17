@@ -11,8 +11,8 @@
 
 final class MockMediaService: @unchecked Sendable, MediaService {
 
-    var mockWatchables: [Watchable] = [MockWatchable()]
-    var mockWatchableDetail: WatchableDetail = MockWatchableDetail()
+    var mockWatchables: [any Watchable] = [MockWatchable()]
+    var mockWatchableDetail: any WatchableDetail = MockWatchableDetail()
     var mockCredits: Credits = Credits(cast: [Cast.make(id: 1, name: "Manuel Lopes"),
                                               Cast.make(id: 2, name: "Malo da Pro")],
                                        crew: [],
@@ -24,7 +24,7 @@ final class MockMediaService: @unchecked Sendable, MediaService {
         self.shouldFail = shouldFail
     }
 
-    func fetchMedia(request: NetworkService.NetworkRequest) async throws -> [PopularMoviesFeature.Watchable] {
+    func fetchMedia(request: NetworkService.NetworkRequest) async throws -> [any PopularMoviesFeature.Watchable] {
         fetchCount += 1
         if shouldFail {
             throw MockError.failure
@@ -32,7 +32,7 @@ final class MockMediaService: @unchecked Sendable, MediaService {
         return mockWatchables
     }
 
-    func fetchMediaDetails(mediaId: Int) async throws -> PopularMoviesFeature.WatchableDetail {
+    func fetchMediaDetails(mediaId: Int) async throws -> any PopularMoviesFeature.WatchableDetail {
         if shouldFail {
             throw MockError.failure
         }

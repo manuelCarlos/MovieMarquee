@@ -17,7 +17,7 @@ final class MovieDetailViewModel: @unchecked Sendable {
         case idle
         case loading
         case failed(String)
-        case loaded(WatchableDetail)
+        case loaded(any WatchableDetail)
     }
     
     let navigationTitle: String

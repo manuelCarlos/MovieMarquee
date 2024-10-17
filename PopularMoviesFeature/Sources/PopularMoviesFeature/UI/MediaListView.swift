@@ -25,13 +25,13 @@ struct MediaListView: View {
         switch viewModel.state {
         case .idle:
             IdleStateView {
-                Task { await viewModel.fetchfirstPage() }
+                Task { await viewModel.fetchFirstPage() }
             }
         case .loading:
             LoadingStateView(subtitle: "Loading...")
         case .failed(let error):
             FailedStateView(error: error) {
-                Task { await viewModel.fetchfirstPage() }
+                Task { await viewModel.fetchFirstPage() }
             }
         case .loaded(let mediaList):
             ScrollView {

@@ -8,7 +8,8 @@
 import NetworkService
 import Models
 
-protocol Watchable: Sendable, Codable {
+@available(iOS 13.0, *)
+protocol Watchable: Identifiable, Codable, Hashable, Sendable {
     var id: Int { get }
     var title: String { get }
     var voteAverage: Double? { get }
@@ -22,6 +23,7 @@ protocol Watchable: Sendable, Codable {
     var posterUrl: String { get }
 }
 
+@available(iOS 13.0, *)
 extension Watchable {
 
     var posterUrl: String {

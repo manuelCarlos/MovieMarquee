@@ -14,10 +14,10 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct MediaListItemView: View {
 
-    private let mediaItem: Watchable
+    private let mediaItem: any Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(mediaItem: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(mediaItem: any Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.mediaItem = mediaItem
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
@@ -66,7 +66,7 @@ struct MediaListItemView: View {
 
     // MARK: - Private
 
-    private func makeMediaDetailView(mediaType: Watchable.Type) -> some View {
+    private func makeMediaDetailView(mediaType: any Watchable.Type) -> some View {
         VStack {
             if (mediaType as? Movie.Type) != nil {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),

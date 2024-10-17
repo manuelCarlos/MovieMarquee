@@ -36,7 +36,7 @@ final class MediaListViewModelTests: XCTestCase {
         mockInteractor.fetchNextPopularPageAsFullListStub = mockMovies
 
         // Trigger media fetching
-        await viewModel.fetchfirstPage()
+        await viewModel.fetchFirstPage()
 
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 2)
@@ -84,7 +84,7 @@ final class MediaListViewModelTests: XCTestCase {
         let mockError = NSError(domain: "test", code: 0, userInfo: nil)
         mockInteractor.error = mockError
 
-        await viewModel.fetchfirstPage()
+        await viewModel.fetchFirstPage()
 
         if case let .failed(error) = viewModel.state {
             XCTAssertEqual(error, "The operation couldn’t be completed. (test error 0.)")
@@ -96,7 +96,7 @@ final class MediaListViewModelTests: XCTestCase {
     func test_fetching_first_page_should_return_an_empty_list_error() async {
         mockInteractor.fetchNextPopularPageAsFullListStub = []
 
-        await viewModel.fetchfirstPage()
+        await viewModel.fetchFirstPage()
 
         if case let .failed(error) = viewModel.state {
             XCTAssertEqual(error, "There are no popular movies available.")

@@ -12,6 +12,7 @@ protocol MediaCastInteractor {
     func fetchCast(mediaId: Int) async throws -> [Cast]
 }
 
+@available(iOS 13.0, *)
 final class DefaultMediaCastInteractor: MediaCastInteractor {
 
     private let mediaService: MediaService
