@@ -12,11 +12,19 @@ final class MockMovieDBModelActor: MovieDBModelStorage {
     var favoriteMovies: [FavoriteMovie] = []
     var shouldThrowError = false
 
-    func fetchFavoriteMovies() async throws -> [FavoriteMovie] {
+    func fetchAllFavoriteMovies() async throws -> [FavoriteMovie] {
         if shouldThrowError {
             throw MoviesDBError.notFound
         }
         return favoriteMovies
+    }
+
+    func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
+        if let movie = favoriteMovies.first(where: { $0.id == id }) {
+            return movie
+        } else {
+            throw MoviesDBError.notFound
+        }
     }
 
     func addFavoriteMovie(_ movie: FavoriteMovie) async throws {
@@ -34,14 +42,6 @@ final class MockMovieDBModelActor: MovieDBModelStorage {
             throw MoviesDBError.notFound
         }
         favoriteMovies.removeAll { $0.id == id }
-    }
-
-    func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
-        if let movie = favoriteMovies.first(where: { $0.id == id }) {
-            return movie
-        } else {
-            throw MoviesDBError.notFound
-        }
     }
 
     func deleteFavoriteMovies(_ movies: [MoviesDB.FavoriteMovie]) async throws {
