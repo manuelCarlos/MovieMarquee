@@ -100,7 +100,6 @@
 				11947CA52CB014400024132D /* README.md */,
 				11A312EA2CBE85280074856C /* MovieMarquee.xctestplan */,
 				11947CAB2CB03B680024132D /* .swiftlint.yml */,
-				11947CA72CB019140024132D /* Frameworks */,
 				11947C692CB012C50024132D /* MovieMarquee */,
 				11947C7B2CB012C60024132D /* MovieMarqueeTests */,
 				11947C852CB012C60024132D /* MovieMarqueeUITests */,
@@ -116,13 +115,6 @@
 				11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		11947CA72CB019140024132D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
