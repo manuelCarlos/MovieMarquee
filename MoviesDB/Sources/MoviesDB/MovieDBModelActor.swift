@@ -10,10 +10,11 @@ import SwiftData
 
 @available(iOS 17.0, *)
 protocol MovieDBModelStorage {
-    func fetchFavoriteMovies() async throws -> [FavoriteMovie]
+    func fetchAllFavoriteMovies() async throws -> [FavoriteMovie]
+    func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie
     func addFavoriteMovie(_ movie: FavoriteMovie) async throws
     func deleteFavoriteMovie(with id: Int) async throws
-    func fetchFavoriteMovie(id: Int) async throws -> FavoriteMovie
+    func deleteFavoriteMovies(_ movies: [FavoriteMovie]) async throws
 }
 
 @available(iOS 17, *)
@@ -31,7 +32,11 @@ final actor MovieDBModelActor: MovieDBModelStorage {
         }
     }()
 
-    func fetchFavoriteMovie(id: Int) throws -> FavoriteMovie {
+    func fetchAllFavoriteMovies() async throws -> [FavoriteMovie] {
+        return try modelContext.fetch(FetchDescriptor<FavoriteMovieModel>()).map { FavoriteMovie(id: $0.id, name: $0.name) }
+    }
+
+    func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
         let movie = fetchFavoriteMovieModel(id: id)
         if let movie {
             return FavoriteMovie(id: movie.id, name: movie.name)
@@ -40,27 +45,33 @@ final actor MovieDBModelActor: MovieDBModelStorage {
         }
     }
     
-    func addFavoriteMovie(_ movie: FavoriteMovie) throws {
+    func addFavoriteMovie(_ movie: FavoriteMovie) async throws {
         let favMovie = FavoriteMovieModel(id: movie.id, name: movie.name)
         modelContext.insert(favMovie)
         try modelContext.save()
     }
     
-    func deleteFavoriteMovie(with id: Int) throws {
-        if let movie = fetchFavoriteMovieModel(id: id) {
-            modelContext.delete(movie)
-            try modelContext.save()
-        } else {
-            throw MoviesDBError.notFound
+    func deleteFavoriteMovie(with id: Int) async throws {
+        try deleteFavoriteMovieModel(with: id)
+    }
+    
+    func deleteFavoriteMovies(_ movies: [FavoriteMovie]) async throws {
+        for movie in movies {
+            try deleteFavoriteMovieModel(with: movie.id)
         }
     }
-    
-    func fetchFavoriteMovies() throws -> [FavoriteMovie] {
-        return try modelContext.fetch(FetchDescriptor<FavoriteMovieModel>()).map { FavoriteMovie(id: $0.id, name: $0.name) }
-    }
-    
+
     // MARK: - Private
-    
+
+    private func deleteFavoriteMovieModel(with id: Int) throws {
+        let predicate: Predicate<FavoriteMovieModel>? = #Predicate { movie in movie.id == id }
+        try modelContext.delete(
+            model: FavoriteMovieModel.self,
+            where: predicate
+        )
+        try modelContext.save()
+    }
+
     private func fetchFavoriteMovieModel(id: Int) -> FavoriteMovieModel? {
         let predicate: Predicate<FavoriteMovieModel>? = #Predicate { movie in movie.id == id }
         var fetchDescriptor = FetchDescriptor<FavoriteMovieModel>(predicate: predicate)

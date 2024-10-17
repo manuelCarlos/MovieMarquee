@@ -5,7 +5,6 @@
 //  Created by Manuel Lopes on 17.10.24.
 //
 
-
 import XCTest
 import SnapshotTesting
 

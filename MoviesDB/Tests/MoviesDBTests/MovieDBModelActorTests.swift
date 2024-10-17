@@ -37,7 +37,7 @@ final class MovieDBModelActorTests: XCTestCase {
 
         try await modelActor.addFavoriteMovie(favoriteMovie)
 
-        let fetchedMovie = try await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
+        let fetchedMovie = try await modelActor.fetchFavoriteMovie(with: favoriteMovie.id)
         XCTAssertEqual(fetchedMovie.id, 111)
         XCTAssertEqual(fetchedMovie.name, "Inception")
     }
@@ -52,7 +52,7 @@ final class MovieDBModelActorTests: XCTestCase {
             try await modelActor.addFavoriteMovie(movie)
         }
 
-        let fetchedMovies = try await modelActor.fetchFavoriteMovies()
+        let fetchedMovies = try await modelActor.fetchAllFavoriteMovies()
 
         XCTAssertEqual(fetchedMovies.count, 2)
         XCTAssertTrue(fetchedMovies.contains { $0.id == 1 && $0.name == "Inception" })
@@ -63,13 +63,13 @@ final class MovieDBModelActorTests: XCTestCase {
         let favoriteMovie = FavoriteMovie(id: 222, name: "Inception")
         try await modelActor.addFavoriteMovie(favoriteMovie)
 
-        let fetchedMovie = try await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
+        let fetchedMovie = try await modelActor.fetchFavoriteMovie(with: favoriteMovie.id)
         XCTAssertEqual(fetchedMovie.id, favoriteMovie.id)
 
         try await modelActor.deleteFavoriteMovie(with: favoriteMovie.id)
 
         await assertThrowsAsyncError(
-            try await modelActor.fetchFavoriteMovie(id: favoriteMovie.id)
+            try await modelActor.fetchFavoriteMovie(with: favoriteMovie.id)
         ) { error in
             XCTAssertEqual(error as? MoviesDBError, MoviesDBError.notFound)
         }
@@ -79,7 +79,7 @@ final class MovieDBModelActorTests: XCTestCase {
         let nonExistentId = 999
 
         await assertThrowsAsyncError(
-            try await modelActor.fetchFavoriteMovie(id: nonExistentId)
+            try await modelActor.fetchFavoriteMovie(with: nonExistentId)
         ) { error in
             XCTAssertEqual(error as? MoviesDBError, MoviesDBError.notFound)
         }

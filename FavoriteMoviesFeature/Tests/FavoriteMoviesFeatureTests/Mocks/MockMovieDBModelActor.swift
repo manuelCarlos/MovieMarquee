@@ -36,11 +36,18 @@ final class MockMovieDBModelActor: MovieDBModelStorage {
         favoriteMovies.removeAll { $0.id == id }
     }
 
-    func fetchFavoriteMovie(id: Int) async throws -> FavoriteMovie {
+    func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
         if let movie = favoriteMovies.first(where: { $0.id == id }) {
             return movie
         } else {
             throw MoviesDBError.notFound
         }
+    }
+
+    func deleteFavoriteMovies(_ movies: [MoviesDB.FavoriteMovie]) async throws {
+        if shouldThrowError {
+            throw MoviesDBError.notFound
+        }
+        favoriteMovies.removeAll(where: { movies.contains($0) })
     }
 }

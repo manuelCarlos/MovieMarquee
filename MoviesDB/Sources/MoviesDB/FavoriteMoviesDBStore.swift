@@ -12,29 +12,40 @@ import SwiftData
 @Observable
 public final class FavoriteMoviesDBStore: @unchecked Sendable {
 
-    public var movies: [FavoriteMovie] = []
+    public private(set) var movies: [FavoriteMovie] = []
 
-    /// This property is semantically a constant. it's only mutable to allow easy mocking of the movieDBModelActor for testing purposes.
+    /// This property is semantically constant.
+    /// It's only a `var` to allow easy mocking of the movieDBModelActor for testing purposes.
     private var movieDBModelActor: MovieDBModelStorage = MovieDBModelActor.shared
 
     public init() {}
 
     public func loadAllMovies() async throws {
-        movies = await (try? movieDBModelActor.fetchFavoriteMovies()) ?? [] // FIXME: - remove default
+        movies = try await movieDBModelActor.fetchAllFavoriteMovies()
+    }
+
+    public func fetchMovie(with id: Int) async throws -> FavoriteMovie {
+        return try await movieDBModelActor.fetchFavoriteMovie(with: id)
     }
 
     public func addMovie(_ movie: FavoriteMovie) async throws {
         try await movieDBModelActor.addFavoriteMovie(movie)
-        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? [] // FIXME: - remove default
+        try await loadAllMovies()
     }
 
     public func deleteMovie(with id: Int) async throws {
         try await movieDBModelActor.deleteFavoriteMovie(with: id)
-        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? [] // FIXME: - remove default
+        try await loadAllMovies()
     }
 
-    public func fetchMovie(with id: Int) async throws -> FavoriteMovie {
-        return try await movieDBModelActor.fetchFavoriteMovie(id: id)
+    public func deleteMovies(indexSet: IndexSet) async throws {
+        var moviesToDelete: [FavoriteMovie] = []
+        for index in indexSet where index < movies.count {
+            let movie = movies[index]
+            moviesToDelete.append(movie)
+        }
+        try await movieDBModelActor.deleteFavoriteMovies(moviesToDelete)
+        try await loadAllMovies()
     }
 
 #if DEBUG

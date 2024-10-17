@@ -27,6 +27,8 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    // MARK: - Load movies from DB
+
     func test_loadAllMovies_successfully() async throws {
         mockActor.favoriteMovies = [FavoriteMovie(id: 1, name: "Test Movie")]
 
@@ -46,6 +48,8 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         XCTAssertEqual(store.movies.count, 0)
     }
 
+    // MARK: - Add fav movies to DB
+
     func test_add_favorite_movie() async throws {
         let movie = FavoriteMovie(id: 1, name: "Inception")
         let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
@@ -61,12 +65,43 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         XCTAssertEqual(store.movies.first?.name, "Inception")
     }
 
-    func test_deleting_favorite_movie() async throws {
+    // MARK: - Deleting movies from DB
+
+    func test_deleting_single_favorite_movie() async throws {
         let movie = FavoriteMovie(id: 10, name: "Inception")
         let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
         try await store.addMovie(movie)
-        try await store.deleteMovie(with: 10)
+        try await store.deleteMovie(with: movie.id)
+
+        XCTAssertTrue(store.movies.isEmpty)
+    }
+
+    func test_deleting_single_favorite_movie__when_none_exists_in_the_DB() async throws {
+        let movie = FavoriteMovie(id: 10, name: "Inception")
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
+
+        try await store.deleteMovie(with: movie.id)
+
+        XCTAssertTrue(store.movies.isEmpty)
+    }
+
+    func test_deleting_multiple_favorite_movie() async throws {
+        let inception = FavoriteMovie(id: 10, name: "Inception")
+        let interstellar = FavoriteMovie(id: 11, name: "Interstellar")
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
+
+        try await store.addMovie(inception)
+        try await store.addMovie(interstellar)
+        try await store.deleteMovies(indexSet: IndexSet(integersIn: 0..<2))
+
+        XCTAssertTrue(store.movies.isEmpty)
+    }
+
+    func test_deleting_multiple_favorite_movie_when_none_exists_in_the_DB() async throws {
+        let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
+
+        try await store.deleteMovies(indexSet: IndexSet(integersIn: 0..<2))
 
         XCTAssertTrue(store.movies.isEmpty)
     }
@@ -96,10 +131,11 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
     }
 
     func test_fetching_favorite_movie_when_it_does_not_exist() async throws {
+        let id = 999
         let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
         await assertThrowsAsyncError(
-            try await store.fetchMovie(with: 999)
+            try await store.fetchMovie(with: id)
         ) { error in
             XCTAssertEqual(error as? MoviesDBError, MoviesDBError.notFound)
         }

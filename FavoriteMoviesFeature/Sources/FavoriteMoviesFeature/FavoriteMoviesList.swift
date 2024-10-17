@@ -34,18 +34,11 @@ struct FavoriteMoviesList: View {
                             .font(.headline)
                     }
                 }
-                .onDelete(perform: deleteFavorites)
-            }
-        }
-    }
-
-    // MARK: - Private
-
-    private func deleteFavorites(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let destination = favoriteMoviesDBStore.movies[index]
-            Task {
-                try? await favoriteMoviesDBStore.deleteMovie(with: destination.id)
+                .onDelete(perform: { indexSet in
+                    Task {
+                        try? await favoriteMoviesDBStore.deleteMovies(indexSet: indexSet)
+                    }
+                })
             }
         }
     }
