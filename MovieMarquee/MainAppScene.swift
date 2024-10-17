@@ -38,7 +38,7 @@ struct MainAppScene: View {
         }
         .task {
             Task { 
-                try? await favoriteMoviesDBStore.loadFavoriteMovies()
+                try? await favoriteMoviesDBStore.loadAllMovies()
             }
         }
         .navigationBarHidden(false)

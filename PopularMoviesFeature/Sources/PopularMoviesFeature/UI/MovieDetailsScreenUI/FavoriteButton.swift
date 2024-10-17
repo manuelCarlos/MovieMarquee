@@ -28,9 +28,9 @@ struct FavoriteButton: View {
     var body: some View {
         Button {
             if isFavorite == true {
-                Task { try? await favoriteMoviesDBStore.deleteFavorite(id: mediaId) }
+                Task { try? await favoriteMoviesDBStore.deleteMovie(with: mediaId) }
             } else {
-                Task { try? await favoriteMoviesDBStore.addFavorite(FavoriteMovie(id: mediaId, name: title!)) }
+                Task { try? await favoriteMoviesDBStore.addMovie(FavoriteMovie(id: mediaId, name: title!)) }
             }
             isFavorite?.toggle()
 
@@ -43,7 +43,7 @@ struct FavoriteButton: View {
             .foregroundColor(.red)
         }
         .task {
-            isFavorite = try? await favoriteMoviesDBStore.getMovie(id: mediaId) != nil
+            isFavorite = try? await favoriteMoviesDBStore.fetchMovie(with: mediaId) != nil
         }
     }
 }

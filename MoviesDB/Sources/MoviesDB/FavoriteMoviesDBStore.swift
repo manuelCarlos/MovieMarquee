@@ -11,28 +11,35 @@ import SwiftData
 @available(iOS 17.0, *)
 @Observable
 public final class FavoriteMoviesDBStore: @unchecked Sendable {
-    
+
     public var movies: [FavoriteMovie] = []
-    
-    private let movieDBModelActor = MovieDBModelActor.shared
+
+    /// This property is semantically a constant. it's only mutable to allow easy mocking of the movieDBModelActor for testing purposes.
+    private var movieDBModelActor: MovieDBModelStorage = MovieDBModelActor.shared
 
     public init() {}
-    
-    public func loadFavoriteMovies() async throws {
+
+    public func loadAllMovies() async throws {
         movies = await (try? movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
-    
-    public func addFavorite(_ movie: FavoriteMovie) async throws {
+
+    public func addMovie(_ movie: FavoriteMovie) async throws {
         try await movieDBModelActor.addFavoriteMovie(movie)
         movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
-    
-    public func deleteFavorite(id: Int) async throws {
+
+    public func deleteMovie(with id: Int) async throws {
         try await movieDBModelActor.deleteFavoriteMovie(with: id)
         movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
     }
-    
-    public func getMovie(id: Int) async throws -> FavoriteMovie? {
+
+    public func fetchMovie(with id: Int) async throws -> FavoriteMovie? {
         return await movieDBModelActor.fetchFavoriteMovie(id: id)
     }
+
+#if DEBUG
+    init(movieDBModelActor: MovieDBModelStorage) {
+        self.movieDBModelActor = movieDBModelActor
+    }
+#endif
 }

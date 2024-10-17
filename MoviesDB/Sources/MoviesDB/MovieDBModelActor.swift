@@ -8,9 +8,17 @@
 import Foundation
 import SwiftData
 
+@available(iOS 17.0, *)
+protocol MovieDBModelStorage {
+    func fetchFavoriteMovies() async throws -> [FavoriteMovie]
+    func addFavoriteMovie(_ movie: FavoriteMovie) async throws
+    func deleteFavoriteMovie(with id: Int) async throws
+    func fetchFavoriteMovie(id: Int) async -> FavoriteMovie?
+}
+
 @available(iOS 17, *)
 @ModelActor
-final actor MovieDBModelActor {
+final actor MovieDBModelActor: MovieDBModelStorage {
 
     static let shared: MovieDBModelActor = {
         let schema = Schema([FavoriteMovieModel.self])
@@ -43,7 +51,7 @@ final actor MovieDBModelActor {
             modelContext.delete(movie)
             try modelContext.save()
         } else {
-            assertionFailure("Oops, no movie with id \(id) found.")
+            throw MoviesDBError.notFound
         }
     }
     

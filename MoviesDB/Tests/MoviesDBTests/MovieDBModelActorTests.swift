@@ -1,6 +1,6 @@
 //
 //  MovieDBModelActorTests.swift
-//  MoviesDB
+//  MoviesDBTests
 //
 //  Created by Manuel Lopes on 16.10.24.
 //
@@ -16,6 +16,8 @@ final class MovieDBModelActorTests: XCTestCase {
     private var modelActor: MovieDBModelActor!
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
+        
         // In-memory ModelContainer setup for testing
         let schema = Schema([FavoriteMovieModel.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
@@ -26,6 +28,8 @@ final class MovieDBModelActorTests: XCTestCase {
 
     override func tearDownWithError() throws {
         modelActor = nil
+
+        try super.tearDownWithError()
     }
 
     func test_add_favorite_movie() async throws {
