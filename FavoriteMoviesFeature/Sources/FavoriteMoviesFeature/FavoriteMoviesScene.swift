@@ -14,15 +14,17 @@ import MoviesDB
 public struct FavoriteMoviesScene: View {
 
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let navigationTitle: String
 
-    public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    public init(favoriteMoviesDBStore: FavoriteMoviesDBStore, navigationTitle: String = "Favorite Movies") {
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.navigationTitle = navigationTitle
     }
 
     public var body: some View {
         NavigationStack {
             FavoriteMoviesList(favoriteMoviesDBStore: favoriteMoviesDBStore)
-            .navigationTitle("Favorite Movies")
+            .navigationTitle(navigationTitle)
         }
     }
 }
