@@ -5,14 +5,14 @@ The BE is kindly provided by TMDB (www.themoviedb.org)
 
 # Testing
 
-Please run snapshot tests in the (iOS18.1)iPhone 13 mini simulator in light mode, otherwise the tests will fail 💥.
+Please run snapshot tests in the (iOS18.1)iPhone 13 mini simulator, otherwise snapshot tests might fail 💥.
 
 # Features
 
-- Swiftlint code formatting.
-- SwiftUI app, including views and navigation.
-- Local Swift packages (SPM).
+- Full SwiftUI app, with no third-party dependencies.
+- Swift 6 ready - strict concurrency checking with zero warnings :P
+- Modularization using local Swift packages (SPM).
+- Test plan setup to conveniently execute all app+package tests in one go.
+- Light & Dark mode snapshot tests of all views.
 - String catalogs for localization.
-- Swift 6 ready and strict concurrency checking with zero warnings :P.
-- Test plans setup to conveniently execute all app+package tests in one go.
-- Snapshot tests of all views.
+- Code formating using Swiftlint.
