@@ -19,7 +19,12 @@ final class FavoriteMoviesListTests: XCTestCase {
         let sut = FavoriteMoviesList(favoriteMoviesDBStore: FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor()))
 
         assertSnapshot(of: sut, as: .image(
-            layout: .device(config: .iPhone13Mini)
+            layout: .device(config: .iPhone13Mini),
+            traits: .init(userInterfaceStyle: .light)
+        ))
+        assertSnapshot(of: sut, as: .image(
+            layout: .device(config: .iPhone13Mini),
+            traits: .init(userInterfaceStyle: .dark)
         ))
     }
 
@@ -31,8 +36,15 @@ final class FavoriteMoviesListTests: XCTestCase {
 
         let sut = FavoriteMoviesList(favoriteMoviesDBStore: storage)
 
-        assertSnapshot(of: sut, as: .image(
-            layout: .device(config: .iPhone13Mini)
-        ))
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: .device(config: .iPhone13Mini),
+                        traits: .init(userInterfaceStyle: .light)
+                       ))
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: .device(config: .iPhone13Mini),
+                        traits: .init(userInterfaceStyle: .dark)
+                       ))
     }
 }

@@ -13,7 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "MoviesDB"),
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.12.0")
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0")
     ],
     targets: [
         .target(
