@@ -20,17 +20,17 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
     public init() {}
 
     public func loadAllMovies() async throws {
-        movies = await (try? movieDBModelActor.fetchFavoriteMovies()) ?? []
+        movies = await (try? movieDBModelActor.fetchFavoriteMovies()) ?? [] // FIXME: - remove default
     }
 
     public func addMovie(_ movie: FavoriteMovie) async throws {
         try await movieDBModelActor.addFavoriteMovie(movie)
-        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
+        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? [] // FIXME: - remove default
     }
 
     public func deleteMovie(with id: Int) async throws {
         try await movieDBModelActor.deleteFavoriteMovie(with: id)
-        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? []
+        movies = (try? await movieDBModelActor.fetchFavoriteMovies()) ?? [] // FIXME: - remove default
     }
 
     public func fetchMovie(with id: Int) async throws -> FavoriteMovie {
