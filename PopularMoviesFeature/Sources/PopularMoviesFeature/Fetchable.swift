@@ -7,6 +7,6 @@
 
 @available(iOS 13.0, *)
 protocol Fetchable: Sendable {
-    func fetchSinglePage() async throws -> [any Watchable]
-    func fetchWithNextPage() async throws -> [any Watchable]
+    func fetchSinglePage() async throws -> [Watchable]
+    func fetchWithNextPage() async throws -> [Watchable]
 }

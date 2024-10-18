@@ -11,7 +11,7 @@
 
 final class MockMediaService: @unchecked Sendable, MediaService {
 
-    var mockWatchables: [any Watchable] = [MockWatchable()]
+    var mockWatchables: [Watchable] = [MockWatchable()]
     var mockWatchableDetail: any WatchableDetail = MockWatchableDetail()
     var mockCredits: Credits = Credits(cast: [Cast.make(id: 1, name: "Manuel Lopes"),
                                               Cast.make(id: 2, name: "Malo da Pro")],

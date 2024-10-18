@@ -11,7 +11,7 @@ import NetworkService
 
 @available(iOS 13.0, *)
 protocol MediaInteractor: Sendable {
-    func fetchNextPopularPageAsFullList() async throws -> [any Watchable]
+    func fetchNextPopularPageAsFullList() async throws -> [Watchable]
 }
 
 @available(iOS 16.0, *)
@@ -24,7 +24,7 @@ final class DefaultMediaInteractor: Sendable, MediaInteractor {
         self.popularMoviesFetcher = popularMoviesFetcher
     }
 
-    func fetchNextPopularPageAsFullList() async throws -> [any Watchable] {
+    func fetchNextPopularPageAsFullList() async throws -> [Watchable] {
         return try await popularMoviesFetcher.fetchWithNextPage()
     }
 }

@@ -14,10 +14,10 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct DiscoverSliceItem: View {
     
-    private let item: any Watchable
+    private let item: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(item: any Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(item: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.item = item
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
@@ -43,7 +43,7 @@ struct DiscoverSliceItem: View {
     
     // MARK: - Private
     
-    private func makeMovieDetailView(mediaType: any Watchable.Type) -> some View {
+    private func makeMovieDetailView(mediaType: Watchable.Type) -> some View {
         VStack {
             if mediaType == Movie.self {
                 MovieDetailView(viewModel: MovieDetailViewModel(interactor: DefaultMediaDetailInteractor(),

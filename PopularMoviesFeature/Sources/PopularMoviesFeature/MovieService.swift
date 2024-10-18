@@ -19,7 +19,7 @@ final class MovieService: Sendable, MediaService {
         self.requestManager = requestManager
     }
 
-    func fetchMedia(request: NetworkRequest) async throws -> [any Watchable] {
+    func fetchMedia(request: NetworkRequest) async throws -> [Watchable] {
         let movies: Movies = try await requestManager.decode(networkRequest: request)
         return movies.results
     }

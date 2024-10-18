@@ -11,9 +11,9 @@ import XCTest
 
 final class MockFetchable: @unchecked Sendable, Fetchable {
 
-    var mockResult: Result<[any Watchable], Error>!
+    var mockResult: Result<[Watchable], Error>!
 
-    func fetchSinglePage() async throws -> [any Watchable] {
+    func fetchSinglePage() async throws -> [Watchable] {
         switch mockResult {
         case .success(let watchables):
             return watchables
@@ -25,7 +25,7 @@ final class MockFetchable: @unchecked Sendable, Fetchable {
         }
     }
 
-    func fetchWithNextPage() async throws -> [any Watchable] {
+    func fetchWithNextPage() async throws -> [Watchable] {
         switch mockResult {
         case .success(let watchables):
             return watchables

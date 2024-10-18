@@ -9,7 +9,7 @@ import NetworkService
 import Models
 
 @available(iOS 13.0, *)
-protocol Watchable: Identifiable, Codable, Hashable, Sendable {
+protocol Watchable: Codable, Sendable {
     var id: Int { get }
     var title: String { get }
     var voteAverage: Double? { get }

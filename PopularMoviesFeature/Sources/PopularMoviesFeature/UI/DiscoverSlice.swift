@@ -15,11 +15,11 @@ struct DiscoverSlice: View {
 
     private let navigationTitle: String
     private let sliceTitle: String
-    private let sliceItems: [any Watchable]
+    private let sliceItems: [Watchable]
     private let section: MediaSection
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(navigationTitle: String, sliceTitle: String, sliceItems: [any Watchable], section: MediaSection, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(navigationTitle: String, sliceTitle: String, sliceItems: [Watchable], section: MediaSection, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.navigationTitle = navigationTitle
         self.sliceTitle = sliceTitle
         self.sliceItems = sliceItems

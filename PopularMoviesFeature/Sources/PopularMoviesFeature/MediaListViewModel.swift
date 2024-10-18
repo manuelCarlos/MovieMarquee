@@ -17,7 +17,7 @@ final class MediaListViewModel: @unchecked Sendable {
         case idle
         case loading
         case failed(String)
-        case loaded([any Watchable])
+        case loaded([Watchable])
     }
 
     private let interactor: MediaInteractor
