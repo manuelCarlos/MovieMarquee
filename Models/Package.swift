@@ -10,12 +10,18 @@ let package = Package(
             name: "Models",
             targets: ["Models"])
     ],
+    dependencies: [
+        .package(path: "TMDBData")
+    ],
     targets: [
         .target(
-            name: "Models"),
+            name: "Models",
+            dependencies: [
+                .product(name: "TMDBData", package: "TMDBData")
+            ]),
         .testTarget(
             name: "ModelsTests",
-            dependencies: ["Models"],
+            dependencies: ["Models", "TMDBData"],
             resources: [
                    .process("Resources/cast.json"),
                    .process("Resources/malformed_cast.json"),
