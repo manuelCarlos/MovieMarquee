@@ -68,7 +68,7 @@ struct MovieDetailView: View {
 
     // MARK: - Private
 
-    private func makeMediaDetailsView(mediaDetails: any WatchableDetail) -> some View {
+    private func makeMediaDetailsView(mediaDetails: WatchableDetail) -> some View {
         HStack(alignment: .top) {
             MoviePosterView(imageUrl: mediaDetails.posterUrl)
                 .frame(width: 150, height: 200)

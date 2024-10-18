@@ -5,6 +5,7 @@
 //  Created by Manuel Lopes on 10.10.24.
 //
 
+@testable import Models
 @testable import PopularMoviesFeature
 
 final class MockMediaInteractor: @unchecked Sendable, MediaInteractor {

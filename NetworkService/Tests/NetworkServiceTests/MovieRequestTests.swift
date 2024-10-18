@@ -7,6 +7,7 @@
 
 import XCTest
 
+@testable import TMDBData
 @testable import NetworkService
 
 final class MovieRequestTests: XCTestCase {

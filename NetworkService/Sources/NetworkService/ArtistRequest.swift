@@ -5,6 +5,8 @@
 //  Created by Manuel Lopes on 08.10.24.
 //
 
+import TMDBData
+
 enum ArtistRequest: NetworkRequest {
 
     case getPopularArtists(page: Int)

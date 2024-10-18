@@ -14,6 +14,20 @@
   "testTargets" : [
     {
       "target" : {
+        "containerPath" : "container:FavoriteMoviesFeature",
+        "identifier" : "FavoriteMoviesFeatureTests",
+        "name" : "FavoriteMoviesFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:TMDBData",
+        "identifier" : "TMDBDataTests",
+        "name" : "TMDBDataTests"
+      }
+    },
+    {
+      "target" : {
         "containerPath" : "container:MoviesDB",
         "identifier" : "MoviesDBTests",
         "name" : "MoviesDBTests"
@@ -28,9 +42,9 @@
     },
     {
       "target" : {
-        "containerPath" : "container:FavoriteMoviesFeature",
-        "identifier" : "FavoriteMoviesFeatureTests",
-        "name" : "FavoriteMoviesFeatureTests"
+        "containerPath" : "container:NetworkService",
+        "identifier" : "NetworkServiceTests",
+        "name" : "NetworkServiceTests"
       }
     },
     {
@@ -38,13 +52,6 @@
         "containerPath" : "container:Models",
         "identifier" : "ModelsTests",
         "name" : "ModelsTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:NetworkService",
-        "identifier" : "NetworkServiceTests",
-        "name" : "NetworkServiceTests"
       }
     }
   ],

@@ -12,7 +12,7 @@
 
 final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
     var mockMedia: Movies?
-    var mockMediaDetail: (any WatchableDetail)?
+    var mockMediaDetail: WatchableDetail?
     var mockMediaCast: Credits?
     var shouldFail: Bool
     var decodeCallCount = 0

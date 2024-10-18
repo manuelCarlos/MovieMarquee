@@ -8,6 +8,7 @@
 import XCTest
 
 @testable import PopularMoviesFeature
+@testable import Models
 
 final class MockFetchable: @unchecked Sendable, Fetchable {
 

@@ -10,19 +10,21 @@ let package = Package(
             name: "NetworkService",
             targets: ["NetworkService"])
     ],
+    dependencies: [
+        .package(path: "TMDBData")
+    ],
     targets: [
         .target(
             name: "NetworkService",
-            resources: [
-                .process("Resources/apiKey.json")
+            dependencies: [
+                .product(name: "TMDBData", package: "TMDBData")
             ]
         ),
         .testTarget(
             name: "NetworkServiceTests",
-            dependencies: ["NetworkService"],
-            resources: [
-                .process("Resources/mockedApiKey.json"),
-                .process("Resources/invalidJSONFile.json")
+            dependencies: [
+                "NetworkService",
+                "TMDBData"
             ]
         )
     ]

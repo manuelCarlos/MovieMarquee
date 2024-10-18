@@ -1,6 +1,6 @@
 //
 //  APIConstantsTests.swift
-//  NetworkServiceTests
+//  TMDBDataTests
 //
 //  Created by Manuel Lopes on 05.10.24.
 //
@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-@testable import NetworkService
+@testable import TMDBData
 
 final class APIConstantsTests: XCTestCase {
 
@@ -49,24 +49,28 @@ final class APIConstantsTests: XCTestCase {
         XCTAssertEqual(APIConstants.language, "en-US")
     }
 
-     func test_load_api_key_with_valid_file_in_test_bundle() {
-         // Assuming there's a file named `apiKey.json` in the test bundle
-         let apiKey = APIConstants.loadAPIKey(from: testBundle, jsonFileName: "mockedApiKey")
-         XCTAssertEqual(apiKey, "mocked_api_key") // Assuming the test file contains {"apiKey": "mocked_api_key"}
-     }
+    func test_load_api_key_with_valid_file_in_test_bundle() {
+        // Assuming there's a file named `apiKey.json` in the test bundle
+        let apiKey = APIConstants.loadAPIKey(from: testBundle, jsonFileName: "mockedApiKey")
+        XCTAssertEqual(apiKey, "mocked_api_key") // Assuming the test file contains {"apiKey": "mocked_api_key"}
+    }
 
-     func test_load_api_key_with_missing_file_in_test_bundle() {
-         let apiKey = APIConstants.loadAPIKey(from: testBundle, jsonFileName: "nonExistentFile")
-         XCTAssertNil(apiKey)
-     }
+    func test_load_api_key_with_missing_file_in_test_bundle() {
+        let apiKey = APIConstants.loadAPIKey(from: testBundle, jsonFileName: "nonExistentFile")
+        XCTAssertNil(apiKey)
+    }
 
-     func test_load_api_key_with_invalid_json_in_test_bundle() {
-         // You can add an invalid JSON file to your test bundle for this case
-         let apiKey = APIConstants.loadAPIKey(from: testBundle, jsonFileName: "invalidJSONFile")
-         XCTAssertNil(apiKey)
-     }
+    func test_load_api_key_with_invalid_json_in_test_bundle() {
+        // You can add an invalid JSON file to your test bundle for this case
+        let apiKey = APIConstants.loadAPIKey(from: testBundle, jsonFileName: "invalidJSONFile")
+        XCTAssertNil(apiKey)
+    }
 
     func test_load_api_key_with_invalid_bundle() {
         XCTAssertNil(APIConstants.loadAPIKey(jsonFileName: "nonexistentFile"))
+    }
+
+    func test_load_api_key_with_default_app_bundle() {
+        XCTAssertNotNil(APIConstants.loadAPIKey())
     }
 }

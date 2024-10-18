@@ -1,6 +1,6 @@
 //
 //  APIConstants.swift
-//  NetworkService
+//  TMDBData
 //
 //  Created by Manuel Lopes on 05.10.24.
 //
@@ -8,20 +8,20 @@
 import Foundation
 
 public enum APIConstants {
-    static let baseURL = "api.themoviedb.org"
-    static let baseURLPath = "/3"
+    public static let baseURL = "api.themoviedb.org"
+    public static let baseURLPath = "/3"
 
-    static let authURL = "www.themoviedb.org"
-    static let authURLPath = ""
+    public static let authURL = "www.themoviedb.org"
+    public static let authURLPath = ""
 
-    static let httpsScheme = "https"
+    public static let httpsScheme = "https"
     public static let defaultScheme = "https://"
 
     public static let baseImgUrl = "image.tmdb.org"
     public static let baseImgUrlPath = "/t/p/w500"
 
-    static let apiKey = loadAPIKey()
-    static let language = "en-US"
+    public static let apiKey = loadAPIKey()
+    public static let language = "en-US"
 
     static func loadAPIKey(from bundle: Bundle = .module, jsonFileName: String = "apiKey") -> String? {
         guard let path = bundle.url(forResource: jsonFileName, withExtension: "json") else {

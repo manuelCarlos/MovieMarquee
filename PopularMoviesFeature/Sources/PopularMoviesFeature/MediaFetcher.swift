@@ -5,6 +5,7 @@
 //  Created by Manuel Lopes on 10.10.24.
 //
 
+import Models
 import NetworkService
 
 @available(iOS 13.0, *)

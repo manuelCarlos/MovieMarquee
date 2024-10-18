@@ -5,6 +5,8 @@
 //  Created by Manuel Lopes on 08.10.24.
 //
 
+import TMDBData
+
 public enum MovieRequest: MediaTypeProtocol {
 
     case getPopularMovies(page: Int)

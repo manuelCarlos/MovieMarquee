@@ -7,6 +7,8 @@
 
 import Foundation
 
+import TMDBData
+
 public protocol NetworkRequest: Sendable {
     var scheme: String { get }
     var host: String { get }

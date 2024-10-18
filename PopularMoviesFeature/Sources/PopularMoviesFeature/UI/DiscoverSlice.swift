@@ -9,6 +9,7 @@ import SwiftData
 import SwiftUI
 
 import MoviesDB
+import Models
 
 @available(iOS 17.0, *)
 struct DiscoverSlice: View {

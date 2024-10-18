@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import Models
+
 @available(iOS 15.0, *)
 struct ArtistItemView: View {
 
@@ -28,7 +30,7 @@ struct ArtistItemView: View {
     // MARK: - Private
 
     private func artistImage() -> some View {
-        AsyncImage(url: URL(string: artist.getPosterUrl()),
+        AsyncImage(url: URL(string: artist.posterUrl),
                    transaction: Transaction(animation: .default)) { phase in
             switch phase {
             case .success(let image):
@@ -58,7 +60,7 @@ struct ArtistItemView: View {
     }
 
     private func artistTitle() -> some View {
-        Text(artist.getTitle())
+        Text(artist.titleString)
             .font(.headline)
             .foregroundColor(.primary)
             .fontWeight(.regular)

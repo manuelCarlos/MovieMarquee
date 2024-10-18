@@ -5,6 +5,7 @@
 //  Created by Manuel Lopes on 10.10.24.
 //
 
+import Models
 import NetworkService
 
 // TODO: - Rename file and MediaInteractor

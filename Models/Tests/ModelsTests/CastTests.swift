@@ -11,7 +11,7 @@ import XCTest
 
 final class CastTests: XCTestCase {
 
-    func test_decoding_succefully() throws {
+    func test_decoding_successfully() throws {
         let cast = try loadJson(from: "cast", as: Cast.self)
 
         XCTAssertEqual(cast.adult, true)
@@ -47,7 +47,7 @@ final class CastTests: XCTestCase {
         }
     }
 
-    func test_cast_encoding_succefully() throws {
+    func test_cast_encoding_successfully() throws {
         let cast = Cast.makeCast()
 
         // Set the date encoding strategy to use yyyy-MM-dd and force it to use UTC
@@ -82,52 +82,38 @@ final class CastTests: XCTestCase {
     func test_get_title() {
         let cast1 = Cast.makeCast(title: nil)
 
-        XCTAssertEqual(cast1.getTitle, "Original Title")
+        XCTAssertEqual(cast1.titleString, "Original Title")
 
         let cast2 = Cast.makeCast(originalTitle: nil, title: nil)
 
-        XCTAssertEqual(cast2.getTitle, "Original Name")
+        XCTAssertEqual(cast2.titleString, "Original Name")
 
         let cast3 = Cast.makeCast(originalName: nil, originalTitle: nil, title: nil)
 
-        XCTAssertEqual(cast3.getTitle, "")
+        XCTAssertEqual(cast3.titleString, "")
     }
 
     func test_get_image_path() {
         let cast1 = Cast.makeCast(posterPath: nil)
 
-        XCTAssertEqual(cast1.getImagePath, "ProfilePath")
+        XCTAssertEqual(cast1.imagePath, "ProfilePath")
 
         let cast2 = Cast.makeCast(profilePath: nil, posterPath: nil)
 
-        XCTAssertEqual(cast2.getImagePath, "")
+        XCTAssertEqual(cast2.imagePath, "")
     }
 
     func test_get_role() {
         let cast1 = Cast.makeCast(character: nil, job: nil)
 
-        XCTAssertEqual(cast1.getRole, "Acting")
+        XCTAssertEqual(cast1.role, "Acting")
 
         let cast2 = Cast.makeCast(character: nil, job: "Director")
 
-        XCTAssertEqual(cast2.getRole, "Director")
+        XCTAssertEqual(cast2.role, "Director")
 
         let cast3 = Cast.makeCast(character: "Main Character", job: "Director")
 
-        XCTAssertEqual(cast3.getRole, "Main Character")
-    }
-
-    func test_get_known_for_department() {
-        let cast1 = Cast.makeCast(knownForDepartment: .actor, job: "Godot")
-
-        XCTAssertEqual(cast1.getKnownForDepartment, "Actors")
-
-        let cast2 = Cast.makeCast(character: nil, job: "Director")
-
-        XCTAssertEqual(cast2.getKnownForDepartment, "Acting")
-
-        let cast3 = Cast.makeCast(knownForDepartment: .art, job: "Extra")
-
-        XCTAssertEqual(cast3.getKnownForDepartment, "Art")
+        XCTAssertEqual(cast3.role, "Main Character")
     }
 }
