@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Movie: Codable, Identifiable, Hashable, Sendable {
+public struct Movie: Identifiable, Hashable, Watchable {
     public let id: Int
     public let title: String
     public let adult: Bool?
