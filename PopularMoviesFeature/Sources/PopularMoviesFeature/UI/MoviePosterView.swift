@@ -42,9 +42,11 @@ struct MoviePosterView: View {
                 }
             }
         } else {
-            Image(resource: "blue-velvet-md-web", ofType: "jpg")
-                .resizable()
-                .scaledToFit()
+            if let uiImage = UIImage(named: "placeholder.jpg", in: .module, with: nil) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFit()
+            }
         }
     }
 
@@ -53,9 +55,9 @@ struct MoviePosterView: View {
 #if DEBUG
     /// Intended for testing purposes only. This initializer will load a poster image from disk instead of default remote image loading.
     private var mockImage: Bool = false
-    init(imageUrl: String, animation: Animation = .easeInOut(duration: 0.1), mockImage: Bool) {
-        self.imageUrl = imageUrl
-        self.animation = animation
+    init(mockImage: Bool) {
+        self.imageUrl = ""
+        self.animation = .easeInOut(duration: 0)
         self.mockImage = mockImage
     }
 #endif

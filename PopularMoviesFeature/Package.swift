@@ -20,11 +20,14 @@ let package = Package(
         .target(
             name: "PopularMoviesFeature",
             dependencies: [
-            .product(name: "NetworkService", package: "NetworkService"),
-            .product(name: "Models", package: "Models"),
-            .product(name: "MoviesDB", package: "MoviesDB")
-        ]),
-
+                .product(name: "NetworkService", package: "NetworkService"),
+                .product(name: "Models", package: "Models"),
+                .product(name: "MoviesDB", package: "MoviesDB")
+            ],
+            resources: [
+                .process("Resources/placeholder.jpg"),
+            ]
+        ),
         .testTarget(
             name: "PopularMoviesFeatureTests",
             dependencies: [
