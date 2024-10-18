@@ -9,14 +9,14 @@ import Foundation
 @testable import Models
 
 extension Movie {
-    static func make(id: Int,
+    static func make(id: Int = 1,
                      title: String = "Airplane",
                      adult: Bool = false,
                      posterPath: String = "posterPath",
                      backdropPath: String = "backdropPath",
                      overview: String = "Good movie",
                      releaseDate: Date = .distantPast,
-                     genreIds: [Int] = [],
+                     genreIds: [Int] = [1, 2],
                      originalTitle: String = "Original Title",
                      originalLanguage: OriginalLanguage = .en,
                      popularity: Double = 10,

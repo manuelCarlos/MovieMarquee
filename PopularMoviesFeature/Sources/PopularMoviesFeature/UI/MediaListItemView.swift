@@ -37,6 +37,8 @@ struct MediaListItemView: View {
         }
     }
 
+    // MARK: - Private
+
     @ViewBuilder
     private var movieInfoStackView: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -63,8 +65,6 @@ struct MediaListItemView: View {
             }
         }
     }
-
-    // MARK: - Private
 
     private func makeMediaDetailView(mediaType: Watchable.Type) -> some View {
         VStack {
