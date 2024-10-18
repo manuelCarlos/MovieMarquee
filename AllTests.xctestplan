@@ -1,0 +1,73 @@
+{
+  "configurations" : [
+    {
+      "id" : "35D92A99-B907-4E78-B80B-00A7E45A35A8",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:TMDBData",
+        "identifier" : "TMDBDataTests",
+        "name" : "TMDBDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NetworkService",
+        "identifier" : "NetworkServiceTests",
+        "name" : "NetworkServiceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C772CB012C60024132D",
+        "name" : "MovieMarqueeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MoviesDB",
+        "identifier" : "MoviesDBTests",
+        "name" : "MoviesDBTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Models",
+        "identifier" : "ModelsTests",
+        "name" : "ModelsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C812CB012C60024132D",
+        "name" : "MovieMarqueeUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:PopularMoviesFeature",
+        "identifier" : "PopularMoviesFeatureTests",
+        "name" : "PopularMoviesFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:FavoriteMoviesFeature",
+        "identifier" : "FavoriteMoviesFeatureTests",
+        "name" : "FavoriteMoviesFeatureTests"
+      }
+    }
+  ],
+  "version" : 1
+}

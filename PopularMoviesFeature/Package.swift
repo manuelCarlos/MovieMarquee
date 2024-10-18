@@ -13,7 +13,8 @@ let package = Package(
     dependencies: [
         .package(path: "NetworkService"),
         .package(path: "Models"),
-        .package(path: "MoviesDB")
+        .package(path: "MoviesDB"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0")
     ],
     targets: [
         .target(
@@ -30,7 +31,8 @@ let package = Package(
                 "PopularMoviesFeature",
                 "NetworkService",
                 "Models",
-                "MoviesDB"
+                "MoviesDB",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         )
     ]

@@ -1,6 +1,6 @@
 //
 //  MockMovieDBModelActor.swift
-//  FavoriteMoviesFeature
+//  FavoriteMoviesFeatureTests
 //
 //  Created by Manuel Lopes on 17.10.24.
 //
