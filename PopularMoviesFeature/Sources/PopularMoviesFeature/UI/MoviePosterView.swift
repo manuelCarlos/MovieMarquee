@@ -25,7 +25,7 @@ struct MoviePosterView: View {
     // MARK: - Private
 
     @ViewBuilder
-    private var testImage: some View {
+    private var loadingImage: some View {
         if let uiImage = UIImage(named: "placeholder.jpg", in: .module, with: nil) {
             Image(uiImage: uiImage)
                 .resizable()
@@ -43,13 +43,7 @@ struct MoviePosterView: View {
                     .resizable()
                     .scaledToFit()
             case .empty:
-                #if DEBUG
-                testImage
-                #else
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.blue.opacity(0.5)))
-                    .scaleEffect(2.5)
-                #endif
+                loadingImage
             case .failure:
                 Image(systemName: "photo.badge.exclamationmark")
                     .resizable()
