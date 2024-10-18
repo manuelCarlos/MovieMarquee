@@ -5,7 +5,6 @@
 //  Created by Manuel Lopes on 18.10.24.
 //
 
-
 import XCTest
 import SnapshotTesting
 
@@ -16,7 +15,7 @@ import SnapshotTesting
 final class MoviePosterViewTests: XCTestCase {
 
     func test_movie_poster_view() {
-        let sut = MoviePosterView(mockImage: true)
+        let sut = MoviePosterView(imageUrl: "")
 
         assertSnapshot(of: sut, as: .image(
             layout: .device(config: .iPhone13Mini),
