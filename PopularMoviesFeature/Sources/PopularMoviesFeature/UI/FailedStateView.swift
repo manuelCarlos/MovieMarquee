@@ -18,6 +18,16 @@ struct FailedStateView: View {
         self.onRetry = onRetry
     }
 
+    var body: some View {
+        ContentUnavailableView {
+            Text("Oops, something went wrong")
+        } description: {
+            Text(error)
+        } actions: { retryAction }
+    }
+
+    // MARK: - Private
+
     private var retryAction: some View {
         if onRetry == nil {
             return EmptyView()
@@ -31,13 +41,5 @@ struct FailedStateView: View {
                     .font(.title)
             }
         }
-    }
-    
-    var body: some View {
-        ContentUnavailableView {
-            Text("Oops, something went wrong")
-        } description: {
-            Text(error)
-        } actions: { retryAction }
     }
 }

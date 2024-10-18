@@ -13,7 +13,7 @@ import MoviesDB
 
 @available(iOS 17.0, *)
 struct DiscoverSliceItem: View {
-    
+
     private let item: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
@@ -21,7 +21,7 @@ struct DiscoverSliceItem: View {
         self.item = item
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
-    
+
     var body: some View {
         NavigationLink(
             destination: makeMovieDetailView(mediaType: type(of: item))
@@ -40,9 +40,9 @@ struct DiscoverSliceItem: View {
             .cornerRadius(10)
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func makeMovieDetailView(mediaType: Watchable.Type) -> some View {
         VStack {
             if mediaType == Movie.self {

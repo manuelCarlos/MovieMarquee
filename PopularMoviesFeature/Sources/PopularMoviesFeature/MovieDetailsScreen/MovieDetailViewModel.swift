@@ -19,12 +19,12 @@ final class MovieDetailViewModel: @unchecked Sendable {
         case failed(String)
         case loaded(WatchableDetail)
     }
-    
+
     let navigationTitle: String
     private let movieId: Int
     private let interactor: MediaDetailInteractor
     private(set) var state = State.idle
-    
+
     init(interactor: MediaDetailInteractor, navigationTitle: String, movieId: Int) {
         self.interactor = interactor
         self.navigationTitle = navigationTitle

@@ -10,7 +10,7 @@ import Foundation
 @testable import Models
 
 extension Cast {
-    
+
     static func makeCast(
         adult: Bool = true,
         gender: Int? = 1,

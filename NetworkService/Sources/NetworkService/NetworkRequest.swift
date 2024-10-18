@@ -65,17 +65,17 @@ public extension NetworkRequest {
 
         var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         urlRequest.httpMethod = requestType.rawValue
-        
+
         if !headers.isEmpty {
             urlRequest.allHTTPHeaderFields = headers
         }
-        
+
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         if !params.isEmpty {
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
         }
-        
+
         return urlRequest
     }
 }

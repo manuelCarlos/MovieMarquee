@@ -25,6 +25,6 @@ let package = Package(
                 .process("Resources/invalidJSONFile.json")
 
             ]
-        ),
+        )
     ]
 )

@@ -19,7 +19,7 @@ protocol MediaInteractor: Sendable {
 final class DefaultMediaInteractor: Sendable, MediaInteractor {
 
     private let popularMoviesFetcher: Fetchable
-    
+
     init(popularMoviesFetcher: Fetchable = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
                                                         service: MovieService.shared)) {
         self.popularMoviesFetcher = popularMoviesFetcher

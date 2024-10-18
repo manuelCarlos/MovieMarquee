@@ -44,17 +44,17 @@ final actor MovieDBModelActor: MovieDBModelStorage {
             throw MoviesDBError.notFound
         }
     }
-    
+
     func addFavoriteMovie(_ movie: FavoriteMovie) async throws {
         let favMovie = FavoriteMovieModel(id: movie.id, name: movie.name)
         modelContext.insert(favMovie)
         try modelContext.save()
     }
-    
+
     func deleteFavoriteMovie(with id: Int) async throws {
         try deleteFavoriteMovieModel(with: id)
     }
-    
+
     func deleteFavoriteMovies(_ movies: [FavoriteMovie]) async throws {
         for movie in movies {
             try deleteFavoriteMovieModel(with: movie.id)

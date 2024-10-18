@@ -55,7 +55,7 @@ final class SpokenLanguageTests: XCTestCase {
         """
         let jsonData = Data(json.utf8)
         let decoder = JSONDecoder()
-        
+
         XCTAssertThrowsError(try decoder.decode(SpokenLanguage.self, from: jsonData)) { error in
             XCTAssertNotNil(error as? DecodingError)
         }

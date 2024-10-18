@@ -37,7 +37,7 @@ struct MainAppScene: View {
                 .navigationBarTitle("title")
         }
         .task {
-            Task { 
+            Task {
                 try? await favoriteMoviesDBStore.loadAllMovies()
             }
         }
