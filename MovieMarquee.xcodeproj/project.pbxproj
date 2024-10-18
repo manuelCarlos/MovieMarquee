@@ -30,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		110BD1792CC24F49008BE48D /* TMDBData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TMDBData; sourceTree = "<group>"; };
 		11947C672CB012C50024132D /* MovieMarquee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieMarquee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C782CB012C60024132D /* MovieMarqueeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +93,7 @@
 		11947C5E2CB012C50024132D = {
 			isa = PBXGroup;
 			children = (
+				110BD1792CC24F49008BE48D /* TMDBData */,
 				11A312EE2CBFA4190074856C /* FavoriteMoviesFeature */,
 				11947CAC2CB6737A0024132D /* Models */,
 				11A312F12CBFA9170074856C /* MoviesDB */,
