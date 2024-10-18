@@ -7,9 +7,8 @@
 
 import Foundation
 
-public typealias Crew = Cast
+public struct Cast: Identifiable, Hashable, Creditable {
 
-public struct Cast: Codable, Identifiable, Hashable, Sendable {
     public let adult: Bool
     public let gender: Int?
     public let id: Int
@@ -35,22 +34,18 @@ public struct Cast: Codable, Identifiable, Hashable, Sendable {
     public let voteAverage: Double?
     public let voteCount: Int?
 
-    public var getKnownForDepartment: String? {
-        knownForDepartment?.rawValue
+    public var titleString: String {
+        return title ?? originalTitle ?? originalName ?? "" // TODO: - remove default
     }
 
-    public var getTitle: String {
-        return title ?? originalTitle ?? originalName ?? ""
+    public var imagePath: String {
+        return posterPath ?? profilePath ?? "" // TODO: - remove default
     }
 
-    public var getImagePath: String {
-        return posterPath ?? profilePath ?? ""
+    public var role: String {
+        return character ?? job ?? department?.rawValue ?? "" // TODO: - remove default
     }
 
-    public var getRole: String {
-        return character ?? job ?? department?.rawValue ?? ""
-    }
-    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         adult = try container.decode(Bool.self, forKey: .adult)

@@ -1,3 +1,10 @@
+//
+//  Creditable.swift
+//  Models
+//
+//  Created by Manuel Lopes on 18.10.24.
+//
+
 import TMDBData
 
 @available(iOS 13.0, *)
