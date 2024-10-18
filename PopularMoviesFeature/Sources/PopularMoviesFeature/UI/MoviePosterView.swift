@@ -19,11 +19,7 @@ struct MoviePosterView: View {
     }
 
     var body: some View {
-        #if DEBUG
-        testImage
-        #else
         asyncImage
-        #endif
     }
 
     // MARK: - Private
@@ -47,9 +43,13 @@ struct MoviePosterView: View {
                     .resizable()
                     .scaledToFit()
             case .empty:
+                #if DEBUG
+                testImage
+                #else
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: Color.blue.opacity(0.5)))
                     .scaleEffect(2.5)
+                #endif
             case .failure:
                 Image(systemName: "photo.badge.exclamationmark")
                     .resizable()
