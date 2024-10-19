@@ -28,13 +28,13 @@ struct MovieOverviewListItem: View {
             VStack {
                 MoviePosterView(imageUrl: movie.posterUrl,
                                 animation: .easeInOut(duration: 0.3))
-                .scaledToFit()
-                .frame(width: 140, height: 210)
+                .scaledToFill()
+                .frame(maxHeight: 300)
 
                 Text(movie.title)
                     .font(.headline)
                     .foregroundColor(.secondary)
-                    .frame(width: 140, height: 60)
+                    .frame(width: 120, height: 60, alignment: .top)
             }
             .cornerRadius(10)
         }

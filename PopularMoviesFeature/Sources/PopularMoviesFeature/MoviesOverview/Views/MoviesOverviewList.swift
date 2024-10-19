@@ -16,7 +16,7 @@ struct MoviesOverviewList: View {
 
     private let navigationTitle: String
     private let title: String
-    private let movies: [Watchable] // TODO: - rename
+    private let movies: [Watchable]
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
     init(
@@ -29,19 +29,6 @@ struct MoviesOverviewList: View {
         self.title = title
         self.movies = movies
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
-    }
-
-    var discloseAllView: some View {
-        HStack(alignment: .bottom, spacing: 3) {
-            Text(Texts.ButtonTitle.sliceSeeAll)
-                .foregroundColor(.accentColor)
-                .font(.title3)
-                .bold()
-            Image(systemName: Icons.seeAllButton.rawValue)
-                .foregroundColor(.accentColor)
-                .padding(.bottom, 4)
-        }
-        .padding(.trailing, 10)
     }
 
     var body: some View {
@@ -66,11 +53,24 @@ struct MoviesOverviewList: View {
                 HStack(alignment: .center, spacing: 10) {
                     ForEach(movies, id: \.id) { item in
                         MovieOverviewListItem(movie: item, favoriteMoviesDBStore: favoriteMoviesDBStore)
-                            .frame(height: 290, alignment: .center)
                     }
                 }
-                .padding(.horizontal)
             }
         }
+    }
+
+    // MARK: - Private
+
+    private var discloseAllView: some View {
+        HStack(alignment: .bottom, spacing: 3) {
+            Text(Texts.ButtonTitle.sliceSeeAll)
+                .foregroundColor(.accentColor)
+                .font(.title3)
+                .bold()
+            Image(systemName: Icons.seeAllButton.rawValue)
+                .foregroundColor(.accentColor)
+                .padding(.bottom, 4)
+        }
+        .padding(.trailing, 10)
     }
 }
