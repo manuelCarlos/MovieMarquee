@@ -34,15 +34,11 @@ struct MainAppScene: View {
                     Label("Favorites", systemImage: "heart")
                 }
                 .tag(TabViewSection.favorites.rawValue)
-                .navigationBarTitle("title")
         }
         .task {
             Task {
                 try? await favoriteMoviesDBStore.loadAllMovies()
             }
         }
-        .navigationBarHidden(false)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
