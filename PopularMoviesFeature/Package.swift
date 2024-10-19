@@ -25,7 +25,7 @@ let package = Package(
                 .product(name: "MoviesDB", package: "MoviesDB")
             ],
             resources: [
-                .process("Resources/placeholder.jpg"),
+                .process("Resources/poster_placeholder.jpg")
             ]
         ),
         .testTarget(

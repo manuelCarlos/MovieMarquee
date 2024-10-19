@@ -36,13 +36,17 @@ final class StarsViewTests: XCTestCase {
                                         layout: SwiftUISnapshotLayout = .fixed(width: 100, height: 50)) {
         let sut = StarsView(rating: rating, maxRating: maxRating)
 
-        assertSnapshot(of: sut, as: .image(
-            layout: layout,
-            traits: .init(userInterfaceStyle: .light)
-        ))
-        assertSnapshot(of: sut, as: .image(
-            layout: layout,
-            traits: .init(userInterfaceStyle: .dark)
-        ))
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: layout,
+                        traits: .init(userInterfaceStyle: .light)
+                       )
+        )
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: layout,
+                        traits: .init(userInterfaceStyle: .dark)
+                       )
+        )
     }
 }

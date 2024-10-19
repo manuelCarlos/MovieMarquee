@@ -23,7 +23,7 @@ struct MainAppScene: View {
 
     var body: some View {
         TabView(selection: $selectedTabIndex) {
-            DiscoverScene(favoriteMoviesDBStore: favoriteMoviesDBStore)
+            PopularMoviesFeatureView(favoriteMoviesDBStore: favoriteMoviesDBStore)
                 .tabItem {
                     Label("Discover", systemImage: "movieclapper")
                 }

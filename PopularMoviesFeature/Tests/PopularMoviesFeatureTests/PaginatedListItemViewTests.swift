@@ -1,21 +1,28 @@
 //
-//  LoadingStateViewTests.swift
+//  PaginatedListItemViewTests.swift
 //  PopularMoviesFeatureTests
 //
-//  Created by Manuel Lopes on 19.10.24.
+//  Created by Manuel Lopes on 18.10.24.
 //
+
+import Foundation
 
 import XCTest
 import SnapshotTesting
 
+@testable import Models
+@testable import MoviesDB
 @testable import PopularMoviesFeature
 
-@available(iOS 14.0, *)
+@available(iOS 17.0, *)
 @MainActor
-final class LoadingStateViewTests: XCTestCase {
+final class PaginatedListItemViewTests: XCTestCase {
 
-    func test_loading_state_view() {
-        let sut = LoadingStateView(subtitle: "Loading...")
+    private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
+
+    func test_media_list_item() {
+        let sut = PaginatedListItemView(mediaItem: Movie.make(),
+                               favoriteMoviesDBStore: dbStore)
 
         assertSnapshot(of: sut,
                        as: .image(
@@ -32,9 +39,11 @@ final class LoadingStateViewTests: XCTestCase {
         )
     }
 
-    func test_loading_state_view_with_long_texts() {
+    func test_media_list_item_with_long_texts() {
         let title = "The Assassination of Jesse James By the Coward Robert Ford Final Final2 Cut Redux Part 44 Is a Loooong Title"
-        let sut = LoadingStateView(subtitle: title)
+        let sut = PaginatedListItemView(mediaItem: Movie.make(id: 1,
+                                                     title: title),
+                               favoriteMoviesDBStore: dbStore)
 
         assertSnapshot(of: sut,
                        as: .image(

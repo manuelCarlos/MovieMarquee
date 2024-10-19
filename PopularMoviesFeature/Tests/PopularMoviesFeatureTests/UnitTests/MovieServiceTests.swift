@@ -15,7 +15,7 @@ final class MovieServiceTests: XCTestCase {
 
     // MARK: - Test Fetching Media
 
-    func test_fetch_media_successfuly() async throws {
+    func test_fetch_media_successfully() async throws {
         let mockRequestManager = MockRequestManager()
         mockRequestManager.mockMedia = Movies.make()
         let service = MovieService(requestManager: mockRequestManager)
