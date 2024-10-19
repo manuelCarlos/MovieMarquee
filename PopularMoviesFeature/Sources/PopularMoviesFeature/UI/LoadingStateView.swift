@@ -22,5 +22,6 @@ struct LoadingStateView: View {
                 .font(.headline)
                 .foregroundColor(.gray)
         }
+        .padding()
     }
 }
