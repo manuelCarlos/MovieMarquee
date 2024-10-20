@@ -27,7 +27,7 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    // MARK: - Load movies from DB
+    // MARK: - Loading all movies from DB
 
     func test_loadAllMovies_successfully() async throws {
         mockActor.favoriteMovies = [FavoriteMovie(id: 1, name: "Test Movie")]
@@ -48,30 +48,31 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         XCTAssertEqual(store.movies.count, 0)
     }
 
-    // MARK: - Add fav movies to DB
+    // MARK: - Inserting fav movies to DB
 
-    func test_add_favorite_movie() async throws {
+    func test_inserting_a_favorite_movie_in_the_DB() async throws {
         let movie = FavoriteMovie(id: 1, name: "Inception")
         let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
-        try await store.addMovie(movie)
+        try await store.insertMovie(movie)
 
         XCTAssertEqual(store.movies.count, 1)
         XCTAssertEqual(store.movies.first?.id, 1)
         XCTAssertEqual(store.movies.first?.name, "Inception")
 
-        try await store.addMovie(movie)
+        try await store.insertMovie(movie)
         XCTAssertEqual(store.movies.count, 1)
+        XCTAssertEqual(store.movies.first?.id, 1)
         XCTAssertEqual(store.movies.first?.name, "Inception")
     }
 
     // MARK: - Deleting movies from DB
 
-    func test_deleting_single_favorite_movie() async throws {
+    func test_deleting_a_single_favorite_movie_from_the_DB() async throws {
         let movie = FavoriteMovie(id: 10, name: "Inception")
         let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
-        try await store.addMovie(movie)
+        try await store.insertMovie(movie)
         try await store.deleteMovie(with: movie.id)
 
         XCTAssertTrue(store.movies.isEmpty)
@@ -91,8 +92,8 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         let interstellar = FavoriteMovie(id: 11, name: "Interstellar")
         let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
-        try await store.addMovie(inception)
-        try await store.addMovie(interstellar)
+        try await store.insertMovie(inception)
+        try await store.insertMovie(interstellar)
         try await store.deleteMovies(indexSet: IndexSet(integersIn: 0..<2))
 
         XCTAssertTrue(store.movies.isEmpty)
@@ -118,14 +119,15 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         }
     }
 
+    // MARK: - Fetching movies from DB
+
     func test_fetching_favorite_movie_when_it_exists() async throws {
         let movie = FavoriteMovie(id: 11, name: "Blue is the Warmest Color")
         let store = FavoriteMoviesDBStore(movieDBModelStorage: mockActor)
 
-        try await store.addMovie(movie)
+        try await store.insertMovie(movie)
         let fetchedMovie = try await store.fetchMovie(with: movie.id)
 
-        XCTAssertNotNil(fetchedMovie)
         XCTAssertEqual(fetchedMovie.id, 11)
         XCTAssertEqual(fetchedMovie.name, "Blue is the Warmest Color")
     }

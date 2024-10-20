@@ -29,7 +29,7 @@ final class MockMovieDBModelActor: MovieDBModelStorage {
         }
     }
 
-    func addFavoriteMovie(_ movie: FavoriteMovie) async throws {
+    func insertFavoriteMovie(_ movie: FavoriteMovie) async throws {
         if shouldThrowError {
             throw MoviesDBError.notFound
         }

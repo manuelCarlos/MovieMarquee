@@ -12,7 +12,7 @@ import SwiftData
 protocol MovieDBModelStorage {
     func fetchAllFavoriteMovies() async throws -> [FavoriteMovie]
     func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie
-    func addFavoriteMovie(_ movie: FavoriteMovie) async throws
+    func insertFavoriteMovie(_ movie: FavoriteMovie) async throws
     func deleteFavoriteMovie(with id: Int) async throws
     func deleteFavoriteMovies(_ movies: [FavoriteMovie]) async throws
 }
@@ -45,7 +45,10 @@ final actor MovieDBModelActor: MovieDBModelStorage {
         }
     }
 
-    func addFavoriteMovie(_ movie: FavoriteMovie) async throws {
+    /// Inserts a `FavoriteMovie` instance in the DB iff the movie is not already saved.
+    /// Because the `FavoriteMovieModel.id` is marked as @unique, if the `id` of movie instance passed to this method is already contained in the DB then this method will
+    /// effectively silently skip the insertion.
+    func insertFavoriteMovie(_ movie: FavoriteMovie) async throws {
         let favMovie = FavoriteMovieModel(id: movie.id, name: movie.name)
         modelContext.insert(favMovie)
         try modelContext.save()

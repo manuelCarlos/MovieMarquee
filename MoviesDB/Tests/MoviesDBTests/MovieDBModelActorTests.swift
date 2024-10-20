@@ -35,7 +35,7 @@ final class MovieDBModelActorTests: XCTestCase {
     func test_add_favorite_movie() async throws {
         let favoriteMovie = FavoriteMovie(id: 111, name: "Inception")
 
-        try await modelActor.addFavoriteMovie(favoriteMovie)
+        try await modelActor.insertFavoriteMovie(favoriteMovie)
 
         let fetchedMovie = try await modelActor.fetchFavoriteMovie(with: favoriteMovie.id)
         XCTAssertEqual(fetchedMovie.id, 111)
@@ -49,7 +49,7 @@ final class MovieDBModelActorTests: XCTestCase {
         ]
 
         for movie in favoriteMovies {
-            try await modelActor.addFavoriteMovie(movie)
+            try await modelActor.insertFavoriteMovie(movie)
         }
 
         let fetchedMovies = try await modelActor.fetchAllFavoriteMovies()
@@ -61,7 +61,7 @@ final class MovieDBModelActorTests: XCTestCase {
 
     func test_delete_favorite_movie() async throws {
         let favoriteMovie = FavoriteMovie(id: 222, name: "Inception")
-        try await modelActor.addFavoriteMovie(favoriteMovie)
+        try await modelActor.insertFavoriteMovie(favoriteMovie)
 
         let fetchedMovie = try await modelActor.fetchFavoriteMovie(with: favoriteMovie.id)
         XCTAssertEqual(fetchedMovie.id, favoriteMovie.id)
