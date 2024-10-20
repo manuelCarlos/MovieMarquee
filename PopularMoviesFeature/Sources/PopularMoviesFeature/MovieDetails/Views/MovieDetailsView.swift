@@ -80,7 +80,8 @@ struct MovieDetailsView: View {
             FavoriteButton(mediaId: movieDetails.id,
                            mediaTitle: movieDetails.title,
                            favoriteMoviesDBStore: favoriteMoviesDBStore)
-            .padding()
+            .padding(.leading, 20)
+            .padding(.trailing, 20)
 
             Spacer()
         }

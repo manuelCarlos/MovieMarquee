@@ -6,7 +6,7 @@
 //
 
 @available(iOS 13.0, *)
-public protocol WatchableDetail: Watchable {
+public protocol WatchableDetail: Watchable { // TODO: - rename WatchableDetails
     var genres: [Genre] { get }
     var productionCompanies: [ProductionCompany]? { get }
     var productionCountries: [ProductionCountry]? { get }

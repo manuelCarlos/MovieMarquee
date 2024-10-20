@@ -66,9 +66,11 @@ final class MovieServiceTests: XCTestCase {
 
         XCTAssertEqual(movieDetail.id, 12)
         XCTAssertEqual(movieDetail.title, "The cookie monster")
-        XCTAssertNil(movieDetail.overview)
+        XCTAssertEqual(movieDetail.overview, "A cookie monster is a fictional creature that appears in various media, including animated films, video games, and comic books.")
         XCTAssertEqual(movieDetail.popularity, 4.4)
-        XCTAssertEqual(movieDetail.genres, [])
+        XCTAssertEqual(movieDetail.genres, [Genre(id: 1, name: "Action"), Genre(id: 2, name: "Comedy")])
+        XCTAssertEqual(movieDetail.voteAverage, 9)
+        XCTAssertEqual((movieDetail as? MovieDetail)?.releaseDate, Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 24))!)
         XCTAssertEqual(mockRequestManager.decodeCallCount, 1)
     }
 
