@@ -19,7 +19,7 @@ protocol MovieDBModelStorage {
 
 @available(iOS 17, *)
 @ModelActor
-final actor MovieDBModelActor: MovieDBModelStorage {
+final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
 
     static let shared: MovieDBModelActor = {
         let schema = Schema([FavoriteMovieModel.self])
