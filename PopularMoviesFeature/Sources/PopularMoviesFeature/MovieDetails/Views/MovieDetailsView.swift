@@ -41,26 +41,21 @@ struct MovieDetailsView: View {
                 Task { await viewModel.fetchMediaDetail() }
             }
         case .loaded(let mediaDetail):
-            VStack(alignment: .leading) {
-                GeometryReader { geometry in
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 10) {
-                            makeMediaDetailsView(mediaDetails: mediaDetail)
-                                .frame(width: geometry.size.width, alignment: .top)
-                            if let overview = mediaDetail.overview {
-                                Text("Overview")
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                                Text(overview)
-                                    .font(.system(size: 16))
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 20))
-                            }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    makeMediaDetailsView(mediaDetails: mediaDetail)
 
-                            MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(mediaService: MovieService.shared),
-                                                                        mediaId: mediaDetail.id))
-                        }
+                    if let overview = mediaDetail.overview {
+                        Text("Overview")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        Text(overview)
+                            .font(.system(size: 16))
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 20))
                     }
-                    .padding()
+
+                    MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(mediaService: MovieService.shared),
+                                                                mediaId: mediaDetail.id))
                 }
             }
         }
@@ -68,7 +63,7 @@ struct MovieDetailsView: View {
 
     // MARK: - Private
 
-    private func makeMediaDetailsView(mediaDetails: WatchableDetail) -> some View {
+    private func makeMediaDetailsView(mediaDetails: WatchableDetail) -> some View { // TODO: - make this a View?
         HStack(alignment: .top) {
             MoviePosterView(imageUrl: mediaDetails.posterUrl)
                 .frame(width: 150, height: 200)

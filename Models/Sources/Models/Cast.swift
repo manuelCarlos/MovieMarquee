@@ -34,16 +34,16 @@ public struct Cast: Identifiable, Hashable, Creditable {
     public let voteAverage: Double?
     public let voteCount: Int?
 
-    public var titleString: String {
-        return title ?? originalTitle ?? originalName ?? "" // TODO: - remove default
+    public var titleString: String? {
+        return title ?? originalTitle ?? originalName
     }
 
-    public var imagePath: String {
-        return posterPath ?? profilePath ?? "" // TODO: - remove default
+    public var imagePath: String? {
+        return posterPath ?? profilePath
     }
 
-    public var role: String {
-        return character ?? job ?? department?.rawValue ?? "" // TODO: - remove default
+    public var role: String? {
+        return character ?? job ?? department?.rawValue
     }
 
     public init(from decoder: Decoder) throws {

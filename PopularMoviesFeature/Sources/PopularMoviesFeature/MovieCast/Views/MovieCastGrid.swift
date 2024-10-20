@@ -42,7 +42,6 @@ struct MovieCastGrid: View {
                     ArtistItemView(artist: artist)
                 }
             }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
         }
     }
 }

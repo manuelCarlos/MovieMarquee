@@ -90,7 +90,7 @@ final class CastTests: XCTestCase {
 
         let cast3 = Cast.makeCast(originalName: nil, originalTitle: nil, title: nil)
 
-        XCTAssertEqual(cast3.titleString, "")
+        XCTAssertNil(cast3.titleString)
     }
 
     func test_get_image_path() {
@@ -100,7 +100,7 @@ final class CastTests: XCTestCase {
 
         let cast2 = Cast.makeCast(profilePath: nil, posterPath: nil)
 
-        XCTAssertEqual(cast2.imagePath, "")
+        XCTAssertNil(cast2.imagePath)
     }
 
     func test_get_role() {

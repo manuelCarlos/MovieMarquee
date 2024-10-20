@@ -22,26 +22,28 @@ final class FavoriteMoviesSceneTests: XCTestCase {
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       ))
+                       )
+        )
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       ))
+                       )
+        )
     }
 
     func test_view_when_there_are_multiple_favorite_movies() async throws {
         let movieDBModelActor = MockMovieDBModelActor()
         movieDBModelActor.favoriteMovies = [
-            .init(id: 1, name: "Stalker"),
-            .init(id: 2, name: "Citizen Kane"),
-            .init(id: 3, name: "The Godfather"),
-            .init(id: 4, name: "The Dark Knight"),
-            .init(id: 5, name: "The Shawshank Redemption"),
-            .init(id: 6, name: "The Godfather: Part II"),
-            .init(id: 7, name: "The Dark Knight Rises"),
-            .init(id: 8, name: "The Lord of the Rings: The Return of the King"),
-            .init(id: 9, name: "The Lord of the Rings: The Fellowship of the Ring")
+            FavoriteMovie(id: 1, name: "Stalker"),
+            FavoriteMovie(id: 2, name: "Citizen Kane"),
+            FavoriteMovie(id: 3, name: "The Godfather"),
+            FavoriteMovie(id: 4, name: "The Dark Knight"),
+            FavoriteMovie(id: 5, name: "The Shawshank Redemption"),
+            FavoriteMovie(id: 6, name: "The Godfather: Part II"),
+            FavoriteMovie(id: 7, name: "The Dark Knight Rises"),
+            FavoriteMovie(id: 8, name: "The Lord of the Rings: The Return of the King"),
+            FavoriteMovie(id: 9, name: "The Lord of the Rings: The Fellowship of the Ring")
         ]
         let storage = FavoriteMoviesDBStore(movieDBModelStorage: movieDBModelActor)
         try await storage.loadAllMovies()
@@ -52,11 +54,13 @@ final class FavoriteMoviesSceneTests: XCTestCase {
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       ))
+                       )
+        )
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       ))
+                       )
+        )
     }
 }
