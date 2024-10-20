@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "MoviesDB",
+    defaultLocalization: "en",
     products: [
         .library(
             name: "MoviesDB",

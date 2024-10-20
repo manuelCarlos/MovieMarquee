@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "NetworkService",
+    defaultLocalization: "en",
     products: [
         .library(
             name: "NetworkService",

@@ -9,6 +9,9 @@ import Foundation
 
 /// Note that: SPM generates the resource_bundle_accessor `Bundle.module` only if the corresponding target contains resources.
 /// The Resources folder MUST contain something and MUST NOT be an empty directory.
+/// Further more, to have the compiler automatically add the localization keys to the string catalog:
+/// 1.  the package manifest Has to include the `defaultLocalization: "en"` parameter
+/// 2. Xcode build setting for the app target needs to have `Use Compiler to Extract  Swift strings` turned on.
 enum Texts {
 
     static let networkErrorDescription = NSLocalizedString("network_error_description_key",

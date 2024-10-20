@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Models",
+    defaultLocalization: "en",
     products: [
         .library(
             name: "Models",

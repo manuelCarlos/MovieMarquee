@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "PopularMoviesFeature",
+    defaultLocalization: "en",
     products: [
         .library(
             name: "PopularMoviesFeature",

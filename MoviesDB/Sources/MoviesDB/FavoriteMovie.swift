@@ -14,7 +14,7 @@ public struct FavoriteMovie: Identifiable, Hashable, Sendable {
 
     /// The name or title of the favorite movie.
     public let name: String
-    
+
     /// Initializes a new instance of `FavoriteMovie` with the specified `id` and `name`.
     ///
     /// - Parameters:
