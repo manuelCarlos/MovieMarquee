@@ -34,6 +34,7 @@ struct MovieOverviewListItem: View {
                 Text(movie.title)
                     .font(.headline)
                     .foregroundColor(.secondary)
+                    .minimumScaleFactor(0.5)
                     .frame(width: 120, height: 60, alignment: .top)
             }
             .cornerRadius(10)
