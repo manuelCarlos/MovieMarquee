@@ -1,10 +1,15 @@
-import Foundation
+//
+//  PopularMoviesFetcher.swift
+//  PopularMoviesFeature
+//
+//  Created by Manuel Lopes on 20.10.24.
+//
 
-public final class PopularMoviesFetcher: Sendable, MediaListFetcher {
+import NetworkService
 
-    public init() {}
+final class PopularMoviesFetcher: Sendable, MediaListFetcher {
 
-    public func fetch(page: Int) -> NetworkRequest {
+    func fetch(page: Int) -> NetworkRequest {
         MovieRequest.getPopularMovies(page: page)
     }
 }

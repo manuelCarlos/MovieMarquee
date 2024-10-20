@@ -12,10 +12,11 @@ import XCTest
 
 final class PopularMoviesFetcherTests: XCTestCase {
 
-    var popularMoviesFetcher: PopularMoviesFetcher!
+    private var popularMoviesFetcher: PopularMoviesFetcher!
 
     override func setUp() {
         super.setUp()
+
         popularMoviesFetcher = PopularMoviesFetcher()
     }
 
