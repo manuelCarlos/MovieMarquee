@@ -45,6 +45,20 @@ final class PaginatedListViewTests: XCTestCase {
                         traits: .init(userInterfaceStyle: .dark)
                        )
         )
+
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: .device(config: .iPhone13Mini(.landscape)),
+                        traits: .init(userInterfaceStyle: .light)
+                       )
+        )
+
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: .device(config: .iPhone13Mini(.landscape)),
+                        traits: .init(userInterfaceStyle: .dark)
+                       )
+        )
     }
 
     func test_empty_list_error_state_when_fetching_first_page() async throws {
@@ -64,6 +78,20 @@ final class PaginatedListViewTests: XCTestCase {
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
+                        traits: .init(userInterfaceStyle: .dark)
+                       )
+        )
+
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: .device(config: .iPhone13Mini(.landscape)),
+                        traits: .init(userInterfaceStyle: .light)
+                       )
+        )
+
+        assertSnapshot(of: sut,
+                       as: .image(
+                        layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
                        )
         )
