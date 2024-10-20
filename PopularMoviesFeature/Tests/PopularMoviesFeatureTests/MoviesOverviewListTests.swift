@@ -27,7 +27,7 @@ final class MoviesOverviewListTests: XCTestCase {
             Movie.make(id: 3, title: "The assassination of Jesse James by the Coward Robert Ford Final Cut Redux Part 2"),
             Movie.make(id: 4, title: "Taxi Driver"),
             Movie.make(id: 5, title: "Badlands"),
-            Movie.make(id: 6, title: "The Tree of Life"),
+            Movie.make(id: 6, title: "The Tree of Life")
         ]
 
         let sut = MoviesOverviewList(

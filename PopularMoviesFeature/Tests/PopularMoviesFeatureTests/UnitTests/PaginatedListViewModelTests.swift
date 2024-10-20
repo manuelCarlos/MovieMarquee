@@ -77,7 +77,7 @@ final class PaginatedListViewModelTests: XCTestCase {
     }
 
     func test_fetching_first_page_should_throw_an_error() async {
-        let mockError = NSError(domain: "test", code: 0, userInfo: nil)
+        let mockError = NSError(domain: "test", code: 0, userInfo: nil) // TODO: - custom errror
         mockController.error = mockError
 
         await viewModel.fetchFirstPage()

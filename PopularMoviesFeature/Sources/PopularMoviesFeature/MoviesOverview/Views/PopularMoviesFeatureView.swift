@@ -57,4 +57,14 @@ public struct PopularMoviesFeatureView: View {
             }
         }
     }
+
+    #if DEBUG
+    /// **NOT to be used in production**
+    /// A special initializer for testing purposes that allows dependency injection of a mock viewModel.
+    init(viewModel: PopularMoviesFeatureViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+        self.viewModel = viewModel
+        self.isDataLoaded = true
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
+    }
+    #endif
 }

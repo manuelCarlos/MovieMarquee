@@ -48,7 +48,7 @@ final class DiscoverSceneViewModelTests: XCTestCase {
     }
 
     func test_fetching_media_should_fail() async {
-        let mockError = NSError(domain: "test", code: 0, userInfo: nil)
+        let mockError = NSError(domain: "test", code: 0, userInfo: nil) // TODO: - custom errror
         mockController.error = mockError
 
         await viewModel.fetchPopularMoviesAsync()

@@ -71,7 +71,7 @@ final class PaginatedListViewTests: XCTestCase {
 
     func test_no_internet_error_state_when_fetching_first_page() async throws {
         let controller = MockMoviesOverviewController()
-        controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil)
+        controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil) // TODO: - custom errror
         let viewModel = PaginatedListViewModel(controller: controller)
         await viewModel.fetchFirstPage()
         let sut = PaginatedListView(viewModel: viewModel,
