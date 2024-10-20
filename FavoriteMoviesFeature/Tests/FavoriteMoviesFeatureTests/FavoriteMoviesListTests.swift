@@ -40,11 +40,13 @@ final class FavoriteMoviesListTests: XCTestCase {
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       ))
+                       )
+        )
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       ))
+                       )
+        )
     }
 }
