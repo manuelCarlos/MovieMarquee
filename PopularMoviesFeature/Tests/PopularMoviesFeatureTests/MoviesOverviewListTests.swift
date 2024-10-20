@@ -57,7 +57,7 @@ final class MoviesOverviewListTests: XCTestCase {
                         traits: .init(userInterfaceStyle: .light)
                        )
         )
-        
+
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),

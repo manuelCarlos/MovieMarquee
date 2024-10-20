@@ -40,12 +40,12 @@ struct MovieDetailsView: View {
             FailedStateView(error: error) {
                 Task { await viewModel.fetchMediaDetail() }
             }
-        case .loaded(let mediaDetail):
+        case .loaded(let movieDetails):
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    makeMediaDetailsView(mediaDetails: mediaDetail)
+                    makeMovieDetailsView(movieDetails: movieDetails)
 
-                    if let overview = mediaDetail.overview {
+                    if let overview = movieDetails.overview {
                         Text("Overview")
                             .font(.title)
                             .fontWeight(.bold)
@@ -55,7 +55,7 @@ struct MovieDetailsView: View {
                     }
 
                     MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(mediaService: MovieService.shared),
-                                                                mediaId: mediaDetail.id))
+                                                                mediaId: movieDetails.id))
                 }
             }
         }
@@ -63,22 +63,22 @@ struct MovieDetailsView: View {
 
     // MARK: - Private
 
-    private func makeMediaDetailsView(mediaDetails: WatchableDetail) -> some View { // TODO: - make this a View?
+    private func makeMovieDetailsView(movieDetails: WatchableDetail) -> some View { // TODO: - make this a View?
         HStack(alignment: .top) {
-            MoviePosterView(imageUrl: mediaDetails.posterUrl)
+            MoviePosterView(imageUrl: movieDetails.posterUrl)
                 .frame(width: 150, height: 200)
 
             MovieDetailsHeader(
-                title: mediaDetails.title,
-                genres: mediaDetails.genres.first?.name,
-                rating: mediaDetails.voteAverage,
-                language: mediaDetails.originalLanguage,
-                date: (mediaDetails as? MovieDetail)?.releaseDate,
-                time: (mediaDetails as? MovieDetail)?.localizedRuntime
+                title: movieDetails.title,
+                genres: movieDetails.genres.first?.name,
+                rating: movieDetails.voteAverage,
+                language: movieDetails.originalLanguage,
+                date: (movieDetails as? MovieDetail)?.releaseDate,
+                time: (movieDetails as? MovieDetail)?.localizedRuntime
             )
 
-            FavoriteButton(mediaId: mediaDetails.id,
-                           title: mediaDetails.title,
+            FavoriteButton(mediaId: movieDetails.id,
+                           mediaTitle: movieDetails.title,
                            favoriteMoviesDBStore: favoriteMoviesDBStore)
             .padding()
 

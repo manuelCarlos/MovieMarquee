@@ -16,12 +16,12 @@ struct FavoriteButton: View {
     @State private var isFavorite: Bool?
 
     private let mediaId: Int
-    private let title: String?
+    private let mediaTitle: String?
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
-    init(mediaId: Int, title: String?, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(mediaId: Int, mediaTitle: String?, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.mediaId = mediaId
-        self.title = title
+        self.mediaTitle = mediaTitle
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
@@ -30,7 +30,7 @@ struct FavoriteButton: View {
             if isFavorite == true {
                 Task { try? await favoriteMoviesDBStore.deleteMovie(with: mediaId) }
             } else {
-                Task { try? await favoriteMoviesDBStore.insertMovie(FavoriteMovie(id: mediaId, name: title!)) }
+                Task { try? await favoriteMoviesDBStore.insertMovie(FavoriteMovie(id: mediaId, name: mediaTitle!)) }
             }
             isFavorite?.toggle()
 
