@@ -8,7 +8,6 @@
 import Foundation
 
 public struct Cast: Identifiable, Hashable, Creditable {
-
     public let adult: Bool
     public let gender: Int?
     public let id: Int
