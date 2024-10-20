@@ -7,15 +7,11 @@
 
 import TMDBData
 
-public enum MovieRequest: MediaTypeProtocol {
+public enum MovieRequest: NetworkRequest {
 
     case getPopularMovies(page: Int)
     case getMovieDetail(id: Int)
     case getCredits(id: Int)
-
-    public var mediaType: MediaType {
-        .movie
-    }
 
     public var path: String {
         switch self {

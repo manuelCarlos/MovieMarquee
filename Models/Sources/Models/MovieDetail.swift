@@ -9,7 +9,6 @@ import Foundation
 
 @available(iOS 16.0, *)
 public struct MovieDetail: Codable, Identifiable, Hashable, Sendable, WatchableDetail {
-
     public let id: Int
     public let adult: Bool
     public let posterPath: String?
