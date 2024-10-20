@@ -7,4 +7,3 @@
 
 /// Namespace for the package localized strings.
 enum Texts { }
-
