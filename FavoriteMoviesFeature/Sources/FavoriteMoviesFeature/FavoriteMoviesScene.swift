@@ -14,11 +14,10 @@ import MoviesDB
 public struct FavoriteMoviesScene: View {
 
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
-    private let navigationTitle: String
+    private var navigationTitle: String = Texts.favoriteMovies
 
-    public init(favoriteMoviesDBStore: FavoriteMoviesDBStore, navigationTitle: String = "Favorite Movies") {
+    public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
-        self.navigationTitle = navigationTitle
     }
 
     public var body: some View {
@@ -27,4 +26,13 @@ public struct FavoriteMoviesScene: View {
             .navigationTitle(navigationTitle)
         }
     }
+
+    // MARK: - Testing interface
+
+    #if DEBUG
+    init(favoriteMoviesDBStore: FavoriteMoviesDBStore, navigationTitle: String) {
+        self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.navigationTitle = navigationTitle
+    }
+    #endif
 }

@@ -22,9 +22,9 @@ struct FavoriteMoviesList: View {
     var body: some View {
         if favoriteMoviesDBStore.movies.isEmpty {
             ContentUnavailableView {
-                Text("No Favorite movies for now")
+                Text(Texts.noFavoriteMoviesTitle)
             } description: {
-                Text("Favorite some movies to see them here")
+                Text(Texts.noFavoriteMoviesDescription)
             }
         } else {
             List {

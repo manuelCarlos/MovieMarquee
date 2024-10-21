@@ -1,0 +1,60 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "favorite_movies_feature_navigation_bar_title_key" : {
+      "comment" : "Title of the navigation bar for the favorite movies feature",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Favorite Movies"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filmes Favoritos"
+          }
+        }
+      }
+    },
+    "favorite_movies_feature_no_favorite_movies_description_key" : {
+      "comment" : "Description of the empty state when there are no favorite movies",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Favorite some movies to see them here"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marca filmes como favoritos para os ver aqui"
+          }
+        }
+      }
+    },
+    "favorite_movies_feature_no_favorite_movies_title_key" : {
+      "comment" : "Title of the empty state when there are no favorite movies",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No Favorite movies for now"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum filme favorito"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
