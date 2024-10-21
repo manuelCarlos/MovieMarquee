@@ -34,7 +34,7 @@ public struct Cast: Identifiable, Hashable, Creditable {
     public let voteCount: Int?
 
     public var titleString: String? {
-        return title ?? originalTitle ?? originalName
+        return name ?? title ?? originalTitle ?? originalName
     }
 
     public var imagePath: String? {

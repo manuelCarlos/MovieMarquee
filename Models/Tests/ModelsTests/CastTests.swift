@@ -48,8 +48,6 @@ final class CastTests: XCTestCase {
     }
 
     func test_cast_encoding_successfully() throws {
-        let cast = Cast.makeCast()
-
         // Set the date encoding strategy to use yyyy-MM-dd and force it to use UTC
         let dateFormatter = DateFormatter.yyyyMMdd
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -59,6 +57,7 @@ final class CastTests: XCTestCase {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
 
+        let cast = Cast.makeCast()
         let jsonData = try encoder.encode(cast)
         let decodedMovie = try decoder.decode(Cast.self, from: jsonData)
 
@@ -79,41 +78,39 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(decodedMovie.voteAverage, 7.2)
     }
 
-    func test_get_title() {
-        let cast1 = Cast.makeCast(title: nil)
+    func test_title() {
+        let cast1 = Cast.makeCast()
+        XCTAssertEqual(cast1.titleString, "Name")
 
-        XCTAssertEqual(cast1.titleString, "Original Title")
-
-        let cast2 = Cast.makeCast(originalTitle: nil, title: nil)
-
+        let cast2 = Cast.makeCast(name: nil, originalTitle: nil, title: nil)
         XCTAssertEqual(cast2.titleString, "Original Name")
 
-        let cast3 = Cast.makeCast(originalName: nil, originalTitle: nil, title: nil)
+        let cast3 = Cast.makeCast(name: nil, originalName: nil, title: nil)
+        XCTAssertEqual(cast3.titleString, "Original Title")
 
-        XCTAssertNil(cast3.titleString)
+        let cast4 = Cast.makeCast(name: nil, originalName: nil, originalTitle: nil)
+        XCTAssertEqual(cast4.titleString, "Title")
+
+        let cast5 = Cast.makeCast(name: nil, originalName: nil, originalTitle: nil, title: nil)
+        XCTAssertNil(cast5.titleString)
     }
 
-    func test_get_image_path() {
+    func test_image_path() {
         let cast1 = Cast.makeCast(posterPath: nil)
-
         XCTAssertEqual(cast1.imagePath, "ProfilePath")
 
         let cast2 = Cast.makeCast(profilePath: nil, posterPath: nil)
-
         XCTAssertNil(cast2.imagePath)
     }
 
-    func test_get_role() {
+    func test_role() {
         let cast1 = Cast.makeCast(character: nil, job: nil)
-
         XCTAssertEqual(cast1.role, "Acting")
 
         let cast2 = Cast.makeCast(character: nil, job: "Director")
-
         XCTAssertEqual(cast2.role, "Director")
 
         let cast3 = Cast.makeCast(character: "Main Character", job: "Director")
-
         XCTAssertEqual(cast3.role, "Main Character")
     }
 }

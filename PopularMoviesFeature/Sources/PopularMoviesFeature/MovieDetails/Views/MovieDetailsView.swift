@@ -54,7 +54,7 @@ struct MovieDetailsView: View {
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 20))
                     }
 
-                    MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(mediaService: MovieService.shared),
+                    MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(),
                                                                 mediaId: movieDetails.id))
                 }
             }

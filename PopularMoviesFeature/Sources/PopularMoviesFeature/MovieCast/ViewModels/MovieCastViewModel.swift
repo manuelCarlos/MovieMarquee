@@ -16,7 +16,7 @@ final class MovieCastViewModel: @unchecked Sendable {
     enum State {
         case idle
         case failed
-        case loaded([Cast])
+        case loaded([Creditable])
     }
 
     private let controller: MediaCastController
