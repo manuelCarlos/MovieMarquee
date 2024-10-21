@@ -33,10 +33,13 @@ final class MockMovieDBModelActor: MovieDBModelStorage {
         if shouldThrowError {
             throw MoviesDBError.notFound
         }
-        guard !favoriteMovies.contains(movie) else {
-            return
+        // Upsert
+        if let index = favoriteMovies.firstIndex(where: { $0.id == movie.id }) {
+            favoriteMovies[index] = movie
+        } else {
+            // Movie doesn't exist, so insert it
+            favoriteMovies.append(movie)
         }
-        favoriteMovies.append(movie)
     }
 
     func deleteFavoriteMovie(with id: Int) async throws {

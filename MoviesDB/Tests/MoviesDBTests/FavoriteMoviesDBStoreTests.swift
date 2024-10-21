@@ -64,6 +64,11 @@ final class FavoriteMoviesDBStoreTests: XCTestCase {
         XCTAssertEqual(store.movies.count, 1)
         XCTAssertEqual(store.movies.first?.id, 1)
         XCTAssertEqual(store.movies.first?.name, "Inception")
+
+        try await store.insertMovie(FavoriteMovie(id: 1, name: "The Matrix"))
+        XCTAssertEqual(store.movies.count, 1)
+        XCTAssertEqual(store.movies.first?.id, 1)
+        XCTAssertEqual(store.movies.first?.name, "The Matrix")
     }
 
     // MARK: - Deleting movies from DB
