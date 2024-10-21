@@ -36,13 +36,13 @@ public struct PopularMoviesFeatureView: View {
         switch viewModel.state {
         case .idle:
             IdleView {
-                viewModel.fetchMostPopularMovies()
+                Task { await viewModel.fetchMostPopularMovies() }
             }
         case .loading:
             LoadingStateView(subtitle: "Loading...")
         case .failed(let error):
             FailedStateView(title: "Oops, something went wrong", description: error) {
-                viewModel.fetchMostPopularMovies()
+                Task { await viewModel.fetchMostPopularMovies() }
             }
         case .loaded(let movies):
             MoviesOverviewList(

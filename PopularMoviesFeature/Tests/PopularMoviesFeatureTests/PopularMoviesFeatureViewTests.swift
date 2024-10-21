@@ -30,7 +30,7 @@ final class PopularMoviesFeatureViewTests: XCTestCase {
         let controller = MockMoviesOverviewController()
         controller.fetchNextPopularPageAsFullListStub = movies
         let viewModel = PopularMoviesFeatureViewModel(controller: controller)
-        viewModel.fetchMostPopularMovies()
+        await viewModel.fetchMostPopularMovies()
 
         let sut = PopularMoviesFeatureView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
 
@@ -67,7 +67,7 @@ final class PopularMoviesFeatureViewTests: XCTestCase {
         let controller = MockMoviesOverviewController()
         controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil) // TODO: - custom errror
         let viewModel = PopularMoviesFeatureViewModel(controller: controller)
-        viewModel.fetchMostPopularMovies()
+        await viewModel.fetchMostPopularMovies()
 
         let sut = PopularMoviesFeatureView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
 

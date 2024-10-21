@@ -71,7 +71,7 @@ struct ArtistItemView: View {
     @ViewBuilder
     private var failureView: some View {
         VStack {
-            Text("Unavailble")
+            Text("Unavailable")
                 .foregroundColor(.gray)
                 .font(.caption)
                 .lineLimit(2)

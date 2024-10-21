@@ -28,11 +28,9 @@ public final class PopularMoviesFeatureViewModel: @unchecked Sendable {
         self.controller = controller
     }
 
-    func fetchMostPopularMovies() {
-        Task {
-            state = .loading
-            await fetchPopularMovies()
-        }
+    func fetchMostPopularMovies() async {
+        state = .loading
+        await fetchPopularMovies()
     }
 
     // MARK: - Private
@@ -50,13 +48,4 @@ public final class PopularMoviesFeatureViewModel: @unchecked Sendable {
     private func filterWatchable(_ movies: [Watchable]) -> [Watchable] {
         return movies.filter { ($0 as? Movie)?.releaseDate != nil }
     }
-
-    // MARK: - For testing purposes only
-
-    #if DEBUG
-    func fetchPopularMoviesAsync() async {
-        state = .loading
-        await fetchPopularMovies()
-    }
-    #endif
 }

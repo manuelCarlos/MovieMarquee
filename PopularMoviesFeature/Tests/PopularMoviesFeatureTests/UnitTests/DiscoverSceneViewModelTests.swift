@@ -34,7 +34,7 @@ final class DiscoverSceneViewModelTests: XCTestCase {
         let mockMovies = [Movie.make(id: 1, title: "Movie 1"), Movie.make(id: 2, title: "Movie 2")]
         mockController.fetchNextPopularPageAsFullListStub = mockMovies
 
-        await viewModel.fetchPopularMoviesAsync()
+        await viewModel.fetchMostPopularMovies()
 
         if case let .loaded(movies) = viewModel.state {
             XCTAssertEqual(movies.count, 2)
@@ -51,7 +51,7 @@ final class DiscoverSceneViewModelTests: XCTestCase {
         let mockError = NSError(domain: "test", code: 0, userInfo: nil) // TODO: - custom errror
         mockController.error = mockError
 
-        await viewModel.fetchPopularMoviesAsync()
+        await viewModel.fetchMostPopularMovies()
 
         if case let .failed(error) = viewModel.state {
             XCTAssertEqual(error, "The operation couldn’t be completed. (test error 0.)")
@@ -63,7 +63,7 @@ final class DiscoverSceneViewModelTests: XCTestCase {
     func test_fetching_media_should_return_an_empty_list_error() async {
         mockController.fetchNextPopularPageAsFullListStub = []
 
-        await viewModel.fetchPopularMoviesAsync()
+        await viewModel.fetchMostPopularMovies()
 
         if case let .failed(error) = viewModel.state {
             XCTAssertEqual(error, "There are no popular movies available.")
