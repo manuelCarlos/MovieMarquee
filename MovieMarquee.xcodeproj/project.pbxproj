@@ -13,13 +13,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		11947C792CB012C60024132D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 11947C5F2CB012C50024132D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 11947C662CB012C50024132D;
-			remoteInfo = MovieMarquee;
-		};
 		11947C832CB012C60024132D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 11947C5F2CB012C50024132D /* Project object */;
@@ -33,7 +26,6 @@
 		110BD1792CC24F49008BE48D /* TMDBData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TMDBData; sourceTree = "<group>"; };
 		113903292CC27A4400E20545 /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		11947C672CB012C50024132D /* MovieMarquee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieMarquee.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		11947C782CB012C60024132D /* MovieMarqueeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieMarqueeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11947CA52CB014400024132D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		11947CA62CB0168B0024132D /* NetworkService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkService; sourceTree = "<group>"; };
@@ -66,13 +58,6 @@
 				11A312D52CBE7E350074856C /* PopularMoviesFeature in Frameworks */,
 				11A312F02CBFA6280074856C /* FavoriteMoviesFeature in Frameworks */,
 				11A312F32CBFAA260074856C /* MoviesDB in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		11947C752CB012C60024132D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				11947C672CB012C50024132D /* MovieMarquee.app */,
-				11947C782CB012C60024132D /* MovieMarqueeTests.xctest */,
 				11947C822CB012C60024132D /* MovieMarqueeUITests.xctest */,
 			);
 			name = Products;
@@ -143,26 +127,6 @@
 			productName = MovieMarquee;
 			productReference = 11947C672CB012C50024132D /* MovieMarquee.app */;
 			productType = "com.apple.product-type.application";
-		};
-		11947C772CB012C60024132D /* MovieMarqueeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 11947C8F2CB012C60024132D /* Build configuration list for PBXNativeTarget "MovieMarqueeTests" */;
-			buildPhases = (
-				11947C742CB012C60024132D /* Sources */,
-				11947C752CB012C60024132D /* Frameworks */,
-				11947C762CB012C60024132D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				11947C7A2CB012C60024132D /* PBXTargetDependency */,
-			);
-			name = MovieMarqueeTests;
-			packageProductDependencies = (
-			);
-			productName = MovieMarqueeTests;
-			productReference = 11947C782CB012C60024132D /* MovieMarqueeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		11947C812CB012C60024132D /* MovieMarqueeUITests */ = {
 			isa = PBXNativeTarget;
@@ -201,11 +165,6 @@
 						CreatedOnToolsVersion = 16.0;
 						LastSwiftMigration = 1600;
 					};
-					11947C772CB012C60024132D = {
-						CreatedOnToolsVersion = 16.0;
-						LastSwiftMigration = 1600;
-						TestTargetID = 11947C662CB012C50024132D;
-					};
 					11947C812CB012C60024132D = {
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 11947C662CB012C50024132D;
@@ -227,7 +186,6 @@
 			projectRoot = "";
 			targets = (
 				11947C662CB012C50024132D /* MovieMarquee */,
-				11947C772CB012C60024132D /* MovieMarqueeTests */,
 				11947C812CB012C60024132D /* MovieMarqueeUITests */,
 			);
 		};
@@ -235,13 +193,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		11947C652CB012C50024132D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		11947C762CB012C60024132D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -287,13 +238,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		11947C742CB012C60024132D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		11947C7E2CB012C60024132D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,11 +248,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		11947C7A2CB012C60024132D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 11947C662CB012C50024132D /* MovieMarquee */;
-			targetProxy = 11947C792CB012C60024132D /* PBXContainerItemProxy */;
-		};
 		11947C842CB012C60024132D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 11947C662CB012C50024132D /* MovieMarquee */;
@@ -514,55 +453,6 @@
 			};
 			name = Release;
 		};
-		11947C902CB012C60024132D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X4WRR7YD46;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.movie.marquee.swiftUI.sample.MovieMarqueeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieMarquee.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieMarquee";
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		11947C912CB012C60024132D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X4WRR7YD46;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.movie.marquee.swiftUI.sample.MovieMarqueeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieMarquee.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieMarquee";
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
 		11947C932CB012C60024132D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -624,15 +514,6 @@
 			buildConfigurations = (
 				11947C8D2CB012C60024132D /* Debug */,
 				11947C8E2CB012C60024132D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		11947C8F2CB012C60024132D /* Build configuration list for PBXNativeTarget "MovieMarqueeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				11947C902CB012C60024132D /* Debug */,
-				11947C912CB012C60024132D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
