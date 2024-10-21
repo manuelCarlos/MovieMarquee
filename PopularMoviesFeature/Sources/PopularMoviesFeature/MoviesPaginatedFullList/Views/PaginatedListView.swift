@@ -31,7 +31,7 @@ struct PaginatedListView: View {
         case .loading:
             LoadingStateView(subtitle: "Loading...")
         case .failed(let error):
-            FailedStateView(error: error) {
+            FailedStateView(title: "Oops, something went wrong", description: error) {
                 Task { await viewModel.fetchFirstPage() }
             }
         case .loaded(let watchables):

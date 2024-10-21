@@ -1,0 +1,24 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "lego_failed_state_retry_key" : {
+      "comment" : "Text on retry button of failed state view",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Retry"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tente outra vez"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

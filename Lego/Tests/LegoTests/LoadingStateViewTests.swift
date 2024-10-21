@@ -1,6 +1,6 @@
 //
 //  LoadingStateViewTests.swift
-//  PopularMoviesFeatureTests
+//  LegoTests
 //
 //  Created by Manuel Lopes on 19.10.24.
 //

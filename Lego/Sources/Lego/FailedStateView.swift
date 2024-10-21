@@ -1,28 +1,30 @@
 //
 //  FailedStateView.swift
-//  PopularMoviesFeature
+//  Lego
 //
-//  Created by Manuel Lopes on 11.10.24.
+//  Created by Manuel Lopes on 21.10.24.
 //
 
 import SwiftUI
 
 @available(iOS 17.0, *)
-struct FailedStateView: View {
+public struct FailedStateView: View {
 
-    private let error: String
+    private let title: String
+    private let description: String
     private let onRetry: (() -> Void)?
 
-    init(error: String, onRetry: (() -> Void)? = nil) {
-        self.error = error
+    public init(title: String, description: String, onRetry: (() -> Void)? = nil) {
+        self.title = title
+        self.description = description
         self.onRetry = onRetry
     }
 
-    var body: some View {
+    public var body: some View {
         ContentUnavailableView {
-            Text("Oops, something went wrong")
+            Text(title)
         } description: {
-            Text(error)
+            Text(description)
         } actions: { retryAction }
     }
 
@@ -37,7 +39,7 @@ struct FailedStateView: View {
                     onRetry?()
                 }
             } label: {
-                Text("Retry")
+                Text(Texts.FailedState.retry)
                     .font(.title)
             }
         }
