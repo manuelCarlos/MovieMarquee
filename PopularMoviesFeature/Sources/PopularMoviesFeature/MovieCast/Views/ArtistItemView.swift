@@ -75,6 +75,7 @@ struct ArtistItemView: View {
                 .foregroundColor(.gray)
                 .font(.caption)
                 .lineLimit(2)
+                .padding(.top, 10)
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
 
