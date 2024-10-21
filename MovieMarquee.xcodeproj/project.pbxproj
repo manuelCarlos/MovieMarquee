@@ -51,11 +51,6 @@
 			path = MovieMarquee;
 			sourceTree = "<group>";
 		};
-		11947C7B2CB012C60024132D /* MovieMarqueeTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MovieMarqueeTests;
-			sourceTree = "<group>";
-		};
 		11947C852CB012C60024132D /* MovieMarqueeUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MovieMarqueeUITests;
@@ -105,7 +100,6 @@
 				11947CAB2CB03B680024132D /* .swiftlint.yml */,
 				113903292CC27A4400E20545 /* AllTests.xctestplan */,
 				11947C692CB012C50024132D /* MovieMarquee */,
-				11947C7B2CB012C60024132D /* MovieMarqueeTests */,
 				11947C852CB012C60024132D /* MovieMarqueeUITests */,
 				11947C682CB012C50024132D /* Products */,
 			);
@@ -162,9 +156,6 @@
 			);
 			dependencies = (
 				11947C7A2CB012C60024132D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				11947C7B2CB012C60024132D /* MovieMarqueeTests */,
 			);
 			name = MovieMarqueeTests;
 			packageProductDependencies = (
