@@ -37,7 +37,7 @@ struct MovieCastGrid: View {
             Text("Cast")
                 .font(.title)
                 .fontWeight(.bold)
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], alignment: .center, spacing: 20) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], alignment: .center, spacing: 20) {
                 ForEach(artists, id: \.id) { artist in
                     ArtistItemView(artist: artist)
                 }
