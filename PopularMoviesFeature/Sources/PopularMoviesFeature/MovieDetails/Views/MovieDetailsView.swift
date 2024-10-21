@@ -8,6 +8,7 @@
 import SwiftData
 import SwiftUI
 
+import Lego
 import Models
 import MoviesDB
 

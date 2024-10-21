@@ -4,31 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "FavoriteMoviesFeature",
+    name: "Lego",
     defaultLocalization: "en",
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "FavoriteMoviesFeature",
-            targets: ["FavoriteMoviesFeature"])
+            name: "Lego",
+            targets: ["Lego"])
     ],
     dependencies: [
-        .package(path: "MoviesDB"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0")
     ],
     targets: [
         .target(
-            name: "FavoriteMoviesFeature",
-            dependencies: [
-                .product(name: "MoviesDB", package: "MoviesDB")
-            ]
-        ),
-
+            name: "Lego"),
         .testTarget(
-            name: "FavoriteMoviesFeatureTests",
+            name: "LegoTests",
             dependencies: [
-                "FavoriteMoviesFeature",
-                "MoviesDB",
+                "Lego",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         )

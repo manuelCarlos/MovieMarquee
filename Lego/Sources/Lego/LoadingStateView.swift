@@ -1,18 +1,22 @@
 //
 //  LoadingStateView.swift
-//  PopularMoviesFeature
+//  Lego
 //
-//  Created by Manuel Lopes on 11.10.24.
+//  Created by Manuel Lopes on 21.10.24.
 //
 
 import SwiftUI
 
 @available(iOS 14.0, *)
-struct LoadingStateView: View {
+public struct LoadingStateView: View {
 
-    let subtitle: String
+    private let subtitle: String
 
-    var body: some View {
+    public init(subtitle: String) {
+        self.subtitle = subtitle
+    }
+
+    public var body: some View {
         VStack(spacing: 16) {
             ProgressView()
                 .scaleEffect(1.5)

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+import Lego
 import MoviesDB
 
 @available(iOS 17.0, *)

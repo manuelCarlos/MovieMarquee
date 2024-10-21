@@ -15,6 +15,7 @@ let package = Package(
         .package(path: "NetworkService"),
         .package(path: "Models"),
         .package(path: "MoviesDB"),
+        .package(path: "Lego"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0")
     ],
     targets: [
@@ -23,7 +24,8 @@ let package = Package(
             dependencies: [
                 .product(name: "NetworkService", package: "NetworkService"),
                 .product(name: "Models", package: "Models"),
-                .product(name: "MoviesDB", package: "MoviesDB")
+                .product(name: "MoviesDB", package: "MoviesDB"),
+                .product(name: "Lego", package: "Lego"),
             ],
             resources: [
                 .process("Resources/poster_placeholder.jpg")

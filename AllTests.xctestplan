@@ -14,23 +14,16 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:TMDBData",
-        "identifier" : "TMDBDataTests",
-        "name" : "TMDBDataTests"
+        "containerPath" : "container:Models",
+        "identifier" : "ModelsTests",
+        "name" : "ModelsTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:NetworkService",
-        "identifier" : "NetworkServiceTests",
-        "name" : "NetworkServiceTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:MovieMarquee.xcodeproj",
-        "identifier" : "11947C772CB012C60024132D",
-        "name" : "MovieMarqueeTests"
+        "containerPath" : "container:Lego",
+        "identifier" : "LegoTests",
+        "name" : "LegoTests"
       }
     },
     {
@@ -42,16 +35,23 @@
     },
     {
       "target" : {
-        "containerPath" : "container:Models",
-        "identifier" : "ModelsTests",
-        "name" : "ModelsTests"
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C772CB012C60024132D",
+        "name" : "MovieMarqueeTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:MovieMarquee.xcodeproj",
-        "identifier" : "11947C812CB012C60024132D",
-        "name" : "MovieMarqueeUITests"
+        "containerPath" : "container:TMDBData",
+        "identifier" : "TMDBDataTests",
+        "name" : "TMDBDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:FavoriteMoviesFeature",
+        "identifier" : "FavoriteMoviesFeatureTests",
+        "name" : "FavoriteMoviesFeatureTests"
       }
     },
     {
@@ -63,9 +63,16 @@
     },
     {
       "target" : {
-        "containerPath" : "container:FavoriteMoviesFeature",
-        "identifier" : "FavoriteMoviesFeatureTests",
-        "name" : "FavoriteMoviesFeatureTests"
+        "containerPath" : "container:MovieMarquee.xcodeproj",
+        "identifier" : "11947C812CB012C60024132D",
+        "name" : "MovieMarqueeUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NetworkService",
+        "identifier" : "NetworkServiceTests",
+        "name" : "NetworkServiceTests"
       }
     }
   ],

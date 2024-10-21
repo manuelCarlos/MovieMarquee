@@ -8,7 +8,7 @@
 import XCTest
 import SnapshotTesting
 
-@testable import PopularMoviesFeature
+@testable import Lego
 
 @available(iOS 14.0, *)
 @MainActor
@@ -26,14 +26,14 @@ final class LoadingStateViewTests: XCTestCase {
 
         assertSnapshot(of: sut,
                        as: .image(
-                        layout: .device(config: .iPhone13Mini),
+                        layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
                        )
         )
     }
 
     func test_loading_state_view_with_long_texts() {
-        let title = "The Assassination of Jesse James By the Coward Robert Ford Final Final2 Cut Redux Part 44 Is a Loooong Title"
+        let title = "This a very long loading state title that should wrap to multiple lines. Likely in German 😛"
         let sut = LoadingStateView(subtitle: title)
 
         assertSnapshot(of: sut,
@@ -45,7 +45,7 @@ final class LoadingStateViewTests: XCTestCase {
 
         assertSnapshot(of: sut,
                        as: .image(
-                        layout: .device(config: .iPhone13Mini),
+                        layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
                        )
         )

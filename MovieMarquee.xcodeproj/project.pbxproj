@@ -42,6 +42,7 @@
 		11A312CF2CBE74EE0074856C /* PopularMoviesFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PopularMoviesFeature; sourceTree = "<group>"; };
 		11A312EE2CBFA4190074856C /* FavoriteMoviesFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FavoriteMoviesFeature; sourceTree = "<group>"; };
 		11A312F12CBFA9170074856C /* MoviesDB */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MoviesDB; sourceTree = "<group>"; };
+		11EEBB0A2CC679BC00321036 /* Lego */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Lego; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -93,6 +94,7 @@
 		11947C5E2CB012C50024132D = {
 			isa = PBXGroup;
 			children = (
+				11EEBB0A2CC679BC00321036 /* Lego */,
 				11A312EE2CBFA4190074856C /* FavoriteMoviesFeature */,
 				11947CAC2CB6737A0024132D /* Models */,
 				11A312F12CBFA9170074856C /* MoviesDB */,
