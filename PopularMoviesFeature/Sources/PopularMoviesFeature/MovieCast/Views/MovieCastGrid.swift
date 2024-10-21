@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import Lego
+
 @available(iOS 17.0, *)
 struct MovieCastGrid: View {
 
@@ -27,7 +29,7 @@ struct MovieCastGrid: View {
     private var contentView: some View {
         switch viewModel.state {
         case .idle:
-            IdleStateView {
+            IdleView {
                 Task { await viewModel.fetchMediaCast() }
             }
         case .failed:

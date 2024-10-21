@@ -32,7 +32,7 @@ struct MovieDetailsView: View {
     private var contentView: some View {
         switch viewModel.state {
         case .idle:
-            IdleStateView {
+            IdleView {
                 Task { await viewModel.fetchMediaDetail() }
             }
         case .loading:

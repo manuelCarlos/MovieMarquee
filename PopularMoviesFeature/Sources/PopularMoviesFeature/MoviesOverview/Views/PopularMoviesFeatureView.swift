@@ -35,7 +35,7 @@ public struct PopularMoviesFeatureView: View {
     private var contentView: some View {
         switch viewModel.state {
         case .idle:
-            IdleStateView {
+            IdleView {
                 viewModel.fetchMostPopularMovies()
             }
         case .loading:

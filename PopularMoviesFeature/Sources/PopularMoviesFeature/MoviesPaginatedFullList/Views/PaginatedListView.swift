@@ -25,7 +25,7 @@ struct PaginatedListView: View {
     var body: some View {
         switch viewModel.state {
         case .idle:
-            IdleStateView {
+            IdleView {
                 Task { await viewModel.fetchFirstPage() }
             }
         case .loading:
