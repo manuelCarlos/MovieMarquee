@@ -23,7 +23,4 @@ enum Texts {
                                                   bundle: .module,
                                                   value: "Favorite some movies to see them here",
                                                   comment: "Description of the empty state when there are no favorite movies")
-
-
-
 }

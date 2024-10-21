@@ -25,7 +25,7 @@ let package = Package(
                 .product(name: "NetworkService", package: "NetworkService"),
                 .product(name: "Models", package: "Models"),
                 .product(name: "MoviesDB", package: "MoviesDB"),
-                .product(name: "Lego", package: "Lego"),
+                .product(name: "Lego", package: "Lego")
             ],
             resources: [
                 .process("Resources/poster_placeholder.jpg")

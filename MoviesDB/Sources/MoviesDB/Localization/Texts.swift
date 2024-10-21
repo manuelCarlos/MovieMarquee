@@ -8,5 +8,5 @@
 import Foundation
 
 enum Texts {
-    
+    // TODO: - localize
 }
