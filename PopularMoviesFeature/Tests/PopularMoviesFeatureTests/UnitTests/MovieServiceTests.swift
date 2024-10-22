@@ -37,7 +37,7 @@ final class MovieServiceTests: XCTestCase {
         XCTAssertEqual(movie?.popularity, 10)
         XCTAssertEqual(movie?.voteCount, 8)
         XCTAssertEqual(movie?.video, false)
-        XCTAssertEqual(movie?.voteAverage, 10000.0)
+        XCTAssertEqual(movie?.voteAverage, 10)
         XCTAssertEqual(mockRequestManager.decodeCallCount, 1)
     }
 

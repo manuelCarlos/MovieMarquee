@@ -22,7 +22,7 @@ extension Movie {
                      popularity: Double = 10,
                      voteCount: Int = 8,
                      video: Bool = false,
-                     voteAverage: Double = 10000) -> Movie {
+                     voteAverage: Double = 10) -> Movie {
         return Movie(id: id,
                      title: title,
                      adult: true,

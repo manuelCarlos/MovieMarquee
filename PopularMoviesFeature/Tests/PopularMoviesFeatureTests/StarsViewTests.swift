@@ -29,6 +29,16 @@ final class StarsViewTests: XCTestCase {
         checkStarsViewSnapshot(for: 4.9, maxRating: 5)
     }
 
+    func test_stars_view_init_should_fail_with_bad_ratings() {
+        XCTAssertNil(StarsView(rating: 0, maxRating: 0))
+        XCTAssertNil(StarsView(rating: 2, maxRating: 0))
+        XCTAssertNil(StarsView(rating: -2, maxRating: 3))
+        XCTAssertNil(StarsView(rating: -2, maxRating: 1))
+        XCTAssertNil(StarsView(rating: .nan, maxRating: 4))
+        XCTAssertNil(StarsView(rating: 10, maxRating: 4))
+        XCTAssertNil(StarsView(rating: 10, maxRating: 4))
+    }
+
     // MARK: - Private
 
     private func checkStarsViewSnapshot(for rating: CGFloat,

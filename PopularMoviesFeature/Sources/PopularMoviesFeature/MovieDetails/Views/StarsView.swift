@@ -13,7 +13,10 @@ struct StarsView: View {
     private let rating: CGFloat
     private let maxRating: Int
 
-    init(rating: CGFloat, maxRating: Int) {
+    init?(rating: CGFloat, maxRating: Int) {
+        guard rating.isNaN == false, rating.isFinite, rating >= 0, rating <= CGFloat(maxRating), maxRating > 0 else {
+            return nil
+        }
         self.rating = rating
         self.maxRating = maxRating
     }
@@ -31,9 +34,7 @@ struct StarsView: View {
             GeometryReader { geometry in
                 if geometry.size.width > 0,
                    geometry.size.width.isNaN == false,
-                   geometry.size.width.isFinite,
-                   maxRating > 0,
-                   rating.isFinite {
+                   geometry.size.width.isFinite {
                     let width = rating / CGFloat(maxRating) * geometry.size.width
                     ZStack(alignment: .leading) {
                         Rectangle()
