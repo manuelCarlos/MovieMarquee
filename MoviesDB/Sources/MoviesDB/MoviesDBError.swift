@@ -15,28 +15,28 @@ enum MoviesDBError: LocalizedError, Hashable, Sendable {
     var errorDescription: String? {
         switch self {
         case .notFound:
-            return "The requested movie could not be found."
+            return Texts.movieNotFoundErrorDescription
         }
     }
 
     var failureReason: String? {
         switch self {
         case .notFound:
-            return "The movie might have been removed or is unavailable in the database."
+            return Texts.movieNotFoundFailureReason
         }
     }
 
     var recoverySuggestion: String? {
         switch self {
         case .notFound:
-            return "Try searching for another movie or check your internet connection."
+            return Texts.movieNotFoundRecoverySuggestion
         }
     }
 
     var helpAnchor: String? {
         switch self {
         case .notFound:
-            return "For further assistance, contact support or visit the help center."
+            return Texts.movieNotFoundHelpAnchor
         }
     }
 }

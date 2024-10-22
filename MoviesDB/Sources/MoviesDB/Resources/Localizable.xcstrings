@@ -1,0 +1,78 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "movies_db_error_not_found_error_description_key" : {
+      "comment" : "Error description when the movie is not found in the database",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The requested movie could not be found."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O filme solicitado não foi encontrado."
+          }
+        }
+      }
+    },
+    "movies_db_error_not_found_failure_reason_key" : {
+      "comment" : "Failure reason when the movie is not found in the database",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The movie might have been removed or is unavailable in the database."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O filme pode ter sido removido ou está indisponível na base de dados."
+          }
+        }
+      }
+    },
+    "movies_db_error_not_found_help_anchor_key" : {
+      "comment" : "Help anchor for movie not found error",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "For further assistance, contact support or visit the help center."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para mais assistência, contacte o suporte ou visite o centro de ajuda."
+          }
+        }
+      }
+    },
+    "movies_db_error_not_found_recovery_suggestion_key" : {
+      "comment" : "Suggestion for recovering from a movie not found error",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try searching for another movie or check your internet connection."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tente procurar por outro filme ou verifique a sua ligação à internet."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
