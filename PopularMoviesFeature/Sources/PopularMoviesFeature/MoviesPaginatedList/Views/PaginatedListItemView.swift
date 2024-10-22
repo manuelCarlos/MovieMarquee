@@ -14,6 +14,7 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct PaginatedListItemView: View {
 
+    @State private var isFavorite: Bool?
     private let mediaItem: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
@@ -44,13 +45,14 @@ struct PaginatedListItemView: View {
 
     @ViewBuilder
     private var movieInfoStackView: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading) {
             Text(mediaItem.title)
-                .font(.title3)
+                .font(.title2)
                 .minimumScaleFactor(0.7)
                 .bold()
                 .foregroundColor(.primary)
                 .multilineTextAlignment(.leading)
+                .padding(.bottom, 20)
 
             if let originalLanguage = mediaItem.originalLanguage?.language {
                 Text(originalLanguage)
@@ -59,12 +61,18 @@ struct PaginatedListItemView: View {
                     .bold()
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.leading)
-                    .padding(.bottom, 20)
             }
 
             if let rating = mediaItem.voteAverage {
                 StarsView(rating: CGFloat(rating/2), maxRating: 5)
-                    .frame(width: 100, alignment: .center)
+                    .frame(maxWidth: 120, alignment: .center)
+            }
+
+            if favoriteMoviesDBStore.movies.contains(where: { $0.id == mediaItem.id }) == true {
+                Icons.favorite(isOn: true)
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .foregroundColor(.red)
             }
         }
     }
