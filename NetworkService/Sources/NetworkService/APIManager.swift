@@ -13,7 +13,7 @@ public protocol APIManagerProtocol: Sendable {
 }
 
 @available(iOS 15.0, *)
-public final class APIManager: APIManagerProtocol {
+public final actor APIManager: APIManagerProtocol {
     private let urlSession: URLSession
 
     public init(urlSession: URLSession = URLSession.shared) {
