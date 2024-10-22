@@ -15,6 +15,8 @@ struct FavoriteButton: View {
 
     @State private var isFavorite: Bool?
 
+    private let favoriteOn = "heart.fill"
+    private let favoriteOff = "heart"
     private let mediaId: Int
     private let mediaTitle: String?
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
@@ -35,9 +37,7 @@ struct FavoriteButton: View {
             isFavorite?.toggle()
 
         } label: {
-            Image(
-                systemName: isFavorite == true ? Icons.favoriteOn.rawValue : Icons.favoriteOff.rawValue
-            )
+            Icons.favorite(isOn: isFavorite == true)
             .resizable()
             .frame(width: 35, height: 35)
             .foregroundColor(.red)

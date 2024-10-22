@@ -67,7 +67,7 @@ struct MoviesOverviewList: View {
                 .foregroundColor(.accentColor)
                 .font(.title3)
                 .bold()
-            Image(systemName: Icons.seeAllButton.rawValue)
+            Icons.disclosureIndicator
                 .foregroundColor(.accentColor)
                 .padding(.bottom, 4)
         }
