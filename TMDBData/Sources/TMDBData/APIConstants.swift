@@ -12,7 +12,6 @@ public enum APIConstants {
     public static let baseURLPath = "/3"
 
     public static let authURL = "www.themoviedb.org"
-    public static let authURLPath = ""
 
     public static let httpsScheme = "https"
     public static let defaultScheme = "https://"

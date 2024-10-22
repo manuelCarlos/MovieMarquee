@@ -29,10 +29,6 @@ final class APIConstantsTests: XCTestCase {
         XCTAssertEqual(APIConstants.authURL, "www.themoviedb.org")
     }
 
-    func test_auth_url_path_is_correct() {
-        XCTAssertEqual(APIConstants.authURLPath, "")
-    }
-
     func test_default_scheme_is_correct() {
         XCTAssertEqual(APIConstants.defaultScheme, "https://")
     }
