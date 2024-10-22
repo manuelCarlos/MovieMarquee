@@ -27,7 +27,7 @@ final class MockMediaService: @unchecked Sendable, MediaService {
     func fetchMedia(request: NetworkService.NetworkRequest) async throws -> [Watchable] {
         fetchCount += 1
         if shouldFail {
-            throw MediaFetchError.noPopularMoviesAvailable
+            throw MediaServiceError.noPopularMoviesAvailable
         }
         return mockWatchables
     }

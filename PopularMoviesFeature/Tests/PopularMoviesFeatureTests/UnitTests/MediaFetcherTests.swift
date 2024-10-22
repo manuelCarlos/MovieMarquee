@@ -18,7 +18,7 @@ final class MediaFetcherTests: XCTestCase {
         let mockFetcher = MockMediaListFetcher()
         let fetcher = MediaFetcher(mediaListFetcher: mockFetcher, service: mockService)
 
-        let result = try await fetcher.fetchSinglePage()
+        let result = try await fetcher.fetchPage()
 
         XCTAssertEqual(result.count, mockService.mockWatchables.count)
         XCTAssertEqual(mockService.fetchCount, 1)
@@ -30,10 +30,10 @@ final class MediaFetcherTests: XCTestCase {
         let fetcher = MediaFetcher(mediaListFetcher: mockFetcher, service: mockService)
 
         do {
-            _ = try await fetcher.fetchSinglePage()
+            _ = try await fetcher.fetchPage()
             XCTFail("Expected error but got success")
         } catch {
-            XCTAssertEqual((error as? MediaFetchError), .noPopularMoviesAvailable)
+            XCTAssertEqual((error as? MediaServiceError), .noPopularMoviesAvailable)
         }
     }
 
@@ -42,8 +42,8 @@ final class MediaFetcherTests: XCTestCase {
         let mockFetcher = MockMediaListFetcher()
         let fetcher = MediaFetcher(mediaListFetcher: mockFetcher, service: mockService)
 
-        let result1 = try await fetcher.fetchWithNextPage()
-        let result2 = try await fetcher.fetchWithNextPage()
+        let result1 = try await fetcher.fetchNextPage()
+        let result2 = try await fetcher.fetchNextPage()
 
         XCTAssertEqual(result1.count, 1)
         XCTAssertEqual(result2.count, 2)
@@ -56,10 +56,10 @@ final class MediaFetcherTests: XCTestCase {
         let fetcher = MediaFetcher(mediaListFetcher: mockFetcher, service: mockService)
 
         do {
-            _ = try await fetcher.fetchWithNextPage()
+            _ = try await fetcher.fetchNextPage()
             XCTFail("Expected error but got success")
         } catch {
-            XCTAssertEqual((error as? MediaFetchError), .noPopularMoviesAvailable)
+            XCTAssertEqual((error as? MediaServiceError), .noPopularMoviesAvailable)
         }
     }
 }

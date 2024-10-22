@@ -13,7 +13,7 @@ final class MockMoviesOverviewController: @unchecked Sendable, MediaOverviewCont
     var fetchNextPopularPageAsFullListStub: [Watchable] = []
     var error: Error?
 
-    func fetchNextPopularPageAsFullList() async throws -> [Watchable] {
+    func fetchPopularMoviesNextPage() async throws -> [Watchable] {
         if let error {
             throw error
         } else {

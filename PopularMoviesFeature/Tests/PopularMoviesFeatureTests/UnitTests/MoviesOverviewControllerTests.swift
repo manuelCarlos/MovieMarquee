@@ -35,7 +35,7 @@ final class MoviesOverviewControllerTests: XCTestCase {
         let expectedWatchables = [Movie.make(id: 1), Movie.make(id: 2)]
         mockFetcher.mockResult = .success(expectedWatchables)
 
-        let result = try await controller.fetchNextPopularPageAsFullList()
+        let result = try await controller.fetchPopularMoviesNextPage()
 
         XCTAssertEqual(result.count, expectedWatchables.count)
         XCTAssertEqual(result.first?.id, expectedWatchables.first?.id)
@@ -45,7 +45,7 @@ final class MoviesOverviewControllerTests: XCTestCase {
         mockFetcher.mockResult = .failure(NetworkError.httpResponse(code: 500))
 
         do {
-            _ = try await controller.fetchNextPopularPageAsFullList()
+            _ = try await controller.fetchPopularMoviesNextPage()
             XCTFail("Expected an error to be thrown")
         } catch {
             XCTAssertEqual(error as? NetworkError, NetworkError.httpResponse(code: 500))

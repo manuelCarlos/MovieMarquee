@@ -1,5 +1,5 @@
 //
-//  MediaFetchError.swift
+//  MediaServiceError.swift
 //  PopularMoviesFeature
 //
 //  Created by Manuel Lopes on 16.10.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MediaFetchError: LocalizedError {
+enum MediaServiceError: LocalizedError {
     case noPopularMoviesAvailable
 
     // MARK: - LocalizedError Properties

@@ -22,14 +22,14 @@ final actor MediaFetcher: Fetchable {
         self.mediaService = service
     }
 
-    func fetchSinglePage() async throws -> [Watchable] {
+    func fetchPage() async throws -> [Watchable] {
         let watchables: [Watchable] = try await mediaService.fetchMedia(request: mediaListFetcher.fetch(page: pageCounter))
         return watchables
     }
 
-    func fetchWithNextPage() async throws -> [Watchable] {
+    func fetchNextPage() async throws -> [Watchable] {
         pageCounter += 1
-        let watchables = try await fetchSinglePage()
+        let watchables = try await fetchPage()
         mediaList.append(contentsOf: watchables)
         return mediaList
     }

@@ -10,7 +10,7 @@ import NetworkService
 
 @available(iOS 13.0, *)
 protocol MediaOverviewController: Sendable {
-    func fetchNextPopularPageAsFullList() async throws -> [Watchable]
+    func fetchPopularMoviesNextPage() async throws -> [Watchable]
 }
 
 @available(iOS 16.0, *)
@@ -23,7 +23,7 @@ final class MoviesOverviewController: Sendable, MediaOverviewController {
         self.popularMoviesFetcher = popularMoviesFetcher
     }
 
-    func fetchNextPopularPageAsFullList() async throws -> [Watchable] {
-        return try await popularMoviesFetcher.fetchWithNextPage()
+    func fetchPopularMoviesNextPage() async throws -> [Watchable] {
+        return try await popularMoviesFetcher.fetchNextPage()
     }
 }

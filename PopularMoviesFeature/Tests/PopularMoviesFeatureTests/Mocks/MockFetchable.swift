@@ -14,7 +14,7 @@ final class MockFetchable: @unchecked Sendable, Fetchable {
 
     var mockResult: Result<[Watchable], Error>!
 
-    func fetchSinglePage() async throws -> [Watchable] {
+    func fetchPage() async throws -> [Watchable] {
         switch mockResult {
         case .success(let watchables):
             return watchables
@@ -26,7 +26,7 @@ final class MockFetchable: @unchecked Sendable, Fetchable {
         }
     }
 
-    func fetchWithNextPage() async throws -> [Watchable] {
+    func fetchNextPage() async throws -> [Watchable] {
         switch mockResult {
         case .success(let watchables):
             return watchables

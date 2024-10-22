@@ -37,9 +37,9 @@ public final class PopularMoviesFeatureViewModel: @unchecked Sendable {
 
     private func fetchPopularMovies() async {
         do {
-            let popularMovies = try await controller.fetchNextPopularPageAsFullList()
+            let popularMovies = try await controller.fetchPopularMoviesNextPage()
             let watchable = filterWatchable(popularMovies)
-            state = watchable.isEmpty ? .failed(MediaFetchError.noPopularMoviesAvailable.localizedDescription) : .loaded(watchable)
+            state = watchable.isEmpty ? .failed(MediaServiceError.noPopularMoviesAvailable.localizedDescription) : .loaded(watchable)
         } catch {
             state = .failed(error.localizedDescription)
         }

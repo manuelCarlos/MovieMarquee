@@ -43,9 +43,9 @@ final class PaginatedListViewModel: @unchecked Sendable {
     // MARK: - Private
 
     private func fetchMedia(isFirstPage: Bool) async throws {
-        let mediaList = try await controller.fetchNextPopularPageAsFullList()
+        let mediaList = try await controller.fetchPopularMoviesNextPage()
         if mediaList.isEmpty && isFirstPage {
-            throw MediaFetchError.noPopularMoviesAvailable
+            throw MediaServiceError.noPopularMoviesAvailable
         }
         state = .loaded(mediaList)
     }
