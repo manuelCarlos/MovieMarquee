@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "movie_marquee_tab_bar_item_discover_screen_title" : {
+      "comment" : "Title for the Discover screen tab in the tab bar",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Discover"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descobre"
+          }
+        }
+      }
+    },
+    "movie_marquee_tab_bar_item_favorites_screen_title" : {
+      "comment" : "Title for the Favorites screen tab in the tab bar",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Favorites"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
