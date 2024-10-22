@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 import SwiftData
 
 @available(iOS 17.0, *)
@@ -21,6 +22,8 @@ protocol MovieDBModelStorage {
 @ModelActor
 final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
 
+    private static let logger = Logger(subsystem: "MoviesDB.Package", category: "MovieDBModelActor")
+
     static let shared: MovieDBModelActor = {
         let schema = Schema([FavoriteMovieModel.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -28,7 +31,8 @@ final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
             let modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
             return MovieDBModelActor(modelContainer: modelContainer)
         } catch {
-            fatalError("Could not create ModelContainer: \(error)") // TODO: - add logging
+            logger.error("Could not create ModelContainer: \(error)")
+            fatalError("Could not create ModelContainer: \(error)")
         }
     }()
 
@@ -41,6 +45,7 @@ final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
         if let movie {
             return FavoriteMovie(id: movie.id, name: movie.name)
         } else {
+            Self.logger.debug("No movie found with id: \(id)")
             throw MoviesDBError.notFound
         }
     }
