@@ -28,7 +28,7 @@ final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
             let modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
             return MovieDBModelActor(modelContainer: modelContainer)
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            fatalError("Could not create ModelContainer: \(error)") // TODO: - add logging
         }
     }()
 
@@ -37,7 +37,7 @@ final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
     }
 
     func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
-        let movie = fetchFavoriteMovieModel(id: id)
+        let movie = try fetchFavoriteMovieModel(id: id)
         if let movie {
             return FavoriteMovie(id: movie.id, name: movie.name)
         } else {
@@ -75,11 +75,11 @@ final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
         try modelContext.save()
     }
 
-    private func fetchFavoriteMovieModel(id: Int) -> FavoriteMovieModel? {
-        let predicate: Predicate<FavoriteMovieModel>? = #Predicate { movie in movie.id == id }
+    private func fetchFavoriteMovieModel(id: Int) throws -> FavoriteMovieModel? {
+        let predicate: Predicate<FavoriteMovieModel> = #Predicate { movie in movie.id == id }
         var fetchDescriptor = FetchDescriptor<FavoriteMovieModel>(predicate: predicate)
         fetchDescriptor.fetchLimit = 1
-        let object = try? modelContext.fetch(fetchDescriptor)
-        return object?.first
+        let object = try modelContext.fetch(fetchDescriptor)
+        return object.first
     }
 }
