@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 
 @available(iOS 13.0.0, *)
 public protocol APIManagerProtocol: Sendable {
@@ -14,6 +15,8 @@ public protocol APIManagerProtocol: Sendable {
 
 @available(iOS 15.0, *)
 public final actor APIManager: APIManagerProtocol {
+
+    private let logger = Logger(subsystem: "NetworkService.Package", category: "APIManager")
     private let urlSession: URLSession
 
     public init(urlSession: URLSession = URLSession.shared) {
@@ -23,10 +26,12 @@ public final actor APIManager: APIManagerProtocol {
     public func initRequest(with data: NetworkRequest) async throws -> Data {
         let (data, response) = try await urlSession.data(for: data.makeRequest())
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkError.invalidHTTPURLResponse // TODO: - LOg
+            logger.error("Invalid HTTPURLResponse")
+            throw NetworkError.invalidHTTPURLResponse
         }
         guard httpResponse.statusCode == 200 else {
-            throw NetworkError.httpResponse(code: httpResponse.statusCode) // TODO: - LOg
+            logger.error("Invalid HTTP status code: \(httpResponse.statusCode)")
+            throw NetworkError.httpResponse(code: httpResponse.statusCode)
         }
         return data
     }
