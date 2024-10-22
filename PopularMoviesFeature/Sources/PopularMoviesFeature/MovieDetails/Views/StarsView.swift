@@ -31,7 +31,9 @@ struct StarsView: View {
             GeometryReader { geometry in
                 if geometry.size.width > 0,
                    geometry.size.width.isNaN == false,
-                    geometry.size.width.isFinite {
+                   geometry.size.width.isFinite,
+                   maxRating > 0,
+                   rating.isFinite {
                     let width = rating / CGFloat(maxRating) * geometry.size.width
                     ZStack(alignment: .leading) {
                         Rectangle()

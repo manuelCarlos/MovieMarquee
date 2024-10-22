@@ -63,7 +63,7 @@ struct MoviesOverviewList: View {
 
     private var discloseAllView: some View {
         HStack(alignment: .bottom, spacing: 3) {
-            Text(Texts.ButtonTitle.sliceSeeAll)
+            Text(Texts.seeAll)
                 .foregroundColor(.accentColor)
                 .font(.title3)
                 .bold()

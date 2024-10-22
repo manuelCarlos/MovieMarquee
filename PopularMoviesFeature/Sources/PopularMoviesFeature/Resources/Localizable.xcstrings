@@ -1,14 +1,167 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Cast" : {
-
+    "loading_title_key" : {
+      "comment" : "Text indicating loading state",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Loading..."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descarregar…"
+          }
+        }
+      }
     },
-    "Overview" : {
-
+    "movie_cast_title_key" : {
+      "comment" : "Title for the movie cast section",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Cast"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artistas"
+          }
+        }
+      }
     },
-    "Unavailable" : {
-
+    "movie_overview_title_key" : {
+      "comment" : "Title for the movie overview section",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Overview"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sumario"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_navigation_bar_title_key" : {
+      "comment" : "Navigation bar title for the popular movies feature",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Discover"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descobre"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_navigation_title_key" : {
+      "comment" : "Navigation title for the popular movies feature",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "All Popular Movies"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos os filmes populares"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_view_see_all_key" : {
+      "comment" : "Button title to see all items",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "See All"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_view_title_key" : {
+      "comment" : "Title for the popular movies feature view",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Most Popular"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais Populares"
+          }
+        }
+      }
+    },
+    "something_went_wrong_key" : {
+      "comment" : "Error message indicating something went wrong",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Oops, something went wrong"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qualquer coisa correu mal"
+          }
+        }
+      }
+    },
+    "unavailable_key" : {
+      "comment" : "Text indicating something is unavailable",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unavailable"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indisponivel"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

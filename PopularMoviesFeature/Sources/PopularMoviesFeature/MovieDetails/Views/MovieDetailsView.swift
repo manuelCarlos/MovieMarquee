@@ -25,6 +25,7 @@ struct MovieDetailsView: View {
 
     var body: some View {
         contentView
+            .transition(.opacity.animation(.easeInOut(duration: 0.3)))
             .navigationTitle(viewModel.navigationTitle)
     }
 
@@ -36,9 +37,9 @@ struct MovieDetailsView: View {
                 Task { await viewModel.fetchMediaDetails() }
             }
         case .loading:
-            LoadingStateView(subtitle: "Loading...")
+            LoadingStateView(subtitle: Texts.loading)
         case .failed(let error):
-            FailedStateView(title: "Oops, something went wrong", description: error) {
+            FailedStateView(title: Texts.somethingWentWrong, description: error) {
                 Task { await viewModel.fetchMediaDetails() }
             }
         case .loaded(let movieDetails):
@@ -47,7 +48,7 @@ struct MovieDetailsView: View {
                     DetailsView(movieDetails: movieDetails, favoriteMoviesDBStore: favoriteMoviesDBStore)
 
                     if let overview = movieDetails.overview {
-                        Text("Overview")
+                        Text(Texts.movieOverviewTitle)
                             .font(.title)
                             .fontWeight(.bold)
                         Text(overview)

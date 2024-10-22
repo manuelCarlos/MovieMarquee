@@ -25,7 +25,7 @@ public struct PopularMoviesFeatureView: View {
     public var body: some View {
         NavigationStack {
             contentView
-            .navigationBarTitle(Texts.NavigationBarTitle.discoverScreen)
+            .navigationBarTitle(Texts.popularMoviesFeatureNavigationBarTitle)
         }
     }
 
@@ -39,15 +39,15 @@ public struct PopularMoviesFeatureView: View {
                 Task { await viewModel.fetchMostPopularMovies() }
             }
         case .loading:
-            LoadingStateView(subtitle: "Loading...")
+            LoadingStateView(subtitle: Texts.loading)
         case .failed(let error):
-            FailedStateView(title: "Oops, something went wrong", description: error) {
+            FailedStateView(title: Texts.somethingWentWrong, description: error) {
                 Task { await viewModel.fetchMostPopularMovies() }
             }
         case .loaded(let movies):
             MoviesOverviewList(
-                navigationTitle: "All Popular Movies",
-                title: Texts.SectionHeader.mostPopular,
+                navigationTitle: Texts.popularMoviesFeatureNavigationTitle,
+                title: Texts.popularMoviesFeatureViewTitle,
                 movies: movies,
                 favoriteMoviesDBStore: favoriteMoviesDBStore
             )
@@ -61,7 +61,7 @@ public struct PopularMoviesFeatureView: View {
 
     #if DEBUG
     /// **NOT to be used in production**
-    /// A special initializer for testing purposes that allows dependency injection of a mock viewModel.
+    /// This is special initializer for testing purposes. It allows dependency injection of a mock viewModel.
     init(viewModel: PopularMoviesFeatureViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.viewModel = viewModel
         self.isDataLoaded = true

@@ -23,7 +23,11 @@ struct MovieOverviewListItem: View {
 
     var body: some View {
         NavigationLink(
-            destination: makeMovieDetailView(mediaType: type(of: movie))
+            destination:
+                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(),
+                                                                  navigationTitle: movie.title,
+                                                                  movieId: movie.id),
+                                 favoriteMoviesDBStore: favoriteMoviesDBStore)
         ) {
             VStack {
                 MoviePosterView(imageUrl: movie.posterUrl,
@@ -38,19 +42,6 @@ struct MovieOverviewListItem: View {
                     .frame(width: 120, height: 60, alignment: .top)
             }
             .cornerRadius(10)
-        }
-    }
-
-    // MARK: - Private
-
-    private func makeMovieDetailView(mediaType: Watchable.Type) -> some View {
-        VStack {
-            if mediaType == Movie.self {
-                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(),
-                                                                  navigationTitle: movie.title,
-                                                                  movieId: movie.id),
-                                 favoriteMoviesDBStore: favoriteMoviesDBStore)
-            }
         }
     }
 }

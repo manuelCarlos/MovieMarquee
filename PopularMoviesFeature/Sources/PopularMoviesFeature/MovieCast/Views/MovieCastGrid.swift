@@ -36,7 +36,7 @@ struct MovieCastGrid: View {
             // In case of error no Cast section data is displayed 😉.
             EmptyView()
         case .loaded(let artists):
-            Text("Cast")
+            Text(Texts.movieCastTitle)
                 .font(.title)
                 .fontWeight(.bold)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], alignment: .center, spacing: 20) {
