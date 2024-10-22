@@ -44,7 +44,7 @@ struct MovieDetailsView: View {
         case .loaded(let movieDetails):
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    makeMovieDetailsView(movieDetails: movieDetails)
+                    DetailsView(movieDetails: movieDetails, favoriteMoviesDBStore: favoriteMoviesDBStore)
 
                     if let overview = movieDetails.overview {
                         Text("Overview")
@@ -61,10 +61,15 @@ struct MovieDetailsView: View {
             }
         }
     }
+}
 
-    // MARK: - Private
+@available(iOS 17.0, *)
+private struct DetailsView: View {
 
-    private func makeMovieDetailsView(movieDetails: WatchableDetails) -> some View { // TODO: - make this a View?
+    let movieDetails: WatchableDetails
+    let favoriteMoviesDBStore: FavoriteMoviesDBStore
+
+    var body: some View {
         HStack(alignment: .top) {
             MoviePosterView(imageUrl: movieDetails.posterUrl)
                 .frame(width: 150, height: 200)
@@ -78,9 +83,11 @@ struct MovieDetailsView: View {
                 time: (movieDetails as? MovieDetails)?.localizedRuntime
             )
 
-            FavoriteButton(mediaId: movieDetails.id,
-                           mediaTitle: movieDetails.title,
-                           favoriteMoviesDBStore: favoriteMoviesDBStore)
+            FavoriteButton(
+                mediaId: movieDetails.id,
+                mediaTitle: movieDetails.title,
+                favoriteMoviesDBStore: favoriteMoviesDBStore
+            )
             .padding(.leading, 20)
             .padding(.trailing, 20)
 
