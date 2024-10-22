@@ -25,13 +25,13 @@ struct MainAppScene: View {
         TabView(selection: $selectedTabIndex) {
             PopularMoviesFeatureView(favoriteMoviesDBStore: favoriteMoviesDBStore)
                 .tabItem {
-                    Label(Texts.TabBarItemTitle.discoverTabTitle, systemImage: "movieclapper")
+                    Label(Texts.TabBarItemTitle.discover, systemImage: "movieclapper")
                 }
                 .tag(TabViewSection.discover.rawValue)
 
             FavoriteMoviesScene(favoriteMoviesDBStore: favoriteMoviesDBStore)
                 .tabItem {
-                    Label(Texts.TabBarItemTitle.favoritesTabTitle, systemImage: "heart")
+                    Label(Texts.TabBarItemTitle.favorites, systemImage: "heart")
                 }
                 .tag(TabViewSection.favorites.rawValue)
         }
