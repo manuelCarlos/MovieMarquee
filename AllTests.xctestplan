@@ -35,13 +35,6 @@
     },
     {
       "target" : {
-        "containerPath" : "container:MovieMarquee.xcodeproj",
-        "identifier" : "11947C772CB012C60024132D",
-        "name" : "MovieMarqueeTests"
-      }
-    },
-    {
-      "target" : {
         "containerPath" : "container:TMDBData",
         "identifier" : "TMDBDataTests",
         "name" : "TMDBDataTests"

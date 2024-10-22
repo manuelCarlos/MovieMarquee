@@ -1,20 +1,22 @@
 # MovieMarquee
 
 MovieMarquee is a simple demo iOS app featuring the use of the TMDB (www.themoviedb.org) backend API.
-It uses SwiftUI, SwiftData and the Swift Package Manager(SPM) to display and manage information about the current most popular movies.
+It uses SwiftUI and SwiftData to display and manage information about the current most popular movies returned by TMDB.
 
 ## Current Feature Set
 
-- A "Discover" tab, displaying the 20 most popular movies. From there we can navigate to either:
+- A "Discover" tab, displaying the 20 most popular movies. 
+  From there we can navigate to either:
     - A movie details screen.
     - The full list of popular movies.
 - The movie details screen displays the name and photo of the cast. And allow marking the movie as favorite.
-- A second tab, named "Favorites", displays the list of all favorited movies that are store in the app's DB. 
+- A second tab, named "Favorites", displays the list of all DB stored favorited movies, which can be deleted by the user with a left swipe.
 
 ## Testing
 
-- There's currently extensive test coverage of all the implementation - 95% coverage at the moment.
+- The project has extensive (95% test coverage) tests for all aspects of the implementation.
 - Please run snapshot tests in the (iOS18.1)iPhone 13 mini simulator, or some snapshot tests might fail 💥.
+- UI tests are meant to use a successful live backend call and will fail otherwise. 
 - To execute the tests, hit **cmd+u** after opening the project in Xcode.
 
 ## Notable Implementation Features
@@ -24,4 +26,4 @@ It uses SwiftUI, SwiftData and the Swift Package Manager(SPM) to display and man
 - Modularization using local Swift packages (SPM).
 - Test plan setup to conveniently execute all app + packages tests in one go.
 - String catalogs for localization.
-- Code formatting enabled via Swiftlint.
+- Code formatting enabled via SwiftLint.
