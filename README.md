@@ -3,6 +3,11 @@
 MovieMarquee is a simple demo iOS app featuring the use of the TMDB (www.themoviedb.org) backend API.
 It uses SwiftUI and SwiftData to display and manage information about the current most popular movies returned by TMDB.
 
+## Trying it out
+
+- To successfully fetch data from TMDB, an API key is required. 
+  Paste your key into the `MovieMarquee/TMDBData/Sources/TMDBData/Resources/apiKey.json` file and build and run the app.
+
 ## Current Feature Set
 
 - A "Discover" tab, displaying the 20 most popular movies. 
