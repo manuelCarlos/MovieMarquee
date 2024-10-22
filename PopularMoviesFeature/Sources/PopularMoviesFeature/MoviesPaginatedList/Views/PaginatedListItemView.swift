@@ -25,7 +25,10 @@ struct PaginatedListItemView: View {
     var body: some View {
         NavigationLink(
             destination:
-                makeMovieDetailView(mediaType: type(of: mediaItem))
+                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(),
+                                                                  navigationTitle: mediaItem.title,
+                                                                  movieId: mediaItem.id),
+                                 favoriteMoviesDBStore: favoriteMoviesDBStore)
         ) {
             HStack(alignment: .center, spacing: 20) {
                 MoviePosterView(imageUrl: mediaItem.posterUrl)
@@ -62,17 +65,6 @@ struct PaginatedListItemView: View {
             if let rating = mediaItem.voteAverage {
                 StarsView(rating: CGFloat(rating/2), maxRating: 5)
                     .frame(width: 100, alignment: .center)
-            }
-        }
-    }
-
-    private func makeMovieDetailView(mediaType: Watchable.Type) -> some View {
-        VStack {
-            if (mediaType as? Movie.Type) != nil {
-                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(),
-                                                                  navigationTitle: mediaItem.title,
-                                                                  movieId: mediaItem.id),
-                                 favoriteMoviesDBStore: favoriteMoviesDBStore)
             }
         }
     }
