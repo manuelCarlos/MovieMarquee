@@ -1,5 +1,5 @@
 //
-//  MovieDetail.swift
+//  MovieDetails.swift
 //  Models
 //
 //  Created by Manuel Lopes on 12.10.24.
@@ -8,7 +8,7 @@
 import Foundation
 
 @available(iOS 16.0, *)
-public struct MovieDetail: Codable, Identifiable, Hashable, Sendable, WatchableDetail {
+public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, WatchableDetails {
     public let id: Int
     public let adult: Bool
     public let posterPath: String?

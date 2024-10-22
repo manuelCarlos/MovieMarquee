@@ -12,7 +12,7 @@
 final class MockMediaService: @unchecked Sendable, MediaService {
 
     var mockWatchables: [Watchable] = [Movie.make()]
-    var mockWatchableDetail: WatchableDetail = MockWatchableDetail()
+    var mockWatchableDetail: WatchableDetails = MockWatchableDetail()
     var mockCredits: Credits = Credits(cast: [Cast.make(id: 1, name: "Manuel Lopes"),
                                               Cast.make(id: 2, name: "Malo da Pro")],
                                        crew: [],
@@ -32,7 +32,7 @@ final class MockMediaService: @unchecked Sendable, MediaService {
         return mockWatchables
     }
 
-    func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetail {
+    func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetails {
         if shouldFail {
             throw MockError.failure
         }

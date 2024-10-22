@@ -9,7 +9,7 @@ import Models
 
 @available(iOS 13.0, *)
 protocol MediaDetailsController: Sendable {
-    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetail
+    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetails
 }
 
 @available(iOS 16.0, *)
@@ -21,7 +21,7 @@ final class MovieDetailsController: Sendable, MediaDetailsController {
         self.movieService = movieService
     }
 
-    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetail {
+    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetails {
         return try await movieService.fetchMediaDetails(mediaId: movieId)
     }
 }

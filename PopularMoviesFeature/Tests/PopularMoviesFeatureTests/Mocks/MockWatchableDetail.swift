@@ -8,7 +8,7 @@
 @testable import Models
 @testable import PopularMoviesFeature
 
-struct MockWatchableDetail: WatchableDetail {
+struct MockWatchableDetail: WatchableDetails {
     var localizedRuntime: String?
     var genres: [Models.Genre] = [Models.Genre(id: 1, name: "Drama")]
     var productionCompanies: [Models.ProductionCompany]? = []

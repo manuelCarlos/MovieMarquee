@@ -10,11 +10,11 @@
 
 final class MockMovieDetailsController: @unchecked Sendable, MediaDetailsController {
 
-    var mockDetail: WatchableDetail = MockWatchableDetail()
+    var mockDetail: WatchableDetails = MockWatchableDetail()
     var error: Error?
     var fetchGotCalled: Bool = false
 
-    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetail {
+    func fetchMovieDetail(movieId: Int) async throws -> WatchableDetails {
         fetchGotCalled = true
         if let error {
             throw error

@@ -29,7 +29,7 @@ final class MovieDetailsViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_fetch_media_detail_success_sets_loaded_state() async {
+    func test_fetch_media_details_success_sets_loaded_state() async {
         let expectedDetail = MockWatchableDetail()
         mockController.mockDetail = expectedDetail
 
@@ -38,7 +38,7 @@ final class MovieDetailsViewModelTests: XCTestCase {
             return
         }
 
-        await viewModel.fetchMediaDetail()
+        await viewModel.fetchMediaDetails()
 
         if case let .loaded(detail) = viewModel.state {
             XCTAssertEqual(detail.genres.count, 1)
@@ -48,7 +48,7 @@ final class MovieDetailsViewModelTests: XCTestCase {
         }
     }
 
-    func test_fetch_media_detail_failure_sets_failed_state() async {
+    func test_fetch_media_details_failure_sets_failed_state() async {
         mockController.error = NSError(domain: "TestError", code: 1, userInfo: nil) // TODO: - custom errror
 
         guard case .idle = viewModel.state  else {
@@ -56,7 +56,7 @@ final class MovieDetailsViewModelTests: XCTestCase {
             return
         }
 
-        await viewModel.fetchMediaDetail()
+        await viewModel.fetchMediaDetails()
 
         if case let .failed(errorMessage) = viewModel.state {
             XCTAssertEqual(errorMessage, "The operation couldn’t be completed. (TestError error 1.)")

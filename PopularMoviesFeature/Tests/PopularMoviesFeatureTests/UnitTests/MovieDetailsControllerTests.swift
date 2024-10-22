@@ -28,7 +28,7 @@ final class MovieDetailsControllerTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_fetch_media_detail_successfully() async throws {
+    func test_fetch_media_details_successfully() async throws {
         let expectedWatchableDetail = MockWatchableDetail()
         mockMediaService.mockWatchableDetail = expectedWatchableDetail
 
@@ -41,7 +41,7 @@ final class MovieDetailsControllerTests: XCTestCase {
         XCTAssertEqual(result.overview, "This is a mock movie used for testing purposes.")
     }
 
-    func test_fetch_media_detail_failure() async {
+    func test_fetch_media_details_failure() async {
         mockMediaService.shouldFail = true
 
         do {

@@ -20,9 +20,9 @@ final class MovieDetailsViewTests: XCTestCase {
 
     func test_movie_details_view_when_successfully_loaded() async throws {
         let controller = MockMovieDetailsController()
-        controller.mockDetail = MovieDetail.make(id: 99, title: "Dr. Strange Love or why I stopped worrying and learned to love the bomb")
+        controller.mockDetail = MovieDetails.make(id: 99, title: "Dr. Strange Love or why I stopped worrying and learned to love the bomb")
         let viewModel = MovieDetailsViewModel(controller: controller, navigationTitle: "details", movieId: 99)
-        await viewModel.fetchMediaDetail()
+        await viewModel.fetchMediaDetails()
 
         let sut = MovieDetailsView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
 
@@ -59,7 +59,7 @@ final class MovieDetailsViewTests: XCTestCase {
         let controller = MockMovieDetailsController()
         controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil) // TODO: - custom errror
         let viewModel = MovieDetailsViewModel(controller: controller, navigationTitle: "details", movieId: 99)
-        await viewModel.fetchMediaDetail()
+        await viewModel.fetchMediaDetails()
 
         let sut = MovieDetailsView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
 

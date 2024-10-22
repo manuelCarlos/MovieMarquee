@@ -11,6 +11,6 @@ import Models
 @available(iOS 13.0, *)
 protocol MediaService: Sendable {
     func fetchMedia(request: NetworkRequest) async throws -> [Watchable]
-    func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetail
+    func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetails
     func fetchMediaCredits(mediaId: Int) async throws -> Credits
 }

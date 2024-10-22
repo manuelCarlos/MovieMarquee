@@ -29,7 +29,7 @@ final class MovieCastControllerTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_fetch_media_detail_successfully() async throws {
+    func test_fetch_media_details_successfully() async throws {
         let result = try await controller.fetchCast(mediaId: 1) as? [Cast]
 
         XCTAssertEqual(result?.first?.adult, false)
@@ -40,7 +40,7 @@ final class MovieCastControllerTests: XCTestCase {
         XCTAssertEqual(result?.first?.order, 1)
     }
 
-    func test_fetch_media_detail_failure() async {
+    func test_fetch_media_details_failure() async {
         mockMediaService.shouldFail = true
 
         do {

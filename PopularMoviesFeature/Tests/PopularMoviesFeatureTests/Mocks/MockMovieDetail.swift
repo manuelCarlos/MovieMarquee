@@ -10,7 +10,7 @@ import Foundation
 @testable import Models
 
 @available(iOS 16.0, *)
-extension MovieDetail {
+extension MovieDetails {
     static func make(id: Int = 12,
                      adult: Bool = false,
                      overview: String = "A cookie monster is a fictional creature that appears in various media, including animated films, video games, and comic books.",
@@ -24,8 +24,8 @@ extension MovieDetail {
                      status: String = "ok",
                      title: String = "The cookie monster",
                      video: Bool = false,
-                     voteAverage: Double? = 9) -> MovieDetail {
-        return MovieDetail(id: id,
+                     voteAverage: Double? = 9) -> MovieDetails {
+        return MovieDetails(id: id,
                            adult: adult,
                            overview: overview,
                            releaseDate: releaseDate,

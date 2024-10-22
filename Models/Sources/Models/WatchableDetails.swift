@@ -1,12 +1,12 @@
 //
-//  WatchableDetail.swift
+//  WatchableDetails.swift
 //  Models
 //
 //  Created by Manuel Lopes on 18.10.24.
 //
 
 @available(iOS 13.0, *)
-public protocol WatchableDetail: Watchable { // TODO: - rename WatchableDetails
+public protocol WatchableDetails: Watchable {
     var genres: [Genre] { get }
     var productionCompanies: [ProductionCompany]? { get }
     var productionCountries: [ProductionCountry]? { get }

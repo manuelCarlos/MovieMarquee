@@ -17,7 +17,7 @@ final class MovieDetailsViewModel: @unchecked Sendable {
         case idle
         case loading
         case failed(String)
-        case loaded(WatchableDetail)
+        case loaded(WatchableDetails)
     }
 
     let navigationTitle: String
@@ -31,7 +31,7 @@ final class MovieDetailsViewModel: @unchecked Sendable {
         self.movieId = movieId
     }
 
-    func fetchMediaDetail() async {
+    func fetchMediaDetails() async {
         do {
             state = .loading
             let movieDetail = try await controller.fetchMovieDetail(movieId: movieId)

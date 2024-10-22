@@ -58,7 +58,7 @@ final class MovieServiceTests: XCTestCase {
 
     func test_fetch_media_details_successfully() async throws {
         let mockRequestManager = MockRequestManager()
-        mockRequestManager.mockMediaDetail = MovieDetail.make()
+        mockRequestManager.mockMediaDetail = MovieDetails.make()
         let service = MovieService(requestManager: mockRequestManager)
         let movieID = 123 // Mock movie ID
 
@@ -70,13 +70,13 @@ final class MovieServiceTests: XCTestCase {
         XCTAssertEqual(movieDetail.popularity, 4.4)
         XCTAssertEqual(movieDetail.genres, [Genre(id: 1, name: "Action"), Genre(id: 2, name: "Comedy")])
         XCTAssertEqual(movieDetail.voteAverage, 9)
-        XCTAssertEqual((movieDetail as? MovieDetail)?.releaseDate, Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 24))!)
+        XCTAssertEqual((movieDetail as? MovieDetails)?.releaseDate, Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 24))!)
         XCTAssertEqual(mockRequestManager.decodeCallCount, 1)
     }
 
     func test_fetch_media_details_failure() async throws {
         let mockRequestManager = MockRequestManager(shouldFail: true)
-        mockRequestManager.mockMediaDetail = MovieDetail.make()
+        mockRequestManager.mockMediaDetail = MovieDetails.make()
         let service = MovieService(requestManager: mockRequestManager)
         let movieID = 123 // Mock movie ID
 

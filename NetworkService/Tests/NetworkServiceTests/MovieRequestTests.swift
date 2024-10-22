@@ -22,7 +22,7 @@ final class MovieRequestTests: XCTestCase {
         XCTAssertEqual(request.urlParams.count, 3)
     }
 
-    func test_movie_request_get_movie_detail_path_should_be_correct() {
+    func test_movie_request_get_movie_details_path_should_be_correct() {
         let request = MovieRequest.getMovieDetail(id: 123)
 
         XCTAssertEqual(request.path, "/movie/123")
@@ -55,7 +55,7 @@ final class MovieRequestTests: XCTestCase {
         XCTAssertEqual(urlParams["language"], "en-US")
     }
 
-    func test_movie_request_get_movie_detail_url_params_should_include_movie_id_and_api_key() {
+    func test_movie_request_get_movie_details_url_params_should_include_movie_id_and_api_key() {
         let movieId = 123
         let request = MovieRequest.getMovieDetail(id: movieId)
 

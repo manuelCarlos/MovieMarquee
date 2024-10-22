@@ -33,13 +33,13 @@ struct MovieDetailsView: View {
         switch viewModel.state {
         case .idle:
             IdleView {
-                Task { await viewModel.fetchMediaDetail() }
+                Task { await viewModel.fetchMediaDetails() }
             }
         case .loading:
             LoadingStateView(subtitle: "Loading...")
         case .failed(let error):
             FailedStateView(title: "Oops, something went wrong", description: error) {
-                Task { await viewModel.fetchMediaDetail() }
+                Task { await viewModel.fetchMediaDetails() }
             }
         case .loaded(let movieDetails):
             ScrollView {
@@ -64,7 +64,7 @@ struct MovieDetailsView: View {
 
     // MARK: - Private
 
-    private func makeMovieDetailsView(movieDetails: WatchableDetail) -> some View { // TODO: - make this a View?
+    private func makeMovieDetailsView(movieDetails: WatchableDetails) -> some View { // TODO: - make this a View?
         HStack(alignment: .top) {
             MoviePosterView(imageUrl: movieDetails.posterUrl)
                 .frame(width: 150, height: 200)
@@ -74,8 +74,8 @@ struct MovieDetailsView: View {
                 genres: movieDetails.genres.first?.name,
                 rating: movieDetails.voteAverage,
                 language: movieDetails.originalLanguage,
-                date: (movieDetails as? MovieDetail)?.releaseDate,
-                time: (movieDetails as? MovieDetail)?.localizedRuntime
+                date: (movieDetails as? MovieDetails)?.releaseDate,
+                time: (movieDetails as? MovieDetails)?.localizedRuntime
             )
 
             FavoriteButton(mediaId: movieDetails.id,
