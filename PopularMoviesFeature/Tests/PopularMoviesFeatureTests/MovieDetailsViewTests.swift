@@ -57,7 +57,7 @@ final class MovieDetailsViewTests: XCTestCase {
 
     func test_movie_details_view_when_loading_failed_due_to_no_internet() async throws {
         let controller = MockMovieDetailsController()
-        controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil) // TODO: - custom errror
+        controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil)
         let viewModel = MovieDetailsViewModel(controller: controller, navigationTitle: "details", movieId: 99)
         await viewModel.fetchMediaDetails()
 

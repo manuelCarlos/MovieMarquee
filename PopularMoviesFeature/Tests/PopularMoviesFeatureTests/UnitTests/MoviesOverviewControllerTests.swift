@@ -9,6 +9,7 @@ import XCTest
 
 @testable import Models
 @testable import PopularMoviesFeature
+@testable import NetworkService
 
 @available(iOS 16.0, *)
 final class MoviesOverviewControllerTests: XCTestCase {
@@ -41,13 +42,13 @@ final class MoviesOverviewControllerTests: XCTestCase {
     }
 
     func test_fetch_next_popular_page_as_full_list_failure() async throws {
-        mockFetcher.mockResult = .failure(MockError.failure)
+        mockFetcher.mockResult = .failure(NetworkError.httpResponse(code: 500))
 
         do {
             _ = try await controller.fetchNextPopularPageAsFullList()
             XCTFail("Expected an error to be thrown")
         } catch {
-            XCTAssertEqual(error as? MockError, MockError.failure)
+            XCTAssertEqual(error as? NetworkError, NetworkError.httpResponse(code: 500))
         }
     }
 }

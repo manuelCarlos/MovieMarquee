@@ -65,7 +65,7 @@ final class PopularMoviesFeatureViewTests: XCTestCase {
 
     func test_popular_movies_feature_view_when_loading_failed_due_to_no_internet() async throws {
         let controller = MockMoviesOverviewController()
-        controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil) // TODO: - custom errror
+        controller.error = NSError(domain: "No internet connection", code: 999, userInfo: nil)
         let viewModel = PopularMoviesFeatureViewModel(controller: controller)
         await viewModel.fetchMostPopularMovies()
 

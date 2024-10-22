@@ -49,7 +49,7 @@ final class MovieDetailsViewModelTests: XCTestCase {
     }
 
     func test_fetch_media_details_failure_sets_failed_state() async {
-        mockController.error = NSError(domain: "TestError", code: 1, userInfo: nil) // TODO: - custom errror
+        mockController.error = NSError(domain: "TestError", code: 1, userInfo: nil)
 
         guard case .idle = viewModel.state  else {
             XCTFail("Expected state to be idle")

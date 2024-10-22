@@ -24,7 +24,7 @@ final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
     func decode<T: Decodable>(networkRequest data: NetworkRequest) async throws -> T {
         decodeCallCount += 1
         if shouldFail {
-            throw MockError.failure
+            throw NetworkError.invalidHTTPURLResponse
         }
 
         if let mockMediaDetail {

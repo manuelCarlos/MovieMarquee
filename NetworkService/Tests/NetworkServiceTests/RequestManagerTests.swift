@@ -59,14 +59,14 @@ final class RequestManagerTests: XCTestCase {
     }
 
     func test_decode_api_manager_throws_network_error() async throws {
-        mockAPIManager.errorToThrow = NetworkError.invalidServerResponse
+        mockAPIManager.errorToThrow = NetworkError.invalidURL
         let networkRequest = MockNetworkRequest.make()
 
         do {
             _ = try await requestManager.decode(networkRequest: networkRequest) as MockResponse
             XCTFail("Expected to throw NetworkError, but no error was thrown.")
         } catch {
-            XCTAssertEqual(error as? NetworkError, NetworkError.invalidServerResponse)
+            XCTAssertEqual(error as? NetworkError, .invalidURL)
         }
     }
 

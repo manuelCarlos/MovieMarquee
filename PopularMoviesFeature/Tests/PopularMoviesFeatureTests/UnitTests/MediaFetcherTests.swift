@@ -33,7 +33,7 @@ final class MediaFetcherTests: XCTestCase {
             _ = try await fetcher.fetchSinglePage()
             XCTFail("Expected error but got success")
         } catch {
-            XCTAssertTrue(error is MockError)
+            XCTAssertEqual((error as? MediaFetchError), .noPopularMoviesAvailable)
         }
     }
 
@@ -59,7 +59,7 @@ final class MediaFetcherTests: XCTestCase {
             _ = try await fetcher.fetchWithNextPage()
             XCTFail("Expected error but got success")
         } catch {
-            XCTAssertTrue(error is MockError)
+            XCTAssertEqual((error as? MediaFetchError), .noPopularMoviesAvailable)
         }
     }
 }

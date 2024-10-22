@@ -8,6 +8,7 @@
 import XCTest
 
 @testable import PopularMoviesFeature
+@testable import NetworkService
 
 @available(iOS 16.0, *)
 final class MovieDetailsControllerTests: XCTestCase {
@@ -48,7 +49,7 @@ final class MovieDetailsControllerTests: XCTestCase {
             _ = try await controller.fetchMovieDetail(movieId: 1)
             XCTFail("Expected an error to be thrown")
         } catch {
-            XCTAssertEqual(error as? MockError, MockError.failure)
+            XCTAssertEqual(error as? NetworkError, .invalidURL)
         }
     }
 }

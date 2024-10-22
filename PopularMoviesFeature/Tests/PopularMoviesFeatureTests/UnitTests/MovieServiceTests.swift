@@ -9,6 +9,7 @@ import XCTest
 
 @testable import Models
 @testable import PopularMoviesFeature
+@testable import NetworkService
 
 @available(iOS 17.0, *)
 final class MovieServiceTests: XCTestCase {
@@ -50,7 +51,7 @@ final class MovieServiceTests: XCTestCase {
             _ = try await service.fetchMedia(request: mockRequest)
             XCTFail("Expected failure, but got success")
         } catch {
-            XCTAssertTrue(error is MockError)
+            XCTAssertEqual(error as? NetworkError, .invalidHTTPURLResponse)
         }
     }
 
@@ -84,7 +85,7 @@ final class MovieServiceTests: XCTestCase {
             _ = try await service.fetchMediaDetails(mediaId: movieID)
             XCTFail("Expected failure, but got success")
         } catch {
-            XCTAssertTrue(error is MockError)
+            XCTAssertEqual(error as? NetworkError, .invalidHTTPURLResponse)
         }
     }
 
@@ -122,7 +123,7 @@ final class MovieServiceTests: XCTestCase {
             _ = try await service.fetchMediaCredits(mediaId: movieID)
             XCTFail("Expected failure, but got success")
         } catch {
-            XCTAssertTrue(error is MockError)
+            XCTAssertEqual(error as? NetworkError, .invalidHTTPURLResponse)
         }
     }
 

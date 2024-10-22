@@ -23,11 +23,10 @@ public final class APIManager: APIManagerProtocol {
     public func initRequest(with data: NetworkRequest) async throws -> Data {
         let (data, response) = try await urlSession.data(for: data.makeRequest())
         guard let httpResponse = response as? HTTPURLResponse else {
-            assertionFailure("Invalid HTTPURLResponse")
-            throw NetworkError.invalidServerResponse
+            throw NetworkError.invalidHTTPURLResponse // TODO: - LOg
         }
         guard httpResponse.statusCode == 200 else {
-            throw NetworkError.invalidServerResponse
+            throw NetworkError.httpResponse(code: httpResponse.statusCode) // TODO: - LOg
         }
         return data
     }
