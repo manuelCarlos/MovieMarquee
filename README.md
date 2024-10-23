@@ -19,10 +19,10 @@ It uses SwiftUI and SwiftData to display and manage information about the curren
 ## Tests
 
 - To execute the tests:
-    1. Open the project in Xcode.
-    2. Paste you API key into `apiKey.json`
-    3. Select the iphone13 mini (iOS 18.1) simulator as the run destination.
-    4. Hit `cmd+u`.
+    - Open the project in Xcode.
+    - Paste you API key into the `apiKey.json` file.
+    - Select the iphone13 mini (iOS 18.1) simulator as run destination.
+    - Hit `cmd+u`.
 - Note that UI tests are meant to use a successful live backend response, and will fail otherwise.
 
 ## Notable Implementation Features
