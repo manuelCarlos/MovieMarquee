@@ -15,7 +15,7 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct MovieDetailsView: View {
 
-    @State private var viewModel: MovieDetailsViewModel
+    private let viewModel: MovieDetailsViewModel
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
     init(viewModel: MovieDetailsViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {

@@ -12,7 +12,7 @@ import Lego
 @available(iOS 17.0, *)
 struct MovieCastGrid: View {
 
-    @State private var viewModel: MovieCastViewModel
+    private let viewModel: MovieCastViewModel
 
     init(viewModel: MovieCastViewModel) {
         self.viewModel = viewModel

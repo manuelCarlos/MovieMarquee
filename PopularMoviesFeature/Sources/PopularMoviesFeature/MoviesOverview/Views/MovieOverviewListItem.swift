@@ -15,18 +15,20 @@ struct MovieOverviewListItem: View {
 
     private let movie: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieDetailsViewModel: MovieDetailsViewModel
 
     init(movie: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.movie = movie
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(),
+                                                           navigationTitle: movie.title,
+                                                           movieId: movie.id)
     }
 
     var body: some View {
         NavigationLink(
             destination:
-                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(),
-                                                                  navigationTitle: movie.title,
-                                                                  movieId: movie.id),
+                MovieDetailsView(viewModel: movieDetailsViewModel,
                                  favoriteMoviesDBStore: favoriteMoviesDBStore)
         ) {
             VStack {

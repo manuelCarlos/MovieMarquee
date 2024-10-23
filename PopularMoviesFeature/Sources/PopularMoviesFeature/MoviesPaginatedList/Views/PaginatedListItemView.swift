@@ -16,18 +16,20 @@ struct PaginatedListItemView: View {
 
     private let mediaItem: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieDetailsViewModel: MovieDetailsViewModel
 
     init(mediaItem: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.mediaItem = mediaItem
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(),
+                                                           navigationTitle: mediaItem.title,
+                                                           movieId: mediaItem.id)
     }
 
     var body: some View {
         NavigationLink(
             destination:
-                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(),
-                                                                  navigationTitle: mediaItem.title,
-                                                                  movieId: mediaItem.id),
+                MovieDetailsView(viewModel: movieDetailsViewModel,
                                  favoriteMoviesDBStore: favoriteMoviesDBStore)
         ) {
             HStack(alignment: .center, spacing: 20) {
@@ -42,7 +44,6 @@ struct PaginatedListItemView: View {
 
     // MARK: - Private
 
-    @ViewBuilder
     private var movieInfoStackView: some View {
         VStack(alignment: .leading) {
             Text(mediaItem.title)
