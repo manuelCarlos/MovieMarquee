@@ -14,7 +14,7 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct PaginatedListView: View {
 
-    @State private var viewModel: PaginatedListViewModel
+    private let viewModel: PaginatedListViewModel
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
     init(viewModel: PaginatedListViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {

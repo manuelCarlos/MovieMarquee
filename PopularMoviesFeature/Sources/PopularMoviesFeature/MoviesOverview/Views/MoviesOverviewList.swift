@@ -46,8 +46,7 @@ struct MoviesOverviewList: View {
                     discloseAllView
                 }
             }
-            .padding(.leading, 15)
-            .padding(.trailing, 5)
+            .padding(.horizontal, 15)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 10) {
@@ -55,6 +54,7 @@ struct MoviesOverviewList: View {
                         MovieOverviewListItem(movie: item, favoriteMoviesDBStore: favoriteMoviesDBStore)
                     }
                 }
+                .padding(.horizontal, 15)
             }
         }
     }
@@ -71,6 +71,5 @@ struct MoviesOverviewList: View {
                 .foregroundColor(.accentColor)
                 .padding(.bottom, 4)
         }
-        .padding(.trailing, 10)
     }
 }

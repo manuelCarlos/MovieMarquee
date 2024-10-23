@@ -13,12 +13,13 @@ import MoviesDB
 @available(iOS 17.0, *)
 public struct PopularMoviesFeatureView: View {
 
-    @State private var viewModel = PopularMoviesFeatureViewModel(controller: MoviesOverviewController())
+    private let viewModel: PopularMoviesFeatureViewModel
     @State private var isDataLoaded = false
 
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
     public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+        self.viewModel = PopularMoviesFeatureViewModel(controller: MoviesOverviewController())
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 

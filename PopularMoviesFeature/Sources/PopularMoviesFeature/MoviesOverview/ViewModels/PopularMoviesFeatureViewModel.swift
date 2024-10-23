@@ -21,7 +21,6 @@ public final class PopularMoviesFeatureViewModel: @unchecked Sendable {
     }
 
     private let controller: MediaOverviewController
-
     private(set) var state = State.idle
 
     init(controller: MediaOverviewController) {

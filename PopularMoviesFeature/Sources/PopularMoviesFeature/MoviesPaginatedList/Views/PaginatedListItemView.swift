@@ -14,7 +14,6 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct PaginatedListItemView: View {
 
-    @State private var isFavorite: Bool?
     private let mediaItem: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 

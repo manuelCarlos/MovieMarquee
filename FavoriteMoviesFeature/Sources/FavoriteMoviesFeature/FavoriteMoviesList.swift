@@ -13,7 +13,7 @@ import MoviesDB
 @available(iOS 17, *)
 struct FavoriteMoviesList: View {
 
-    @State private var favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
     init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
