@@ -18,15 +18,17 @@ It uses SwiftUI and SwiftData to display and manage information about the curren
 
 ## Tests
 
-- The project has extensive (95% test coverage) tests for all aspects of the implementation.
-- Please run snapshot tests in the (iOS18.1)iPhone 13 mini simulator, or some snapshot tests might fail 💥.
-- UI tests are meant to use a successful live backend call and will fail otherwise. 
-- To execute the tests, open the project in Xcode and hit `cmd+u`.
+- To execute the tests:
+    1. Open the project in Xcode.
+    2. Paste you API key into `apiKey.json`
+    3. Select the iphone13 mini (iOS 18.1) simulator as the run destination.
+    4. Hit `cmd+u`.
+- Note that UI tests are meant to use a successful live backend response, and will fail otherwise.
 
 ## Notable Implementation Features
 
 - SwiftUI app with no third-party dependencies.
 - Swift 6 ready - strict concurrency checking enabled with zero warnings :P
 - Modularization using local Swift packages (SPM).
-- Unit, UI and Snapshot tests setup in a test plan.
+- Unit, UI and Snapshot tests setup in a test plan, covering all aspects of the implementation.
 - String catalogs for localization.
