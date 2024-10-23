@@ -42,6 +42,7 @@ struct FavoriteButton: View {
             .frame(width: 35, height: 35)
             .foregroundColor(.red)
         }
+        .symbolEffect(.bounce, value: isFavorite)
         .task {
             do {
                 _ = try await favoriteMoviesDBStore.fetchMovie(with: mediaId)
