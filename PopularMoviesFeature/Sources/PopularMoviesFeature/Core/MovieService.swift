@@ -5,8 +5,8 @@
 //  Created by Manuel Lopes on 10.10.24.
 //
 
-import NetworkService
 import Models
+import NetworkService
 
 @available(iOS 16.0, *)
 final class MovieService: Sendable, MediaService {

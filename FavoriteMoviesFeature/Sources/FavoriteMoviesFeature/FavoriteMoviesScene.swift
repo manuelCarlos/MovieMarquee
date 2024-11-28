@@ -29,6 +29,10 @@ public struct FavoriteMoviesScene: View {
     // MARK: - Testing interface
 
     #if DEBUG
+    /// A convenience initializer for testing purposes **only** that allows injection of a mock dependencies.
+    /// - Parameters:
+    ///   - favoriteMoviesDBStore: A mock or alternative implementation of `FavoriteMoviesDBStore` used for testing.
+    ///   - navigationTitle: A string to be displayed as navigation bar title.
     init(favoriteMoviesDBStore: FavoriteMoviesDBStore, navigationTitle: String) {
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
         self.navigationTitle = navigationTitle

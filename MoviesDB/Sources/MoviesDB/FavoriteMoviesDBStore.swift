@@ -94,9 +94,7 @@ public final class FavoriteMoviesDBStore: @unchecked Sendable {
     }
 
     #if DEBUG
-    /// **NOT to be used in production**
-    /// A special initializer for testing purposes that allows dependency injection of a mock database model actor.
-    ///
+    /// A convenience initializer for testing purposes **only** that allows injection of a mock dependencies.
     /// - Parameter movieDBModelStorage: A mock or alternative implementation of `MovieDBModelStorage` used for testing.
     init(movieDBModelStorage: MovieDBModelStorage) {
         movieDBModelActor = movieDBModelStorage
