@@ -11,7 +11,7 @@ import Models
 
 @available(iOS 17.0, *)
 @Observable
-public final class PopularMoviesFeatureViewModel: @unchecked Sendable {
+final class PopularMoviesFeatureViewModel: @unchecked Sendable {
 
     enum State {
         case idle

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 @available(iOS 17.0, *)
 /// A store for managing the favorite movies in the DB, providing asynchronous methods

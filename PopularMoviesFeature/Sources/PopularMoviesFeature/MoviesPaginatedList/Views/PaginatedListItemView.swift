@@ -5,7 +5,6 @@
 //  Created by Manuel Lopes on 11.10.24.
 //
 
-import SwiftData
 import SwiftUI
 
 import Lego
