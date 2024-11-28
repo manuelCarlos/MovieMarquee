@@ -44,21 +44,17 @@ struct MovieDetailsView: View {
             }
         case .loaded(let movieDetails):
             ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 16) {
                     DetailsView(movieDetails: movieDetails, favoriteMoviesDBStore: favoriteMoviesDBStore)
 
                     if let overview = movieDetails.overview {
-                        Text(Texts.movieOverviewTitle)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        Text(overview)
-                            .font(.system(size: 16))
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 20))
+                        Overview(description: overview)
                     }
 
                     MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(),
                                                                 mediaId: movieDetails.id))
                 }
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
             }
         }
     }
@@ -74,6 +70,9 @@ private struct DetailsView: View {
         HStack(alignment: .top) {
             MoviePosterView(imageUrl: movieDetails.posterUrl)
                 .frame(width: 150, height: 200)
+                .background(.gray)
+                .border(.gray, width: 5)
+                .cornerRadius(10)
 
             MovieDetailsHeader(
                 title: movieDetails.title,
@@ -89,10 +88,22 @@ private struct DetailsView: View {
                 mediaTitle: movieDetails.title,
                 favoriteMoviesDBStore: favoriteMoviesDBStore
             )
-            .padding(.leading, 20)
-            .padding(.trailing, 20)
+        }
+    }
+}
 
-            Spacer()
+@available(iOS 17.0, *)
+private struct Overview: View {
+
+    let description: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(Texts.movieOverviewTitle)
+                .font(.title)
+                .fontWeight(.bold)
+            Text(description)
+                .font(.system(size: 16))
         }
     }
 }

@@ -32,17 +32,17 @@ struct MovieDetailsHeader: View {
         VStack(alignment: .leading, spacing: 5) {
             if let title {
                 Text(title)
-                    .font(.title2)
+                    .font(.headline)
                     .bold()
-                    .minimumScaleFactor(0.65)
+                    .minimumScaleFactor(0.6)
             }
 
             if let genres {
                 Text(genres)
-                    .font(.title3)
+                    .font(.subheadline)
                     .foregroundColor(.primary)
                     .bold()
-                    .minimumScaleFactor(0.7)
+                    .minimumScaleFactor(0.4)
             }
 
             if let rating {
@@ -52,14 +52,14 @@ struct MovieDetailsHeader: View {
 
             if let language {
                 Text(language.language)
-                    .font(.headline)
+                    .font(.subheadline)
                     .bold()
                     .foregroundColor(.primary)
                     .minimumScaleFactor(0.8)
             }
             if let date {
                 Text(date.formatted(date: .abbreviated, time: .omitted))
-                    .font(.headline)
+                    .font(.caption)
                     .bold()
                     .foregroundColor(.primary)
                     .minimumScaleFactor(0.8)
@@ -67,7 +67,7 @@ struct MovieDetailsHeader: View {
 
             if let time = time {
                 Text(time)
-                    .font(.headline)
+                    .font(.caption)
                     .bold()
                     .foregroundColor(.primary)
                     .minimumScaleFactor(0.8)
