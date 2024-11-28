@@ -1,14 +1,14 @@
 //
 //  StarsViewTests.swift
-//  PopularMoviesFeatureTests
+//  Lego
 //
-//  Created by Manuel Lopes on 18.10.24.
+//  Created by Manuel Lopes on 28.11.24.
 //
 
 import XCTest
 import SnapshotTesting
 
-@testable import PopularMoviesFeature
+@testable import Lego
 
 @MainActor
 final class StarsViewTests: XCTestCase {

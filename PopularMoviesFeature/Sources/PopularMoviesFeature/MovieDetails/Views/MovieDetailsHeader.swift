@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+import Lego
 import Models
 
 @available(iOS 15.0, *)
