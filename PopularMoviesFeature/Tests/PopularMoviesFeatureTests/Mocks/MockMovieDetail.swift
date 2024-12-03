@@ -14,7 +14,7 @@ extension MovieDetails {
     static func make(id: Int = 12,
                      adult: Bool = false,
                      overview: String = "A cookie monster is a fictional creature that appears in various media, including animated films, video games, and comic books.",
-                     releaseDate: Date = Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 24))!,
+                     releaseDate: String = "2024-10-24",
                      genres: [Genre] = [Genre(id: 1, name: "Action"), Genre(id: 2, name: "Comedy")],
                      budget: Int = 1000,
                      originalLanguage: OriginalLanguage = .en,

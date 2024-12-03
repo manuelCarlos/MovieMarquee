@@ -6,7 +6,7 @@
 //
 
 public struct MovieCollection: Codable, Identifiable, Hashable, Sendable {
-    public var id: Int
+    public let id: Int
     public let backdropPath: String?
     public let name: String
     public let posterPath: String?

@@ -15,7 +15,7 @@ final class MovieDetailsTests: XCTestCase {
     func test_default_initializer_returns_valid_instance() {
         let movieDetails = MovieDetails(id: 12,
                                         adult: false,
-                                        releaseDate: .distantPast,
+                                        releaseDate: nil,
                                         genres: [],
                                         budget: 1000,
                                         popularity: 4.4,
@@ -28,7 +28,7 @@ final class MovieDetailsTests: XCTestCase {
         XCTAssertEqual(movieDetails.id, 12)
         XCTAssertEqual(movieDetails.title, "The cookie monster")
         XCTAssertEqual(movieDetails.voteAverage, nil)
-        XCTAssertEqual(movieDetails.releaseDate, .distantPast)
+        XCTAssertNil(movieDetails.dateOfRelease)
         XCTAssertEqual(movieDetails.originalLanguage?.rawValue, nil)
         XCTAssertEqual(movieDetails.originalTitle, nil)
         XCTAssertEqual(movieDetails.popularity, 4.4)
@@ -60,7 +60,7 @@ final class MovieDetailsTests: XCTestCase {
         XCTAssertEqual(movieDetails.id, 123)
         XCTAssertEqual(movieDetails.title, "Movie Title")
         XCTAssertEqual(movieDetails.voteAverage, 8.0)
-        XCTAssertEqual(movieDetails.releaseDate, DateFormatter.yyyyMMdd.date(from: "2023-10-09"))
+        XCTAssertEqual(movieDetails.dateOfRelease, DateFormatter.yyyyMMdd.date(from: "2023-10-09"))
         XCTAssertEqual(movieDetails.originalLanguage?.rawValue, "en")
         XCTAssertEqual(movieDetails.localizedRuntime, "2 hr, 36 min")
     }
@@ -72,7 +72,7 @@ final class MovieDetailsTests: XCTestCase {
         XCTAssertEqual(movieDetails.adult, true)
         XCTAssertNil(movieDetails.posterPath)
         XCTAssertEqual(movieDetails.title, "Another Movie")
-        XCTAssertEqual(movieDetails.releaseDate, DateFormatter.yyyyMMdd.date(from: "2024-10-09"))
+        XCTAssertEqual(movieDetails.dateOfRelease, DateFormatter.yyyyMMdd.date(from: "2024-10-09"))
         XCTAssertNil(movieDetails.localizedRuntime)
     }
 
@@ -80,7 +80,7 @@ final class MovieDetailsTests: XCTestCase {
         let movieDetails = try loadJson(from: "movieDetail_with_invalid_release_date_attribute", as: MovieDetails.self)
 
         XCTAssertEqual(movieDetails.id, 789)
-        XCTAssertNil(movieDetails.releaseDate)
+        XCTAssertNil(movieDetails.dateOfRelease)
     }
 
     func test_movie_details_decoding_missing_required_field() throws {

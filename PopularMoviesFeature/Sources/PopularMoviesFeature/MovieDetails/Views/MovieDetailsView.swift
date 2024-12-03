@@ -78,7 +78,7 @@ private struct DetailsView: View {
                 genres: movieDetails.genres.first?.name,
                 rating: movieDetails.voteAverage,
                 language: movieDetails.originalLanguage,
-                date: (movieDetails as? MovieDetails)?.releaseDate,
+                date: (movieDetails as? MovieDetails)?.dateOfRelease,
                 time: (movieDetails as? MovieDetails)?.localizedRuntime
             )
 

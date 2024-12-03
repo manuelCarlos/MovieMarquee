@@ -14,26 +14,31 @@ public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, Watchable
     public let posterPath: String?
     public let backdropPath: String?
     public let overview: String?
-    public let releaseDate: Date?
+    public var dateOfRelease: Date? {
+        guard let releaseDate else {
+            return nil
+        }
+        return Self.formatter.date(from: releaseDate)
+    }
     public let genres: [Genre]
     public let belongsToCollection: MovieCollection?
     public let budget: Int
-    public var homepage: String?
+    public let homepage: String?
     public let imdbId: String?
-    public var originalLanguage: OriginalLanguage?
+    public let originalLanguage: OriginalLanguage?
     public let originalTitle: String?
     public let popularity: Double
-    public var productionCompanies: [ProductionCompany]?
-    public var productionCountries: [ProductionCountry]?
+    public let productionCompanies: [ProductionCompany]?
+    public let productionCountries: [ProductionCountry]?
     public let revenue: Int
     public let runtime: Int?
-    public var spokenLanguages: [SpokenLanguage]?
+    public let spokenLanguages: [SpokenLanguage]?
     public let status, title: String
     public var tagline: String?
     public let video: Bool
     public let voteAverage: Double?
-    public var voteCount: Int?
-    public var credits: Credits?
+    public let voteCount: Int?
+    public let credits: Credits?
     public var localizedRuntime: String? {
         guard let runtime else {
             return nil
@@ -42,37 +47,8 @@ public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, Watchable
         return minutes.formatted(.units(width: .abbreviated))
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        adult = try container.decode(Bool.self, forKey: .adult)
-        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
-        backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath)
-        overview = try container.decodeIfPresent(String.self, forKey: .overview)
-        let release = try container.decodeIfPresent(String.self, forKey: .releaseDate)
-        let formatter = DateFormatter.yyyyMMdd
-        releaseDate = formatter.date(from: release ?? "")
-        genres = try container.decode([Genre].self, forKey: .genres)
-        belongsToCollection = try container.decodeIfPresent(MovieCollection.self, forKey: .belongsToCollection)
-        budget = try container.decode(Int.self, forKey: .budget)
-        homepage = try container.decodeIfPresent(String.self, forKey: .homepage)
-        imdbId = try container.decodeIfPresent(String.self, forKey: .imdbId)
-        originalLanguage = try container.decodeIfPresent(OriginalLanguage.self, forKey: .originalLanguage)
-        originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle)
-        popularity = try container.decode(Double.self, forKey: .popularity)
-        productionCompanies = try container.decodeIfPresent([ProductionCompany].self, forKey: .productionCompanies)
-        productionCountries = try container.decodeIfPresent([ProductionCountry].self, forKey: .productionCountries)
-        revenue = try container.decode(Int.self, forKey: .revenue)
-        runtime = try container.decodeIfPresent(Int.self, forKey: .runtime)
-        spokenLanguages = try container.decodeIfPresent([SpokenLanguage].self, forKey: .spokenLanguages)
-        status = try container.decode(String.self, forKey: .status)
-        title = try container.decode(String.self, forKey: .title)
-        tagline = try container.decodeIfPresent(String.self, forKey: .tagline)
-        video = try container.decode(Bool.self, forKey: .video)
-        voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage)
-        voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
-        credits = try container.decodeIfPresent(Credits.self, forKey: .credits)
-    }
+    private let releaseDate: String?
+    private static let formatter = DateFormatter.yyyyMMdd
 
     // MARK: - Internal
 
@@ -81,7 +57,7 @@ public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, Watchable
          posterPath: String? = nil,
          backdropPath: String? = nil,
          overview: String? = nil,
-         releaseDate: Date?,
+         releaseDate: String?,
          genres: [Genre],
          belongsToCollection: MovieCollection? = nil,
          budget: Int,

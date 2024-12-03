@@ -72,7 +72,7 @@ final class MovieServiceTests: XCTestCase {
         XCTAssertEqual(movieDetail.popularity, 4.4)
         XCTAssertEqual(movieDetail.genres, [Genre(id: 1, name: "Action"), Genre(id: 2, name: "Comedy")])
         XCTAssertEqual(movieDetail.voteAverage, 9)
-        XCTAssertEqual((movieDetail as? MovieDetails)?.releaseDate, Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 24))!)
+        XCTAssertEqual((movieDetail as? MovieDetails)?.dateOfRelease, Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 24))!)
         XCTAssertEqual(mockRequestManager.decodeCallCount, 1)
     }
 
