@@ -7,7 +7,9 @@
 
 import Foundation
 
-extension DateFormatter {
+let dateOfReleaseFormatter = DateFormatter.yyyyMMdd
+
+fileprivate extension DateFormatter {
     static let yyyyMMdd: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

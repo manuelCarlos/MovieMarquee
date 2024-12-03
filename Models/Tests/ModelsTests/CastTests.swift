@@ -11,6 +11,12 @@ import XCTest
 
 final class CastTests: XCTestCase {
 
+    override func setUp()  {
+        super.setUp()
+
+        dateOfReleaseFormatter.timeZone = .current
+    }
+
     func test_decoding_successfully() throws {
         let cast = try loadJson(from: "cast", as: Cast.self)
 
@@ -34,7 +40,7 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(cast.originalTitle, "Original Title")
         XCTAssertEqual(cast.overview, "This is an overview")
         XCTAssertEqual(cast.posterPath, "/path/to/poster")
-        XCTAssertEqual(cast.dateOfRelease, DateFormatter.yyyyMMdd.date(from: "1974-10-06"))
+        XCTAssertEqual(cast.dateOfRelease, dateOfReleaseFormatter.date(from: "1974-10-06"))
         XCTAssertEqual(cast.title, "Movie Title")
         XCTAssertEqual(cast.video, false)
         XCTAssertEqual(cast.voteAverage, 7.5)
@@ -49,13 +55,12 @@ final class CastTests: XCTestCase {
 
     func test_cast_encoding_successfully() throws {
         // Set the date encoding strategy to use yyyy-MM-dd and force it to use UTC
-        let dateFormatter = DateFormatter.yyyyMMdd
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateOfReleaseFormatter.timeZone = TimeZone(secondsFromGMT: 0)
 
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .formatted(dateFormatter)
+        encoder.dateEncodingStrategy = .formatted(dateOfReleaseFormatter)
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        decoder.dateDecodingStrategy = .formatted(dateOfReleaseFormatter)
 
         let cast = Cast.makeCast()
         let jsonData = try encoder.encode(cast)
@@ -67,8 +72,8 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(decodedMovie.posterPath, "PostPath")
         XCTAssertEqual(decodedMovie.backdropPath, "BackdropPath")
         XCTAssertEqual(decodedMovie.overview, "Overview")
-        XCTAssertEqual(dateFormatter.string(from: decodedMovie.dateOfRelease ?? .distantFuture),
-                       dateFormatter.string(from: cast.dateOfRelease ?? .distantPast))
+        XCTAssertEqual(dateOfReleaseFormatter.string(from: decodedMovie.dateOfRelease ?? .distantFuture),
+                       dateOfReleaseFormatter.string(from: cast.dateOfRelease ?? .distantPast))
         XCTAssertEqual(decodedMovie.genreIds, [1, 2, 3])
         XCTAssertEqual(decodedMovie.originalTitle, "Original Title")
         XCTAssertEqual(decodedMovie.originalLanguage, .en)

@@ -60,7 +60,7 @@ final class MovieDetailsTests: XCTestCase {
         XCTAssertEqual(movieDetails.id, 123)
         XCTAssertEqual(movieDetails.title, "Movie Title")
         XCTAssertEqual(movieDetails.voteAverage, 8.0)
-        XCTAssertEqual(movieDetails.dateOfRelease, DateFormatter.yyyyMMdd.date(from: "2023-10-09"))
+        XCTAssertEqual(movieDetails.dateOfRelease, dateOfReleaseFormatter.date(from: "2023-10-09"))
         XCTAssertEqual(movieDetails.originalLanguage?.rawValue, "en")
         XCTAssertEqual(movieDetails.localizedRuntime, "2 hr, 36 min")
     }
@@ -72,7 +72,7 @@ final class MovieDetailsTests: XCTestCase {
         XCTAssertEqual(movieDetails.adult, true)
         XCTAssertNil(movieDetails.posterPath)
         XCTAssertEqual(movieDetails.title, "Another Movie")
-        XCTAssertEqual(movieDetails.dateOfRelease, DateFormatter.yyyyMMdd.date(from: "2024-10-09"))
+        XCTAssertEqual(movieDetails.dateOfRelease, dateOfReleaseFormatter.date(from: "2024-10-09"))
         XCTAssertNil(movieDetails.localizedRuntime)
     }
 

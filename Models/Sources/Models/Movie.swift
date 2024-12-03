@@ -25,12 +25,11 @@ public struct Movie: Identifiable, Hashable, Watchable {
         guard let releaseDate else {
             return nil
         }
-        return Self.formatter.date(from: releaseDate)
+        return dateOfReleaseFormatter.date(from: releaseDate)
     }
 
     /// Formated as "1974-10-06".
     private let releaseDate: String?
-    private static let formatter = DateFormatter.yyyyMMdd
 
     // MARK: - Internal
 

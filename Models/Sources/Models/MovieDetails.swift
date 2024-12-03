@@ -18,7 +18,7 @@ public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, Watchable
         guard let releaseDate else {
             return nil
         }
-        return Self.formatter.date(from: releaseDate)
+        return dateOfReleaseFormatter.date(from: releaseDate)
     }
     public let genres: [Genre]
     public let belongsToCollection: MovieCollection?
@@ -48,7 +48,6 @@ public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, Watchable
     }
 
     private let releaseDate: String?
-    private static let formatter = DateFormatter.yyyyMMdd
 
     // MARK: - Internal
 

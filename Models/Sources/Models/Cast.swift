@@ -35,7 +35,7 @@ public struct Cast: Identifiable, Hashable, Creditable {
         guard let releaseDate else {
             return nil
         }
-        return Self.formatter.date(from: releaseDate)
+        return dateOfReleaseFormatter.date(from: releaseDate)
     }
 
     public var titleString: String? {
@@ -51,7 +51,6 @@ public struct Cast: Identifiable, Hashable, Creditable {
     }
 
     private let releaseDate: String?
-    private static let formatter = DateFormatter.yyyyMMdd
 
     // MARK: - Internal
 
