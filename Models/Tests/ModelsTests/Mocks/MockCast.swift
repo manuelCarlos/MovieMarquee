@@ -32,11 +32,11 @@ extension Cast {
         originalTitle: String? = "Original Title",
         overview: String? = "Overview",
         posterPath: String? = "PostPath",
-        releaseDate: Date? = Calendar.current.date(from: DateComponents(year: 1974, month: 10, day: 6)),
         title: String? = "Title",
         video: Bool? = false,
         voteAverage: Double? = 7.2,
-        voteCount: Int? = 1000) -> Cast {
+        voteCount: Int? = 1000,
+        releaseDate: String? = "1974-10-06") -> Cast {
             return Cast(
                 adult: adult,
                 gender: gender,
@@ -58,11 +58,11 @@ extension Cast {
                 originalTitle: originalTitle,
                 overview: overview,
                 posterPath: posterPath,
-                releaseDate: releaseDate,
                 title: title,
                 video: video,
                 voteAverage: voteAverage,
-                voteCount: voteCount
+                voteCount: voteCount,
+                releaseDate: releaseDate
             )
         }
 }

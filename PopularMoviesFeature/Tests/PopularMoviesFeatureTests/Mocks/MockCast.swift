@@ -31,11 +31,11 @@ extension Cast {
                      originalTitle: String? = "Mock Original Title",
                      overview: String? = "This is a mock overview of the movie or TV show.",
                      posterPath: String? = "/posterPath.jpg",
-                     releaseDate: Date? = Date(),
                      title: String? = "Mock Title",
                      video: Bool? = false,
                      voteAverage: Double? = 8.5,
-                     voteCount: Int? = 1000) -> Cast {
+                     voteCount: Int? = 1000,
+                     releaseDate: String? = "2024-10-10") -> Cast {
         return Cast(adult: adult,
                     gender: gender,
                     id: id,
@@ -56,10 +56,10 @@ extension Cast {
                     originalTitle: originalTitle,
                     overview: overview,
                     posterPath: posterPath,
-                    releaseDate: releaseDate,
                     title: title,
                     video: video,
                     voteAverage: voteAverage,
-                    voteCount: voteCount)
+                    voteCount: voteCount,
+                    releaseDate: releaseDate)
     }
 }

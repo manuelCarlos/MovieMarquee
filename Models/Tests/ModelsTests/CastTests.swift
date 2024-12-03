@@ -34,7 +34,7 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(cast.originalTitle, "Original Title")
         XCTAssertEqual(cast.overview, "This is an overview")
         XCTAssertEqual(cast.posterPath, "/path/to/poster")
-        XCTAssertEqual(cast.releaseDate, DateFormatter.yyyyMMdd.date(from: "1974-10-06"))
+        XCTAssertEqual(cast.dateOfRelease, DateFormatter.yyyyMMdd.date(from: "1974-10-06"))
         XCTAssertEqual(cast.title, "Movie Title")
         XCTAssertEqual(cast.video, false)
         XCTAssertEqual(cast.voteAverage, 7.5)
@@ -67,8 +67,8 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(decodedMovie.posterPath, "PostPath")
         XCTAssertEqual(decodedMovie.backdropPath, "BackdropPath")
         XCTAssertEqual(decodedMovie.overview, "Overview")
-        XCTAssertEqual(dateFormatter.string(from: decodedMovie.releaseDate ?? .distantFuture),
-                       dateFormatter.string(from: cast.releaseDate ?? .distantPast))
+        XCTAssertEqual(dateFormatter.string(from: decodedMovie.dateOfRelease ?? .distantFuture),
+                       dateFormatter.string(from: cast.dateOfRelease ?? .distantPast))
         XCTAssertEqual(decodedMovie.genreIds, [1, 2, 3])
         XCTAssertEqual(decodedMovie.originalTitle, "Original Title")
         XCTAssertEqual(decodedMovie.originalLanguage, .en)
