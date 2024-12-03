@@ -17,6 +17,7 @@ final class MovieServiceTests: XCTestCase {
     // MARK: - Test Fetching Media
 
     func test_fetch_media_successfully() async throws {
+        let date = Calendar.current.date(from: DateComponents(year: 2000, month: 1, day: 1)) ?? .now
         let mockRequestManager = MockRequestManager()
         mockRequestManager.mockMedia = Movies.make()
         let service = MovieService(requestManager: mockRequestManager)
@@ -30,7 +31,7 @@ final class MovieServiceTests: XCTestCase {
         XCTAssertEqual(movie?.posterUrl, "https://image.tmdb.org/t/p/w500posterPath")
         XCTAssertEqual(movie?.overview, "Good movie")
         XCTAssertEqual(movie?.id, 10)
-        XCTAssertEqual(movie?.releaseDate, .distantPast)
+        XCTAssertEqual(movie?.dateOfRelease, date)
         XCTAssertEqual(movie?.genreIds, [1, 2])
         XCTAssertEqual(movie?.originalTitle, "Original Title")
         XCTAssertEqual(movie?.originalLanguage, .en)

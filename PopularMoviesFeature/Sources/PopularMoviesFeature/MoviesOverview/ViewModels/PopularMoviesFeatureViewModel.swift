@@ -45,6 +45,6 @@ final class PopularMoviesFeatureViewModel: @unchecked Sendable {
     }
 
     private func filterWatchable(_ movies: [Watchable]) -> [Watchable] {
-        return movies.filter { ($0 as? Movie)?.releaseDate != nil }
+        return movies.filter { ($0 as? Movie)?.dateOfRelease != nil }
     }
 }

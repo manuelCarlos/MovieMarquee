@@ -13,7 +13,6 @@ import XCTest
 final class MovieTests: XCTestCase {
 
     func test_default_initializer_returns_valid_instance() {
-        let date = Calendar.current.date(from: DateComponents(year: 2000, month: 1, day: 1)) ?? .now
         let movie = Movie(
             id: 1,
             title: "Test Movie",
@@ -21,7 +20,7 @@ final class MovieTests: XCTestCase {
             posterPath: "/path/to/poster",
             backdropPath: "/path/to/backdrop",
             overview: "This is a test overview",
-            releaseDate: date,
+            releaseDate: "2000-01-01",
             genreIds: [1, 2, 3],
             originalTitle: "Test Original Title",
             originalLanguage: .en,
@@ -37,7 +36,6 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(movie.posterPath, "/path/to/poster")
         XCTAssertEqual(movie.backdropPath, "/path/to/backdrop")
         XCTAssertEqual(movie.overview, "This is a test overview")
-        XCTAssertEqual(movie.releaseDate, date)
         XCTAssertEqual(movie.genreIds, [1, 2, 3])
         XCTAssertEqual(movie.originalTitle, "Test Original Title")
         XCTAssertEqual(movie.originalLanguage, .en)
@@ -52,7 +50,7 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(movie.posterPath, "/path/to/poster")
         XCTAssertEqual(movie.backdropPath, "/path/to/backdrop")
         XCTAssertEqual(movie.overview, "This is a test overview")
-        XCTAssertEqual(movie.releaseDate, DateFormatter.yyyyMMdd.date(from: "1970-01-01"))
+        XCTAssertEqual(movie.dateOfRelease, DateFormatter.yyyyMMdd.date(from: "1970-01-01"))
         XCTAssertEqual(movie.genreIds, [1, 2, 3])
         XCTAssertEqual(movie.originalTitle, "Test Original Title")
         XCTAssertEqual(movie.originalLanguage, .en)
@@ -69,7 +67,6 @@ final class MovieTests: XCTestCase {
     }
 
     func test_movie_encoding_succefully() throws {
-        let date = Calendar.current.date(from: DateComponents(year: 2000, month: 1, day: 1)) ?? .now
         let movie = Movie(
             id: 1,
             title: "Test Movie",
@@ -77,7 +74,7 @@ final class MovieTests: XCTestCase {
             posterPath: "/path/to/poster",
             backdropPath: "/path/to/backdrop",
             overview: "This is a test overview",
-            releaseDate: date,
+            releaseDate: "2000-01-01",
             genreIds: [1, 2, 3],
             originalTitle: "Test Original Title",
             originalLanguage: .en,
@@ -105,8 +102,8 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(decodedMovie.posterPath, "/path/to/poster")
         XCTAssertEqual(decodedMovie.backdropPath, "/path/to/backdrop")
         XCTAssertEqual(decodedMovie.overview, "This is a test overview")
-        XCTAssertEqual(dateFormatter.string(from: decodedMovie.releaseDate ?? .distantFuture),
-                       dateFormatter.string(from: movie.releaseDate ?? .distantPast))
+        XCTAssertEqual(dateFormatter.string(from: decodedMovie.dateOfRelease ?? .distantFuture),
+                       dateFormatter.string(from: movie.dateOfRelease ?? .distantPast))
         XCTAssertEqual(decodedMovie.genreIds, [1, 2, 3])
         XCTAssertEqual(decodedMovie.originalTitle, "Test Original Title")
         XCTAssertEqual(decodedMovie.originalLanguage, .en)

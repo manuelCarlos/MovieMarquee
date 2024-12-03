@@ -15,7 +15,7 @@ extension Movie {
                      posterPath: String = "posterPath",
                      backdropPath: String = "backdropPath",
                      overview: String = "Good movie",
-                     releaseDate: Date = .distantPast,
+                     releaseDate: String = "2000-01-01",
                      genreIds: [Int] = [1, 2],
                      originalTitle: String = "Original Title",
                      originalLanguage: OriginalLanguage = .en,

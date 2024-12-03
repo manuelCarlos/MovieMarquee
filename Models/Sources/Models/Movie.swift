@@ -14,7 +14,6 @@ public struct Movie: Identifiable, Hashable, Watchable {
     public let posterPath: String?
     public let backdropPath: String?
     public let overview: String?
-    public let releaseDate: Date?
     public let genreIds: [Int]
     public let originalTitle: String?
     public let originalLanguage: OriginalLanguage?
@@ -22,26 +21,16 @@ public struct Movie: Identifiable, Hashable, Watchable {
     public let voteCount: Int?
     public let video: Bool
     public let voteAverage: Double?
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        title = try container.decode(String.self, forKey: .title)
-        adult = try container.decodeIfPresent(Bool.self, forKey: .adult)
-        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
-        backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath)
-        overview = try container.decodeIfPresent(String.self, forKey: .overview)
-        let release = try container.decodeIfPresent(String.self, forKey: .releaseDate)
-        let formatter = DateFormatter.yyyyMMdd
-        releaseDate = formatter.date(from: release ?? "")
-        genreIds = try container.decode([Int].self, forKey: .genreIds)
-        originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle)
-        originalLanguage = try container.decodeIfPresent(OriginalLanguage.self, forKey: .originalLanguage)
-        popularity = try container.decode(Double.self, forKey: .popularity)
-        voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
-        video = try container.decode(Bool.self, forKey: .video)
-        voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage)
+    public var dateOfRelease: Date? {
+        guard let releaseDate else {
+            return nil
+        }
+        return Self.formatter.date(from: releaseDate)
     }
+
+    /// Formated as "1974-10-06".
+    private let releaseDate: String?
+    private static let formatter = DateFormatter.yyyyMMdd
 
     // MARK: - Internal
 
@@ -51,7 +40,7 @@ public struct Movie: Identifiable, Hashable, Watchable {
          posterPath: String? = nil,
          backdropPath: String? = nil,
          overview: String? = nil,
-         releaseDate: Date? = nil,
+         releaseDate: String? = nil,
          genreIds: [Int],
          originalTitle: String? = nil,
          originalLanguage: OriginalLanguage? = nil,
