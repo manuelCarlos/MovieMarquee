@@ -36,11 +36,11 @@ final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
         }
     }()
 
-    func fetchAllFavoriteMovies() async throws -> [FavoriteMovie] {
+    func fetchAllFavoriteMovies() throws -> [FavoriteMovie] {
         return try modelContext.fetch(FetchDescriptor<FavoriteMovieModel>()).map { FavoriteMovie(id: $0.id, name: $0.name) }
     }
 
-    func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
+    func fetchFavoriteMovie(with id: Int) throws -> FavoriteMovie {
         let movie = try fetchFavoriteMovieModel(id: id)
         if let movie {
             return FavoriteMovie(id: movie.id, name: movie.name)
@@ -53,17 +53,17 @@ final actor MovieDBModelActor: MovieDBModelStorage, Sendable {
     /// Inserts a `FavoriteMovie` instance in the DB iff the movie is not already saved.
     /// Because the `FavoriteMovieModel.id` is marked as @unique, if the `id` of movie instance passed to this method is already contained in the DB then this method will
     /// update the existing record.
-    func insertFavoriteMovie(_ movie: FavoriteMovie) async throws {
+    func insertFavoriteMovie(_ movie: FavoriteMovie) throws {
         let favMovie = FavoriteMovieModel(id: movie.id, name: movie.name)
         modelContext.insert(favMovie)
         try modelContext.save()
     }
 
-    func deleteFavoriteMovie(with id: Int) async throws {
+    func deleteFavoriteMovie(with id: Int) throws {
         try deleteFavoriteMovieModel(with: id)
     }
 
-    func deleteFavoriteMovies(_ movies: [FavoriteMovie]) async throws {
+    func deleteFavoriteMovies(_ movies: [FavoriteMovie]) throws {
         for movie in movies {
             try deleteFavoriteMovieModel(with: movie.id)
         }
