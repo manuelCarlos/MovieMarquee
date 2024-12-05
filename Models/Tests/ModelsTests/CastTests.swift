@@ -11,7 +11,7 @@ import XCTest
 
 final class CastTests: XCTestCase {
 
-    override func setUp()  {
+    override func setUp() {
         super.setUp()
 
         dateOfReleaseFormatter.timeZone = .current

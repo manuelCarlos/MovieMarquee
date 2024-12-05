@@ -12,7 +12,7 @@ import XCTest
 @available(iOS 15, *)
 final class MovieTests: XCTestCase {
 
-    override func setUp()  {
+    override func setUp() {
         super.setUp()
 
         dateOfReleaseFormatter.timeZone = .current
