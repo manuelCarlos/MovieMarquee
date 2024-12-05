@@ -16,21 +16,35 @@ final actor MediaFetcher: Fetchable {
 
     private var mediaListFetcher: MediaListFetcher
     private var mediaService: MediaService
+    private var fetchTask: Task<[Watchable], Error>?
 
     init(mediaListFetcher: MediaListFetcher, service: MediaService) {
         self.mediaListFetcher = mediaListFetcher
         self.mediaService = service
     }
 
-    func fetchPage() async throws -> [Watchable] {
-        let watchables: [Watchable] = try await mediaService.fetchMedia(request: mediaListFetcher.fetch(page: pageCounter))
-        return watchables
-    }
-
     func fetchNextPage() async throws -> [Watchable] {
-        pageCounter += 1
-        let watchables = try await fetchPage()
+        if fetchTask == nil {
+            fetchTask = Task {
+                pageCounter += 1
+                return try await fetchWatchables()
+            }
+        } else {
+            fetchTask?.cancel()
+            pageCounter -= 1
+        }
+
+        defer { fetchTask = nil }
+
+        let watchables = try await fetchTask?.value ?? []
         mediaList.append(contentsOf: watchables)
         return mediaList
+    }
+
+    // MARK: - Private
+
+    private func fetchWatchables() async throws -> [Watchable] {
+        let watchables: [Watchable] = try await mediaService.fetchMedia(request: mediaListFetcher.fetch(page: pageCounter))
+        return watchables
     }
 }

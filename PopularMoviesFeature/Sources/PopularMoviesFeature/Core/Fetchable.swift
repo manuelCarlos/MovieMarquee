@@ -9,6 +9,5 @@ import Models
 
 @available(iOS 13.0, *)
 protocol Fetchable: Sendable {
-    func fetchPage() async throws -> [Watchable]
     func fetchNextPage() async throws -> [Watchable]
 }
