@@ -37,9 +37,9 @@ struct FavoriteButton: View {
 
         } label: {
             Icons.favorite(isOn: isFavorite == true)
-            .resizable()
-            .frame(width: 35, height: 35)
-            .foregroundColor(.red)
+                .resizable()
+                .frame(width: 35, height: 35)
+                .foregroundColor(.red)
         }
         .symbolEffect(.bounce, value: isFavorite == true)
         .task {
