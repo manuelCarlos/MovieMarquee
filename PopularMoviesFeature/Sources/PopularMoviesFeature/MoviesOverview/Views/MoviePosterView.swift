@@ -48,8 +48,6 @@ struct MoviePosterView: View {
                 loadingImage
             case .failure:
                 Image(systemName: "photo.badge.exclamationmark")
-                    .resizable()
-                    .scaledToFit()
                     .foregroundColor(.gray)
                     .opacity(0.5)
             @unknown default:
