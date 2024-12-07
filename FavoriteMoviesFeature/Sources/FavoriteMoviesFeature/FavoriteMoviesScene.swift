@@ -9,11 +9,12 @@ import SwiftUI
 
 import MoviesDB
 
+/// UI Entry point for the Favorites Movies Tab that displays the fav movies contained in DB.
 @available(iOS 17, *)
 public struct FavoriteMoviesScene: View {
 
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
-    private var navigationTitle: String = Texts.favoriteMovies
+    private var navigationTitle = Texts.favoriteMovies
 
     public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
