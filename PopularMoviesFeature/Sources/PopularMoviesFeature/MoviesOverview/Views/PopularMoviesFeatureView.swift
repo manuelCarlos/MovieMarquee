@@ -10,6 +10,12 @@ import SwiftUI
 import Lego
 import MoviesDB
 
+/// Provides the UI entry point for the "Popular Movies Feature".
+/// This includes displaying the currently 20 most popular movies in an horizontally scrolling carousel.
+///
+///    From this UI the user can navigate to either:
+///    - A movie details screen, that allows marking the movie as favorite, and displays the name and photo of the cast members.
+///    - The full list of popular movies, in a paginated list.
 @available(iOS 17.0, *)
 public struct PopularMoviesFeatureView: View {
 
@@ -18,6 +24,8 @@ public struct PopularMoviesFeatureView: View {
 
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
+    /// Instantiate a `PopularMoviesFeatureView` SwiftUI view.
+    /// - Parameter favoriteMoviesDBStore: The store that manages the DB persisted favorite movies data.
     public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
         self.viewModel = PopularMoviesFeatureViewModel(controller: MoviesOverviewController())
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
