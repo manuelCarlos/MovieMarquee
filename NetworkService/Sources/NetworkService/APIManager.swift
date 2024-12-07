@@ -10,7 +10,7 @@ import os.log
 
 @available(iOS 13.0.0, *)
 public protocol APIManagerProtocol: Sendable {
-    func initRequest(with data: NetworkRequest) async throws -> Data
+    func requestData(with components: RequestComponents) async throws -> Data
 }
 
 @available(iOS 15.0, *)
@@ -23,8 +23,8 @@ public final actor APIManager: APIManagerProtocol {
         self.urlSession = urlSession
     }
 
-    public func initRequest(with data: NetworkRequest) async throws -> Data {
-        let (data, response) = try await urlSession.data(for: data.makeRequest())
+    public func requestData(with components: RequestComponents) async throws -> Data {
+        let (data, response) = try await urlSession.data(for: components.makeURLRequest())
         guard let httpResponse = response as? HTTPURLResponse else {
             logger.error("Invalid HTTPURLResponse")
             throw NetworkError.invalidHTTPURLResponse

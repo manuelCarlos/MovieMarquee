@@ -1,14 +1,13 @@
 //
-//  MockNetworkRequest.swift
-//  PopularMoviesFeatureTests
+//  MockRequestComponents.swift
+//  NetworkServiceTests
 //
-//  Created by Manuel Lopes on 10.10.24.
+//  Created by Manuel Lopes on 07.10.24.
 //
 
 @testable import NetworkService
-@testable import PopularMoviesFeature
 
-struct MockNetworkRequest: @unchecked Sendable, NetworkRequest {
+struct MockRequestComponents: @unchecked Sendable, RequestComponents {
     let scheme: String
     let host: String
     let path: String
@@ -21,12 +20,12 @@ struct MockNetworkRequest: @unchecked Sendable, NetworkRequest {
     static func make(scheme: String = "https",
                      host: String = "api.themoviedb.org",
                      path: String = "/test",
-                     requestType: RequestType = .GET,
+                     requestType: RequestType = .get,
                      headers: [String: String] = [:],
                      params: [String: Any] = [:],
                      urlParams: [String: String?] = [:],
                      addAuthorizationToken: Bool = false) -> Self {
-        return MockNetworkRequest(scheme: scheme,
+        return MockRequestComponents(scheme: scheme,
                                   host: host,
                                   path: path,
                                   requestType: requestType,

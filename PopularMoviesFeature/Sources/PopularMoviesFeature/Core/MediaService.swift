@@ -10,7 +10,7 @@ import NetworkService
 
 @available(iOS 13.0, *)
 protocol MediaService: Sendable {
-    func fetchMedia(request: NetworkRequest) async throws -> [Watchable]
+    func fetchMedia(with requestComponents: RequestComponents) async throws -> [Watchable]
     func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetails
     func fetchMediaCredits(mediaId: Int) async throws -> Credits
 }

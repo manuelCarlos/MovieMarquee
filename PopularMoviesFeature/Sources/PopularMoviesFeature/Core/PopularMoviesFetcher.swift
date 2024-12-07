@@ -9,7 +9,7 @@ import NetworkService
 
 final class PopularMoviesFetcher: Sendable, MediaListFetcher {
 
-    func fetch(page: Int) -> NetworkRequest {
+    func fetchRequestComponents(page: Int) -> RequestComponents {
         MovieRequest.getPopularMovies(page: page)
     }
 }

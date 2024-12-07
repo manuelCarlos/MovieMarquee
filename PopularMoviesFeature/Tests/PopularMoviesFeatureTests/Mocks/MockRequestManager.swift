@@ -21,7 +21,7 @@ final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
         self.shouldFail = shouldFail
     }
 
-    func decode<T: Decodable>(networkRequest data: NetworkRequest) async throws -> T {
+    func decode<T: Decodable>(with components: RequestComponents) async throws -> T {
         decodeCallCount += 1
         if shouldFail {
             throw NetworkError.invalidHTTPURLResponse
@@ -44,4 +44,5 @@ final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
         fatalError("Not needed for this mock")
     }
 }
+
 // swiftlint:enable force_cast

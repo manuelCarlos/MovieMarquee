@@ -7,7 +7,7 @@
 
 import TMDBData
 
-public enum MovieRequest: NetworkRequest {
+public enum MovieRequest: RequestComponents {
 
     case getPopularMovies(page: Int)
     case getMovieDetail(id: Int)
@@ -45,6 +45,6 @@ public enum MovieRequest: NetworkRequest {
     }
 
     public var requestType: RequestType {
-        .GET
+        .get
     }
 }

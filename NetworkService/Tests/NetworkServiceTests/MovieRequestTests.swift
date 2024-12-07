@@ -74,7 +74,7 @@ final class MovieRequestTests: XCTestCase {
         ]
 
         for request in requests {
-            XCTAssertEqual(request.requestType, .GET)
+            XCTAssertEqual(request.requestType, .get)
         }
     }
 }

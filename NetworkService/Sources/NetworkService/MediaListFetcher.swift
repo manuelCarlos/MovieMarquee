@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol MediaListFetcher {
-    func fetch(page: Int) -> NetworkRequest
+    func fetchRequestComponents(page: Int) -> RequestComponents
 }

@@ -10,7 +10,7 @@
 
 final class MockMediaListFetcher: MediaListFetcher {
 
-    func fetch(page: Int) -> NetworkService.NetworkRequest {
-        return MockNetworkRequest.make()
+    func fetchRequestComponents(page: Int) -> NetworkService.RequestComponents {
+        return MockRequestComponents.make()
     }
 }

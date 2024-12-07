@@ -19,20 +19,20 @@ final class MovieService: Sendable, MediaService {
         self.requestManager = requestManager
     }
 
-    func fetchMedia(request: NetworkRequest) async throws -> [Watchable] {
-        let movies: Movies = try await requestManager.decode(networkRequest: request)
+    func fetchMedia(with requestComponents: RequestComponents) async throws -> [Watchable] {
+        let movies: Movies = try await requestManager.decode(with: requestComponents)
         return movies.results
     }
 
     func fetchMediaDetails(mediaId: Int) async throws -> WatchableDetails {
         let requestData = MovieRequest.getMovieDetail(id: mediaId)
-        let movieDetail: MovieDetails = try await requestManager.decode(networkRequest: requestData)
+        let movieDetail: MovieDetails = try await requestManager.decode(with: requestData)
         return movieDetail
     }
 
     func fetchMediaCredits(mediaId: Int) async throws -> Credits {
         let requestData = MovieRequest.getCredits(id: mediaId)
-        let credits: Credits = try await requestManager.decode(networkRequest: requestData)
+        let credits: Credits = try await requestManager.decode(with: requestData)
         return credits
     }
 }

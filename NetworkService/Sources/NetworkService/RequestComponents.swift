@@ -1,5 +1,5 @@
 //
-//  NetworkRequest.swift
+//  RequestComponents.swift
 //  NetworkService
 //
 //  Created by Manuel Lopes on 07.10.24.
@@ -9,7 +9,7 @@ import Foundation
 
 import TMDBData
 
-public protocol NetworkRequest: Sendable {
+public protocol RequestComponents: Sendable {
     var scheme: String { get }
     var host: String { get }
     var path: String { get }
@@ -23,7 +23,7 @@ public protocol NetworkRequest: Sendable {
 
 // MARK: - Default Request Implementation
 
-public extension NetworkRequest {
+public extension RequestComponents {
 
     var scheme: String {
         APIConstants.httpsScheme
@@ -52,7 +52,7 @@ public extension NetworkRequest {
         [:]
     }
 
-    func makeRequest() throws -> URLRequest {
+    func makeURLRequest() throws -> URLRequest {
         var components = URLComponents()
         components.scheme = scheme
         components.host = host

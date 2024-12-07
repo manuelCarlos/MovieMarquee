@@ -37,9 +37,9 @@ final class RequestManagerTests: XCTestCase {
         """
         let jsonData = Data(json.utf8)
         mockAPIManager.dataToReturn = jsonData
-        let networkRequest = MockNetworkRequest.make()
+        let requestComponents = MockRequestComponents.make()
 
-        let result: MockResponse = try await requestManager.decode(networkRequest: networkRequest)
+        let result: MockResponse = try await requestManager.decode(with: requestComponents)
 
         let expectedResponse = MockResponse(id: 1, name: "John Doe")
         XCTAssertEqual(result, expectedResponse)
@@ -48,10 +48,10 @@ final class RequestManagerTests: XCTestCase {
     func test_decode_invalid_json_throws_decoding_error() async throws {
         let invalidJsonData = Data("Invalid JSON Data".utf8)
         mockAPIManager.dataToReturn = invalidJsonData
-        let networkRequest = MockNetworkRequest.make()
+        let requestComponents = MockRequestComponents.make()
 
         do {
-            _ = try await requestManager.decode(networkRequest: networkRequest) as MockResponse
+            _ = try await requestManager.decode(with: requestComponents) as MockResponse
             XCTFail("Expected to throw DecodingError, but no error was thrown.")
         } catch {
             XCTAssertTrue(error is DecodingError, "Expected DecodingError but got \(error)")
@@ -60,10 +60,10 @@ final class RequestManagerTests: XCTestCase {
 
     func test_decode_api_manager_throws_network_error() async throws {
         mockAPIManager.errorToThrow = NetworkError.invalidURL
-        let networkRequest = MockNetworkRequest.make()
+        let requestComponents = MockRequestComponents.make()
 
         do {
-            _ = try await requestManager.decode(networkRequest: networkRequest) as MockResponse
+            _ = try await requestManager.decode(with: requestComponents) as MockResponse
             XCTFail("Expected to throw NetworkError, but no error was thrown.")
         } catch {
             XCTAssertEqual(error as? NetworkError, .invalidURL)

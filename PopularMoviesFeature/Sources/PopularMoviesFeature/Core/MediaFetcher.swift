@@ -12,7 +12,7 @@ import NetworkService
 final actor MediaFetcher: Fetchable {
 
     private var mediaList: [Watchable] = []
-    private var pageCounter: Int = 0
+    private var pageNumber: Int = 0
 
     private var mediaListFetcher: MediaListFetcher
     private var mediaService: MediaService
@@ -26,12 +26,12 @@ final actor MediaFetcher: Fetchable {
     func fetchNextPage() async throws -> [Watchable] {
         if fetchTask == nil {
             fetchTask = Task {
-                pageCounter += 1
+                pageNumber += 1
                 return try await fetchWatchables()
             }
         } else {
             fetchTask?.cancel()
-            pageCounter -= 1
+            pageNumber -= 1
         }
 
         defer { fetchTask = nil }
@@ -44,7 +44,7 @@ final actor MediaFetcher: Fetchable {
     // MARK: - Private
 
     private func fetchWatchables() async throws -> [Watchable] {
-        let watchables: [Watchable] = try await mediaService.fetchMedia(request: mediaListFetcher.fetch(page: pageCounter))
+        let watchables: [Watchable] = try await mediaService.fetchMedia(with: mediaListFetcher.fetchRequestComponents(page: pageNumber))
         return watchables
     }
 }

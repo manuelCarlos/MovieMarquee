@@ -8,6 +8,5 @@
 import Foundation
 
 public enum RequestType: String, Hashable, Sendable {
-    case GET
-    case POST
+    case get = "GET"
 }

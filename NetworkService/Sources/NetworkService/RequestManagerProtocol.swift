@@ -7,7 +7,7 @@
 
 @available(iOS 15.0, *)
 public protocol RequestManagerProtocol: Sendable {
-    var apiManager: APIManagerProtocol { get }
     var parser: DataParser { get }
-    func decode<T: Decodable>(networkRequest data: NetworkRequest) async throws -> T
+    var apiManager: APIManagerProtocol { get }
+    func decode<T: Decodable>(with components: RequestComponents) async throws -> T
 }

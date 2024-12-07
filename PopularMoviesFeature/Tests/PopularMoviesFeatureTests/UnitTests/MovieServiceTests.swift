@@ -21,9 +21,9 @@ final class MovieServiceTests: XCTestCase {
         let mockRequestManager = MockRequestManager()
         mockRequestManager.mockMedia = Movies.make()
         let service = MovieService(requestManager: mockRequestManager)
-        let mockRequest = MockNetworkRequest.make()
+        let mockRequest = MockRequestComponents.make()
 
-        let watchables = try await service.fetchMedia(request: mockRequest)
+        let watchables = try await service.fetchMedia(with: mockRequest)
         let movie = watchables.first as? Movie
 
         XCTAssertEqual(watchables.count, 1)
@@ -46,10 +46,10 @@ final class MovieServiceTests: XCTestCase {
         let mockRequestManager = MockRequestManager(shouldFail: true)
         mockRequestManager.mockMedia = Movies.make()
         let service = MovieService(requestManager: mockRequestManager)
-        let mockRequest = MockNetworkRequest.make()
+        let mockRequest = MockRequestComponents.make()
 
         do {
-            _ = try await service.fetchMedia(request: mockRequest)
+            _ = try await service.fetchMedia(with: mockRequest)
             XCTFail("Expected failure, but got success")
         } catch {
             XCTAssertEqual(error as? NetworkError, .invalidHTTPURLResponse)

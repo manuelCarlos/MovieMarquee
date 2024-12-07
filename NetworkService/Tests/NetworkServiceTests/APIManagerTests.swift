@@ -20,9 +20,9 @@ final class APIManagerTests: XCTestCase {
         let session = URLSession(configuration: URLSessionConfiguration.ephemeral)
 
         let apiManager = APIManager(urlSession: session)
-        let mockRequest = MockNetworkRequest.make()
+        let mockComponents = MockRequestComponents.make()
         do {
-            _ = try await apiManager.initRequest(with: mockRequest)
+            _ = try await apiManager.requestData(with: mockComponents)
             XCTFail("Expected error to be thrown, but no error was thrown")
         } catch {
             XCTAssertNotNil(error)
