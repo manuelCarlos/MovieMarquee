@@ -13,10 +13,10 @@ final class MockMediaService: @unchecked Sendable, MediaService {
 
     var mockWatchables: [Watchable] = [Movie.make()]
     var mockWatchableDetail: WatchableDetails = MockWatchableDetail()
-    var mockCredits: Credits = Credits(cast: [Cast.make(id: 1, name: "Manuel Lopes"),
+    var mockCredits: Credits = Credits(id: 111,
+                                       cast: [Cast.make(id: 1, name: "Manuel Lopes"),
                                               Cast.make(id: 2, name: "Malo da Pro")],
-                                       crew: [],
-                                       id: 111)
+                                       crew: [])
     var shouldFail: Bool
     var fetchCount = 0
 

@@ -12,9 +12,9 @@ import Foundation
 extension Cast {
 
     static func makeCast(
+        id: Int = 1,
         adult: Bool = true,
         gender: Int? = 1,
-        id: Int = 1,
         knownForDepartment: Department = .acting,
         name: String? = "Name",
         originalName: String? = "Original Name",
@@ -38,9 +38,9 @@ extension Cast {
         voteCount: Int? = 1000,
         releaseDate: String? = "1974-10-06") -> Cast {
             return Cast(
+                id: id,
                 adult: adult,
                 gender: gender,
-                id: id,
                 knownForDepartment: knownForDepartment,
                 name: name,
                 originalName: originalName,

@@ -95,7 +95,7 @@ final class MovieServiceTests: XCTestCase {
     func test_fetch_media_cast_successfully() async throws {
         let movieID = 123
         let mockRequestManager = MockRequestManager()
-        mockRequestManager.mockMediaCast = Credits(cast: [Cast.make()], crew: [], id: movieID)
+        mockRequestManager.mockMediaCast = Credits(id: movieID, cast: [Cast.make()], crew: [])
         let service = MovieService(requestManager: mockRequestManager)
 
         let mediaCredits = try await service.fetchMediaCredits(mediaId: movieID)
@@ -117,7 +117,7 @@ final class MovieServiceTests: XCTestCase {
     func test_fetch_media_cast_failure() async throws {
         let movieID = 123
         let mockRequestManager = MockRequestManager(shouldFail: true)
-        mockRequestManager.mockMediaCast = Credits(cast: [Cast.make()], crew: [], id: movieID)
+        mockRequestManager.mockMediaCast = Credits(id: movieID, cast: [Cast.make()], crew: [])
         let service = MovieService(requestManager: mockRequestManager)
 
         do {

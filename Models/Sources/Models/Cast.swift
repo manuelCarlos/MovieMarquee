@@ -8,9 +8,9 @@
 import Foundation
 
 public struct Cast: Identifiable, Hashable, Creditable {
+    public let id: Int
     public let adult: Bool
     public let gender: Int?
-    public let id: Int
     public let knownForDepartment: Department?
     public let name: String?
     public let originalName: String?
@@ -55,9 +55,9 @@ public struct Cast: Identifiable, Hashable, Creditable {
     // MARK: - Internal
 
     init(
+        id: Int,
         adult: Bool,
         gender: Int? = nil,
-        id: Int,
         knownForDepartment: Department? = nil,
         name: String? = nil,
         originalName: String? = nil,
@@ -80,9 +80,9 @@ public struct Cast: Identifiable, Hashable, Creditable {
         voteAverage: Double? = nil,
         voteCount: Int? = nil,
         releaseDate: String? = nil) {
+            self.id = id
             self.adult = adult
             self.gender = gender
-            self.id = id
             self.knownForDepartment = knownForDepartment
             self.name = name
             self.originalName = originalName

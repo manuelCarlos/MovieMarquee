@@ -6,6 +6,6 @@
 //
 
 public struct Credits: Codable, Identifiable, Hashable, Sendable {
-    public let cast, crew: [Cast]
     public let id: Int?
+    public let cast, crew: [Cast]
 }
