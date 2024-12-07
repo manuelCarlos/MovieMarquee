@@ -24,7 +24,7 @@ struct MockWatchableDetail: WatchableDetails {
     var backdropPath: String? = "/path/to/mock_backdrop.jpg"
     var overview: String? = "This is a mock movie used for testing purposes."
     var originalTitle: String? = "Mock Movie Original"
-    var originalLanguage: OriginalLanguage? = OriginalLanguage(language: "en")
+    var originalLanguage: OriginalLanguage? = "en"
     var voteCount: Int? = 1000
     var popularity: Double = 8.7
 }

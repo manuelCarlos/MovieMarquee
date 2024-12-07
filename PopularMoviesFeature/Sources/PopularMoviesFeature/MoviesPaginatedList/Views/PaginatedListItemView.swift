@@ -54,8 +54,8 @@ struct PaginatedListItemView: View {
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 20)
 
-            if let originalLanguage = mediaItem.originalLanguage?.language {
-                Text(originalLanguage)
+            if let language = mediaItem.originalLanguage?.localizedString {
+                Text(language)
                     .font(.title3)
                     .minimumScaleFactor(0.7)
                     .bold()

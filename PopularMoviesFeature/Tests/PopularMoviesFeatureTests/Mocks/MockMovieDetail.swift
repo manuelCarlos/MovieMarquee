@@ -17,7 +17,7 @@ extension MovieDetails {
                      releaseDate: String = "2024-10-24",
                      genres: [Genre] = [Genre(id: 1, name: "Action"), Genre(id: 2, name: "Comedy")],
                      budget: Int = 1000,
-                     originalLanguage: OriginalLanguage = .en,
+                     originalLanguage: OriginalLanguage = "en",
                      popularity: Double = 4.4,
                      revenue: Int = 2000,
                      runtime: Int? = 126,

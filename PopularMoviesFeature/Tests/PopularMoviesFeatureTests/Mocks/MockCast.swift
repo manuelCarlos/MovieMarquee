@@ -27,7 +27,7 @@ extension Cast {
                      job: String? = "Actor",
                      backdropPath: String? = "/backdropPath.jpg",
                      genreIds: [Int]? = [28, 12],
-                     originalLanguage: OriginalLanguage? = .en,
+                     originalLanguage: OriginalLanguage? = "en",
                      originalTitle: String? = "Mock Original Title",
                      overview: String? = "This is a mock overview of the movie or TV show.",
                      posterPath: String? = "/posterPath.jpg",

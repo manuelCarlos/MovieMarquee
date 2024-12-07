@@ -29,7 +29,7 @@ final class MovieDetailsTests: XCTestCase {
         XCTAssertEqual(movieDetails.title, "The cookie monster")
         XCTAssertEqual(movieDetails.voteAverage, nil)
         XCTAssertNil(movieDetails.dateOfRelease)
-        XCTAssertEqual(movieDetails.originalLanguage?.rawValue, nil)
+        XCTAssertEqual(movieDetails.originalLanguage?.localizedString, nil)
         XCTAssertEqual(movieDetails.originalTitle, nil)
         XCTAssertEqual(movieDetails.popularity, 4.4)
         XCTAssertNil(movieDetails.productionCompanies)
@@ -61,7 +61,7 @@ final class MovieDetailsTests: XCTestCase {
         XCTAssertEqual(movieDetails.title, "Movie Title")
         XCTAssertEqual(movieDetails.voteAverage, 8.0)
         XCTAssertEqual(movieDetails.dateOfRelease, dateOfReleaseFormatter.date(from: "2023-10-09"))
-        XCTAssertEqual(movieDetails.originalLanguage?.rawValue, "en")
+        XCTAssertEqual(movieDetails.originalLanguage, "en")
         XCTAssertEqual(movieDetails.localizedRuntime, "2 hr, 36 min")
     }
 

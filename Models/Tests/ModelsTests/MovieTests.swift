@@ -29,7 +29,7 @@ final class MovieTests: XCTestCase {
             releaseDate: "2000-01-01",
             genreIds: [1, 2, 3],
             originalTitle: "Test Original Title",
-            originalLanguage: .en,
+            originalLanguage: "en",
             popularity: 8.7,
             voteCount: 100,
             video: false,
@@ -44,7 +44,7 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(movie.overview, "This is a test overview")
         XCTAssertEqual(movie.genreIds, [1, 2, 3])
         XCTAssertEqual(movie.originalTitle, "Test Original Title")
-        XCTAssertEqual(movie.originalLanguage, .en)
+        XCTAssertEqual(movie.originalLanguage, "en")
     }
 
     func test_movie_decoding_succefully() throws {
@@ -59,7 +59,7 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(movie.dateOfRelease, dateOfReleaseFormatter.date(from: "1970-01-01"))
         XCTAssertEqual(movie.genreIds, [1, 2, 3])
         XCTAssertEqual(movie.originalTitle, "Test Original Title")
-        XCTAssertEqual(movie.originalLanguage, .en)
+        XCTAssertEqual(movie.originalLanguage, "en")
         XCTAssertEqual(movie.popularity, 8.7)
         XCTAssertEqual(movie.voteCount, 100)
         XCTAssertEqual(movie.video, false)
@@ -83,7 +83,7 @@ final class MovieTests: XCTestCase {
             releaseDate: "2000-01-01",
             genreIds: [1, 2, 3],
             originalTitle: "Test Original Title",
-            originalLanguage: .en,
+            originalLanguage: "en",
             popularity: 8.7,
             voteCount: 100,
             video: false,
@@ -111,7 +111,7 @@ final class MovieTests: XCTestCase {
                        dateOfReleaseFormatter.string(from: movie.dateOfRelease ?? .distantPast))
         XCTAssertEqual(decodedMovie.genreIds, [1, 2, 3])
         XCTAssertEqual(decodedMovie.originalTitle, "Test Original Title")
-        XCTAssertEqual(decodedMovie.originalLanguage, .en)
+        XCTAssertEqual(decodedMovie.originalLanguage, "en")
         XCTAssertEqual(decodedMovie.popularity, 8.7)
         XCTAssertEqual(decodedMovie.voteCount, 100)
         XCTAssertEqual(decodedMovie.video, false)

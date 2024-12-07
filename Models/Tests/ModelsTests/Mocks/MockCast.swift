@@ -28,7 +28,7 @@ extension Cast {
         job: String? = "Job",
         backdropPath: String? = "BackdropPath",
         genreIds: [Int]? = [1, 2, 3],
-        originalLanguage: OriginalLanguage? = .en,
+        originalLanguage: OriginalLanguage? = "en",
         originalTitle: String? = "Original Title",
         overview: String? = "Overview",
         posterPath: String? = "PostPath",

@@ -34,7 +34,7 @@ final class MovieServiceTests: XCTestCase {
         XCTAssertEqual(movie?.dateOfRelease, date)
         XCTAssertEqual(movie?.genreIds, [1, 2])
         XCTAssertEqual(movie?.originalTitle, "Original Title")
-        XCTAssertEqual(movie?.originalLanguage, .en)
+        XCTAssertEqual(movie?.originalLanguage, "en")
         XCTAssertEqual(movie?.popularity, 10)
         XCTAssertEqual(movie?.voteCount, 8)
         XCTAssertEqual(movie?.video, false)

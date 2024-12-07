@@ -16,7 +16,7 @@ struct MovieDetailsHeader: View {
     private let title: String?
     private let genres: String?
     private let rating: Double?
-    private let language: OriginalLanguage?
+    private let originalLanguage: OriginalLanguage?
     private let date: Date?
     private let time: String?
 
@@ -24,7 +24,7 @@ struct MovieDetailsHeader: View {
         self.title = title
         self.genres = genres
         self.rating = rating
-        self.language = language
+        self.originalLanguage = language
         self.date = date
         self.time = time
     }
@@ -51,8 +51,8 @@ struct MovieDetailsHeader: View {
                     .frame(width: 120, alignment: .center)
             }
 
-            if let language {
-                Text(language.language)
+            if let language = originalLanguage?.localizedString {
+                Text(language)
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(.primary)

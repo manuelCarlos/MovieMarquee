@@ -18,7 +18,7 @@ extension Movie {
                      releaseDate: String = "2000-01-01",
                      genreIds: [Int] = [1, 2],
                      originalTitle: String = "Original Title",
-                     originalLanguage: OriginalLanguage = .en,
+                     originalLanguage: OriginalLanguage = "en",
                      popularity: Double = 10,
                      voteCount: Int = 8,
                      video: Bool = false,

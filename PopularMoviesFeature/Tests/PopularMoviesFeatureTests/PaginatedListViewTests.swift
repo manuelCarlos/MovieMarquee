@@ -23,7 +23,7 @@ final class PaginatedListViewTests: XCTestCase {
     func test_media_list_successfully_loaded() async throws {
         let controller = MockMoviesOverviewController()
         controller.fetchNextPopularPageAsFullListStub = [
-            Movie.make(id: 1, title: "Blue is the warmest color", originalLanguage: .fr, voteAverage: 10),
+            Movie.make(id: 1, title: "Blue is the warmest color", originalLanguage: "fr", voteAverage: 10),
             Movie.make(id: 2, title: "City Lights", voteAverage: 3),
             Movie.make(id: 3, title: "The assassination of Jesse James by the Coward Robert Ford Final Cut Redux Part 2", voteAverage: 5)
         ]
