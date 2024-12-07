@@ -11,7 +11,6 @@ import Foundation
 ///
 /// `DataParser` uses `JSONDecoder` to convert `Data` into specified model objects.
 /// It defaults to a key decoding strategy of `.convertFromSnakeCase`,
-/// This class is thread-safe and conforms to `Sendable`.
 public final class DataParser: Sendable {
 
     private let jsonDecoder: JSONDecoder

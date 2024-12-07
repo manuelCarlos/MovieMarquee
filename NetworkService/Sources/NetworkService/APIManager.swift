@@ -9,7 +9,6 @@ import Foundation
 import os.log
 
 /// `APIManagerProtocol` provides a contract for fetching raw data from a network request.
-/// Implementations must support concurrency by conforming to `Sendable`.
 @available(iOS 13.0.0, *)
 public protocol APIManagerProtocol: Sendable {
 
@@ -26,8 +25,7 @@ public protocol APIManagerProtocol: Sendable {
 ///
 /// `APIManager` conforms to `APIManagerProtocol` and provides a concrete implementation
 /// for performing network operations. It leverages `URLSession` for HTTP requests and validates
-/// responses before returning the data. This class ensures thread safety and integrates
-/// with the unified logging system for error reporting.
+/// responses before returning the data.
 @available(iOS 15.0, *)
 public final actor APIManager: APIManagerProtocol {
 

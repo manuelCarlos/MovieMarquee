@@ -10,8 +10,6 @@ import Foundation
 /// `NetworkError` includes cases for invalid URLs, unexpected HTTP responses, and
 /// specific HTTP response status codes. It conforms to `LocalizedError` to provide
 /// user-friendly error descriptions, reasons, recovery suggestions, and help anchors.
-/// Additionally, it conforms to `Hashable` for use in sets or dictionaries and `Sendable`
-/// for safe usage in concurrent contexts.
 public enum NetworkError: LocalizedError, Hashable, Sendable {
 
     /// Indicates that the URL provided is invalid.
