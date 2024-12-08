@@ -51,7 +51,7 @@ public final actor APIManager: APIManagerProtocol {
             logger.error("Invalid HTTPURLResponse")
             throw NetworkError.invalidHTTPURLResponse
         }
-        guard httpResponse.statusCode == 200 else {
+        guard (200...299).contains(httpResponse.statusCode) else {
             logger.error("Invalid HTTP status code: \(httpResponse.statusCode)")
             throw NetworkError.httpResponse(code: httpResponse.statusCode)
         }
