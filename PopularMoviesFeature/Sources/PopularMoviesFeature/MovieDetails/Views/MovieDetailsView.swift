@@ -16,10 +16,12 @@ struct MovieDetailsView: View {
 
     private let viewModel: MovieDetailsViewModel
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieService: MediaService
 
-    init(viewModel: MovieDetailsViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(viewModel: MovieDetailsViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore, movieService: MediaService) {
         self.viewModel = viewModel
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.movieService = movieService
     }
 
     var body: some View {
@@ -51,7 +53,7 @@ struct MovieDetailsView: View {
 
                     Overview(description: movieDetails.overview)
 
-                    MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(),
+                    MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(movieService: movieService),
                                                                 mediaId: movieDetails.id))
                 }
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))

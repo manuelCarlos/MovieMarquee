@@ -16,12 +16,16 @@ struct PaginatedListItemView: View {
 
     private let mediaItem: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieService: MediaService
     private let movieDetailsViewModel: MovieDetailsViewModel
 
-    init(mediaItem: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(mediaItem: Watchable,
+         favoriteMoviesDBStore: FavoriteMoviesDBStore,
+         movieService: MediaService) {
         self.mediaItem = mediaItem
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
-        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(),
+        self.movieService = movieService
+        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(movieService: movieService),
                                                            navigationTitle: mediaItem.title,
                                                            movieId: mediaItem.id)
     }
@@ -30,7 +34,8 @@ struct PaginatedListItemView: View {
         NavigationLink(
             destination:
                 MovieDetailsView(viewModel: movieDetailsViewModel,
-                                 favoriteMoviesDBStore: favoriteMoviesDBStore)
+                                 favoriteMoviesDBStore: favoriteMoviesDBStore,
+                                 movieService: movieService)
         ) {
             HStack(alignment: .center, spacing: 20) {
                 MoviePosterView(imageUrl: mediaItem.posterUrl)

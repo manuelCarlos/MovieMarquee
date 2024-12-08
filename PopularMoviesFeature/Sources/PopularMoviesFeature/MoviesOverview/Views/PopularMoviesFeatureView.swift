@@ -23,11 +23,14 @@ public struct PopularMoviesFeatureView: View {
     @State private var isDataLoaded = false
 
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieService = MovieService()
 
     /// Instantiate a `PopularMoviesFeatureView` SwiftUI view.
     /// - Parameter favoriteMoviesDBStore: The store that manages the DB persisted favorite movies data.
     public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
-        self.viewModel = PopularMoviesFeatureViewModel(controller: MoviesOverviewController())
+        let mediaFetcher = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
+                                                service: movieService)
+        self.viewModel = PopularMoviesFeatureViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher))
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
 
@@ -58,7 +61,8 @@ public struct PopularMoviesFeatureView: View {
                 navigationTitle: Texts.popularMoviesFeatureNavigationTitle,
                 title: Texts.popularMoviesFeatureViewTitle,
                 movies: movies,
-                favoriteMoviesDBStore: favoriteMoviesDBStore
+                favoriteMoviesDBStore: favoriteMoviesDBStore,
+                movieService: movieService
             )
             .opacity(isDataLoaded ? 1 : 0)
             .animation(.easeInOut(duration: 1), value: isDataLoaded)

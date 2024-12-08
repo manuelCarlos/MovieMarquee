@@ -15,14 +15,14 @@ protocol MediaCastController {
 @available(iOS 16.0, *)
 final class MovieCastController: MediaCastController {
 
-    private let mediaService: MediaService
+    private let movieService: MediaService
 
-    init(mediaService: MediaService = MovieService.shared) {
-        self.mediaService = mediaService
+    init(movieService: MediaService) {
+        self.movieService = movieService
     }
 
     func fetchCast(mediaId: Int) async throws -> [Creditable] {
-        let credits = try await mediaService.fetchMediaCredits(mediaId: mediaId)
+        let credits = try await movieService.fetchMediaCredits(mediaId: mediaId)
         return credits.cast
     }
 }

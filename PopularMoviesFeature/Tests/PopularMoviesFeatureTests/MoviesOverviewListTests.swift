@@ -19,6 +19,7 @@ import SnapshotTesting
 final class MoviesOverviewListTests: XCTestCase {
 
     private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
+    private let movieService = MockMediaService()
 
     func test_movie_overview_list() async throws {
         let movies: [Movie] = [
@@ -34,7 +35,8 @@ final class MoviesOverviewListTests: XCTestCase {
             navigationTitle: "Discover",
             title: "Popular Movies",
             movies: movies,
-            favoriteMoviesDBStore: dbStore
+            favoriteMoviesDBStore: dbStore,
+            movieService: movieService
         )
 
         assertSnapshot(of: sut,

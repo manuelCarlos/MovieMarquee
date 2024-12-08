@@ -21,7 +21,7 @@ final class MovieCastControllerTests: XCTestCase {
         super.setUp()
 
         mockMediaService = MockMediaService()
-        controller = MovieCastController(mediaService: mockMediaService)
+        controller = MovieCastController(movieService: mockMediaService)
     }
 
     override func tearDown() {

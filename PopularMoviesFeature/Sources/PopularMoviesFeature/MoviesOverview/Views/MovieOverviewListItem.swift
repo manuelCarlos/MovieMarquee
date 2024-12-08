@@ -15,12 +15,14 @@ struct MovieOverviewListItem: View {
 
     private let movie: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieService: MediaService
     private let movieDetailsViewModel: MovieDetailsViewModel
 
-    init(movie: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(movie: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore, movieService: MediaService) {
         self.movie = movie
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
-        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(),
+        self.movieService = movieService
+        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(movieService: movieService),
                                                            navigationTitle: movie.title,
                                                            movieId: movie.id)
     }
@@ -29,7 +31,8 @@ struct MovieOverviewListItem: View {
         NavigationLink(
             destination:
                 MovieDetailsView(viewModel: movieDetailsViewModel,
-                                 favoriteMoviesDBStore: favoriteMoviesDBStore)
+                                 favoriteMoviesDBStore: favoriteMoviesDBStore,
+                                 movieService: movieService)
         ) {
             VStack {
                 MoviePosterView(imageUrl: movie.posterUrl,

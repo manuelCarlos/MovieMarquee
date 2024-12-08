@@ -19,12 +19,15 @@ import SnapshotTesting
 final class MovieOverviewListItemTests: XCTestCase {
 
     private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
+    private let movieService = MockMediaService()
+
 
     func test_movie_overview_list_item_with_short_title() async throws {
-        let movie =  Movie.make(id: 1, title: "Stalker")
+        let movie = Movie.make(id: 1, title: "Stalker")
 
         let sut = MovieOverviewListItem(movie: movie,
-                                        favoriteMoviesDBStore: dbStore)
+                                        favoriteMoviesDBStore: dbStore,
+                                        movieService: movieService)
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .fixed(width: 150, height: 300),
@@ -44,7 +47,8 @@ final class MovieOverviewListItemTests: XCTestCase {
         let movie =  Movie.make(id: 1, title: "The Assassination of Jesse James By the Coward Robert Ford")
 
         let sut = MovieOverviewListItem(movie: movie,
-                                        favoriteMoviesDBStore: dbStore)
+                                        favoriteMoviesDBStore: dbStore,
+                                        movieService: movieService)
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .fixed(width: 150, height: 300),

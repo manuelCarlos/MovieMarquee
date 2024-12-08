@@ -17,17 +17,23 @@ struct MoviesOverviewList: View {
     private let title: String
     private let movies: [Watchable]
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieService: MediaService
+    private let mediaFetcher: MediaFetcher
 
     init(
         navigationTitle: String,
         title: String,
         movies: [Watchable],
-        favoriteMoviesDBStore: FavoriteMoviesDBStore
+        favoriteMoviesDBStore: FavoriteMoviesDBStore,
+        movieService: MediaService
     ) {
         self.navigationTitle = navigationTitle
         self.title = title
         self.movies = movies
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.movieService = movieService
+        self.mediaFetcher = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
+                                         service: movieService)
     }
 
     var body: some View {
@@ -38,8 +44,9 @@ struct MoviesOverviewList: View {
                     .bold()
                 Spacer()
                 NavigationLink(
-                    destination: PaginatedListView(viewModel: PaginatedListViewModel(controller: MoviesOverviewController()),
-                                                   favoriteMoviesDBStore: favoriteMoviesDBStore)
+                    destination: PaginatedListView(viewModel: PaginatedListViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher)),
+                                                   favoriteMoviesDBStore: favoriteMoviesDBStore,
+                                                   movieService: movieService)
                     .navigationTitle(navigationTitle)
                 ) {
                     discloseAllView
@@ -50,7 +57,9 @@ struct MoviesOverviewList: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 10) {
                     ForEach(movies, id: \.id) { item in
-                        MovieOverviewListItem(movie: item, favoriteMoviesDBStore: favoriteMoviesDBStore)
+                        MovieOverviewListItem(movie: item,
+                                              favoriteMoviesDBStore: favoriteMoviesDBStore,
+                                              movieService: movieService)
                     }
                 }
                 .padding(.horizontal, 15)

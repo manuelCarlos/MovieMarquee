@@ -15,10 +15,14 @@ struct PaginatedListView: View {
 
     private let viewModel: PaginatedListViewModel
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    private let movieService: MediaService
 
-    init(viewModel: PaginatedListViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(viewModel: PaginatedListViewModel,
+         favoriteMoviesDBStore: FavoriteMoviesDBStore,
+         movieService: MediaService) {
         self.viewModel = viewModel
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.movieService = movieService
     }
 
     var body: some View {
@@ -38,7 +42,8 @@ struct PaginatedListView: View {
                 LazyVStack(alignment: .center, spacing: 10) {
                     ForEach(watchables, id: \.id) { watchable in
                         PaginatedListItemView(mediaItem: watchable,
-                                              favoriteMoviesDBStore: favoriteMoviesDBStore)
+                                              favoriteMoviesDBStore: favoriteMoviesDBStore,
+                                              movieService: movieService)
                         .padding(.horizontal, 20)
                     }
                     Spacer()

@@ -19,6 +19,7 @@ import SnapshotTesting
 final class PaginatedListViewTests: XCTestCase {
 
     private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
+    private let movieService = MockMediaService()
 
     func test_media_list_successfully_loaded() async throws {
         let controller = MockMoviesOverviewController()
@@ -30,7 +31,8 @@ final class PaginatedListViewTests: XCTestCase {
         let viewModel = PaginatedListViewModel(controller: controller)
         await viewModel.fetchFirstPage()
         let sut = PaginatedListView(viewModel: viewModel,
-                                    favoriteMoviesDBStore: dbStore)
+                                    favoriteMoviesDBStore: dbStore,
+                                    movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
@@ -66,7 +68,8 @@ final class PaginatedListViewTests: XCTestCase {
         let viewModel = PaginatedListViewModel(controller: controller)
         await viewModel.fetchFirstPage()
         let sut = PaginatedListView(viewModel: viewModel,
-                                    favoriteMoviesDBStore: dbStore)
+                                    favoriteMoviesDBStore: dbStore,
+                                    movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
@@ -103,7 +106,8 @@ final class PaginatedListViewTests: XCTestCase {
         let viewModel = PaginatedListViewModel(controller: controller)
         await viewModel.fetchFirstPage()
         let sut = PaginatedListView(viewModel: viewModel,
-                                    favoriteMoviesDBStore: dbStore)
+                                    favoriteMoviesDBStore: dbStore,
+                                    movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(

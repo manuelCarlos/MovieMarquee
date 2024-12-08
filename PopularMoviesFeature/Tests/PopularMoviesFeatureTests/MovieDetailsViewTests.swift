@@ -17,6 +17,7 @@ import SnapshotTesting
 final class MovieDetailsViewTests: XCTestCase {
 
     private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
+    private let movieService = MockMediaService()
 
     func test_movie_details_view_when_successfully_loaded() async throws {
         let controller = MockMovieDetailsController()
@@ -24,7 +25,9 @@ final class MovieDetailsViewTests: XCTestCase {
         let viewModel = MovieDetailsViewModel(controller: controller, navigationTitle: "details", movieId: 99)
         await viewModel.fetchMediaDetails()
 
-        let sut = MovieDetailsView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
+        let sut = MovieDetailsView(viewModel: viewModel,
+                                   favoriteMoviesDBStore: dbStore,
+                                   movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
@@ -61,7 +64,9 @@ final class MovieDetailsViewTests: XCTestCase {
         let viewModel = MovieDetailsViewModel(controller: controller, navigationTitle: "details", movieId: 99)
         await viewModel.fetchMediaDetails()
 
-        let sut = MovieDetailsView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
+        let sut = MovieDetailsView(viewModel: viewModel,
+                                   favoriteMoviesDBStore: dbStore,
+                                   movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(

@@ -19,10 +19,12 @@ import SnapshotTesting
 final class PaginatedListItemViewTests: XCTestCase {
 
     private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
+    private let movieService = MockMediaService()
 
     func test_media_list_item() {
         let sut = PaginatedListItemView(mediaItem: Movie.make(),
-                               favoriteMoviesDBStore: dbStore)
+                                        favoriteMoviesDBStore: dbStore,
+                                        movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
@@ -43,7 +45,8 @@ final class PaginatedListItemViewTests: XCTestCase {
         let title = "The Assassination of Jesse James By the Coward Robert Ford Final Final2 Cut Redux Part 44 Is a Loooong Title"
         let sut = PaginatedListItemView(mediaItem: Movie.make(id: 1,
                                                      title: title),
-                               favoriteMoviesDBStore: dbStore)
+                                        favoriteMoviesDBStore: dbStore,
+                                        movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(

@@ -18,8 +18,7 @@ final class MoviesOverviewController: Sendable, MediaOverviewController {
 
     private let popularMoviesFetcher: Fetchable
 
-    init(popularMoviesFetcher: Fetchable = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
-                                                        service: MovieService.shared)) {
+    init(popularMoviesFetcher: Fetchable) {
         self.popularMoviesFetcher = popularMoviesFetcher
     }
 

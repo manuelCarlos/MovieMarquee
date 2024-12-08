@@ -11,8 +11,6 @@ import NetworkService
 @available(iOS 16.0, *)
 final class MovieService: Sendable, MediaService {
 
-    public static let shared = MovieService()
-
     private let requestManager: RequestManagerProtocol
 
     init(requestManager: RequestManagerProtocol = RequestManager()) {

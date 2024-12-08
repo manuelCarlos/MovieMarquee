@@ -17,7 +17,7 @@ final class MovieDetailsController: Sendable, MediaDetailsController {
 
     private let movieService: MediaService
 
-    init(movieService: MediaService = MovieService.shared) {
+    init(movieService: MediaService) {
         self.movieService = movieService
     }
 
