@@ -34,18 +34,19 @@ public struct FailedStateView: View {
             Text(title)
         } description: {
             Text(description)
-        } actions: { retryAction }
+        } actions: {
+            retryAction
+        }
     }
 
     // MARK: - Private
 
+    @ViewBuilder
     private var retryAction: some View {
-        if onRetry == nil {
-            return EmptyView() // No retry button if `onRetry` is nil.
-        } else {
-            return Button {
+        if let onRetry {
+            Button {
                 Task {
-                    onRetry?()
+                    onRetry()
                 }
             } label: {
                 Text(Texts.FailedState.retry)
