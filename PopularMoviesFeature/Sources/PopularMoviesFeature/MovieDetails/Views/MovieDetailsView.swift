@@ -26,6 +26,7 @@ struct MovieDetailsView: View {
         contentView
             .transition(.opacity.animation(.easeInOut(duration: 0.3)))
             .navigationTitle(viewModel.navigationTitle)
+            .navigationBarTitleDisplayMode(.inline)
     }
 
     @ViewBuilder
@@ -44,16 +45,16 @@ struct MovieDetailsView: View {
         case .loaded(let movieDetails):
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
+                    MovieTitle(title: movieDetails.title)
+
                     DetailsView(movieDetails: movieDetails, favoriteMoviesDBStore: favoriteMoviesDBStore)
 
-                    if let overview = movieDetails.overview {
-                        Overview(description: overview)
-                    }
+                    Overview(description: movieDetails.overview)
 
                     MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(),
                                                                 mediaId: movieDetails.id))
                 }
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
+                .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
             }
         }
     }
@@ -66,7 +67,7 @@ private struct DetailsView: View {
     let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .bottom) {
             MoviePosterView(imageUrl: movieDetails.posterUrl)
                 .frame(width: 150, height: 200)
                 .background(.gray)
@@ -74,7 +75,6 @@ private struct DetailsView: View {
                 .cornerRadius(10)
 
             MovieDetailsHeader(
-                title: movieDetails.title,
                 genres: movieDetails.genres.first?.name,
                 rating: movieDetails.voteAverage,
                 language: movieDetails.originalLanguage,
@@ -94,15 +94,29 @@ private struct DetailsView: View {
 @available(iOS 17.0, *)
 private struct Overview: View {
 
-    let description: String
+    let description: String?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(Texts.movieOverviewTitle)
-                .font(.title)
-                .fontWeight(.bold)
-            Text(description)
-                .font(.system(size: 16))
+        if let description {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(Texts.movieOverviewTitle)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Text(description)
+                    .font(.system(size: 16))
+            }
         }
+    }
+}
+
+@available(iOS 17.0, *)
+private struct MovieTitle: View {
+
+    let title: String
+
+    var body: some View {
+        Text(title)
+            .font(.title)
+            .fontWeight(.bold)
     }
 }

@@ -13,15 +13,13 @@ import Models
 @available(iOS 15.0, *)
 struct MovieDetailsHeader: View {
 
-    private let title: String?
     private let genres: String?
     private let rating: Double?
     private let originalLanguage: OriginalLanguage?
     private let date: Date?
     private let time: String?
 
-    init(title: String?, genres: String?, rating: Double?, language: OriginalLanguage?, date: Date?, time: String?) {
-        self.title = title
+    init(genres: String?, rating: Double?, language: OriginalLanguage?, date: Date?, time: String?) {
         self.genres = genres
         self.rating = rating
         self.originalLanguage = language
@@ -30,14 +28,7 @@ struct MovieDetailsHeader: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            if let title {
-                Text(title)
-                    .font(.headline)
-                    .bold()
-                    .minimumScaleFactor(0.6)
-            }
-
+        VStack(alignment: .leading, spacing: 8) {
             if let genres {
                 Text(genres)
                     .font(.subheadline)
