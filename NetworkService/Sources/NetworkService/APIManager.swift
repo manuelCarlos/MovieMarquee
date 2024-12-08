@@ -46,13 +46,14 @@ public final actor APIManager: APIManagerProtocol {
     /// - Returns: The raw `Data` returned from the server.
     /// - Throws: A `NetworkError` if the response is invalid or if the request fails.
     public func requestData(with components: RequestComponents) async throws -> Data {
-        let (data, response) = try await urlSession.data(for: components.makeURLRequest())
+        let urlRequest = try components.makeURLRequest()
+        let (data, response) = try await urlSession.data(for: urlRequest)
         guard let httpResponse = response as? HTTPURLResponse else {
             logger.error("Invalid HTTPURLResponse")
             throw NetworkError.invalidHTTPURLResponse
         }
         guard (200...299).contains(httpResponse.statusCode) else {
-            logger.error("Invalid HTTP status code: \(httpResponse.statusCode)")
+            logger.error("Request to \(urlRequest.url?.absoluteString ?? "unknown URL") failed with status code \(httpResponse.statusCode)")
             throw NetworkError.httpResponse(code: httpResponse.statusCode)
         }
         return data
