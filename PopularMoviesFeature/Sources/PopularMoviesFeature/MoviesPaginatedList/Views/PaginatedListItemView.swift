@@ -14,6 +14,29 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct PaginatedListItemView: View {
 
+    private struct Layout {
+        let posterMaxWidth: CGFloat = 150
+        let containerHeight: CGFloat = 250
+        let hStackSpacing = Spacings.space20
+        let textAlignement: TextAlignment = .leading
+
+        let titleFont: Font = .title2
+        let titleScaleFactor: CGFloat = 0.7
+        let titleColor: Color = .primary
+        let titlePaddingBottom = Spacings.space20
+
+        let languageFont: Font = .title3
+        let languageColor: Color = .primary
+
+        let starsMaxWidth: CGFloat = 120
+        let starsFrameAlignment: Alignment = .center
+
+        let favoriteIconSize = CGSize(width: 25, height: 25)
+        let favoriteIconColor: Color = .red
+    }
+
+    private let layout = Layout()
+
     private let mediaItem: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService: MediaService
@@ -37,13 +60,13 @@ struct PaginatedListItemView: View {
                                  favoriteMoviesDBStore: favoriteMoviesDBStore,
                                  movieService: movieService)
         ) {
-            HStack(alignment: .center, spacing: 20) {
+            HStack(alignment: .center, spacing: layout.hStackSpacing) {
                 MoviePosterView(imageUrl: mediaItem.posterUrl)
-                    .frame(maxWidth: 150)
+                    .frame(maxWidth: layout.posterMaxWidth)
                 movieInfoStackView
                 Spacer()
             }
-            .frame(height: 250)
+            .frame(height: layout.containerHeight)
         }
     }
 
@@ -52,32 +75,33 @@ struct PaginatedListItemView: View {
     private var movieInfoStackView: some View {
         VStack(alignment: .leading) {
             Text(mediaItem.title)
-                .font(.title2)
-                .minimumScaleFactor(0.7)
+                .font(layout.titleFont)
+                .minimumScaleFactor(layout.titleScaleFactor)
                 .bold()
-                .foregroundColor(.primary)
-                .multilineTextAlignment(.leading)
-                .padding(.bottom, 20)
+                .foregroundColor(layout.titleColor)
+                .multilineTextAlignment(layout.textAlignement)
+                .padding(.bottom, layout.titlePaddingBottom)
 
             if let language = mediaItem.originalLanguage?.localizedString {
                 Text(language)
-                    .font(.title3)
-                    .minimumScaleFactor(0.7)
+                    .font(layout.languageFont)
+                    .minimumScaleFactor(layout.titleScaleFactor)
                     .bold()
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.leading)
+                    .foregroundColor(layout.languageColor)
+                    .multilineTextAlignment(layout.textAlignement)
             }
 
             if let rating = mediaItem.voteAverage {
-                StarsView(rating: CGFloat(rating/2), maxRating: 5)
-                    .frame(maxWidth: 120, alignment: .center)
+                StarsView(rating: CGFloat(rating / 2), maxRating: 5)
+                    .frame(maxWidth: layout.starsMaxWidth, alignment: layout.starsFrameAlignment)
             }
 
-            if favoriteMoviesDBStore.movies.contains(where: { $0.id == mediaItem.id }) == true {
+            if favoriteMoviesDBStore.movies.contains(where: { $0.id == mediaItem.id }) {
                 Icons.favorite(isOn: true)
                     .resizable()
-                    .frame(width: 25, height: 25)
-                    .foregroundColor(.red)
+                    .frame(width: layout.favoriteIconSize.width,
+                           height: layout.favoriteIconSize.height)
+                    .foregroundColor(layout.favoriteIconColor)
             }
         }
     }
