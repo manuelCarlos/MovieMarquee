@@ -7,11 +7,26 @@
 
 import SwiftUI
 
+import Lego
 import MoviesDB
 import Models
 
 @available(iOS 17.0, *)
 struct MoviesOverviewList: View {
+
+    private struct Layout {
+        let mainVStackSpacing = Spacings.zero
+        let horizontalPadding = Spacings.space16
+        let horizontalScrollSpacing: CGFloat = 10
+        let titleFont: Font = .title
+        let titleFontWeight: Font.Weight = .bold
+        let seeAllFont: Font = .title3
+        let seeAllSpacing = Spacings.space4
+        let seeAllBottomPadding = Spacings.space4
+        let seeAllColor: Color = .accentColor
+    }
+
+    private let layout = Layout()
 
     private let navigationTitle: String
     private let title: String
@@ -37,10 +52,10 @@ struct MoviesOverviewList: View {
     }
 
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: layout.mainVStackSpacing) {
             HStack(alignment: .center) {
                 Text(title)
-                    .font(.title)
+                    .font(layout.titleFont)
                     .bold()
                 Spacer()
                 NavigationLink(
@@ -52,17 +67,17 @@ struct MoviesOverviewList: View {
                     discloseAllView
                 }
             }
-            .padding(.horizontal, 15)
+            .padding(.horizontal, layout.horizontalPadding)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: 10) {
+                HStack(alignment: .center, spacing: layout.horizontalScrollSpacing) {
                     ForEach(movies, id: \.id) { item in
                         MovieOverviewListItem(movie: item,
                                               favoriteMoviesDBStore: favoriteMoviesDBStore,
                                               movieService: movieService)
                     }
                 }
-                .padding(.horizontal, 15)
+                .padding(.horizontal, layout.horizontalPadding)
             }
         }
     }
@@ -70,14 +85,14 @@ struct MoviesOverviewList: View {
     // MARK: - Private
 
     private var discloseAllView: some View {
-        HStack(alignment: .bottom, spacing: 3) {
+        HStack(alignment: .bottom, spacing: layout.seeAllSpacing) {
             Text(Texts.seeAll)
-                .foregroundColor(.accentColor)
-                .font(.title3)
+                .foregroundColor(layout.seeAllColor)
+                .font(layout.seeAllFont)
                 .bold()
             Icons.disclosureIndicator
-                .foregroundColor(.accentColor)
-                .padding(.bottom, 4)
+                .foregroundColor(layout.seeAllColor)
+                .padding(.bottom, layout.seeAllBottomPadding)
         }
     }
 }
