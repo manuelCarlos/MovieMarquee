@@ -48,4 +48,7 @@ public enum Spacings {
 
     /// Spacing 44.
     public static let space44: CGFloat = 44
+
+    /// Spacing 100.
+    public static let space100: CGFloat = 100
 }
