@@ -12,6 +12,21 @@ import Lego
 @available(iOS 17.0, *)
 struct MovieCastGrid: View {
 
+    private struct Layout {
+        let padding = EdgeInsets(top: Spacings.space16,
+                                 leading: Spacings.space16,
+                                 bottom: Spacings.space16,
+                                 trailing: Spacings.space16)
+        let titleFont: Font = .title2
+        let titleFontWeight: Font.Weight = .bold
+        let titleBottomPadding = Spacings.space12
+        let gridItemMinimumWidth = Spacings.space100
+        let gridAlignment: HorizontalAlignment = .center
+        let gridSpacing = Spacings.space20
+        let transitionDuration: Double = 0.3
+    }
+
+    private let layout = Layout()
     private let viewModel: MovieCastViewModel
 
     init(viewModel: MovieCastViewModel) {
@@ -20,7 +35,7 @@ struct MovieCastGrid: View {
 
     var body: some View {
         contentView
-            .transition(.opacity.animation(.easeInOut(duration: 0.3)))
+            .transition(.opacity.animation(.easeInOut(duration: layout.transitionDuration)))
     }
 
     // MARK: - Private
@@ -37,9 +52,14 @@ struct MovieCastGrid: View {
             EmptyView()
         case .loaded(let artists):
             Text(Texts.movieCastTitle)
-                .font(.title2)
-                .fontWeight(.bold)
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], alignment: .center, spacing: 20) {
+                .font(layout.titleFont)
+                .fontWeight(layout.titleFontWeight)
+
+            LazyVGrid(
+                columns: [GridItem(.adaptive(minimum: layout.gridItemMinimumWidth))],
+                alignment: layout.gridAlignment,
+                spacing: layout.gridSpacing
+            ) {
                 ForEach(artists, id: \.id) { artist in
                     ArtistItemView(artist: artist)
                 }
