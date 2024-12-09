@@ -14,6 +14,12 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct MovieDetailsView: View {
 
+    private let vStackSpacing = Spacings.space16
+    private let vStackPadding = EdgeInsets(top: Spacings.space16,
+                                           leading: Spacings.space16,
+                                           bottom: Spacings.space16,
+                                           trailing: Spacings.space16)
+
     private let viewModel: MovieDetailsViewModel
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService: MediaService
@@ -46,7 +52,7 @@ struct MovieDetailsView: View {
             }
         case .loaded(let movieDetails):
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: vStackSpacing) {
                     MovieTitle(title: movieDetails.title)
 
                     DetailsView(movieDetails: movieDetails, favoriteMoviesDBStore: favoriteMoviesDBStore)
@@ -56,7 +62,7 @@ struct MovieDetailsView: View {
                     MovieCastGrid(viewModel: MovieCastViewModel(controller: MovieCastController(movieService: movieService),
                                                                 mediaId: movieDetails.id))
                 }
-                .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                .padding(vStackPadding)
             }
         }
     }
@@ -68,13 +74,17 @@ private struct DetailsView: View {
     let movieDetails: WatchableDetails
     let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
+    private let size = CGSize(width: 150, height: 200)
+    private let cornerRadius: CGFloat = 10
+    private let borderWidth: CGFloat = 5
+
     var body: some View {
         HStack(alignment: .bottom) {
             MoviePosterView(imageUrl: movieDetails.posterUrl)
-                .frame(width: 150, height: 200)
+                .frame(width: size.width, height: size.height)
                 .background(.gray)
-                .border(.gray, width: 5)
-                .cornerRadius(10)
+                .border(.gray, width: borderWidth)
+                .cornerRadius(cornerRadius)
 
             MovieDetailsHeader(
                 genres: movieDetails.genres.first?.name,
@@ -100,12 +110,12 @@ private struct Overview: View {
 
     var body: some View {
         if let description {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: Spacings.space8) {
                 Text(Texts.movieOverviewTitle)
                     .font(.title2)
                     .fontWeight(.bold)
                 Text(description)
-                    .font(.system(size: 16))
+                    .font(.system(size: Spacings.space16))
             }
         }
     }
