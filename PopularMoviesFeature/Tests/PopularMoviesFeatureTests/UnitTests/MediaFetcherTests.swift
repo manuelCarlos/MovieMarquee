@@ -11,6 +11,7 @@ import XCTest
 @testable import Models
 @testable import PopularMoviesFeature
 
+@available(iOS 14.0, *)
 final class MediaFetcherTests: XCTestCase {
 
     func test_fetch_single_page_success() async throws {
@@ -43,6 +44,9 @@ final class MediaFetcherTests: XCTestCase {
         let fetcher = MediaFetcher(mediaListFetcher: mockFetcher, service: mockService)
 
         let result1 = try await fetcher.fetchNextPage()
+        mockService.mockWatchables = [
+            Movie.make(id: 222)
+        ]
         let result2 = try await fetcher.fetchNextPage()
 
         XCTAssertEqual(result1.count, 1)
