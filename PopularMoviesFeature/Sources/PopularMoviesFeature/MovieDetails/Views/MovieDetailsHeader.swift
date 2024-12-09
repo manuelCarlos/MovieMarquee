@@ -13,6 +13,20 @@ import Models
 @available(iOS 15.0, *)
 struct MovieDetailsHeader: View {
 
+    private struct Layout {
+        let vStackSpacing = Spacings.space8
+        let textColor: Color = .primary
+        let starsViewWidth: CGFloat = 120
+        let fontSubheadline: Font = .subheadline
+        let fontCaption: Font = .caption
+        let minimumScaleFactorText: CGFloat = 0.4
+        let minimumScaleFactorLanguage: CGFloat = 0.8
+        let minimumScaleFactorDate: CGFloat = 0.8
+        let minimumScaleFactorTime: CGFloat = 0.8
+    }
+
+    private let layout = Layout()
+    private let maxRating = 5
     private let genres: String?
     private let rating: Double?
     private let originalLanguage: OriginalLanguage?
@@ -28,41 +42,42 @@ struct MovieDetailsHeader: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: layout.vStackSpacing) {
             if let genres {
                 Text(genres)
-                    .font(.subheadline)
-                    .foregroundColor(.primary)
+                    .font(layout.fontSubheadline)
+                    .foregroundColor(layout.textColor)
                     .bold()
-                    .minimumScaleFactor(0.4)
+                    .minimumScaleFactor(layout.minimumScaleFactorText)
             }
 
             if let rating {
-                StarsView(rating: CGFloat(rating / 2), maxRating: 5)
-                    .frame(width: 120, alignment: .center)
+                StarsView(rating: CGFloat(rating / 2), maxRating: maxRating)
+                    .frame(width: layout.starsViewWidth, alignment: .center)
             }
 
             if let language = originalLanguage?.localizedString {
                 Text(language)
-                    .font(.subheadline)
+                    .font(layout.fontSubheadline)
                     .bold()
-                    .foregroundColor(.primary)
-                    .minimumScaleFactor(0.8)
-            }
-            if let date {
-                Text(date.formatted(date: .abbreviated, time: .omitted))
-                    .font(.caption)
-                    .bold()
-                    .foregroundColor(.primary)
-                    .minimumScaleFactor(0.8)
+                    .foregroundColor(layout.textColor)
+                    .minimumScaleFactor(layout.minimumScaleFactorLanguage)
             }
 
-            if let time = time {
-                Text(time)
-                    .font(.caption)
+            if let date {
+                Text(date.formatted(date: .abbreviated, time: .omitted))
+                    .font(layout.fontCaption)
                     .bold()
-                    .foregroundColor(.primary)
-                    .minimumScaleFactor(0.8)
+                    .foregroundColor(layout.textColor)
+                    .minimumScaleFactor(layout.minimumScaleFactorDate)
+            }
+
+            if let time {
+                Text(time)
+                    .font(layout.fontCaption)
+                    .bold()
+                    .foregroundColor(layout.textColor)
+                    .minimumScaleFactor(layout.minimumScaleFactorTime)
             }
         }
     }
