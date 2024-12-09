@@ -15,4 +15,8 @@ enum Icons {
     }
 
     static let disclosureIndicator = Image(systemName: "chevron.right")
+
+    static let moviePosterFailure = Image(systemName: "photo.badge.exclamationmark")
+
+    static let artistItemFailure =  Image(systemName: "person.fill")
 }

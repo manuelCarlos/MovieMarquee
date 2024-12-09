@@ -33,7 +33,6 @@ struct ArtistItemView: View {
         let failurePaddingTop = Spacings.space10
         let failurePaddingLeading = Spacings.space10
         let failurePaddingTrailing = Spacings.space10
-        let failureImageName = "person.fill"
         let failureImageColor: Color = .gray
         let failureImageOpacity: CGFloat = 0.3
         let failureImageHeight: CGFloat = 130
@@ -106,7 +105,7 @@ struct ArtistItemView: View {
                 .padding(.leading, layout.failurePaddingLeading)
                 .padding(.trailing, layout.failurePaddingTrailing)
 
-            Image(systemName: layout.failureImageName)
+            Icons.artistItemFailure
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(layout.failureImageColor)

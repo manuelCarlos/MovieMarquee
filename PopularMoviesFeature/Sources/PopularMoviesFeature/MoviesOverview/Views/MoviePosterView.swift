@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct MoviePosterView: View {
 
-    static let posterPlaceholder = "poster_placeholder.jpg"
+    private let posterPlaceholder = "poster_placeholder.jpg"
 
     private let imageUrl: String
     private let animation: Animation
@@ -28,7 +28,7 @@ struct MoviePosterView: View {
 
     @ViewBuilder
     private var loadingImage: some View {
-        if let uiImage = UIImage(named: Self.posterPlaceholder, in: .module, with: nil) {
+        if let uiImage = UIImage(named: posterPlaceholder, in: .module, with: nil) {
             Image(uiImage: uiImage)
                 .resizable()
                 .scaledToFit()
@@ -47,7 +47,7 @@ struct MoviePosterView: View {
             case .empty:
                 loadingImage
             case .failure:
-                Image(systemName: "photo.badge.exclamationmark")
+                Icons.moviePosterFailure
                     .foregroundColor(.gray)
                     .opacity(0.5)
             @unknown default:
