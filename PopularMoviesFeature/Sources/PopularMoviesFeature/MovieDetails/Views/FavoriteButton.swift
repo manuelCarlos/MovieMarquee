@@ -14,6 +14,7 @@ struct FavoriteButton: View {
 
     @State private var isFavorite: Bool?
 
+    private let size = CGSize(width: 35, height: 35)
     private let favoriteOn = "heart.fill"
     private let favoriteOff = "heart"
     private let mediaId: Int
@@ -38,7 +39,7 @@ struct FavoriteButton: View {
         } label: {
             Icons.favorite(isOn: isFavorite == true)
                 .resizable()
-                .frame(width: 35, height: 35)
+                .frame(width: size.width, height: size.height)
                 .foregroundColor(.red)
         }
         .symbolEffect(.bounce, value: isFavorite == true)
