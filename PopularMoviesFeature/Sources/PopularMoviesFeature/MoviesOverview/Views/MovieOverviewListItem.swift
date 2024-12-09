@@ -13,6 +13,20 @@ import MoviesDB
 @available(iOS 17.0, *)
 struct MovieOverviewListItem: View {
 
+    private struct Layout {
+        let posterMaxHeight: CGFloat = 300
+        let titleWidth: CGFloat = 120
+        let titleHeight: CGFloat = 60
+        let cornerRadius: CGFloat = 10
+        let posterAnimation: Animation = .easeInOut(duration: 0.3)
+        let movieTitleFont: Font = .headline
+        let movieTitleColor: Color = .secondary
+        let movieTitleScaleFactor: CGFloat = 0.5
+        let movieTitleFrameAlignment: Alignment = .top
+    }
+
+    private let layout = Layout()
+
     private let movie: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService: MediaService
@@ -36,17 +50,19 @@ struct MovieOverviewListItem: View {
         ) {
             VStack {
                 MoviePosterView(imageUrl: movie.posterUrl,
-                                animation: .easeInOut(duration: 0.3))
+                                animation: layout.posterAnimation)
                 .scaledToFill()
-                .frame(maxHeight: 300)
+                .frame(maxHeight: layout.posterMaxHeight)
 
                 Text(movie.title)
-                    .font(.headline)
-                    .foregroundColor(.secondary)
-                    .minimumScaleFactor(0.5)
-                    .frame(width: 120, height: 60, alignment: .top)
+                    .font(layout.movieTitleFont)
+                    .foregroundColor(layout.movieTitleColor)
+                    .minimumScaleFactor(layout.movieTitleScaleFactor)
+                    .frame(width: layout.titleWidth,
+                           height: layout.titleHeight,
+                           alignment: layout.movieTitleFrameAlignment)
             }
-            .cornerRadius(10)
+            .cornerRadius(layout.cornerRadius)
         }
     }
 }

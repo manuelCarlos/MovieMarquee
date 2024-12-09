@@ -48,7 +48,8 @@ struct MovieCastGrid: View {
                 Task { await viewModel.fetchMediaCast() }
             }
         case .failed:
-            // In case of error no Cast section data is displayed 😉.
+            // In case of error, the Cast section is not displayed at all 😉.
+            // Possible improvement: add error state with UI trigger to try again.
             EmptyView()
         case .loaded(let artists):
             Text(Texts.movieCastTitle)
