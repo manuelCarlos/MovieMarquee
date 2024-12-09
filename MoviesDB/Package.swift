@@ -9,14 +9,23 @@ let package = Package(
     products: [
         .library(
             name: "MoviesDB",
-            targets: ["MoviesDB"])
+            targets: ["MoviesDB"]
+        ),
+        .library(
+            name: "MoviesDBMocks",
+            targets: ["MoviesDBMocks"]
+        )
     ],
     targets: [
         .target(
             name: "MoviesDB"),
+        .target(
+            name: "MoviesDBMocks",
+            dependencies: ["MoviesDB"]
+        ),
         .testTarget(
             name: "MoviesDBTests",
-            dependencies: ["MoviesDB"]
+            dependencies: ["MoviesDB", "MoviesDBMocks"]
         )
     ]
 )

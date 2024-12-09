@@ -8,6 +8,7 @@
 import Foundation
 
 final class MockURLProtocol: URLProtocol {
+
     nonisolated(unsafe) static var testURLs = [URL?: Data]()
 
     override static func canInit(with request: URLRequest) -> Bool {

@@ -8,6 +8,7 @@
 import XCTest
 
 @testable import MoviesDB
+@testable import MoviesDBMocks
 
 @available(iOS 17.0, *)
 final class FavoriteMoviesDBStoreTests: XCTestCase {

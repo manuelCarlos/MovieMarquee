@@ -8,8 +8,9 @@
 import XCTest
 import SnapshotTesting
 
-@testable import MoviesDB
 @testable import FavoriteMoviesFeature
+@testable import MoviesDB
+@testable import MoviesDBMocks
 
 @available(iOS 17.0, *)
 @MainActor

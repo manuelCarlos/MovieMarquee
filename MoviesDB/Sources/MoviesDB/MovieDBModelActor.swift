@@ -10,7 +10,7 @@ import os.log
 import SwiftData
 
 @available(iOS 17.0, *)
-protocol MovieDBModelStorage {
+package protocol MovieDBModelStorage {
     func fetchAllFavoriteMovies() async throws -> [FavoriteMovie]
     func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie
     func insertFavoriteMovie(_ movie: FavoriteMovie) async throws

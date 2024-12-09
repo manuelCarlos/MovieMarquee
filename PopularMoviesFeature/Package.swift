@@ -38,6 +38,7 @@ let package = Package(
                 "NetworkService",
                 "Models",
                 "MoviesDB",
+                .product(name: "MoviesDBMocks", package: "MoviesDB"),
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         )

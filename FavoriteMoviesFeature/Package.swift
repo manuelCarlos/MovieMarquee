@@ -7,7 +7,6 @@ let package = Package(
     name: "FavoriteMoviesFeature",
     defaultLocalization: "en",
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "FavoriteMoviesFeature",
             targets: ["FavoriteMoviesFeature"])
@@ -23,12 +22,12 @@ let package = Package(
                 .product(name: "MoviesDB", package: "MoviesDB")
             ]
         ),
-
         .testTarget(
             name: "FavoriteMoviesFeatureTests",
             dependencies: [
                 "FavoriteMoviesFeature",
                 "MoviesDB",
+                .product(name: "MoviesDBMocks", package: "MoviesDB"),
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         )

@@ -12,6 +12,7 @@ import SnapshotTesting
 
 @testable import Models
 @testable import MoviesDB
+@testable import MoviesDBMocks
 @testable import PopularMoviesFeature
 
 @available(iOS 17.0, *)

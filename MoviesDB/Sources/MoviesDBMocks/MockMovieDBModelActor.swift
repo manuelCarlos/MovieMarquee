@@ -7,21 +7,24 @@
 
 import Foundation
 
-@testable import MoviesDB
+import MoviesDB
 
-final class MockMovieDBModelActor: MovieDBModelStorage {
+/// A convenient mock of the `MovieDBModelActor` object to be used **only** in tests.
+public final class MockMovieDBModelActor: MovieDBModelStorage {
 
     var favoriteMovies: [FavoriteMovie] = []
     var shouldThrowError = false
 
-    func fetchAllFavoriteMovies() async throws -> [FavoriteMovie] {
+    public init() {}
+
+    public func fetchAllFavoriteMovies() async throws -> [FavoriteMovie] {
         if shouldThrowError {
             throw MoviesDBError.notFound
         }
         return favoriteMovies
     }
 
-    func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
+    public func fetchFavoriteMovie(with id: Int) async throws -> FavoriteMovie {
         if let movie = favoriteMovies.first(where: { $0.id == id }) {
             return movie
         } else {
@@ -29,7 +32,7 @@ final class MockMovieDBModelActor: MovieDBModelStorage {
         }
     }
 
-    func insertFavoriteMovie(_ movie: FavoriteMovie) async throws {
+    public func insertFavoriteMovie(_ movie: FavoriteMovie) async throws {
         if shouldThrowError {
             throw MoviesDBError.notFound
         }
@@ -42,14 +45,14 @@ final class MockMovieDBModelActor: MovieDBModelStorage {
         }
     }
 
-    func deleteFavoriteMovie(with id: Int) async throws {
+    public func deleteFavoriteMovie(with id: Int) async throws {
         if shouldThrowError {
             throw MoviesDBError.notFound
         }
         favoriteMovies.removeAll { $0.id == id }
     }
 
-    func deleteFavoriteMovies(_ movies: [FavoriteMovie]) async throws {
+    public func deleteFavoriteMovies(_ movies: [FavoriteMovie]) async throws {
         if shouldThrowError {
             throw MoviesDBError.notFound
         }

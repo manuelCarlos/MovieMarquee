@@ -7,33 +7,33 @@
 
 import Foundation
 
-enum MoviesDBError: LocalizedError, Hashable, Sendable {
+package enum MoviesDBError: LocalizedError, Hashable, Sendable {
     case notFound
 
     // MARK: - LocalizedError
 
-    var errorDescription: String? {
+    package var errorDescription: String? {
         switch self {
         case .notFound:
             return Texts.Errors.NotFound.errorDescription
         }
     }
 
-    var failureReason: String? {
+    package var failureReason: String? {
         switch self {
         case .notFound:
             return Texts.Errors.NotFound.failureReason
         }
     }
 
-    var recoverySuggestion: String? {
+    package var recoverySuggestion: String? {
         switch self {
         case .notFound:
             return Texts.Errors.NotFound.recoverySuggestion
         }
     }
 
-    var helpAnchor: String? {
+    package var helpAnchor: String? {
         switch self {
         case .notFound:
             return Texts.Errors.NotFound.helpAnchor
