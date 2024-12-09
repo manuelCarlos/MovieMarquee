@@ -24,7 +24,10 @@ public struct StarsView: View {
     ///   - rating: The rating to be displayed, which should be a value between 0 and `maxRating`.
     ///   - maxRating: The maximum possible rating (e.g., 5 stars). Must be greater than 0.
     public init?(rating: CGFloat, maxRating: Int) {
-        guard rating.isNaN == false, rating.isFinite, rating >= 0, rating <= CGFloat(maxRating), maxRating > 0 else {
+        guard rating.isNaN == false,
+              rating.isFinite,
+              rating >= 0,
+              rating <= CGFloat(maxRating), maxRating > 0 else {
             return nil
         }
         self.rating = rating
@@ -32,7 +35,7 @@ public struct StarsView: View {
     }
 
     public var body: some View {
-        let stars = HStack(spacing: 0) {
+        let stars = HStack(spacing: Spacings.zero) {
             ForEach(0 ..< maxRating, id: \.self) { _ in
                 Image(systemName: "star.fill")
                     .resizable()
