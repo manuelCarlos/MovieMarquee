@@ -28,8 +28,14 @@ public enum Spacings {
     /// Spacing 10.
     public static let space10: CGFloat = 10
 
+    /// Spacing 12.
+    public static let space12: CGFloat = 12
+
     /// Spacing 16.
     public static let space16: CGFloat = 16
+
+    /// Spacing 20.
+    public static let space20: CGFloat = 20
 
     /// Spacing 24.
     public static let space24: CGFloat = 24
