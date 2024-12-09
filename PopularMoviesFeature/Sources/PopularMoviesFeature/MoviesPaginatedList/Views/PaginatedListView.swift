@@ -32,19 +32,19 @@ struct PaginatedListView: View {
                 Task { await viewModel.fetchFirstPage() }
             }
         case .loading:
-            LoadingStateView(subtitle: "Loading...")
+            LoadingStateView(subtitle: Texts.loading)
         case .failed(let error):
-            FailedStateView(title: "Oops, something went wrong", description: error) {
+            FailedStateView(title: Texts.somethingWentWrong, description: error) {
                 Task { await viewModel.fetchFirstPage() }
             }
         case .loaded(let watchables):
             ScrollView {
-                LazyVStack(alignment: .center, spacing: 10) {
+                LazyVStack(alignment: .center, spacing: Spacings.space10) {
                     ForEach(watchables, id: \.id) { watchable in
                         PaginatedListItemView(mediaItem: watchable,
                                               favoriteMoviesDBStore: favoriteMoviesDBStore,
                                               movieService: movieService)
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, Spacings.space20)
                     }
                     Spacer()
                         .onAppear {

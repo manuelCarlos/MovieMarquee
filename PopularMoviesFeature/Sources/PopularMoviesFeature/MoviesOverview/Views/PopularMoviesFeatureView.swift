@@ -14,14 +14,14 @@ import MoviesDB
 /// This includes displaying the currently 20 most popular movies in an horizontally scrolling carousel.
 ///
 ///    From this UI the user can navigate to either:
-///    - A movie details screen, that allows marking the movie as favorite, and displays the name and photo of the cast members.
-///    - The full list of popular movies, in a paginated list.
+///    - The movie details screen, that allows marking the movie as favorite, and displays the name and photo of the cast members.
+///    - The full list of popular movies, in a paginated scroll.
 @available(iOS 17.0, *)
 public struct PopularMoviesFeatureView: View {
 
-    private let viewModel: PopularMoviesFeatureViewModel
     @State private var isDataLoaded = false
 
+    private let viewModel: PopularMoviesFeatureViewModel
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService = MovieService()
 
