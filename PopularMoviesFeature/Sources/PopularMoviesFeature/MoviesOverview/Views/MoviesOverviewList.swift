@@ -15,7 +15,7 @@ struct MoviesOverviewList: View {
 
     private struct Layout {
         let mainVStackSpacing = Spacings.zero
-        let horizontalPadding = Spacings.space10
+        let horizontalPadding = Spacings.space16
         let horizontalScrollSpacing: CGFloat = 10
         let titleFont: Font = .title
         let titleFontWeight: Font.Weight = .bold
@@ -48,33 +48,32 @@ struct MoviesOverviewList: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack(alignment: .center, spacing: layout.mainVStackSpacing) {
-                HStack(alignment: .center) {
-                    Text(title)
-                        .font(layout.titleFont)
-                        .bold()
+        VStack(alignment: .center, spacing: layout.mainVStackSpacing) {
+            HStack(alignment: .center) {
+                Text(title)
+                    .font(layout.titleFont)
+                    .bold()
 
-                    Spacer()
+                Spacer()
 
-                    NavigationLink(destination: {
-                        PaginatedListView(viewModel: PaginatedListViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher)),
-                                          movieService: movieService)
-                        .navigationTitle(navigationTitle)
-                    }, label: { discloseAllView })
-                }
+                NavigationLink(destination: {
+                    PaginatedListView(viewModel: PaginatedListViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher)),
+                                      movieService: movieService)
+                    .navigationTitle(navigationTitle)
+                }, label: { discloseAllView })
+            }
+            .padding(.horizontal, layout.horizontalPadding)
 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .center, spacing: layout.horizontalScrollSpacing) {
-                        ForEach(movies, id: \.id) { item in
-                            MovieOverviewListItem(movie: item,
-                                                  movieService: movieService)
-                        }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .center, spacing: layout.horizontalScrollSpacing) {
+                    ForEach(movies, id: \.id) { item in
+                        MovieOverviewListItem(movie: item,
+                                              movieService: movieService)
                     }
                 }
+                .padding(.horizontal, layout.horizontalPadding)
             }
         }
-        .padding(.horizontal, layout.horizontalPadding)
     }
 
     // MARK: - Private
