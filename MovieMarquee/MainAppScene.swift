@@ -11,7 +11,6 @@ import PopularMoviesFeature
 
 enum TabViewSection: Int {
     case discover
-    case favorites
 }
 
 struct MainAppScene: View {
