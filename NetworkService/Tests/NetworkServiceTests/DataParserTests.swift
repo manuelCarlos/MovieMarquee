@@ -24,7 +24,7 @@ final class DataParserTests: XCTestCase {
     }
 
     func test_parse_movies_response_success() throws {
-        let jsonString = """
+        let validJson = """
         {
           "page": 1,
           "results": [
@@ -50,7 +50,7 @@ final class DataParserTests: XCTestCase {
         }
         """
 
-        let jsonData = jsonString.data(using: .utf8)!
+        let jsonData = Data(validJson.utf8)
         let moviesResponse: MockMovies = try dataParser.parse(data: jsonData)
 
         XCTAssertEqual(moviesResponse.page, 1)
@@ -67,7 +67,7 @@ final class DataParserTests: XCTestCase {
     }
 
     func test_parse_invalid_json() {
-        let invalidJsonString = """
+        let invalidJson = """
         {
           "page": "invalid",
           "results": [
@@ -79,7 +79,7 @@ final class DataParserTests: XCTestCase {
         }
         """
 
-        let jsonData = invalidJsonString.data(using: .utf8)!
+        let jsonData = Data(invalidJson.utf8)
         XCTAssertThrowsError(try dataParser.parse(data: jsonData) as MockMovies) { error in
             XCTAssertTrue(error is DecodingError)
         }
@@ -93,7 +93,7 @@ final class DataParserTests: XCTestCase {
     }
 
     func test_parse_empty_results_array() throws {
-        let jsonStringEmptyResults = """
+        let jsonWithNoMovies = """
         {
           "page": 1,
           "results": [],
@@ -102,7 +102,8 @@ final class DataParserTests: XCTestCase {
         }
         """
 
-        let jsonData = jsonStringEmptyResults.data(using: .utf8)!
+
+        let jsonData = Data(jsonWithNoMovies.utf8)
         let moviesResponse: MockMovies = try dataParser.parse(data: jsonData)
 
         XCTAssertEqual(moviesResponse.results?.count, 0)
@@ -111,7 +112,7 @@ final class DataParserTests: XCTestCase {
     }
 
     func test_parse_incorrect_data_type_for_field() {
-        let jsonStringIncorrectDataType = """
+        let jsonWithIncorrectDataType = """
         {
           "page": 1,
           "results": [
@@ -137,7 +138,7 @@ final class DataParserTests: XCTestCase {
         }
         """
 
-        let jsonData = jsonStringIncorrectDataType.data(using: .utf8)!
+        let jsonData = Data(jsonWithIncorrectDataType.utf8)
         XCTAssertThrowsError(try dataParser.parse(data: jsonData) as MockMovies) { error in
             XCTAssertTrue(error is DecodingError)
         }
