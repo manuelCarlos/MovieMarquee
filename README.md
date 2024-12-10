@@ -1,4 +1,4 @@
-# MovieMarquee Swift6 Demo App
+# MovieMarquee Swift6 iOS Demo App
 
 MovieMarquee is a simple iOS demo app featuring the use of the TMDB (www.themoviedb.org) backend API.
 It uses SwiftUI and Swift Concurrency to display and manage information about the current most popular movies, as returned by TMDB.
@@ -6,7 +6,8 @@ It uses SwiftUI and Swift Concurrency to display and manage information about th
 ## Trying It Out
 
 - To successfully fetch data from TMDB, an API key is required 🚨.
-  Paste your key into the `MovieMarquee/TMDBData/Sources/TMDBData/Resources/apiKey.json` file, then build and run the app.
+  Paste your key into the `MovieMarquee/TMDBData/Sources/TMDBData/Resources/apiKey.json` file before you build the project.
+- Please build and Run in **Xcode  v16.1** 
   
 ## How to get a TMDB API Key
 
