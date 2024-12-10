@@ -7,29 +7,26 @@
 
 import Foundation
 
-/// A class responsible for managing network requests and decoding responses.
-///
-/// `RequestManager` acts as a coordinator between `APIManager` for sending
-/// network requests and `DataParser` for parsing the response data into strongly-typed
-/// Swift models. It is designed to be thread-safe and conforms to `Sendable` for usage
-/// in concurrent environments.
-///
-/// This class provides a high-level interface for executing requests and decoding the
-/// responses, abstracting away the complexities of networking and parsing.
+/// An object responsible for managing network requests and decoding responses.
 @available(iOS 15.0, *)
 public final class RequestManager: Sendable, RequestManagerProtocol {
 
     /// The parser used for decoding network response data.
-    public let parser = DataParser()
+    public let parser: DataParserProtocol
 
     /// The API manager responsible for executing network requests.
     public let apiManager: APIManagerProtocol
 
-    /// Creates a new instance of `RequestManager`.
+    /// Initializes a new instance with the specified parser and API manager.
     ///
-    /// - Parameter apiManager: An instance conforming to `APIManagerProtocol` for
-    ///   executing network requests. Defaults to an instance of `APIManager`.
-    public init(apiManager: APIManagerProtocol = APIManager()) {
+    /// - Parameters:
+    ///   - parser: An object conforming to the `DataParserProtocol` that is used to parse data.
+    ///             The default is an instance of `DataParser`.
+    ///   - apiManager: An object conforming to the `APIManagerProtocol`.
+    ///                 The default is an instance of `APIManager`.
+    public init(parser: DataParserProtocol = DataParser(),
+                apiManager: APIManagerProtocol = APIManager()) {
+        self.parser = parser
         self.apiManager = apiManager
     }
 

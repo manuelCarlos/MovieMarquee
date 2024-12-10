@@ -8,10 +8,9 @@
 import Foundation
 
 /// A utility class for parsing data into Swift's `Decodable` types.
-///
-/// `DataParser` uses `JSONDecoder` to convert `Data` into specified model objects.
+/// It uses a `JSONDecoder` to convert `Data` into specified model objects.
 /// It defaults to a key decoding strategy of `.convertFromSnakeCase`,
-public final class DataParser: Sendable {
+public final class DataParser: DataParserProtocol {
 
     private let jsonDecoder: JSONDecoder
 

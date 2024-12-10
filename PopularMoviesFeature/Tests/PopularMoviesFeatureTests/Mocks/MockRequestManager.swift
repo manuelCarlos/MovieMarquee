@@ -40,7 +40,7 @@ final class MockRequestManager: @unchecked Sendable, RequestManagerProtocol {
         fatalError("Not needed for this mock")
     }
 
-    var parser: DataParser {
+    var parser: DataParserProtocol {
         fatalError("Not needed for this mock")
     }
 }

@@ -7,17 +7,14 @@
 
 import TMDBData
 
-/// An enumeration representing movie-related network requests.
-///
-/// `MovieRequest` conforms to `RequestComponents`, encapsulating the details needed to
-/// construct and execute requests for various movie-related endpoints, such as fetching
+/// An enumeration encapsulating the details needed to construct and execute requests for various movie-related endpoints, such as fetching
 /// popular movies, movie details, and credits.
 ///
 /// Each case specifies the endpoint, request parameters, and HTTP method required for
 /// making the respective API call.
 public enum MovieRequest: RequestComponents {
 
-    /// Fetches a paginated list of popular movies.
+    /// Fetches a list of popular movies from a given page.
     ///
     /// - Parameter page: The page number of results to fetch.
     case getPopularMovies(page: Int)
