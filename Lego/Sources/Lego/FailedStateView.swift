@@ -10,7 +10,7 @@ import SwiftUI
 /// A SwiftUI view that presents a failure state with a title, description, and an optional retry action.
 ///
 /// `FailedStateView` is used to display a message to the user when a process or operation fails.
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 public struct FailedStateView: View {
 
     private let title: String
@@ -30,13 +30,18 @@ public struct FailedStateView: View {
     }
 
     public var body: some View {
-        ContentUnavailableView {
+        VStack(spacing: Spacings.space6) {
             Text(title)
-        } description: {
+                .font(.title2)
+                .bold()
+                .multilineTextAlignment(.center)
             Text(description)
-        } actions: {
+                .font(.subheadline)
+                .multilineTextAlignment(.center)
             retryAction
         }
+        .padding(.leading, Spacings.space20)
+        .padding(.trailing, Spacings.space20)
     }
 
     // MARK: - Private
@@ -50,7 +55,9 @@ public struct FailedStateView: View {
                 }
             } label: {
                 Text(Texts.FailedState.retry)
-                    .font(.title)
+                    .font(.title2)
+                    .bold()
+                    .padding()
             }
         }
     }

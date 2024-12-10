@@ -11,7 +11,7 @@ import XCTest
 @testable import PopularMoviesFeature
 @testable import NetworkService
 
-@available(iOS 16.0, *)
+@available(iOS 15.0, *)
 final class MoviesOverviewControllerTests: XCTestCase {
 
     var controller: MoviesOverviewController!

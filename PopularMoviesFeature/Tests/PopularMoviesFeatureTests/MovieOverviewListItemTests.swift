@@ -11,15 +11,12 @@ import XCTest
 import SnapshotTesting
 
 @testable import Models
-@testable import MoviesDB
-@testable import MoviesDBMocks
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 @MainActor
 final class MovieOverviewListItemTests: XCTestCase {
 
-    private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
     private let movieService = MockMediaService()
 
 
@@ -27,7 +24,6 @@ final class MovieOverviewListItemTests: XCTestCase {
         let movie = Movie.make(id: 1, title: "Stalker")
 
         let sut = MovieOverviewListItem(movie: movie,
-                                        favoriteMoviesDBStore: dbStore,
                                         movieService: movieService)
         assertSnapshot(of: sut,
                        as: .image(
@@ -48,7 +44,6 @@ final class MovieOverviewListItemTests: XCTestCase {
         let movie =  Movie.make(id: 1, title: "The Assassination of Jesse James By the Coward Robert Ford")
 
         let sut = MovieOverviewListItem(movie: movie,
-                                        favoriteMoviesDBStore: dbStore,
                                         movieService: movieService)
         assertSnapshot(of: sut,
                        as: .image(

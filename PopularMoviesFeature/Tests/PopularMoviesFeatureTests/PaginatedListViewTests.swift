@@ -11,16 +11,20 @@ import XCTest
 import SnapshotTesting
 
 @testable import Models
-@testable import MoviesDB
-@testable import MoviesDBMocks
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 @MainActor
 final class PaginatedListViewTests: XCTestCase {
 
-    private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
     private let movieService = MockMediaService()
+    nonisolated(unsafe) var record: Bool?
+
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
 
     func test_media_list_successfully_loaded() async throws {
         let controller = MockMoviesOverviewController()
@@ -32,35 +36,38 @@ final class PaginatedListViewTests: XCTestCase {
         let viewModel = PaginatedListViewModel(controller: controller)
         await viewModel.fetchFirstPage()
         let sut = PaginatedListView(viewModel: viewModel,
-                                    favoriteMoviesDBStore: dbStore,
                                     movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 
@@ -69,35 +76,38 @@ final class PaginatedListViewTests: XCTestCase {
         let viewModel = PaginatedListViewModel(controller: controller)
         await viewModel.fetchFirstPage()
         let sut = PaginatedListView(viewModel: viewModel,
-                                    favoriteMoviesDBStore: dbStore,
                                     movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 
@@ -107,21 +117,22 @@ final class PaginatedListViewTests: XCTestCase {
         let viewModel = PaginatedListViewModel(controller: controller)
         await viewModel.fetchFirstPage()
         let sut = PaginatedListView(viewModel: viewModel,
-                                    favoriteMoviesDBStore: dbStore,
                                     movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 }

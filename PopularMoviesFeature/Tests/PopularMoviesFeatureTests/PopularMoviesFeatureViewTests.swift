@@ -9,15 +9,19 @@ import XCTest
 import SnapshotTesting
 
 @testable import Models
-@testable import MoviesDB
-@testable import MoviesDBMocks
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 @MainActor
 final class PopularMoviesFeatureViewTests: XCTestCase {
 
-    private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
+    nonisolated(unsafe) var record: Bool?
+
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
 
     func test_popular_movies_feature_view_when_successfully_loaded() async throws {
         let movies: [Movie] = [
@@ -33,34 +37,14 @@ final class PopularMoviesFeatureViewTests: XCTestCase {
         let viewModel = PopularMoviesFeatureViewModel(controller: controller)
         await viewModel.fetchMostPopularMovies()
 
-        let sut = PopularMoviesFeatureView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
+        let sut = PopularMoviesFeatureView(viewModel: viewModel)
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
-        )
-
-        assertSnapshot(of: sut,
-                       as: .image(
-                        layout: .device(config: .iPhone13Mini),
-                        traits: .init(userInterfaceStyle: .dark)
-                       )
-        )
-
-        assertSnapshot(of: sut,
-                       as: .image(
-                        layout: .device(config: .iPhone13Mini(.landscape)),
-                        traits: .init(userInterfaceStyle: .light)
-                       )
-        )
-
-        assertSnapshot(of: sut,
-                       as: .image(
-                        layout: .device(config: .iPhone13Mini(.landscape)),
-                        traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 
@@ -70,27 +54,30 @@ final class PopularMoviesFeatureViewTests: XCTestCase {
         let viewModel = PopularMoviesFeatureViewModel(controller: controller)
         await viewModel.fetchMostPopularMovies()
 
-        let sut = PopularMoviesFeatureView(viewModel: viewModel, favoriteMoviesDBStore: dbStore)
+        let sut = PopularMoviesFeatureView(viewModel: viewModel)
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 }

@@ -10,10 +10,6 @@ import SwiftUI
 @available(iOS 13.0, *)
 enum Icons {
 
-    static func favorite(isOn: Bool) -> Image {
-        isOn ? Image(systemName: "heart.fill") : Image(systemName: "heart")
-    }
-
     static let disclosureIndicator = Image(systemName: "chevron.right")
 
     static let moviePosterFailure = Image(systemName: "photo.badge.exclamationmark")

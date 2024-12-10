@@ -9,17 +9,17 @@ import XCTest
 
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 final class MovieDetailsViewModelTests: XCTestCase {
 
     private var viewModel: MovieDetailsViewModel!
     private var mockController: MockMovieDetailsController!
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
 
         mockController = MockMovieDetailsController()
-        viewModel = MovieDetailsViewModel(controller: mockController, navigationTitle: "Test Movie", movieId: 1)
+        viewModel = await MovieDetailsViewModel(controller: mockController, navigationTitle: "Test Movie", movieId: 1)
     }
 
     override func tearDown() {
@@ -33,14 +33,14 @@ final class MovieDetailsViewModelTests: XCTestCase {
         let expectedDetail = MockWatchableDetail()
         mockController.mockDetail = expectedDetail
 
-        guard case .idle = viewModel.state  else {
+        guard case .idle = await viewModel.state  else {
             XCTFail("Expected state to be idle")
             return
         }
 
         await viewModel.fetchMediaDetails()
 
-        if case let .loaded(detail) = viewModel.state {
+        if case let .loaded(detail) = await viewModel.state {
             XCTAssertEqual(detail.genres.count, 1)
             XCTAssertEqual(detail.title, "Mock Movie")
         } else {
@@ -51,14 +51,14 @@ final class MovieDetailsViewModelTests: XCTestCase {
     func test_fetch_media_details_failure_sets_failed_state() async {
         mockController.error = NSError(domain: "TestError", code: 1, userInfo: nil)
 
-        guard case .idle = viewModel.state  else {
+        guard case .idle = await viewModel.state  else {
             XCTFail("Expected state to be idle")
             return
         }
 
         await viewModel.fetchMediaDetails()
 
-        if case let .failed(errorMessage) = viewModel.state {
+        if case let .failed(errorMessage) = await viewModel.state {
             XCTAssertEqual(errorMessage, "The operation couldn’t be completed. (TestError error 1.)")
         } else {
             XCTFail("Expected state to be failed")

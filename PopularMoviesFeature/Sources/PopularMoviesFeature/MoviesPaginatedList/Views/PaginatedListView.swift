@@ -8,20 +8,16 @@
 import SwiftUI
 
 import Lego
-import MoviesDB
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 struct PaginatedListView: View {
 
-    private let viewModel: PaginatedListViewModel
-    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    @ObservedObject private var viewModel: PaginatedListViewModel
     private let movieService: MediaService
 
     init(viewModel: PaginatedListViewModel,
-         favoriteMoviesDBStore: FavoriteMoviesDBStore,
          movieService: MediaService) {
         self.viewModel = viewModel
-        self.favoriteMoviesDBStore = favoriteMoviesDBStore
         self.movieService = movieService
     }
 
@@ -42,7 +38,6 @@ struct PaginatedListView: View {
                 LazyVStack(alignment: .center, spacing: Spacings.space10) {
                     ForEach(watchables, id: \.id) { watchable in
                         PaginatedListItemView(mediaItem: watchable,
-                                              favoriteMoviesDBStore: favoriteMoviesDBStore,
                                               movieService: movieService)
                         .padding(.horizontal, Spacings.space20)
                     }

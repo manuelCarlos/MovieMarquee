@@ -9,9 +9,9 @@ import Foundation
 
 import Models
 
-@available(iOS 17.0, *)
-@Observable
-final class MovieCastViewModel: @unchecked Sendable {
+@available(iOS 15.0, *)
+@MainActor
+final class MovieCastViewModel: ObservableObject {
 
     enum State {
         case idle
@@ -21,7 +21,7 @@ final class MovieCastViewModel: @unchecked Sendable {
 
     private let controller: MediaCastController
     private let mediaId: Int
-    private(set) var state: State = .idle
+    @Published private(set) var state: State = .idle
 
     init(controller: MediaCastController, mediaId: Int) {
         self.controller = controller

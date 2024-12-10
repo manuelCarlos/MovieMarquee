@@ -13,7 +13,7 @@ protocol MediaOverviewController: Sendable {
     func fetchPopularMoviesNextPage() async throws -> [Watchable]
 }
 
-@available(iOS 16.0, *)
+@available(iOS 15.0, *)
 final class MoviesOverviewController: Sendable, MediaOverviewController {
 
     private let popularMoviesFetcher: Fetchable

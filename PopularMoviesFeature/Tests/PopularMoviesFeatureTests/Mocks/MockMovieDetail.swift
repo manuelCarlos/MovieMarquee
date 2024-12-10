@@ -9,7 +9,7 @@ import Foundation
 
 @testable import Models
 
-@available(iOS 16.0, *)
+@available(iOS 15.0, *)
 extension MovieDetails {
     static func make(id: Int = 12,
                      adult: Bool = false,

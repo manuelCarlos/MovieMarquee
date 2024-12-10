@@ -9,9 +9,9 @@ import Foundation
 
 import Models
 
-@available(iOS 17.0, *)
-@Observable
-final class PopularMoviesFeatureViewModel: @unchecked Sendable {
+@available(iOS 15.0, *)
+@MainActor
+final class PopularMoviesFeatureViewModel: ObservableObject {
 
     enum State {
         case idle
@@ -21,7 +21,7 @@ final class PopularMoviesFeatureViewModel: @unchecked Sendable {
     }
 
     private let controller: MediaOverviewController
-    private(set) var state = State.idle
+    @Published private(set) var state = State.idle
 
     init(controller: MediaOverviewController) {
         self.controller = controller

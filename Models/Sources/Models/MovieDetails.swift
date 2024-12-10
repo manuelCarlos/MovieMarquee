@@ -7,7 +7,7 @@
 
 import Foundation
 
-@available(iOS 16.0, *)
+@available(iOS 15.0, *)
 public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, WatchableDetails {
     public let id: Int
     public let adult: Bool
@@ -43,8 +43,8 @@ public struct MovieDetails: Codable, Identifiable, Hashable, Sendable, Watchable
         guard let runtime else {
             return nil
         }
-        let minutes = Duration.seconds(runtime * 60)
-        return minutes.formatted(.units(width: .abbreviated))
+        let minutes = runtime * 60
+        return durationFormatter.string(from: TimeInterval(minutes))
     }
 
     private let releaseDate: String?

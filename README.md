@@ -1,7 +1,7 @@
-# MovieMarquee App Demo
+# MovieMarquee Swift6 Demo App
 
 MovieMarquee is a simple iOS demo app featuring the use of the TMDB (www.themoviedb.org) backend API.
-It uses SwiftUI and SwiftData to display and manage information about the current most popular movies, as returned by TMDB.
+It uses SwiftUI and Swift Concurrency to display and manage information about the current most popular movies, as returned by TMDB.
 
 ## Trying It Out
 
@@ -11,10 +11,8 @@ It uses SwiftUI and SwiftData to display and manage information about the curren
 ## Current Feature Set
 
 - A **Discover** tab, displaying the currently 20 most popular movies. From there we can navigate to either:
-    - A movie details screen.
-    - The full list of popular movies.
-- The movie details screen allows marking the movie as favorite, and displays the name and photo of the cast members.
-- A second, **Favorites** tab, displays a list of all movies favorited by the user. These items can be deleted from the list with a left swipe, which also unfavorites the movie.
+    - A movie details screen, displaying information about the movie, and the name and photo of the cast members.
+    - The (paginated) full list of popular movies.
 
 ## Tests
 

@@ -10,18 +10,18 @@ import XCTest
 @testable import Models
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 final class DiscoverSceneViewModelTests: XCTestCase {
 
     private var mockController: MockMoviesOverviewController!
     private var viewModel: PopularMoviesFeatureViewModel!
     private let timeout = TimeInterval(2)
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
 
         mockController = MockMoviesOverviewController()
-        viewModel = PopularMoviesFeatureViewModel(controller: mockController)
+        viewModel = await PopularMoviesFeatureViewModel(controller: mockController)
     }
 
     override func tearDown() {
@@ -36,14 +36,14 @@ final class DiscoverSceneViewModelTests: XCTestCase {
 
         await viewModel.fetchMostPopularMovies()
 
-        if case let .loaded(movies) = viewModel.state {
+        if case let .loaded(movies) = await viewModel.state {
             XCTAssertEqual(movies.count, 2)
             XCTAssertEqual(movies.first?.id, 1)
             XCTAssertEqual(movies.first?.title, "Movie 1")
             XCTAssertEqual(movies.last?.id, 2)
             XCTAssertEqual(movies.last?.title, "Movie 2")
         } else {
-            XCTFail("State should be loaded but is \(viewModel.state)")
+            XCTFail("State should be loaded but is \(await viewModel.state)")
         }
     }
 
@@ -53,10 +53,10 @@ final class DiscoverSceneViewModelTests: XCTestCase {
 
         await viewModel.fetchMostPopularMovies()
 
-        if case let .failed(error) = viewModel.state {
+        if case let .failed(error) = await viewModel.state {
             XCTAssertEqual(error, "The operation couldn’t be completed. (test error 0.)")
         } else {
-            XCTFail("State should be failed but is \(viewModel.state)")
+            XCTFail("State should be failed but is \(await viewModel.state)")
         }
     }
 
@@ -65,10 +65,10 @@ final class DiscoverSceneViewModelTests: XCTestCase {
 
         await viewModel.fetchMostPopularMovies()
 
-        if case let .failed(error) = viewModel.state {
+        if case let .failed(error) = await viewModel.state {
             XCTAssertEqual(error, "There are no popular movies available.")
         } else {
-            XCTFail("State should be loaded with an empty list, but is \(viewModel.state)")
+            XCTFail("State should be loaded with an empty list, but is \(await viewModel.state)")
         }
     }
 }

@@ -9,16 +9,20 @@ import XCTest
 import SnapshotTesting
 
 @testable import Models
-@testable import MoviesDB
-@testable import MoviesDBMocks
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 @MainActor
 final class MovieDetailsViewTests: XCTestCase {
 
-    private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
     private let movieService = MockMediaService()
+    nonisolated(unsafe) var record: Bool?
+
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
 
     func test_movie_details_view_when_successfully_loaded() async throws {
         let controller = MockMovieDetailsController()
@@ -27,35 +31,38 @@ final class MovieDetailsViewTests: XCTestCase {
         await viewModel.fetchMediaDetails()
 
         let sut = MovieDetailsView(viewModel: viewModel,
-                                   favoriteMoviesDBStore: dbStore,
                                    movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 
@@ -66,35 +73,38 @@ final class MovieDetailsViewTests: XCTestCase {
         await viewModel.fetchMediaDetails()
 
         let sut = MovieDetailsView(viewModel: viewModel,
-                                   favoriteMoviesDBStore: dbStore,
                                    movieService: movieService)
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 }

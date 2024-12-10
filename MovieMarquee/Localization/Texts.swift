@@ -15,10 +15,5 @@ enum Texts {
                                                                 bundle: .main,
                                                                 value: "Discover",
                                                                 comment: "Title for the Discover screen tab in the tab bar")
-
-        static let favorites: String = NSLocalizedString("movie_marquee_tab_bar_item_favorites_screen_title",
-                                                                 bundle: .main,
-                                                                 value: "Favorites",
-                                                                 comment: "Title for the Favorites screen tab in the tab bar")
     }
 }

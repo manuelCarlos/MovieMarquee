@@ -11,16 +11,20 @@ import XCTest
 import SnapshotTesting
 
 @testable import Models
-@testable import MoviesDB
-@testable import MoviesDBMocks
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 @MainActor
 final class MoviesOverviewListTests: XCTestCase {
 
-    private let dbStore = FavoriteMoviesDBStore(movieDBModelStorage: MockMovieDBModelActor())
     private let movieService = MockMediaService()
+    nonisolated(unsafe) var record: Bool?
+
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
 
     func test_movie_overview_list() async throws {
         let movies: [Movie] = [
@@ -36,7 +40,6 @@ final class MoviesOverviewListTests: XCTestCase {
             navigationTitle: "Discover",
             title: "Popular Movies",
             movies: movies,
-            favoriteMoviesDBStore: dbStore,
             movieService: movieService
         )
 
@@ -44,28 +47,32 @@ final class MoviesOverviewListTests: XCTestCase {
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 }

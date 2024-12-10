@@ -8,7 +8,7 @@
 import Models
 import NetworkService
 
-@available(iOS 16.0, *)
+@available(iOS 15.0, *)
 final class MovieService: Sendable, MediaService {
 
     private let requestManager: RequestManagerProtocol

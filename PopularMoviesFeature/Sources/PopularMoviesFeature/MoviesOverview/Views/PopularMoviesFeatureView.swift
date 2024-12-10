@@ -8,7 +8,6 @@
 import SwiftUI
 
 import Lego
-import MoviesDB
 
 /// Provides the UI entry point for the "Popular Movies Feature".
 /// This includes displaying the currently 20 most popular movies in an horizontally scrolling carousel.
@@ -16,26 +15,24 @@ import MoviesDB
 ///    From this UI the user can navigate to either:
 ///    - The movie details screen, that allows marking the movie as favorite, and displays the name and photo of the cast members.
 ///    - The full list of popular movies, in a paginated scroll.
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 public struct PopularMoviesFeatureView: View {
 
-    @State private var isDataLoaded = false
+    @State private var isDataLoaded: Bool
 
-    private let viewModel: PopularMoviesFeatureViewModel
-    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    @ObservedObject private var viewModel: PopularMoviesFeatureViewModel
     private let movieService = MovieService()
 
     /// Instantiate a `PopularMoviesFeatureView` SwiftUI view.
-    /// - Parameter favoriteMoviesDBStore: The store that manages the DB persisted favorite movies data.
-    public init(favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    public init() {
         let mediaFetcher = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
                                                 service: movieService)
         self.viewModel = PopularMoviesFeatureViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher))
-        self.favoriteMoviesDBStore = favoriteMoviesDBStore
+        self.isDataLoaded = false
     }
 
     public var body: some View {
-        NavigationStack {
+        NavigationView {
             contentView
             .navigationBarTitle(Texts.popularMoviesFeatureNavigationBarTitle)
         }
@@ -61,7 +58,6 @@ public struct PopularMoviesFeatureView: View {
                 navigationTitle: Texts.popularMoviesFeatureNavigationTitle,
                 title: Texts.popularMoviesFeatureViewTitle,
                 movies: movies,
-                favoriteMoviesDBStore: favoriteMoviesDBStore,
                 movieService: movieService
             )
             .opacity(isDataLoaded ? 1 : 0)
@@ -76,11 +72,9 @@ public struct PopularMoviesFeatureView: View {
     /// A convenience initializer for testing purposes **only** that allows injection of a mock dependencies.
     /// - Parameters:
     ///   - viewModel:  A mock or alternative implementation of `PopularMoviesFeatureViewModel` used for testing.
-    ///   - favoriteMoviesDBStore: A mock or alternative implementation of `FavoriteMoviesDBStore` used for testing.
-    init(viewModel: PopularMoviesFeatureViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore) {
+    init(viewModel: PopularMoviesFeatureViewModel) {
         self.viewModel = viewModel
         self.isDataLoaded = true
-        self.favoriteMoviesDBStore = favoriteMoviesDBStore
     }
     #endif
 }

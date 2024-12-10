@@ -9,7 +9,7 @@ import XCTest
 
 @testable import Models
 
-@available(iOS 16.0, *)
+@available(iOS 15.0, *)
 final class MovieDetailsTests: XCTestCase {
 
     func test_default_initializer_returns_valid_instance() {

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		11A312D52CBE7E350074856C /* PopularMoviesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 11A312D42CBE7E350074856C /* PopularMoviesFeature */; };
-		11A312F02CBFA6280074856C /* FavoriteMoviesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 11A312EF2CBFA6280074856C /* FavoriteMoviesFeature */; };
-		11A312F32CBFAA260074856C /* MoviesDB in Frameworks */ = {isa = PBXBuildFile; productRef = 11A312F22CBFAA260074856C /* MoviesDB */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,8 +30,6 @@
 		11947CAB2CB03B680024132D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		11947CAC2CB6737A0024132D /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 		11A312CF2CBE74EE0074856C /* PopularMoviesFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PopularMoviesFeature; sourceTree = "<group>"; };
-		11A312EE2CBFA4190074856C /* FavoriteMoviesFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FavoriteMoviesFeature; sourceTree = "<group>"; };
-		11A312F12CBFA9170074856C /* MoviesDB */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MoviesDB; sourceTree = "<group>"; };
 		11EEBB0A2CC679BC00321036 /* Lego */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Lego; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,8 +52,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A312D52CBE7E350074856C /* PopularMoviesFeature in Frameworks */,
-				11A312F02CBFA6280074856C /* FavoriteMoviesFeature in Frameworks */,
-				11A312F32CBFAA260074856C /* MoviesDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,10 +68,8 @@
 		11947C5E2CB012C50024132D = {
 			isa = PBXGroup;
 			children = (
-				11A312EE2CBFA4190074856C /* FavoriteMoviesFeature */,
 				11EEBB0A2CC679BC00321036 /* Lego */,
 				11947CAC2CB6737A0024132D /* Models */,
-				11A312F12CBFA9170074856C /* MoviesDB */,
 				11947CA62CB0168B0024132D /* NetworkService */,
 				11A312CF2CBE74EE0074856C /* PopularMoviesFeature */,
 				110BD1792CC24F49008BE48D /* TMDBData */,
@@ -121,8 +113,6 @@
 			name = MovieMarquee;
 			packageProductDependencies = (
 				11A312D42CBE7E350074856C /* PopularMoviesFeature */,
-				11A312EF2CBFA6280074856C /* FavoriteMoviesFeature */,
-				11A312F22CBFAA260074856C /* MoviesDB */,
 			);
 			productName = MovieMarquee;
 			productReference = 11947C672CB012C50024132D /* MovieMarquee.app */;
@@ -398,7 +388,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -440,7 +430,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -536,14 +526,6 @@
 		11A312D42CBE7E350074856C /* PopularMoviesFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PopularMoviesFeature;
-		};
-		11A312EF2CBFA6280074856C /* FavoriteMoviesFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FavoriteMoviesFeature;
-		};
-		11A312F22CBFAA260074856C /* MoviesDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MoviesDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -28,23 +28,9 @@
     },
     {
       "target" : {
-        "containerPath" : "container:MoviesDB",
-        "identifier" : "MoviesDBTests",
-        "name" : "MoviesDBTests"
-      }
-    },
-    {
-      "target" : {
         "containerPath" : "container:TMDBData",
         "identifier" : "TMDBDataTests",
         "name" : "TMDBDataTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:FavoriteMoviesFeature",
-        "identifier" : "FavoriteMoviesFeatureTests",
-        "name" : "FavoriteMoviesFeatureTests"
       }
     },
     {

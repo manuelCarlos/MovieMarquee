@@ -9,7 +9,7 @@ import SwiftUI
 
 import Lego
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 struct MovieCastGrid: View {
 
     private struct Layout {
@@ -27,7 +27,7 @@ struct MovieCastGrid: View {
     }
 
     private let layout = Layout()
-    private let viewModel: MovieCastViewModel
+    @ObservedObject private var viewModel: MovieCastViewModel
 
     init(viewModel: MovieCastViewModel) {
         self.viewModel = viewModel

@@ -8,11 +8,11 @@
 import Models
 
 @available(iOS 13.0, *)
-protocol MediaCastController {
+protocol MediaCastController: Sendable {
     func fetchCast(mediaId: Int) async throws -> [Creditable]
 }
 
-@available(iOS 16.0, *)
+@available(iOS 15.0, *)
 final class MovieCastController: MediaCastController {
 
     private let movieService: MediaService

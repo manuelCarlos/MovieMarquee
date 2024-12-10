@@ -21,7 +21,7 @@
     },
     "movie_marquee_tab_bar_item_favorites_screen_title" : {
       "comment" : "Title for the Favorites screen tab in the tab bar",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

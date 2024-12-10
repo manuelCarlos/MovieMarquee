@@ -8,8 +8,6 @@
 import SwiftUI
 
 import PopularMoviesFeature
-import FavoriteMoviesFeature
-import MoviesDB
 
 enum TabViewSection: Int {
     case discover
@@ -19,26 +17,14 @@ enum TabViewSection: Int {
 struct MainAppScene: View {
 
     @State var selectedTabIndex: Int = 0
-    private let favoriteMoviesDBStore = FavoriteMoviesDBStore()
 
     var body: some View {
         TabView(selection: $selectedTabIndex) {
-            PopularMoviesFeatureView(favoriteMoviesDBStore: favoriteMoviesDBStore)
+            PopularMoviesFeatureView()
                 .tabItem {
                     Label(Texts.TabBarItemTitle.discover, systemImage: "movieclapper")
                 }
                 .tag(TabViewSection.discover.rawValue)
-
-            FavoriteMoviesScene(favoriteMoviesDBStore: favoriteMoviesDBStore)
-                .tabItem {
-                    Label(Texts.TabBarItemTitle.favorites, systemImage: "heart")
-                }
-                .tag(TabViewSection.favorites.rawValue)
-        }
-        .task {
-            Task {
-                try? await favoriteMoviesDBStore.loadAllMovies()
-            }
         }
     }
 }

@@ -8,15 +8,14 @@
 import SwiftUI
 
 import Lego
-import MoviesDB
 import Models
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 struct MoviesOverviewList: View {
 
     private struct Layout {
         let mainVStackSpacing = Spacings.zero
-        let horizontalPadding = Spacings.space16
+        let horizontalPadding = Spacings.space10
         let horizontalScrollSpacing: CGFloat = 10
         let titleFont: Font = .title
         let titleFontWeight: Font.Weight = .bold
@@ -31,7 +30,6 @@ struct MoviesOverviewList: View {
     private let navigationTitle: String
     private let title: String
     private let movies: [Watchable]
-    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService: MediaService
     private let mediaFetcher: MediaFetcher
 
@@ -39,47 +37,44 @@ struct MoviesOverviewList: View {
         navigationTitle: String,
         title: String,
         movies: [Watchable],
-        favoriteMoviesDBStore: FavoriteMoviesDBStore,
         movieService: MediaService
     ) {
         self.navigationTitle = navigationTitle
         self.title = title
         self.movies = movies
-        self.favoriteMoviesDBStore = favoriteMoviesDBStore
         self.movieService = movieService
         self.mediaFetcher = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
                                          service: movieService)
     }
 
     var body: some View {
-        VStack(alignment: .center, spacing: layout.mainVStackSpacing) {
-            HStack(alignment: .center) {
-                Text(title)
-                    .font(layout.titleFont)
-                    .bold()
-                Spacer()
-                NavigationLink(
-                    destination: PaginatedListView(viewModel: PaginatedListViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher)),
-                                                   favoriteMoviesDBStore: favoriteMoviesDBStore,
-                                                   movieService: movieService)
-                    .navigationTitle(navigationTitle)
-                ) {
-                    discloseAllView
-                }
-            }
-            .padding(.horizontal, layout.horizontalPadding)
+        NavigationView {
+            VStack(alignment: .center, spacing: layout.mainVStackSpacing) {
+                HStack(alignment: .center) {
+                    Text(title)
+                        .font(layout.titleFont)
+                        .bold()
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: layout.horizontalScrollSpacing) {
-                    ForEach(movies, id: \.id) { item in
-                        MovieOverviewListItem(movie: item,
-                                              favoriteMoviesDBStore: favoriteMoviesDBStore,
-                                              movieService: movieService)
+                    Spacer()
+
+                    NavigationLink(destination: {
+                        PaginatedListView(viewModel: PaginatedListViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher)),
+                                          movieService: movieService)
+                    }, label: { discloseAllView })
+
+                }
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .center, spacing: layout.horizontalScrollSpacing) {
+                        ForEach(movies, id: \.id) { item in
+                            MovieOverviewListItem(movie: item,
+                                                  movieService: movieService)
+                        }
                     }
                 }
-                .padding(.horizontal, layout.horizontalPadding)
             }
         }
+        .padding(.horizontal, layout.horizontalPadding)
     }
 
     // MARK: - Private

@@ -12,8 +12,8 @@ protocol MediaDetailsController: Sendable {
     func fetchMovieDetail(movieId: Int) async throws -> WatchableDetails
 }
 
-@available(iOS 16.0, *)
-final class MovieDetailsController: Sendable, MediaDetailsController {
+@available(iOS 15.0, *)
+final class MovieDetailsController: MediaDetailsController {
 
     private let movieService: MediaService
 

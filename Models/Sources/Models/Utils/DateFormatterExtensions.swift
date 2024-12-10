@@ -19,3 +19,11 @@ fileprivate extension DateFormatter {
         return formatter
     }()
 }
+
+let durationFormatter: DateComponentsFormatter = {
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.day, .hour, .minute]
+    formatter.unitsStyle = .short
+    return formatter
+}()
+

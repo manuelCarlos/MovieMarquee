@@ -11,7 +11,7 @@ import SnapshotTesting
 @testable import Models
 @testable import PopularMoviesFeature
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 @MainActor
 final class ArtistItemViewTests: XCTestCase {
 

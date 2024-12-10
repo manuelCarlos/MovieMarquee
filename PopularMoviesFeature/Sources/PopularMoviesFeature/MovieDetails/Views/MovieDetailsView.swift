@@ -9,9 +9,8 @@ import SwiftUI
 
 import Lego
 import Models
-import MoviesDB
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 struct MovieDetailsView: View {
 
     private let vStackSpacing = Spacings.space16
@@ -20,13 +19,11 @@ struct MovieDetailsView: View {
                                            bottom: Spacings.space16,
                                            trailing: Spacings.space16)
 
-    private let viewModel: MovieDetailsViewModel
-    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
+    @ObservedObject private var viewModel: MovieDetailsViewModel
     private let movieService: MediaService
 
-    init(viewModel: MovieDetailsViewModel, favoriteMoviesDBStore: FavoriteMoviesDBStore, movieService: MediaService) {
+    init(viewModel: MovieDetailsViewModel, movieService: MediaService) {
         self.viewModel = viewModel
-        self.favoriteMoviesDBStore = favoriteMoviesDBStore
         self.movieService = movieService
     }
 
@@ -55,7 +52,7 @@ struct MovieDetailsView: View {
                 VStack(alignment: .leading, spacing: vStackSpacing) {
                     MovieTitle(title: movieDetails.title)
 
-                    DetailsView(movieDetails: movieDetails, favoriteMoviesDBStore: favoriteMoviesDBStore)
+                    DetailsView(movieDetails: movieDetails)
 
                     Overview(description: movieDetails.overview)
 
@@ -68,11 +65,10 @@ struct MovieDetailsView: View {
     }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 private struct DetailsView: View {
 
     let movieDetails: WatchableDetails
-    let favoriteMoviesDBStore: FavoriteMoviesDBStore
 
     private let size = CGSize(width: 150, height: 200)
     private let cornerRadius: CGFloat = 10
@@ -96,17 +92,11 @@ private struct DetailsView: View {
                 date: (movieDetails as? MovieDetails)?.dateOfRelease,
                 time: (movieDetails as? MovieDetails)?.localizedRuntime
             )
-
-            FavoriteButton(
-                mediaId: movieDetails.id,
-                mediaTitle: movieDetails.title,
-                favoriteMoviesDBStore: favoriteMoviesDBStore
-            )
         }
     }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 private struct Overview: View {
 
     let description: String?
@@ -124,7 +114,7 @@ private struct Overview: View {
     }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 private struct MovieTitle: View {
 
     let title: String

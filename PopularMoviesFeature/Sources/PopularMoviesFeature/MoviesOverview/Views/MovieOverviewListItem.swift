@@ -8,9 +8,8 @@
 import SwiftUI
 
 import Models
-import MoviesDB
 
-@available(iOS 17.0, *)
+@available(iOS 15.0, *)
 struct MovieOverviewListItem: View {
 
     private struct Layout {
@@ -28,13 +27,11 @@ struct MovieOverviewListItem: View {
     private let layout = Layout()
 
     private let movie: Watchable
-    private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService: MediaService
     private let movieDetailsViewModel: MovieDetailsViewModel
 
-    init(movie: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore, movieService: MediaService) {
+    init(movie: Watchable, movieService: MediaService) {
         self.movie = movie
-        self.favoriteMoviesDBStore = favoriteMoviesDBStore
         self.movieService = movieService
         self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(movieService: movieService),
                                                            navigationTitle: movie.title,
@@ -45,7 +42,6 @@ struct MovieOverviewListItem: View {
         NavigationLink(
             destination:
                 MovieDetailsView(viewModel: movieDetailsViewModel,
-                                 favoriteMoviesDBStore: favoriteMoviesDBStore,
                                  movieService: movieService)
         ) {
             VStack {

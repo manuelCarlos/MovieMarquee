@@ -9,9 +9,9 @@ import Foundation
 
 import Models
 
-@available(iOS 17.0, *)
-@Observable
-final class MovieDetailsViewModel: @unchecked Sendable {
+@available(iOS 15.0, *)
+@MainActor
+final class MovieDetailsViewModel: ObservableObject {
 
     enum State {
         case idle
@@ -23,7 +23,7 @@ final class MovieDetailsViewModel: @unchecked Sendable {
     let navigationTitle: String
     private let movieId: Int
     private let controller: MediaDetailsController
-    private(set) var state = State.idle
+    @Published private(set) var state = State.idle
 
     init(controller: MediaDetailsController, navigationTitle: String, movieId: Int) {
         self.controller = controller
