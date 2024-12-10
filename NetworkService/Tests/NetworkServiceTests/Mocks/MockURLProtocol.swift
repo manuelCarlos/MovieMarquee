@@ -15,6 +15,8 @@ final class MockURLProtocol: URLProtocol {
         return true
     }
 
+    // By returning `true` in canInit(with:) and returning the request here, we say we want MockURLProtocol to
+    // intercept all the requests made by a URLSession.
     override static func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }

@@ -9,7 +9,7 @@ import Foundation
 
 import MoviesDB
 
-/// A convenient mock of the `MovieDBModelActor` object to be used **only** in tests.
+/// A mock of the `MovieDBModelActor` object to be used **only** in tests.
 public final class MockMovieDBModelActor: MovieDBModelStorage {
 
     var favoriteMovies: [FavoriteMovie] = []

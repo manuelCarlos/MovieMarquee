@@ -77,13 +77,16 @@ private struct DetailsView: View {
     private let size = CGSize(width: 150, height: 200)
     private let cornerRadius: CGFloat = 10
     private let borderWidth: CGFloat = 5
+    private let posterBackgroundGradient = LinearGradient(colors: [.red, .indigo],
+                                                          startPoint: .topLeading,
+                                                          endPoint: .topTrailing)
 
     var body: some View {
         HStack(alignment: .bottom) {
             MoviePosterView(imageUrl: movieDetails.posterUrl)
                 .frame(width: size.width, height: size.height)
-                .background(.gray)
-                .border(.gray, width: borderWidth)
+                .background(posterBackgroundGradient)
+                .border(posterBackgroundGradient, width: borderWidth)
                 .cornerRadius(cornerRadius)
 
             MovieDetailsHeader(
