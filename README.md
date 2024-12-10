@@ -7,8 +7,13 @@ It uses SwiftUI and Swift Concurrency to display and manage information about th
 
 - To successfully fetch data from TMDB, an API key is required 🚨.
   Paste your key into the `MovieMarquee/TMDBData/Sources/TMDBData/Resources/apiKey.json` file, then build and run the app.
+  
+## How to get a TMDB API Key
 
-## Current Feature Set
+    1. Got to https://www.themoviedb.org/signup and sign up for a free account.
+    2. Once signed-up, go to https://www.themoviedb.org/settings/api to regenerate or view your API key.
+
+## Current App Feature Set
 
 - A **Discover** tab, displaying the currently 20 most popular movies. From there we can navigate to either:
     - A movie details screen, displaying information about the movie, and the name and photo of the cast members.
