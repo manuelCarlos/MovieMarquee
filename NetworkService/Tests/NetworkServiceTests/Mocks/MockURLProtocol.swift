@@ -6,29 +6,35 @@
 //
 
 import Foundation
+import XCTest
 
 final class MockURLProtocol: URLProtocol {
 
-    nonisolated(unsafe) static var testURLs = [URL?: Data]()
+    // This is not concurrency-safe because it is nonisolated global shared mutable state - but for testing purposes it's acceptable
+    nonisolated(unsafe) static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
 
     override static func canInit(with request: URLRequest) -> Bool {
         return true
     }
 
-    // By returning `true` in canInit(with:) and returning the request here, we say we want MockURLProtocol to
-    // intercept all the requests made by a URLSession.
     override static func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
 
     override func startLoading() {
-        if let url = request.url {
-            if let data = MockURLProtocol.testURLs[url] {
-                client?.urlProtocol(self, didLoad: data)
-            }
+        guard let handler = Self.requestHandler else {
+            XCTFail("No request handler closure set.")
+            return
         }
-        client?.urlProtocolDidFinishLoading(self)
-    }
+        do {
+            let (response, data) = try handler(request)
 
-    override func stopLoading() { }
+            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            client?.urlProtocol(self, didLoad: data)
+            client?.urlProtocolDidFinishLoading(self)
+        } catch {
+            XCTFail("Error handling the request: \(error)")
+        }
+    }
+    override func stopLoading() {}
 }
