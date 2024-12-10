@@ -26,4 +26,3 @@ let durationFormatter: DateComponentsFormatter = {
     formatter.unitsStyle = .short
     return formatter
 }()
-

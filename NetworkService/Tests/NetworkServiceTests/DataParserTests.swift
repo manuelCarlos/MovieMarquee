@@ -102,7 +102,6 @@ final class DataParserTests: XCTestCase {
         }
         """
 
-
         let jsonData = Data(jsonWithNoMovies.utf8)
         let moviesResponse: MockMovies = try dataParser.parse(data: jsonData)
 
