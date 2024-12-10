@@ -18,7 +18,14 @@ import SnapshotTesting
 final class MovieOverviewListItemTests: XCTestCase {
 
     private let movieService = MockMediaService()
+    nonisolated(unsafe) var record: Bool?
 
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
+    
     func test_movie_overview_list_item_with_short_title() async throws {
         let movie = Movie.make(id: 1, title: "Stalker")
 
@@ -28,14 +35,16 @@ final class MovieOverviewListItemTests: XCTestCase {
                        as: .image(
                         layout: .fixed(width: 150, height: 300),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .fixed(width: 120, height: 250),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 
@@ -48,14 +57,16 @@ final class MovieOverviewListItemTests: XCTestCase {
                        as: .image(
                         layout: .fixed(width: 150, height: 300),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .fixed(width: 120, height: 250),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 }

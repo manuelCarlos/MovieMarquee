@@ -24,7 +24,7 @@ final class NetworkErrorTests: XCTestCase {
     func test_http_response_error_description() {
         let code = 404
         let error = NetworkError.httpResponse(code: code)
-        XCTAssertEqual(error.errorDescription, "Received an HTTP error response.")
+        XCTAssertEqual(error.errorDescription, "Received an HTTP error response. Have you added the correct API key?")
     }
 
     func test_invalid_url_failure_reason() {

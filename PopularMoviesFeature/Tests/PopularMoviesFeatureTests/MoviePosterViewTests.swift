@@ -14,6 +14,14 @@ import SnapshotTesting
 @MainActor
 final class MoviePosterViewTests: XCTestCase {
 
+    nonisolated(unsafe) var record: Bool?
+
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
+    
     func test_movie_poster_view() {
         let sut = MoviePosterView(imageUrl: "")
 

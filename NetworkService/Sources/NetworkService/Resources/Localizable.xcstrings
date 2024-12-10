@@ -8,7 +8,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Received an HTTP error response."
+            "value" : "Received an HTTP error response. Have you added the correct API key?"
           }
         }
       }

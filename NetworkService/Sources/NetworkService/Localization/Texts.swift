@@ -28,7 +28,7 @@ enum Texts {
 
     static let httpResponseErrorDescription = NSLocalizedString("network_error_http_response_error_description_key",
                                                                 bundle: .module,
-                                                                value: "Received an HTTP error response.",
+                                                                value: "Received an HTTP error response. Have you added the correct API key?",
                                                                 comment: "Error description when a non-success HTTP status code is received")
 
     // MARK: - Failure Reasons

@@ -19,7 +19,7 @@ struct ArtistItemView: View {
         let imageHeight: CGFloat = 150
         let progressTintColor = Color.blue.opacity(0.6)
 
-        let titleFont: Font = .headline
+        let titleFont: Font = .body
         let titleFontWeight: Font.Weight = .regular
         let titleForegroundColor: Color = .primary
         let titleLineLimit: Int = 2
@@ -35,7 +35,7 @@ struct ArtistItemView: View {
         let failurePaddingTrailing = Spacings.space10
         let failureImageColor: Color = .gray
         let failureImageOpacity: CGFloat = 0.3
-        let failureImageHeight: CGFloat = 130
+        let failureImageHeight: CGFloat = 120
     }
 
     private let layout = Layout()
@@ -48,7 +48,7 @@ struct ArtistItemView: View {
     var body: some View {
         VStack {
             artistImage
-            artistTitle
+            artistName
         }
         .cornerRadius(layout.cornerRadius)
     }
@@ -81,7 +81,7 @@ struct ArtistItemView: View {
     }
 
     @ViewBuilder
-    private var artistTitle: some View {
+    private var artistName: some View {
         if let title = artist.titleString {
             Text(title)
                 .font(layout.titleFont)
