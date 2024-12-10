@@ -32,7 +32,7 @@ final class MovieMarqueeUITests: XCTestCase {
 
         let elementsQuery = app.scrollViews.otherElements
         elementsQuery.buttons.firstMatch.tap()
-        app.navigationBars.firstMatch.buttons["Back"].tap()
-        app.navigationBars.firstMatch.buttons["Discover"].tap()
+        app.navigationBars.firstMatch.buttons["All Popular Movies"].tap()
+        app.navigationBars["All Popular Movies"].buttons["Discover"].tap()
     }
 }

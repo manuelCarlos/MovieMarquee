@@ -60,8 +60,8 @@ struct MoviesOverviewList: View {
                     NavigationLink(destination: {
                         PaginatedListView(viewModel: PaginatedListViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher)),
                                           movieService: movieService)
+                        .navigationTitle(navigationTitle)
                     }, label: { discloseAllView })
-
                 }
 
                 ScrollView(.horizontal, showsIndicators: false) {
