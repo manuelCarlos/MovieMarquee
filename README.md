@@ -10,8 +10,8 @@ It uses SwiftUI and Swift Concurrency to display and manage information about th
   
 ## How to get a TMDB API Key
 
-    1. Got to https://www.themoviedb.org/signup and sign up for a free account.
-    2. Once signed-up, go to https://www.themoviedb.org/settings/api to regenerate or view your API key.
+1. Got to https://www.themoviedb.org/signup and sign up for a free account.
+2. Once signed-up, go to https://www.themoviedb.org/settings/api to regenerate or view your API key.
 
 ## Current App Feature Set
 
