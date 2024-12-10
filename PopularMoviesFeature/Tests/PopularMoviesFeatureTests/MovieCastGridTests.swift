@@ -15,6 +15,14 @@ import SnapshotTesting
 @MainActor
 final class MovieCastGridTests: XCTestCase {
 
+    nonisolated(unsafe) var record: Bool?
+
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
+
     func test_movie_cast_grid_when_avatars_are_loading() async throws {
         let controller = MockMoviesCastController()
         controller.mockCasts = [
@@ -35,28 +43,32 @@ final class MovieCastGridTests: XCTestCase {
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .device(config: .iPhone13Mini(.landscape)),
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 }

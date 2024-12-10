@@ -15,6 +15,14 @@ import SnapshotTesting
 @MainActor
 final class ArtistItemViewTests: XCTestCase {
 
+    nonisolated(unsafe) var record: Bool?
+
+    override func setUp() {
+        super.setUp()
+
+//        record = true
+    }
+
     func test_artist_view_when_avatar_image_is_loading() async throws {
         let sut = ArtistItemView(artist: Cast.make(id: 1, name: "Madonna"))
 
@@ -22,14 +30,16 @@ final class ArtistItemViewTests: XCTestCase {
                        as: .image(
                         layout: .sizeThatFits,
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .sizeThatFits,
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 
@@ -43,14 +53,16 @@ final class ArtistItemViewTests: XCTestCase {
                        as: .image(
                         layout: .sizeThatFits,
                         traits: .init(userInterfaceStyle: .light)
-                       )
+                       ),
+                       record: record
         )
 
         assertSnapshot(of: sut,
                        as: .image(
                         layout: .sizeThatFits,
                         traits: .init(userInterfaceStyle: .dark)
-                       )
+                       ),
+                       record: record
         )
     }
 }

@@ -19,8 +19,8 @@ struct ArtistItemView: View {
         let imageHeight: CGFloat = 150
         let progressTintColor = Color.blue.opacity(0.6)
 
-        let titleFont: Font = .headline
-        let titleFontWeight: Font.Weight = .regular
+        let titleFont: Font = .footnote
+        let titleFontWeight: Font.Weight = .semibold
         let titleForegroundColor: Color = .primary
         let titleLineLimit: Int = 2
         let titleMinimumScaleFactor: CGFloat = 0.7
@@ -35,7 +35,7 @@ struct ArtistItemView: View {
         let failurePaddingTrailing = Spacings.space10
         let failureImageColor: Color = .gray
         let failureImageOpacity: CGFloat = 0.3
-        let failureImageHeight: CGFloat = 130
+        let failureImageHeight: CGFloat = 117
     }
 
     private let layout = Layout()
