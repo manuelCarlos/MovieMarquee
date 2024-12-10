@@ -23,7 +23,7 @@ final class MediaFetcherTests: XCTestCase {
         XCTAssertEqual(result.count, mockService.mockWatchables.count)
         XCTAssertEqual(mockService.fetchCount, 1)
         let page = await fetcher.pageNumber
-        XCTAssertEqual(page, 1)
+        XCTAssertEqual(page, 2)
     }
 
     func test_first_page_fetch_failure() async throws {
@@ -37,7 +37,7 @@ final class MediaFetcherTests: XCTestCase {
         } catch {
             XCTAssertEqual((error as? MediaServiceError), .noPopularMoviesAvailable)
             let page = await fetcher.pageNumber
-            XCTAssertEqual(page, 0)
+            XCTAssertEqual(page, 1)
         }
     }
 
@@ -56,10 +56,10 @@ final class MediaFetcherTests: XCTestCase {
         XCTAssertEqual(result2.count, 2)
         XCTAssertEqual(mockService.fetchCount, 2)
         let page = await fetcher.pageNumber
-        XCTAssertEqual(page, 2)
+        XCTAssertEqual(page, 3)
     }
 
-    func test_page_number_should_be_zero_after_initial_two_consecutive_pages_fail() async throws {
+    func test_page_number_should_be_one_after_initial_two_consecutive_pages_fail() async throws {
         let mockService = MockMediaService(shouldFail: true)
         let mockFetcher = MockMediaListFetcher()
         let fetcher = MediaFetcher(mediaListFetcher: mockFetcher, service: mockService)
@@ -71,10 +71,10 @@ final class MediaFetcherTests: XCTestCase {
         _ = try? await fetcher.fetchNextPage()
 
         let page = await fetcher.pageNumber
-        XCTAssertEqual(page, 0)
+        XCTAssertEqual(page, 1)
     }
 
-    func test_page_number_should_be_two_when_a_third_fetch_task_fails() async throws {
+    func test_page_number_should_be_three_when_a_third_fetch_task_fails() async throws {
         let mockService = MockMediaService()
         let mockFetcher = MockMediaListFetcher()
         let fetcher = MediaFetcher(mediaListFetcher: mockFetcher, service: mockService)
@@ -89,7 +89,7 @@ final class MediaFetcherTests: XCTestCase {
         XCTAssertEqual(result2.count, 2)
         XCTAssertEqual(mockService.fetchCount, 2)
         let page = await fetcher.pageNumber
-        XCTAssertEqual(page, 2)
+        XCTAssertEqual(page, 3)
 
         mockService.shouldFail = true
 
@@ -99,7 +99,7 @@ final class MediaFetcherTests: XCTestCase {
         } catch {
             XCTAssertEqual((error as? MediaServiceError), .noPopularMoviesAvailable)
             let page = await fetcher.pageNumber
-            XCTAssertEqual(page, 2)
+            XCTAssertEqual(page, 3)
         }
     }
 }

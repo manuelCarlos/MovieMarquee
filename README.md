@@ -7,6 +7,7 @@ It uses SwiftUI and SwiftData to display and manage information about the curren
 
 - To successfully fetch data from TMDB, an API key is required 🚨.
   Paste your key into the `MovieMarquee/TMDBData/Sources/TMDBData/Resources/apiKey.json` file before you build the project.
+- An internet connection is needed to allow Xcode to fetch the third party dependencies required by the project.
 - Please build and Run in **Xcode  v16.1** 
   
 ## How to get a TMDB API Key
