@@ -35,10 +35,8 @@ struct MainAppScene: View {
                 }
                 .tag(TabViewSection.favorites.rawValue)
         }
-        .task {
-            Task {
-                try? await favoriteMoviesDBStore.loadAllMovies()
-            }
+        .task { [favoriteMoviesDBStore] in
+            try? await favoriteMoviesDBStore.loadAllMovies()
         }
     }
 }

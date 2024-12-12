@@ -11,7 +11,7 @@ import Models
 
 @available(iOS 17.0, *)
 @Observable
-final class PaginatedListViewModel: @unchecked Sendable {
+final class PaginatedListViewModel {
 
     enum State {
         case idle

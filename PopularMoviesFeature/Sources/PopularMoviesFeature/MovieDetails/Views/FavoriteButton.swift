@@ -28,12 +28,14 @@ struct FavoriteButton: View {
 
     var body: some View {
         Button {
-            if isFavorite == true {
-                Task { try? await favoriteMoviesDBStore.deleteMovie(with: mediaId) }
-            } else {
-                Task { try? await favoriteMoviesDBStore.insertMovie(FavoriteMovie(id: mediaId, name: mediaTitle)) }
+            Task { [favoriteMoviesDBStore] in
+                if isFavorite == true {
+                    try? await favoriteMoviesDBStore.deleteMovie(with: mediaId)
+                } else {
+                    try? await favoriteMoviesDBStore.insertMovie(FavoriteMovie(id: mediaId, name: mediaTitle))
+                }
+                isFavorite?.toggle()
             }
-            isFavorite?.toggle()
 
         } label: {
             Icons.favorite(isOn: isFavorite == true)
@@ -42,7 +44,7 @@ struct FavoriteButton: View {
                 .foregroundColor(.red)
         }
         .symbolEffect(.bounce, value: isFavorite == true)
-        .task {
+        .task { [favoriteMoviesDBStore] in
             do {
                 _ = try await favoriteMoviesDBStore.fetchMovie(with: mediaId)
                 isFavorite = true

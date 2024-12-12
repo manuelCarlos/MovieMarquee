@@ -11,7 +11,7 @@ import Models
 
 @available(iOS 17.0, *)
 @Observable
-final class MovieDetailsViewModel: @unchecked Sendable {
+final class MovieDetailsViewModel {
 
     enum State {
         case idle

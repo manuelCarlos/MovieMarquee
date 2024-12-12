@@ -11,7 +11,7 @@ import Foundation
 /// A store for managing the favorite movies in the DB, providing asynchronous methods
 /// to load, insert, and delete favorite movies records.
 @Observable
-public final class FavoriteMoviesDBStore: @unchecked Sendable {
+public final class FavoriteMoviesDBStore {
 
     /// A list of all favorite movies in the store, synchronized with the DB.
     public private(set) var movies: [FavoriteMovie] = []

@@ -29,13 +29,13 @@ struct PaginatedListView: View {
         switch viewModel.state {
         case .idle:
             IdleView {
-                Task { await viewModel.fetchFirstPage() }
+                Task { [viewModel] in await viewModel.fetchFirstPage() }
             }
         case .loading:
             LoadingStateView(subtitle: Texts.loading)
         case .failed(let error):
             FailedStateView(title: Texts.somethingWentWrong, description: error) {
-                Task { await viewModel.fetchFirstPage() }
+                Task { [viewModel] in await viewModel.fetchFirstPage() }
             }
         case .loaded(let watchables):
             ScrollView {
@@ -48,7 +48,7 @@ struct PaginatedListView: View {
                     }
                     Spacer()
                         .onAppear {
-                            Task {
+                            Task { [viewModel] in
                                 // In case of error, this fails silently because there's already data on screen.
                                 // Possible improvement: present a easily dismissible error message.
                                 try await viewModel.fetchMedia()

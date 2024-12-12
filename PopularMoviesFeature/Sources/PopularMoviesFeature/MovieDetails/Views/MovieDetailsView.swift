@@ -42,13 +42,13 @@ struct MovieDetailsView: View {
         switch viewModel.state {
         case .idle:
             IdleView {
-                Task { await viewModel.fetchMediaDetails() }
+                Task { [viewModel] in await viewModel.fetchMediaDetails() }
             }
         case .loading:
             LoadingStateView(subtitle: Texts.loading)
         case .failed(let error):
             FailedStateView(title: Texts.somethingWentWrong, description: error) {
-                Task { await viewModel.fetchMediaDetails() }
+                Task { [viewModel] in await viewModel.fetchMediaDetails() }
             }
         case .loaded(let movieDetails):
             ScrollView {

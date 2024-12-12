@@ -45,7 +45,9 @@ struct MovieCastGrid: View {
         switch viewModel.state {
         case .idle:
             IdleView {
-                Task { await viewModel.fetchMediaCast() }
+                Task { [viewModel] in
+                    await viewModel.fetchMediaCast()
+                }
             }
         case .failed:
             // In case of error, the Cast section is not displayed at all 😉.
