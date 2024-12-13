@@ -23,10 +23,11 @@ struct MovieDetailsHeader: View {
         let minimumScaleFactorLanguage: CGFloat = 0.8
         let minimumScaleFactorDate: CGFloat = 0.8
         let minimumScaleFactorTime: CGFloat = 0.8
+        let maxRating = 5
     }
 
     private let layout = Layout()
-    private let maxRating = 5
+
     private let genres: String?
     private let rating: Double?
     private let originalLanguage: OriginalLanguage?
@@ -52,7 +53,7 @@ struct MovieDetailsHeader: View {
             }
 
             if let rating {
-                StarsView(rating: CGFloat(rating / 2), maxRating: maxRating)
+                StarsView(rating: CGFloat(rating / 2), maxRating: layout.maxRating)
                     .frame(width: layout.starsViewWidth, alignment: .center)
             }
 
