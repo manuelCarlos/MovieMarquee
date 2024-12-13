@@ -21,7 +21,7 @@ final class MoviePosterViewTests: XCTestCase {
 
 //        record = true
     }
-    
+
     func test_movie_poster_view() {
         let sut = MoviePosterView(imageUrl: "")
 

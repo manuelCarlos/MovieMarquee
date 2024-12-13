@@ -37,7 +37,6 @@ struct PaginatedListItemView: View {
     private let layout = Layout()
 
     private let mediaItem: Watchable
-
     private let movieService: MediaService
     @ObservedObject private var movieDetailsViewModel: MovieDetailsViewModel
 

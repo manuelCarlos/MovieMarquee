@@ -25,7 +25,7 @@ final class MovieOverviewListItemTests: XCTestCase {
 
 //        record = true
     }
-    
+
     func test_movie_overview_list_item_with_short_title() async throws {
         let movie = Movie.make(id: 1, title: "Stalker")
 
