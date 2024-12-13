@@ -34,7 +34,7 @@ struct FavoriteMoviesList: View {
                     }
                 }
                 .onDelete(perform: { indexSet in
-                    Task { @MainActor [favoriteMoviesDBStore] in
+                    Task { [favoriteMoviesDBStore] in
                         try? await favoriteMoviesDBStore.deleteMovies(indexSet: indexSet)
                     }
                 })
