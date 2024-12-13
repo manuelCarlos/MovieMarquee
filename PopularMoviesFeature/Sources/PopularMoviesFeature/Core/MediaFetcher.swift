@@ -56,7 +56,7 @@ final actor MediaFetcher: Fetchable {
         let result = await fetchTask.result
         switch result {
         case .success(let watchables):
-            // The for loop where cause prevent from storing duplicate movies, This can happen because the BE API sometimes
+            // This for loop is to prevent from storing duplicate movies, This can happen because the BE API sometimes
             // includes the last movie from the previous page as the 1st movie of the next page 🙃.
             for watchable in watchables where mediaList.contains(where: { $0.id == watchable.id }) == false {
                 mediaList.append(watchable)
