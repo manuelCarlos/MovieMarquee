@@ -4,12 +4,6 @@
 //
 //  Created by Manuel Lopes on 13.12.24.
 //
-//
-//  DepartmentTests.swift
-//  Models
-//
-//  Created by Manuel Lopes on 13.12.24.
-//
 
 import XCTest
 @testable import Models
