@@ -39,3 +39,4 @@ It uses SwiftUI and SwiftData to display and manage information about the curren
 - Modularization using local Swift packages (SPM).
 - Unit, UI and Snapshot tests setup in a test plan, covering all aspects of the implementation.
 - String catalogs for localization.
+- Light/Dark mode support.
