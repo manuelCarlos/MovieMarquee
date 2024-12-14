@@ -3,7 +3,7 @@
   "strings" : {
     "loading_title_key" : {
       "comment" : "Text indicating loading state",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -21,7 +21,7 @@
     },
     "movie_cast_title_key" : {
       "comment" : "Title for the movie cast section",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -39,7 +39,7 @@
     },
     "movie_overview_title_key" : {
       "comment" : "Title for the movie overview section",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -51,6 +51,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sumario"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_loading_title_key" : {
+      "comment" : "Text indicating loading state",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Loading..."
+          }
+        }
+      }
+    },
+    "popular_movies_feature_movie_cast_title_key" : {
+      "comment" : "Title for the movie cast section",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Cast"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_movie_overview_title_key" : {
+      "comment" : "Title for the movie overview section",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Overview"
           }
         }
       }
@@ -87,6 +123,78 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todos os filmes populares"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_no_popular_movies_available_failure_reason_key" : {
+      "comment" : "Failure reason for no popular movies available error.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The server returned an empty list of popular movies."
+          }
+        }
+      }
+    },
+    "popular_movies_feature_no_popular_movies_available_help_anchor_key" : {
+      "comment" : "Help anchor for no popular movies available error.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Make sure you're connected to the internet and the service is available."
+          }
+        }
+      }
+    },
+    "popular_movies_feature_no_popular_movies_available_key" : {
+      "comment" : "Title error when there are no popular movies available.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "There are no popular movies available."
+          }
+        }
+      }
+    },
+    "popular_movies_feature_no_popular_movies_available_recovery_suggestion_key" : {
+      "comment" : "Recovery suggestion for no popular movies available error.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try refreshing the page or check back later."
+          }
+        }
+      }
+    },
+    "popular_movies_feature_something_went_wrong_key" : {
+      "comment" : "Error message indicating something went wrong",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Oops, something went wrong"
+          }
+        }
+      }
+    },
+    "popular_movies_feature_unavailable_key" : {
+      "comment" : "Text indicating something is unavailable",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unavailable"
           }
         }
       }
@@ -129,7 +237,7 @@
     },
     "something_went_wrong_key" : {
       "comment" : "Error message indicating something went wrong",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -147,7 +255,7 @@
     },
     "unavailable_key" : {
       "comment" : "Text indicating something is unavailable",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

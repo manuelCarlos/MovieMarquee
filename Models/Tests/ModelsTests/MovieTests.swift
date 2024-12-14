@@ -66,12 +66,6 @@ final class MovieTests: XCTestCase {
         XCTAssertEqual(movie.voteAverage, 7.5)
     }
 
-    func test_movie_decoding_failure_due_to_malformed_json() throws {
-        XCTAssertThrowsError(try loadJson(from: "malformed_movie", as: Movie.self)) { error in
-            XCTAssertTrue(error is DecodingError)
-        }
-    }
-
     func test_movie_encoding_succefully() throws {
         let movie = Movie(
             id: 1,

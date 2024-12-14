@@ -15,28 +15,28 @@ enum MediaServiceError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .noPopularMoviesAvailable:
-            return "There are no popular movies available."
+            return Texts.MediaServiceError.NoPopularMoviesAvailable.errorDescription
         }
     }
 
     var failureReason: String? {
         switch self {
         case .noPopularMoviesAvailable:
-            return "The server returned an empty list of popular movies."
+            return Texts.MediaServiceError.NoPopularMoviesAvailable.failureReason
         }
     }
 
     var recoverySuggestion: String? {
         switch self {
         case .noPopularMoviesAvailable:
-            return "Try refreshing the page or check back later."
+            return Texts.MediaServiceError.NoPopularMoviesAvailable.recoverySuggestion
         }
     }
 
     var helpAnchor: String? {
         switch self {
         case .noPopularMoviesAvailable:
-            return "Make sure you're connected to the internet and the service is available."
+            return Texts.MediaServiceError.NoPopularMoviesAvailable.helpAnchor
         }
     }
 }
