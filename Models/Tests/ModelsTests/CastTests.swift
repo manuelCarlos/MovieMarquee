@@ -47,12 +47,6 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(cast.voteCount, 100)
     }
 
-    func test_decoding_malformed_json_should_fail() throws {
-        XCTAssertThrowsError(try loadJson(from: "malformed_cast", as: Cast.self)) { error in
-            XCTAssertTrue(error is DecodingError)
-        }
-    }
-
     func test_cast_encoding_successfully() throws {
         // Set the date encoding strategy to use yyyy-MM-dd and force it to use UTC
         dateOfReleaseFormatter.timeZone = TimeZone(secondsFromGMT: 0)

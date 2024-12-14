@@ -8,6 +8,7 @@
 import SwiftUI
 
 import Lego
+import NetworkService
 
 /// Provides the UI entry point for the "Popular Movies Feature".
 /// This includes displaying the currently 20 most popular movies in an horizontally scrolling carousel.
@@ -21,12 +22,44 @@ public struct PopularMoviesFeatureView: View {
     @State private var isDataLoaded: Bool
 
     @ObservedObject private var viewModel: PopularMoviesFeatureViewModel
-    private let movieService = MovieService()
+    private let movieService: MovieService = {
+        #if DEBUG
+        /// Example of a setup for Mock UI tests.
+        if CommandLine.arguments.contains("--uitesting"),
+           let json = try? loadJsonString(from: "uitestsJson.json") {
+
+            let mockData = Data(json.utf8)
+            MockURLProtocol.requestHandler = { request in
+                let response = HTTPURLResponse(url: request.url!,
+                                               statusCode: 200,
+                                               httpVersion: nil,
+                                               headerFields: nil)!
+                return (response, mockData)
+            }
+
+            let configuration = URLSessionConfiguration.ephemeral
+            configuration.protocolClasses = [MockURLProtocol.self]
+
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            let parser = DataParser(jsonDecoder: jsonDecoder)
+
+            let urlSession = URLSession(configuration: configuration)
+            let apiManager = APIManager(urlSession: urlSession)
+            let requestManager = RequestManager(parser: parser, apiManager: apiManager)
+            return MovieService(requestManager: requestManager)
+        } else {
+            return MovieService()
+        }
+        #else
+        return MovieService()
+        #endif
+    }()
 
     /// Instantiate a `PopularMoviesFeatureView` SwiftUI view.
     public init() {
         let mediaFetcher = MediaFetcher(mediaListFetcher: PopularMoviesFetcher(),
-                                                service: movieService)
+                                        service: movieService)
         self.viewModel = PopularMoviesFeatureViewModel(controller: MoviesOverviewController(popularMoviesFetcher: mediaFetcher))
         self.isDataLoaded = false
     }
@@ -34,7 +67,7 @@ public struct PopularMoviesFeatureView: View {
     public var body: some View {
         NavigationView {
             contentView
-            .navigationBarTitle(Texts.popularMoviesFeatureNavigationBarTitle)
+                .navigationBarTitle(Texts.popularMoviesFeatureNavigationBarTitle)
         }
     }
 

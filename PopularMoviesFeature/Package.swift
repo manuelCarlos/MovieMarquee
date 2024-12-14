@@ -26,7 +26,8 @@ let package = Package(
                 .product(name: "Lego", package: "Lego")
             ],
             resources: [
-                .process("Resources/poster_placeholder.jpg")
+                .process("Resources/poster_placeholder.jpg"),
+                .process("Resources/uitestsJson.json")
             ]
         ),
         .testTarget(
