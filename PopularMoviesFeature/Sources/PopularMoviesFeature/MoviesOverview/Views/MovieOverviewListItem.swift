@@ -30,19 +30,21 @@ struct MovieOverviewListItem: View {
     private let movie: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService: MediaService
+    private let movieDetailsViewModel: MovieDetailsViewModel
 
     init(movie: Watchable, favoriteMoviesDBStore: FavoriteMoviesDBStore, movieService: MediaService) {
         self.movie = movie
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
         self.movieService = movieService
+        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(movieService: movieService),
+                                                           navigationTitle: movie.title,
+                                                           movieId: movie.id)
     }
 
     var body: some View {
         NavigationLink(
             destination:
-                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(movieService: movieService),
-                                                                  navigationTitle: movie.title,
-                                                                  movieId: movie.id),
+                MovieDetailsView(viewModel: movieDetailsViewModel,
                                  favoriteMoviesDBStore: favoriteMoviesDBStore,
                                  movieService: movieService)
         ) {
