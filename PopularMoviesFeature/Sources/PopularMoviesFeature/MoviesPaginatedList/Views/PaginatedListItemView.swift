@@ -40,6 +40,7 @@ struct PaginatedListItemView: View {
     private let mediaItem: Watchable
     private let favoriteMoviesDBStore: FavoriteMoviesDBStore
     private let movieService: MediaService
+    private let movieDetailsViewModel: MovieDetailsViewModel
 
     init(mediaItem: Watchable,
          favoriteMoviesDBStore: FavoriteMoviesDBStore,
@@ -47,14 +48,15 @@ struct PaginatedListItemView: View {
         self.mediaItem = mediaItem
         self.favoriteMoviesDBStore = favoriteMoviesDBStore
         self.movieService = movieService
+        self.movieDetailsViewModel = MovieDetailsViewModel(controller: MovieDetailsController(movieService: movieService),
+                                                           navigationTitle: mediaItem.title,
+                                                           movieId: mediaItem.id)
     }
 
     var body: some View {
         NavigationLink(
             destination:
-                MovieDetailsView(viewModel: MovieDetailsViewModel(controller: MovieDetailsController(movieService: movieService),
-                                                                  navigationTitle: mediaItem.title,
-                                                                  movieId: mediaItem.id),
+                MovieDetailsView(viewModel: movieDetailsViewModel,
                                  favoriteMoviesDBStore: favoriteMoviesDBStore,
                                  movieService: movieService)
         ) {
