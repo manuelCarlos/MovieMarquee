@@ -35,7 +35,9 @@ It uses SwiftUI and SwiftData to display and manage information about the curren
 ## Notable Implementation Features
 
 - SwiftUI app with no third-party dependencies.
+- SwiftData used for the implementation of a simple persistency layer. 
 - Swift 6 ready - strict concurrency checking enabled with zero warnings :P
+- Profiled in instruments for zero memory leaks.
 - Modularization using local Swift packages (SPM).
 - Unit, UI and Snapshot tests setup in a test plan, covering all aspects of the implementation.
 - String catalogs for localization.
